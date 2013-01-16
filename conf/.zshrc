@@ -7,7 +7,8 @@ zstyle :compinstall filename '/Users/rkautz/.zshrc'
 
 export PATH=$PATH:$HOME/.bin
 export EDITOR="mvim -v"
-fpath=(~/.zsh_completion ~/.zsh/zsh-completions/src/ $fpath)
+export PYTHONSTARTUP=$HOME/.pythonstartup
+fpath=(~/.zsh_completion ~/.dotfiles/zsh-completions/src/ $fpath)
 
 autoload -Uz compinit
 compinit
@@ -16,7 +17,7 @@ colors
 
 alias vim='mvim -v'
 
-source ~/.dotfiles/prompt
+source ~/.dotfiles/conf/.zsh/prompt
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator

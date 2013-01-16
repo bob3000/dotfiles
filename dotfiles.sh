@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dependencies=(asdf git curl zsh tmux vim)
+dependencies=(git curl zsh tmux vim)
 bak_dir=~/.dotfiles-bak
 repo=~/.dotfiles
 github=git@github.com:bob3000/dotfiles.git
