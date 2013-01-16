@@ -20,7 +20,7 @@ git clone --recursive $github $repo
 mkdir -p $bak_dir
 for i in $(find $repo/conf -depth 1); do
     file=$(echo $i | rev | cut -d'/' -f1 | rev) # cut last field
-    if [ -f ~/$file ]; then
+    if [ -f ~/$file ] || [ -d ~/$file ]; then
         mv ~/$file $bak_dir
         ln -s $repo/conf/$file ~/$file
     fi
