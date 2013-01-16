@@ -1,0 +1,35 @@
+[user]
+    name = Robin Kautz
+    email = robin.kautz@devbliss.com
+[alias]
+    diff = diff --word-diff
+    mdiff = diff --diff-filter=CMRTUXB
+    merge = merge --no-ff
+    pull = pull --no-ff
+    co = checkout
+    st = status
+[core]
+    quotepath = false
+    pager = less -r
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[diff] 
+[difftool] 
+   #external = /Users/rkautz/bin/git-diff-wrapper 
+   #prompt = false
+    tool = diffmerge
+    mnemonicprefix = true
+#[diff]
+[push]
+    default = tracking
+[web]
+    browser = open
+[merge]
+    conflictstyle = merge
+[diff]
+    tool = diffmerge
+[difftool "diffmerge"]
+    cmd = "diffmerge \"$LOCAL\" \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; fi)\""
