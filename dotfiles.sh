@@ -18,7 +18,7 @@ git clone --recursive $github $repo
 
 # move and link files
 mkdir -p $bak_dir
-for i in $(find $repo/conf -type f); do
+for i in $(find $repo/conf -depth 1); do
     file=$(echo $i | rev | cut -d'/' -f1 | rev) # cut last field
     if [ -f ~/$file ]; then
         mv ~/$file $bak_dir
