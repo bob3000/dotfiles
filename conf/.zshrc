@@ -3,7 +3,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd extendedglob nomatch notify
 bindkey -e
-zstyle :compinstall filename '/Users/rkautz/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 export PATH=$PATH:$HOME/.bin
 export EDITOR="mvim -v"
