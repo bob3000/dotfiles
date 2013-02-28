@@ -5,7 +5,7 @@ setopt appendhistory autocd extendedglob nomatch notify
 bindkey -e
 zstyle :compinstall filename "$HOME/.zshrc"
 
-export PATH=$PATH:$HOME/.bin
+export PATH=$PATH:$HOME/.bin:/opt/local/bin
 export EDITOR="mvim -v"
 export PYTHONSTARTUP=$HOME/.pythonstartup
 fpath=(~/.zsh_completion ~/.dotfiles/zsh-completions/src/ $fpath)
