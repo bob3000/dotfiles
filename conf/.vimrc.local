@@ -7,7 +7,9 @@ let g:syntastic_auto_loc_list=1
 let g:pymode_lint=0 " do sudo pip install flake8 first
 let g:undotree_SetFocusWhenToggle=1
 let g:spf13_no_fastTabs=0
-colorscheme desert
+colorscheme solarized
+highlight ColorColumn ctermbg=10
+set colorcolumn=80
 
 " Yank text to the OS X clipboard
 noremap <leader>y "*y

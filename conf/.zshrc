@@ -16,6 +16,7 @@ autoload -U colors
 colors
 
 alias vim='mvim -v'
+alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
 
 source ~/.dotfiles/conf/.zsh/prompt
 source ~/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

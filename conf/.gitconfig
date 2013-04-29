@@ -8,7 +8,7 @@
     pull = pull --no-ff
     co = checkout
     st = status
-    de = devbliss
+	de = devbliss
 [core]
     quotepath = false
     pager = less -r
