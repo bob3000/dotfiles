@@ -1,18 +1,28 @@
 map ; ;
 set wrap
-set nospell
-let g:Powerline_symbols = 'fancy' " install powerline-patched font
+set spell
+highlight clear SpellBad
+highlight SpellBad cterm=underline
+
+let g:Powerline_symbols='fancy' " install powerline-patched font
 let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=1
 let g:pymode_lint=0 " do sudo pip install flake8 first
 let g:undotree_SetFocusWhenToggle=1
 let g:spf13_no_fastTabs=0
-colorscheme solarized
-highlight ColorColumn ctermbg=10
+
+"colorscheme solarized
 set colorcolumn=80
+highlight ColorColumn ctermbg=10
+highlight Normal ctermfg=244 ctermbg=none
 
 " Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y"
+"noremap <leader>y "*y
+"noremap <leader>yy "*Y"
 " Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>"
+"noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>"
+
+"colorscheme desert
+
+" no remap S-H and S-L
+let g:spf13_no_fastTabs=1

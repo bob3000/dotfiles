@@ -10,6 +10,12 @@ export EDITOR="mvim -v"
 export PYTHONSTARTUP=$HOME/.pythonstartup
 fpath=(~/.zsh_completion ~/.dotfiles/zsh-completions/src/ $fpath)
 
+_force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1	# Because we didn't really complete anything
+}
+zstyle ':completion:*' _force_rehash
+
 autoload -Uz compinit
 compinit
 autoload -U colors
