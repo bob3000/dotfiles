@@ -50,8 +50,8 @@ source ~/entwicklung/liquidprompt/liquidprompt
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 ## completions
-source /etc/bash_completion.d/git-devbliss
-source ~/entwicklung/vagrant-bash-completion/vagrant
-source ~/entwicklung/tmuxinator/bin/tmuxinator_completion
-source ~/.bash_completion
+[ -f /etc/bash_completion.d/git-devbliss ] && source /etc/bash_completion.d/git-devbliss
+source ~/.dotfiles/vagrant-bash-completion/vagrant
+source ~/.dotfiles/tmuxinator/completion/tmuxinator.bash
+source ~/.dotfiles/bash_completion/tmux
 
