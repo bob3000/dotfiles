@@ -1,17 +1,9 @@
 #!/bin/sh
 
-dependencies=(git curl zsh tmux vim)
+#dependencies=(git curl zsh tmux vim)
 bak_dir=~/.dotfiles-bak
 repo=~/.dotfiles
 github=git@github.com:bob3000/dotfiles.git
-
-# check dependencies
-for d in $dependencies; do
-    if ! which $d; then
-        echo "Error: $d is not installed" >> /dev/stderr
-        exit 1
-    fi
-done
 
 # clone repo
 git clone --recursive $github $repo
