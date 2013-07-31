@@ -33,9 +33,6 @@ if [ -d /etc/bash_completion.d ]; then
     . /etc/bash_completion.d/*
 fi
 
-# teamocil
-complete -W "$(teamocil --list)" teamocil
-
 # convinence
 alias ll='ls -l'
 alias la='ls -a'
@@ -46,7 +43,7 @@ alias vim='mvim -v'
 alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
 
 ## prompt
-source ~/entwicklung/liquidprompt/liquidprompt
+source ~/.dotfiles/liquidprompt/liquidprompt
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 ## completions
