@@ -34,6 +34,7 @@ if [ -d /etc/bash_completion.d ]; then
 fi
 
 # convinence
+alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a'
 alias pt='pygmentize'
