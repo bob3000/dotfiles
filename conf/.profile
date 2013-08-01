@@ -28,6 +28,9 @@ fi
 if [ -f /opt/local/share/git-core/git-prompt.sh ]; then
     . /opt/local/share/git-core/git-prompt.sh
 fi
+if [ -f /opt/local/share/git-core/contrib/completion/git-completion.bash ]; then
+    . /opt/local/share/git-core/contrib/completion/git-completion.bash
+fi
 
 # other completion
 if [ -d /etc/bash_completion.d ]; then
