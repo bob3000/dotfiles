@@ -4,7 +4,7 @@ set spell
 highlight clear SpellBad
 highlight SpellBad cterm=underline
 
-let g:Powerline_symbols='fancy' " install powerline-patched font
+let g:airline_powerline_fonts = 1
 let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=1
 let g:pymode_lint=0 " do sudo pip install flake8 first

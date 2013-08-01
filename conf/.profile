@@ -40,6 +40,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias pt='pygmentize'
 alias git='LANG=en_US git'
+alias ack='ack-5.12'
 
 alias vim='~/.dotfiles/bin/mvim -v'
 alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
