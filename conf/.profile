@@ -5,7 +5,6 @@ export PATH=/Users/rkautz/bin:/opt/local/bin:/opt/local/sbin:$PATH
 export C_INCLUDE_PATH=/opt/local/include
 export LIBRARY_PATH=/opt/local/lib
 
-export LANG=en_US.utf8
 # git
 export GIT_PS1_SHOWDIRTYSTATE=1
 
