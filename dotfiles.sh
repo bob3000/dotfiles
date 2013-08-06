@@ -1,6 +1,6 @@
 #!/bin/sh
+set -eu
 
-#dependencies=(git curl zsh tmux vim)
 bak_dir=~/.dotfiles-bak
 repo=~/.dotfiles
 github=https://github.com/bob3000/dotfiles.git
