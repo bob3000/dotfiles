@@ -13,7 +13,7 @@ export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
-export PATH=$HOME/.dotfiles/bin:/opt/local/bin:$PATH
+export PATH=$HOME/Library/Python/3.2/bin:$HOME/.dotfiles/bin:/opt/local/bin:$PATH
 export PATH=/opt/local/libexec/gnubin:$PATH
 export EDITOR="mvim -v"
 export PYTHONSTARTUP=$HOME/.pythonstartup
@@ -33,7 +33,10 @@ fi
 
 # other completion
 if [ -d /etc/bash_completion.d ]; then
-    . /etc/bash_completion.d/*
+    for c in /etc/bash_completion.d/*; do source $c; done
+fi
+if [ -d /opt/local/etc/bash_completion.d ]; then
+    for c in /opt/local/etc/bash_completion.d/*; do source $c; done
 fi
 
 # convinence
@@ -43,6 +46,10 @@ alias la='ls -a'
 alias pt='pygmentize'
 alias git='LANG=en_US git'
 alias ack='ack-5.12'
+
+alias vmsoff='for line in $(VBoxManage list runningvms | sed -ne "s/.*{\(.*\)}/\1/gp"); do VBoxManage controlvm  $line poweroff; done;'
+alias vmsrunning='VBoxManage list runningvms'
+alias vmsall='VBoxManage list vms'
 
 alias vim='~/.dotfiles/bin/mvim -v'
 alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
@@ -56,4 +63,3 @@ source ~/.dotfiles/liquidprompt/liquidprompt
 source ~/.dotfiles/vagrant-bash-completion/vagrant
 source ~/.dotfiles/bash_completion/tmux
 source ~/.dotfiles/bash_completion/tmuxinator.bash
-
