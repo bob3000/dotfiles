@@ -18,8 +18,5 @@ for i in $(find $repo/conf -depth 1); do
     ln -sf $repo/conf/$file ~/$file
 done
 
-# spf13
-(curl http://j.mp/spf13-vim3 -L) | sh
-
 exit 0
 

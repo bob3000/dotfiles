@@ -3,7 +3,9 @@ export PATH=/Users/rkautz/bin:/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 export C_INCLUDE_PATH=/opt/local/include
+export CFLAGS=-I/opt/local/include
 export LIBRARY_PATH=/opt/local/lib
+export LINKFLAGS=-L/opt/local/lib
 
 # git
 export GIT_PS1_SHOWDIRTYSTATE=1
