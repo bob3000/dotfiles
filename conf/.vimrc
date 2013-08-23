@@ -74,6 +74,7 @@ autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd FileType haskell setlocal commentstring=--\ %s
 " Workaround broken colour highlighting in Haskell
 autocmd FileType haskell setlocal nospell
+autocmd FileType make setlocal noexpandtab
 
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
