@@ -1,0 +1,79 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+Bundle 'matchit.zip'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'godlygeek/tabular'
+
+Bundle "myusuf3/numbers.vim"
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-airline'
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'mbbill/undotree'
+Bundle 'kien/ctrlp.vim'
+
+" PHP
+Bundle 'spf13/PIV'
+Bundle 'arnaud-lb/vim-php-namespace'
+Bundle 'beyondwords/vim-twig'
+
+" Python
+" Pick either python-mode or pyflakes & pydoc
+Bundle 'klen/python-mode'
+"Bundle 'python.vim'
+Bundle 'python_match.vim'
+Bundle 'pythoncomplete'
+
+" Javascript
+Bundle 'elzr/vim-json'
+Bundle 'groenewege/vim-less'
+Bundle 'pangloss/vim-javascript'
+Bundle 'briancollins/vim-jst'
+Bundle 'kchmck/vim-coffee-script'
+
+" Java
+Bundle 'derekwyatt/vim-scala'
+Bundle 'derekwyatt/vim-sbt'
+
+" HTML
+Bundle 'amirh/HTML-AutoCloseTag'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'tpope/vim-haml'
+
+" Ruby
+Bundle 'tpope/vim-rails'
+let g:rubycomplete_buffer_loading = 1
+"let g:rubycomplete_classes_in_global = 1
+"let g:rubycomplete_rails = 1
+
+" Go Lang
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'spf13/vim-gocode'
+
+" Misc
+Bundle 'tpope/vim-markdown'
+Bundle 'spf13/vim-preview'
+Bundle 'tpope/vim-cucumber'
+Bundle 'quentindecock/vim-cucumber-align-pipes'
+Bundle 'Puppet-Syntax-Highlighting'
+
+" old vim-airline symbols
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_branch_prefix = '⭠'
+let g:airline_readonly_symbol = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+

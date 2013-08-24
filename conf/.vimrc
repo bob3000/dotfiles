@@ -1,3 +1,7 @@
+source ~/.vim/.vimrc.bundles
+source ~/.vim/.vimrc.functions
+source ~/.vim/.vimrc.keys
+
 set nocompatible
 set background=dark                             " Assume a dark background
 filetype plugin indent on                       " Automatically detect file types.
@@ -41,8 +45,9 @@ set expandtab                                   " Tabs are spaces, not tabs
 set tabstop=4                                   " An indentation every four columns
 set softtabstop=4                               " Let backspace delete indent
 set matchpairs+=<:>                             " Match, to be used with %
-set pastetoggle=<F12>                           " pastetoggle (sane indentation on pastes)
+set pastetoggle=<F11>                           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/                  " auto format comment blocks
+set tags=./tags;/,~/.vimtags                    " ctags location
 
 highlight clear SignColumn                      " SignColumn should match background
 highlight clear LineNr                          " Current line number row will have same background color in relative mode.
@@ -52,15 +57,6 @@ set colorcolumn=80                              " Reminder to stay with 79 chars
 highlight ColorColumn ctermbg=10
 highlight Normal ctermfg=244 ctermbg=none
 
-map Y y$ " Map Y to act like D and C, i.e. to yank until EOL
-nnoremap <C-L> :nohl<CR><C-L>
-" Wrapped lines goes down/up to next row, rather than next line in file.
-noremap j gj
-noremap k gk
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
@@ -68,12 +64,7 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-" Workaround vim-commentary for Haskell
-autocmd FileType haskell setlocal commentstring=--\ %s
-" Workaround broken colour highlighting in Haskell
-autocmd FileType haskell setlocal nospell
 autocmd FileType make setlocal noexpandtab
 
 if has("autocmd") && exists("+omnifunc")
@@ -114,62 +105,3 @@ if has('cmdline_info')
                                 " Selected characters/lines in visual mode
 endif
 
-
-function! StripTrailingWhitespace()
-    " To disable the stripping of whitespace, add the following to your
-    " .vimrc.local file:
-    "   let g:spf13_keep_trailing_whitespace = 1
-    if !exists('g:spf13_keep_trailing_whitespace')
-        " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        %s/\s\+$//e
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endif
-endfunction
-
-function! InitializeDirectories()
-    let parent = $HOME
-    let prefix = 'vim'
-    let dir_list = {
-                \ 'backup': 'backupdir',
-                \ 'views': 'viewdir',
-                \ 'swap': 'directory' }
-
-    if has('persistent_undo')
-        let dir_list['undo'] = 'undodir'
-    endif
-
-    " To specify a different directory in which to place the vimbackup,
-    " vimviews, vimundo, and vimswap files/directories, add the following to
-    " your .vimrc.local file:
-    "   let g:spf13_consolidated_directory = <full path to desired directory>
-    "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
-    if exists('g:spf13_consolidated_directory')
-        let common_dir = g:spf13_consolidated_directory . prefix
-    else
-        let common_dir = parent . '/.' . prefix
-    endif
-
-    for [dirname, settingname] in items(dir_list)
-        let directory = common_dir . dirname . '/'
-        if exists("*mkdir")
-            if !isdirectory(directory)
-                call mkdir(directory)
-            endif
-        endif
-        if !isdirectory(directory)
-            echo "Warning: Unable to create backup directory: " . directory
-            echo "Try: mkdir -p " . directory
-        else
-            let directory = substitute(directory, " ", "\\\\ ", "g")
-            exec "set " . settingname . "=" . directory
-        endif
-    endfor
-endfunction
-let g:spf13_consolidated_directory = $HOME . '/.vim/'
-call InitializeDirectories()
