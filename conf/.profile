@@ -7,6 +7,8 @@ export CFLAGS=-I/opt/local/include
 export LIBRARY_PATH=/opt/local/lib
 export LINKFLAGS=-L/opt/local/lib
 
+export HISTCONTROL=ignoredups
+
 # git
 export GIT_PS1_SHOWDIRTYSTATE=1
 
