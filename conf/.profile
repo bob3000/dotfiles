@@ -17,7 +17,8 @@ export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
-export PATH=$HOME/Library/Python/3.2/bin:$HOME/.dotfiles/bin:/opt/local/bin:$PATH
+export GOPATH=$HOME/.go
+export PATH=${GOPATH//://bin:}/bin:$HOME/Library/Python/3.2/bin:$HOME/.dotfiles/bin:/opt/local/bin:$PATH
 export PATH=/opt/local/libexec/gnubin:$PATH
 export EDITOR="mvim -v"
 export PYTHONSTARTUP=$HOME/.pythonstartup
