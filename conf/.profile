@@ -1,7 +1,3 @@
-# MacPorts Installer addition on 2011-12-01_at_11:26:35: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/Users/rkautz/bin:/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
 export C_INCLUDE_PATH=/opt/local/include
 export CFLAGS=-I/opt/local/include
 export LIBRARY_PATH=/opt/local/lib
@@ -58,6 +54,9 @@ alias vmsall='VBoxManage list vms'
 
 alias vim='~/.dotfiles/bin/mvim -v'
 alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
+
+alias picdorian='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvz ~/Pictures/Pictures/ /Volumes/private/Pictures/'
+alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" ~/Pictures/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
 
 ## prompt
 source ~/.dotfiles/liquidprompt/liquidprompt
