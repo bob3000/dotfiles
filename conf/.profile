@@ -64,6 +64,6 @@ source ~/.dotfiles/liquidprompt/liquidprompt
 
 ## completions
 [ -f /etc/bash_completion.d/git-devbliss ] && source /etc/bash_completion.d/git-devbliss
-source ~/.dotfiles/vagrant-bash-completion/vagrant
+source ~/.dotfiles/vagrant-bash-completion/etc/bash_completion.d/vagrant
 source ~/.dotfiles/bash_completion/tmux
 source ~/.dotfiles/bash_completion/tmuxinator.bash

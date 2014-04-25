@@ -105,3 +105,5 @@ if has('cmdline_info')
                                 " Selected characters/lines in visual mode
 endif
 
+set spell spelllang=de_de
+colorscheme shine

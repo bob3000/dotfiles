@@ -18,9 +18,5 @@ for i in $(find $repo/conf -depth 1); do
     ln -sf $repo/conf/$file ~/$file
 done
 
-mkdir -p ~/.vim
-mkdir -p ~/.vimvar
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
 exit 0
 
