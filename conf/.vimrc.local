@@ -15,6 +15,7 @@ let g:airline_symbols.linenr = ''
 set background=light
 "colorscheme Tomorrow-Night-Eighties
 "colorscheme fokus
+"colorscheme pencil
 colorscheme pyte
 
 highlight SpellBad ctermfg=12 cterm=undercurl gui=undercurl guisp=SlateGray
