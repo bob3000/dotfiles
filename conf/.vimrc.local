@@ -11,13 +11,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=10
-
 set background=light
 "colorscheme Tomorrow-Night-Eighties
 "colorscheme fokus
 colorscheme pyte
 
+highlight SpellBad ctermfg=12 cterm=undercurl gui=undercurl guisp=SlateGray
 set spell spelllang=de_de
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=10 guibg=LimeGreen
 
