@@ -46,14 +46,13 @@ alias ll='ls -l'
 alias la='ls -a'
 alias pt='pygmentize'
 alias git='LANG=en_US git'
-alias ack='ack-5.12'
 
 alias vmsoff='for line in $(VBoxManage list runningvms | sed -ne "s/.*{\(.*\)}/\1/gp"); do VBoxManage controlvm  $line poweroff; done;'
 alias vmsrunning='VBoxManage list runningvms'
 alias vmsall='VBoxManage list vms'
 
 alias vim='~/.dotfiles/bin/mvim -v'
-alias kuka='curl http://www.kuka-berlin.de/mittagstisch/ | html2text'
+alias spf13='curl https://j.mp/spf13-vim3 -L -o - | sh'
 
 alias picdorian='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvz ~/Pictures/Pictures/ /Volumes/private/Pictures/'
 alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" ~/Pictures/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
