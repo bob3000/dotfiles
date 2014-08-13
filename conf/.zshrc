@@ -1,1 +1,1 @@
-# Created by newuser for 5.0.5
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
