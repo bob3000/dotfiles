@@ -1,6 +1,6 @@
 [user]
     name = Robin Kautz
-    email = robin.kautz@devbliss.com
+    email = post@robinkautz.de
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -19,8 +19,6 @@
     ui = true
 [diff] 
 [difftool] 
-   #external = /Users/rkautz/bin/git-diff-wrapper 
-   #prompt = false
     tool = diffmerge
     mnemonicprefix = true
 #[diff]
@@ -31,6 +29,4 @@
 [merge]
     conflictstyle = merge
 [diff]
-    tool = diffmerge
 [difftool "diffmerge"]
-    cmd = "diffmerge \"$LOCAL\" \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; fi)\""

@@ -1,6 +1,0 @@
-[submodule "liquidprompt"]
-	path = liquidprompt
-	url = https://github.com/nojhan/liquidprompt.git
-[submodule "vagrant-bash-completion"]
-	path = vagrant-bash-completion
-	url = https://github.com/kura/vagrant-bash-completion.git

@@ -17,6 +17,3 @@ for i in $(find $repo/conf -depth 1); do
     fi
     ln -sf $repo/conf/$file ~/$file
 done
-
-exit 0
-
