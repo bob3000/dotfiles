@@ -1,8 +1,3 @@
-export C_INCLUDE_PATH=/opt/local/include
-export CFLAGS=-I/opt/local/include
-export LIBRARY_PATH=/opt/local/lib
-export LINKFLAGS=-L/opt/local/lib
-
 export HISTCONTROL=ignoredups
 
 # git
@@ -14,31 +9,22 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
 export GOPATH=$HOME/.go
-export PATH=${GOPATH//://bin:}/bin:$HOME/Library/Python/3.2/bin:$HOME/.dotfiles/bin:/opt/local/bin:$PATH
-export PATH=/opt/local/libexec/gnubin:$PATH
 export EDITOR="mvim -v"
 export PYTHONSTARTUP=$HOME/.pythonstartup
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-# MacPorts Bash shell command completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
-fi
+#export AWS_ACCESS_KEY="$(awk '/aws_access_key_id/{print $3}' ~/.aws/credentials)"
+#export AWS_SECRET_KEY="$(awk '/aws_secret_access_key/{print $3}' ~/.aws/credentials)"
+export VAGRANT_TOKEN="$(cat ~/.vagrant.d/data/vagrant_login_token 2> /dev/null)"
+export SLACK_TOKEN="$(cat ~/.slack_token)"
+export VAGRANT_NUM_INSTANCES=3
+export DOCKER_HOST=tcp://127.0.0.1:2375
 
-# git completion
-if [ -f /opt/local/share/git-core/git-prompt.sh ]; then
-    . /opt/local/share/git-core/git-prompt.sh
-fi
-if [ -f /opt/local/share/git-core/contrib/completion/git-completion.bash ]; then
-    . /opt/local/share/git-core/contrib/completion/git-completion.bash
-fi
+$(/usr/local/bin/boot2docker shellinit 2> /dev/null)
 
-# other completion
-if [ -d /etc/bash_completion.d ]; then
-    for c in /etc/bash_completion.d/*; do source $c; done
-fi
-if [ -d /opt/local/etc/bash_completion.d ]; then
-    for c in /opt/local/etc/bash_completion.d/*; do source $c; done
-fi
+export CDPATH=.:/Users/robin/devel
 
 # convinence
 alias ls='ls --color'
@@ -46,23 +32,19 @@ alias ll='ls -l'
 alias la='ls -a'
 alias pt='pygmentize'
 alias git='LANG=en_US git'
+alias vim='/usr/local/bin/gvim -v'
 
-alias vmsoff='for line in $(VBoxManage list runningvms | sed -ne "s/.*{\(.*\)}/\1/gp"); do VBoxManage controlvm  $line poweroff; done;'
+alias vmsoff='VBoxManage list runningvms | sed -ne "s/.*{\(.*\)}/\1/gp" | xargs -I {} -n1 VBoxManage controlvm {} poweroff'
 alias vmsrunning='VBoxManage list runningvms'
 alias vmsall='VBoxManage list vms'
 
-alias vim='~/.dotfiles/bin/mvim -v'
 alias spf13='curl https://j.mp/spf13-vim3 -L -o - | sh'
+alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
-alias picdorian='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvz ~/Pictures/Pictures/ /Volumes/private/Pictures/'
-alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" ~/Pictures/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
-
-## prompt
-source ~/.dotfiles/liquidprompt/liquidprompt
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
-## completions
-[ -f /etc/bash_completion.d/git-devbliss ] && source /etc/bash_completion.d/git-devbliss
-source ~/.dotfiles/vagrant-bash-completion/etc/bash_completion.d/vagrant
-source ~/.dotfiles/bash_completion/tmux
-source ~/.dotfiles/bash_completion/tmuxinator.bash
+for i in /usr/local/etc/bash_completion.d/*; do
+    source $i
+done
+complete -C aws_completer aws
+source /usr/local/share/liquidprompt
+export AWS_MFA_SERIAL='arn:aws:iam::642788012356:mfa/robin'
+source ~/devel/canstorage/code/aws_accout_switch/aws_account_switch.bashrc

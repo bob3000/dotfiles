@@ -1,25 +1,26 @@
-set guifont=Menlo\ For\ Powerline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+"set guifont=Menlo\ For\ Powerline
+"let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+  "let g:airline_symbols = {}
+"endif
+"" powerline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
 
-set background=light
-"colorscheme Tomorrow-Night-Eighties
+
+"set background=light
+""colorscheme Tomorrow-Night-Eighties
 "colorscheme fokus
 "colorscheme pencil
-colorscheme pyte
+"colorscheme pyte
 
 highlight SpellBad ctermfg=12 cterm=undercurl gui=undercurl guisp=SlateGray
-set spell spelllang=de_de
+"set spell spelllang=de_de
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=10 guibg=LimeGreen

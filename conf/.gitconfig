@@ -1,6 +1,6 @@
 [user]
     name = Robin Kautz
-    email = robin.kautz@devbliss.com
+    email = robin@memrise.com
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -8,7 +8,6 @@
     pull = pull --no-ff
     co = checkout
     st = status
-	de = devbliss
 [core]
     quotepath = false
     pager = less -r
@@ -34,3 +33,7 @@
     tool = diffmerge
 [difftool "diffmerge"]
     cmd = "diffmerge \"$LOCAL\" \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; fi)\""
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
