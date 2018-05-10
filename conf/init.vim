@@ -26,6 +26,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 " Allow plugins to be repeated with dot
 Plug 'tpope/vim-repeat'
+" Fix whitespaces
+Plug 'bronson/vim-trailing-whitespace'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -327,6 +329,12 @@ endif
 
 "  Plugin config
 " ------------------------------------------------------------------------------
+
+" Fix whitespaces before save
+if s:has_plugin('vim-trailing-whitespace')
+  autocmd BufWritePre <buffer> :FixWhitespace
+endif
+
 if s:has_plugin('bufexplorer')
   let g:bufExplorerDisableDefaultKeyMapping = 1
   let g:bufExplorerShowNoName = 1
