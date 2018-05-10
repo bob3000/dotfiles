@@ -6,9 +6,11 @@ let g:plugin_path = '~/.config/nvim/plugged'
 
 call plug#begin(g:plugin_path)
 
-" Theme
+""" Themes
 Plug 'arcticicestudio/nord-vim'
+Plug 'tomasr/molokai'
 
+""" Basics
 " File browser
 Plug 'scrooloose/nerdtree'
 " Manage buffers in a list
@@ -19,18 +21,26 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 " Status bar
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Insert or delete brackets, parens, quotes in pair.
 Plug 'jiangmiao/auto-pairs'
 " Allow plugins to be repeated with dot
 Plug 'tpope/vim-repeat'
 
-" Git
+""" Git
 Plug 'airblade/vim-gitgutter'
 
+""" Languages
 " Python
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Lua
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'xolox/vim-lua-inspect'
+" Javascript
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -58,7 +68,7 @@ silent! colorscheme nord
 let g:html_indent_tags='li\|p'
 
 " Set <space> to leader
-let mapleader=' '
+let mapleader=','
 let maplocalleader='\'
 
 " Turn off swapfiles
@@ -262,12 +272,6 @@ vnoremap j gj
 " Map <C-i> to <f7> with Karabiner so tab can be used at the same time
 nnoremap <f7> <C-i>
 
-" Disable arrow keys
-noremap <right> <Nop>
-noremap <left> <Nop>
-noremap <up> <Nop>
-noremap <down> <Nop>
-
 " Delete line but preserve the space
 nnoremap dD S<Esc>
 
@@ -286,7 +290,7 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
 " Split
-noremap <silent><leader>x :split<cr>
+noremap <silent><leader>h :split<cr>
 noremap <silent><leader>v :vsplit<cr>
 
 " Switch buffers
@@ -415,6 +419,71 @@ endif
 
 if s:has_plugin('python-mode')
   let g:pymode_python = 'python3'
+endif
+
+if s:has_plugin('vim-go')
+    " run :GoBuild or :GoTestCompile based on the go file
+    function! s:build_go_files()
+      let l:file = expand('%')
+      if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0, 1)
+      elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+      endif
+    endfunction
+
+    let g:go_list_type = "quickfix"
+    let g:go_fmt_command = "goimports"
+    let g:go_fmt_fail_silently = 1
+    let g:syntastic_go_checkers = ['golint', 'govet']
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+    let g:go_highlight_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_generate_tags = 1
+    let g:go_highlight_space_tab_error = 0
+    let g:go_highlight_array_whitespace_error = 0
+    let g:go_highlight_trailing_whitespace_error = 0
+    let g:go_highlight_extra_types = 1
+
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+    augroup completion_preview_close
+      autocmd!
+      if v:version > 703 || v:version == 703 && has('patch598')
+        autocmd CompleteDone * if !&previewwindow && &completeopt =~ 'preview' | silent! pclose | endif
+      endif
+    augroup END
+
+    augroup go
+
+      au!
+      au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+      au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+      au Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+      au Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+      au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
+      au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
+      au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
+      au FileType go nmap <leader>r  <Plug>(go-run)
+      au FileType go nmap <leader>t  <Plug>(go-test)
+      au FileType go nmap <Leader>gt <Plug>(go-coverage-toggle)
+      au FileType go nmap <Leader>i <Plug>(go-info)
+      au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
+      au FileType go nmap <C-g> :GoDecls<cr>
+      au FileType go nmap <leader>dr :GoDeclsDir<cr>
+      au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
+      au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
+      au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
+
+    augroup END
 endif
 
 " Output the current syntax group
