@@ -1,6 +1,6 @@
 [user]
-    name = Robin Kautz
-    email = robin@memrise.com
+    name = bob3000
+    email = mail@bob3000.net
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -10,6 +10,7 @@
     st = status
 [core]
     quotepath = false
+    autocrlf = input
     pager = less -r
 [color]
     diff = auto
@@ -18,7 +19,7 @@
     ui = true
 [diff] 
 [difftool] 
-   #external = /Users/rkautz/bin/git-diff-wrapper 
+   #external = /Users/rkautz/bin/git-diff-wrapper
    #prompt = false
     tool = diffmerge
     mnemonicprefix = true
@@ -34,6 +35,6 @@
 [difftool "diffmerge"]
     cmd = "diffmerge \"$LOCAL\" \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; fi)\""
 [filter "media"]
-	clean = git media clean %f
-	smudge = git media smudge %f
-	required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
+    required = true
