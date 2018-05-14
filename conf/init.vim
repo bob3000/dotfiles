@@ -28,6 +28,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
 " Fix whitespaces
 Plug 'bronson/vim-trailing-whitespace'
+" Autocompletion
+Plug 'Valloric/YouCompleteMe'
+" Fuzzy find
+Plug 'ctrlpvim/ctrlp.vim'
+" Syntax checks
+Plug 'vim-syntastic/syntastic'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -62,6 +68,9 @@ augroup nord-overrides
   autocmd ColorScheme nord highlight jsGlobalObjects ctermbg=NONE ctermfg=15 guibg=NONE guifg=#B48EAD
   autocmd ColorScheme nord highlight jsThis ctermbg=NONE ctermfg=11 guibg=NONE guifg=#BF616A
 augroup END
+
+" Enable mouse
+set mouse=a
 
 set background=dark
 silent! colorscheme nord
@@ -333,6 +342,18 @@ endif
 " Fix whitespaces before save
 if s:has_plugin('vim-trailing-whitespace')
   autocmd BufWritePre <buffer> :FixWhitespace
+endif
+
+if s:has_plugin('syntastic')
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_python_checkers = ['flake8', 'mypy']
+
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 endif
 
 if s:has_plugin('bufexplorer')
