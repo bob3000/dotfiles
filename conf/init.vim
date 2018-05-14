@@ -348,7 +348,8 @@ if s:has_plugin('syntastic')
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
-  let g:syntastic_python_checkers = ['flake8', 'mypy']
+  "let g:syntastic_python_checkers = ['flake8', 'mypy']
+  let g:syntastic_python_checkers = ['flake8']
 
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
@@ -360,14 +361,6 @@ if s:has_plugin('bufexplorer')
   let g:bufExplorerDisableDefaultKeyMapping = 1
   let g:bufExplorerShowNoName = 1
   nnoremap <leader>B :BufExplorer<cr>
-endif
-
-if s:has_plugin('deoplete.nvim')
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#sources = {}
-  let g:deoplete#sources.python = ['ultisnips']
-  let g:deoplete#sources.javascript = ['buffer', 'tern']
 endif
 
 if s:has_plugin('vim-polyglot')
