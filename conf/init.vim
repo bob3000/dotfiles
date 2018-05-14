@@ -34,6 +34,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checks
 Plug 'vim-syntastic/syntastic'
+" Commenting
+Plug 'tpope/vim-commentary'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -383,7 +385,6 @@ if s:has_plugin('nerdtree')
   let NERDTreeShowHidden=1
   let NERDTreeKeepTreeInNewTab=1
   let g:nerdtree_tabs_open_on_gui_startup=0
-
   map <C-n> :NERDTreeToggle<CR>
 endif
 
