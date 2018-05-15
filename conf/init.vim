@@ -28,8 +28,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
 " Fix whitespaces
 Plug 'bronson/vim-trailing-whitespace'
+
+""" IDE features
 " Autocompletion
 Plug 'Valloric/YouCompleteMe'
+" Snippits
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " Fuzzy find
 Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checks
@@ -39,6 +44,7 @@ Plug 'tpope/vim-commentary'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 """ Languages
 " Python
@@ -135,9 +141,9 @@ set synmaxcol=500
 set cursorline
 
 " Indent using two spaces.
-set softtabstop=2
-set tabstop=2
-set shiftwidth=2
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
 
 " Smoother scrolling when moving horizontally
 set sidescroll=1
@@ -276,6 +282,8 @@ nnoremap <silent><leader>w :silent w<cr>
 
 " Switch to last buffer
 nnoremap <leader><leader> <C-^>
+" Close current buffer
+nnoremap <silent><leader>x :bd<cr>
 
 " Force j and k to work on display lines
 nnoremap k gk
@@ -330,6 +338,8 @@ autocmd CmdwinLeave * nnoremap <cr> o<esc>
 
 " Allow sourcing of vimrc
 nnoremap <leader>y :source ~/.config/nvim/init.vim<cr>
+" Allow editing of vimrc
+nnoremap <leader>e :edit ~/.config/nvim/init.vim<cr>
 
 if exists(':tnoremap')
   " Allow movement seamlessly with terminals
@@ -345,6 +355,17 @@ endif
 " Fix whitespaces before save
 if s:has_plugin('vim-trailing-whitespace')
   autocmd BufWritePre <buffer> :FixWhitespace
+endif
+
+if s:has_plugin('YouCompleteMe')
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+endif
+
+if s:has_plugin('ultisnips')
+    let g:UltiSnipsExpandTrigger = '<C-j>'
+    let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+    let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 endif
 
 if s:has_plugin('syntastic')
@@ -386,7 +407,7 @@ if s:has_plugin('nerdtree')
   let NERDTreeShowHidden=1
   let NERDTreeKeepTreeInNewTab=1
   let g:nerdtree_tabs_open_on_gui_startup=0
-  map <C-n> :NERDTreeToggle<CR>
+  noremap <C-n> :NERDTreeToggle<CR>
 endif
 
 if executable('jq')
