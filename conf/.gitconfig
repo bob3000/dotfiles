@@ -1,6 +1,6 @@
 [user]
     name = bob3000
-    email = mail@bob3000.net
+    email =
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -17,24 +17,9 @@
     status = auto
     branch = auto
     ui = true
-[diff] 
-[difftool] 
-   #external = /Users/rkautz/bin/git-diff-wrapper
-   #prompt = false
-    tool = diffmerge
-    mnemonicprefix = true
-#[diff]
 [push]
     default = tracking
 [web]
     browser = open
 [merge]
     conflictstyle = merge
-[diff]
-    tool = diffmerge
-[difftool "diffmerge"]
-    cmd = "diffmerge \"$LOCAL\" \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; fi)\""
-[filter "media"]
-    clean = git media clean %f
-    smudge = git media smudge %f
-    required = true
