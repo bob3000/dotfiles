@@ -69,6 +69,7 @@ augroup nord-overrides
   autocmd ColorScheme nord highlight VertSplit ctermbg=NONE ctermfg=8 guibg=NONE guifg=#434C5E
   autocmd ColorScheme nord highlight jsGlobalObjects ctermbg=NONE ctermfg=15 guibg=NONE guifg=#B48EAD
   autocmd ColorScheme nord highlight jsThis ctermbg=NONE ctermfg=11 guibg=NONE guifg=#BF616A
+  autocmd ColorScheme nord highlight Comment ctermbg=NONE ctermfg=11 guibg=NONE guifg=#BF616A
 augroup END
 
 " Enable mouse
