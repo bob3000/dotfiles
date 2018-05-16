@@ -9,6 +9,8 @@ call plug#begin(g:plugin_path)
 """ Themes
 Plug 'arcticicestudio/nord-vim'
 Plug 'tomasr/molokai'
+""" Tmux theme generator
+Plug 'edkolev/tmuxline.vim'
 
 """ Basics
 " File browser
@@ -45,6 +47,7 @@ Plug 'tpope/vim-commentary'
 """ Git
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
 
 """ Languages
 " Python
@@ -351,6 +354,16 @@ endif
 
 "  Plugin config
 " ------------------------------------------------------------------------------
+
+if s:has_plugin('tmuxline.vim')
+    let g:tmuxline_preset = 'full'
+    let g:tmuxline_separators = {
+    \ 'left' : '⮀',
+    \ 'left_alt': '⮁',
+    \ 'right' : '⮂',
+    \ 'right_alt' : '⮃',
+    \ 'space' : ' '}
+endif
 
 " Fix whitespaces before save
 if s:has_plugin('vim-trailing-whitespace')
