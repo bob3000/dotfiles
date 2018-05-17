@@ -60,6 +60,8 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-lua-inspect'
 " Javascript
 Plug 'pangloss/vim-javascript'
+" Markdown
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 call plug#end()
 
@@ -354,6 +356,12 @@ endif
 
 "  Plugin config
 " ------------------------------------------------------------------------------
+
+if s:has_plugin('vim-markdown-preview')
+    let g:vim_markdown_preview_github=1
+    let g:vim_markdown_preview_hotkey='<C-m>'
+    let g:vim_markdown_preview_browser = 'Google Chrome'
+endif
 
 if s:has_plugin('tmuxline.vim')
     let g:tmuxline_preset = 'full'

@@ -47,9 +47,5 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 complete -C aws_completer aws
 
-function mdview {
-    pandoc $1 | bcat
-}
-
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
