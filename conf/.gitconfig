@@ -1,6 +1,3 @@
-[user]
-    name = bob3000
-    email =
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -23,3 +20,5 @@
     browser = open
 [merge]
     conflictstyle = merge
+[include]
+path = ~/.gitconfig.local
