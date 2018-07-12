@@ -30,10 +30,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
 " Fix whitespaces
 Plug 'bronson/vim-trailing-whitespace'
+" Close buffers without losing window layout
+Plug 'moll/vim-bbye'
+" Remember cursor position
+Plug 'farmergreg/vim-lastplace'
 
 """ IDE features
 " Autocompletion
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'do' : '/.install.py --go-completer'}
 " Snippits
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -43,6 +47,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
 " Commenting
 Plug 'tpope/vim-commentary'
+" Searching
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'eugen0329/vim-esearch'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -287,6 +294,8 @@ nnoremap <silent><leader>w :silent w<cr>
 
 " Switch to last buffer
 nnoremap <leader><leader> <C-^>
+" Show registers
+nnoremap <leader>s :reg<cr>
 " Close current buffer
 nnoremap <silent><leader>x :bd<cr>
 
@@ -354,8 +363,23 @@ if exists(':tnoremap')
   tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
+let g:python_host_prog = "/usr/local/bin/python3"
+
 "  Plugin config
 " ------------------------------------------------------------------------------
+if s:has_plugin('vim-esearch')
+    let g:esearch = {
+          \ 'adapter':    'ag',
+          \ 'backend':    'vimproc',
+          \ 'out':        'win',
+          \ 'batch_size': 1000,
+          \ 'use':        ['visual', 'hlsearch', 'last'],
+          \}
+endif
+
+if s:has_plugin('vim-bbye')
+    nnoremap <Leader>q :Bdelete<CR>
+endif
 
 if s:has_plugin('vim-markdown-preview')
     let g:vim_markdown_preview_github=1
@@ -389,12 +413,23 @@ if s:has_plugin('ultisnips')
     let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 endif
 
+if s:has_plugin('ctrlp.vim')
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    set wildignore+=*.DS_Store,*.egg,*.egg-info/*,*.log,*.pyc,*.pyo,*.swp
+    set wildignore+=*.cache/*,.eggs,.env,.flaskenv,.idea/*,.mypy_cache/*
+    set wildignore+=.pytest_cache/*,.tox/*,.vagrant,_mailinglist,*build/*
+    set wildignore+=*dist/*,_build/*,*.cover.log,*.coverage
+    set wildignore+=.venv/*,*venv-*/*,*venv/*
+    set wildignore+=*.coverage.*,*htmlcov/*
+endif
+
 if s:has_plugin('syntastic')
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
   "let g:syntastic_python_checkers = ['flake8', 'mypy']
   let g:syntastic_python_checkers = ['flake8']
+  let g:syntastic_go_checkers = ['golint', 'govet']
 
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
@@ -485,10 +520,13 @@ endif
 
 if s:has_plugin('python-mode')
   let g:pymode_python = 'python3'
+  let g:pymode_lint_checkers = ['flake8']
 endif
 
 if s:has_plugin('vim-go')
     " run :GoBuild or :GoTestCompile based on the go file
+    set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+
     function! s:build_go_files()
       let l:file = expand('%')
       if l:file =~# '^\f\+_test\.go$'
@@ -501,8 +539,6 @@ if s:has_plugin('vim-go')
     let g:go_list_type = "quickfix"
     let g:go_fmt_command = "goimports"
     let g:go_fmt_fail_silently = 1
-    let g:syntastic_go_checkers = ['golint', 'govet']
-    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
     let g:go_highlight_types = 1
     let g:go_highlight_fields = 1
