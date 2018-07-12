@@ -8,14 +8,16 @@ export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
+export SHELL=/usr/local/bin/bash
 export EDITOR="nvim"
 export GOPATH=$HOME/.go
-export PATH="/usr/local/sbin:$PATH"
 export PYTHONSTARTUP=$HOME/.pythonstartup
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/bin:$PATH"
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools/
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export LC_ALL=en_US.UTF-8
@@ -49,3 +51,5 @@ complete -C aws_completer aws
 
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
