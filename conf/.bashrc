@@ -3,11 +3,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 export HISTCONTROL=ignoredups
 
-# console colors
-export CLICOLOR=1
-export LSCOLORS=Gxfxcxdxbxegedabagacad
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-
 export SHELL=/usr/local/bin/bash
 export EDITOR="nvim"
 export GOPATH=$HOME/.go
@@ -38,18 +33,12 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" /Volumes/My\ Passport/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
 
 # prompt
-source /usr/local/share/liquidprompt
+# Only load liquidprompt in interactive shells, not from a script or from scp
+echo $- | grep -q i 2>/dev/null && . /usr/share/liquidprompt/liquidprompt
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
 complete -C aws_completer aws
-
-# iterm2 integration
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"

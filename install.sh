@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 set -eu
 
 declare -A source_files=( [bashrc]=.bashrc [gitconfig]=.gitconfig \
