@@ -4,7 +4,7 @@ set -eu
 declare -A source_files=( [bashrc]=.bashrc [gitconfig]=.gitconfig \
     [liquidpromptrc]=.liquidpromptrc [pythonstartup]=.pythonstartup \
     [tmux]=.tmux.conf [vim]=init.vim )
-declare -A target_dirs=( [bashrc]=~/.bashrc [gitconfig]=~/.gitconfig \
+declare -A target_dirs=( [bashrc]=~/.bash_aliases [gitconfig]=~/.gitconfig \
     [liquidpromptrc]=~/.liquidpromptrc [pythonstartup]=~/.pythonstartup \
     [tmux]=~/.tmux.conf [vim]=~/.config/nvim/init.vim )
 
