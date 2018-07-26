@@ -1,6 +1,3 @@
-[user]
-    name = Robin Kautz
-    email = post@robinkautz.de
 [alias]
     diff = diff --word-diff
     mdiff = diff --diff-filter=CMRTUXB
@@ -8,25 +5,20 @@
     pull = pull --no-ff
     co = checkout
     st = status
-	de = devbliss
 [core]
     quotepath = false
+    autocrlf = input
     pager = less -r
 [color]
     diff = auto
     status = auto
     branch = auto
     ui = true
-[diff] 
-[difftool] 
-    tool = diffmerge
-    mnemonicprefix = true
-#[diff]
 [push]
     default = tracking
 [web]
     browser = open
 [merge]
     conflictstyle = merge
-[diff]
-[difftool "diffmerge"]
+[include]
+path = ~/.gitconfig.local
