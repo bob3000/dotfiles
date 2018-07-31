@@ -1,4 +1,4 @@
-"  Vim plug
+"nter --install  Vim plug
 " https://github.com/junegunn/vim-plug
 " ------------------------------------------------------------------------------
 
@@ -483,10 +483,6 @@ if s:has_plugin('vim-airline')
   let g:airline#extensions#tabline#show_tab_nr = 0
   let g:airline#extensions#tabline#buffer_nr_show = 0
   let g:airline#extensions#tabline#show_close_button = 0
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
   let g:airline#extensions#default#layout = [
         \ [ 'a', 'b', 'c' ],
         \ [ 'x', 'z', 'error', 'warning' ]
@@ -497,23 +493,9 @@ if s:has_plugin('vim-airline')
 
 " to use fancy symbols for airline, uncomment the following lines and use a
 " patched font (more info on the README.rst)
-  if !exists('g:airline_symbols')
-     let g:airline_symbols = {}
-  endif
-  let g:airline_left_sep = '⮀'
-  let g:airline_left_alt_sep = '⮁'
-  let g:airline_right_sep = '⮂'
-  let g:airline_right_alt_sep = '⮃'
-  let g:airline_symbols.branch = '⭠'
-  let g:airline_symbols.readonly = '⭤'
 endif
 
 if s:has_plugin('vim-gitgutter')
-  let g:gitgutter_sign_added = '•'
-  let g:gitgutter_sign_modified = '•'
-  let g:gitgutter_sign_removed = '•'
-  let g:gitgutter_sign_modified_removed = '•'
-  let g:gitgutter_map_keys = 0
   nmap [c <Plug>GitGutterPrevHunk
   nmap ]c <Plug>GitGutterNextHunk
 endif
