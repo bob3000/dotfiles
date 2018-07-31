@@ -3,18 +3,14 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 export HISTCONTROL=ignoredups
 
-export SHELL=/usr/local/bin/bash
-export EDITOR="nvim"
+export SHELL=/bin/bash
+export EDITOR="vim"
 export GOPATH=$HOME/.go
 export PYTHONSTARTUP=$HOME/.pythonstartup
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools/
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH="~/.local/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
