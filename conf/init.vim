@@ -37,7 +37,7 @@ Plug 'farmergreg/vim-lastplace'
 
 """ IDE features
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', {'do' : '/.install.py --go-completer'}
+Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
 " Snippits
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -50,6 +50,8 @@ Plug 'tpope/vim-commentary'
 " Searching
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'eugen0329/vim-esearch'
+" Extract variables
+Plug 'fvictorio/vim-extract-variable'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -61,6 +63,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Lua
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
@@ -286,6 +289,9 @@ cnoreabbrev Qall qall
 " Key mappings
 " ------------------------------------------------------------------------------
 
+" move to beginning of the line in ex mode
+:cnoremap <C-a> <C-b>
+
 " gf but in a vsplit
 nnoremap gv :vertical wincmd f<cr>
 
@@ -407,11 +413,11 @@ if s:has_plugin('YouCompleteMe')
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 endif
 
-if s:has_plugin('ultisnips')
+" if s:has_plugin('ultisnips')
     let g:UltiSnipsExpandTrigger = '<C-j>'
     let g:UltiSnipsJumpForwardTrigger = '<C-j>'
     let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-endif
+" endif
 
 if s:has_plugin('ctrlp.vim')
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -429,7 +435,8 @@ if s:has_plugin('syntastic')
   set statusline+=%*
   "let g:syntastic_python_checkers = ['flake8', 'mypy']
   let g:syntastic_python_checkers = ['flake8']
-  let g:syntastic_go_checkers = ['golint', 'govet']
+  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+  " let g:syntastic_go_checkers = ['gometalinter']
 
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
@@ -519,6 +526,13 @@ if s:has_plugin('vim-gitgutter')
 endif
 
 if s:has_plugin('python-mode')
+  " let g:pymode_doc = 1
+  " let g:pymode_doc_bind = 'K'
+  let g:pymode_motion = 1
+  let g:pymode_virtualenv = 1
+  let g:pymode_syntax = 1
+  let g:pymode_syntax_all = 1
+  let g:pymode_rope = 1
   let g:pymode_python = 'python3'
   let g:pymode_lint_checkers = ['flake8']
 endif

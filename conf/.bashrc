@@ -18,6 +18,8 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools/
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export LC_ALL=en_US.UTF-8
@@ -35,7 +37,7 @@ alias vmsrunning='VBoxManage list runningvms'
 alias vmsall='VBoxManage list vms'
 
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" /Volumes/My\ Passport/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
+alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "/usr/local/bin/ssh" /Volumes/My\ Passport/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
 
 # prompt
 source /usr/local/share/liquidprompt
