@@ -11,6 +11,12 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="~/.local/bin:$PATH"
+export PATH="~/.gem/ruby/2.3.0/bin:$PATH"
+if [ -e ~/bin ]; then
+    for d in $(find ~/bin -type d); do
+        export PATH="${d}:$PATH"
+    done
+fi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -26,7 +32,6 @@ alias vmsrunning='VBoxManage list runningvms'
 alias vmsall='VBoxManage list vms'
 
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "ssh" /Volumes/My\ Passport/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
 
 # prompt
 # Only load liquidprompt in interactive shells, not from a script or from scp
