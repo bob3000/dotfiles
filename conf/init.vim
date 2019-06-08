@@ -195,7 +195,7 @@ set ignorecase
 set smartcase
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Spell check
 set spelllang=en
@@ -501,6 +501,13 @@ if s:has_plugin('vim-gitgutter')
 endif
 
 if s:has_plugin('python-mode')
+  " let g:pymode_doc = 1
+  " let g:pymode_doc_bind = 'K'
+  let g:pymode_motion = 1
+  let g:pymode_virtualenv = 1
+  let g:pymode_syntax = 1
+  let g:pymode_syntax_all = 1
+  let g:pymode_rope = 1
   let g:pymode_python = 'python3'
   let g:pymode_lint_checkers = ['flake8']
 endif
