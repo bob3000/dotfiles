@@ -48,7 +48,10 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # prompt
 # Only load liquidprompt in interactive shells, not from a script or from scp
-echo $- | grep -q i 2>/dev/null && . /usr/share/liquidprompt/liquidprompt
+if [ -f /media/bob/CBExt/home/linuxbrew/.linuxbrew/share/liquidprompt ]; then
+    . /media/bob/CBExt/home/linuxbrew/.linuxbrew/share/liquidprompt
+fi
+
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
@@ -56,3 +59,10 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 complete -C aws_completer aws
 
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
+
+# linuxbrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib/pkgconfig"
+
