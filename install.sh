@@ -3,10 +3,10 @@ set -eu
 
 declare -A source_files=( [bashrc]=.bashrc [gitconfig]=.gitconfig \
     [liquidpromptrc]=.liquidpromptrc [pythonstartup]=.pythonstartup \
-    [tmux]=.tmux.conf [vim]=init.vim )
+    [tmux]=.tmux.conf [vim]=init.vim [xmodmap]=.Xmodmap )
 declare -A target_dirs=( [bashrc]=~/.bash_aliases [gitconfig]=~/.gitconfig \
     [liquidpromptrc]=~/.liquidpromptrc [pythonstartup]=~/.pythonstartup \
-    [tmux]=~/.tmux.conf [vim]=~/.config/nvim/init.vim )
+    [tmux]=~/.tmux.conf [vim]=~/.config/nvim/init.vim [xmodmap]=~/.Xmodmap )
 
 for file in ${!source_files[@]}; do
     skip_file=0
