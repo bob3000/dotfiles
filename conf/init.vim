@@ -37,7 +37,7 @@ Plug 'farmergreg/vim-lastplace'
 
 """ IDE features
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', {'do' : '/.install.py --go-completer'}
+Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
 " Snippits
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
