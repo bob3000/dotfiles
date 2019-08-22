@@ -48,8 +48,8 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # prompt
 # Only load liquidprompt in interactive shells, not from a script or from scp
-if [ -f /media/bob/CBExt/home/linuxbrew/.linuxbrew/share/liquidprompt ]; then
-    . /media/bob/CBExt/home/linuxbrew/.linuxbrew/share/liquidprompt
+if [ -f /home/linuxbrew/.linuxbrew/share/liquidprompt ]; then
+    . /home/linuxbrew/.linuxbrew/share/liquidprompt
 fi
 
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
