@@ -395,12 +395,7 @@ endif
 
 if s:has_plugin('tmuxline.vim')
     let g:tmuxline_preset = 'full'
-    let g:tmuxline_separators = {
-    \ 'left' : '⮀',
-    \ 'left_alt': '⮁',
-    \ 'right' : '⮂',
-    \ 'right_alt' : '⮃',
-    \ 'space' : ' '}
+    let g:tmuxline_powerline_separators = 0
 endif
 
 " Fix whitespaces before save
@@ -481,8 +476,8 @@ endif
 if s:has_plugin('vim-airline')
   let g:airline_theme = 'nord'
   let g:airline#extensions#branch#enabled = 1
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tmuxline#enabled = 0
+  let g:airline_powerline_fonts = 0
+  let g:airline#extensions#tmuxline#enabled = 1
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
   let g:airline#extensions#tabline#buffers_label = ''
   let g:airline#extensions#tabline#fnamemod = ':t' " Show the filename
@@ -490,29 +485,12 @@ if s:has_plugin('vim-airline')
   let g:airline#extensions#tabline#show_tab_nr = 0
   let g:airline#extensions#tabline#buffer_nr_show = 0
   let g:airline#extensions#tabline#show_close_button = 0
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
   let g:airline#extensions#default#layout = [
         \ [ 'a', 'b', 'c' ],
         \ [ 'x', 'z', 'error', 'warning' ]
         \ ]
-  let g:airline_powerline_fonts = 0
   let g:airline_theme = 'bubblegum'
   let g:airline#extensions#whitespace#enabled = 0
-
-" to use fancy symbols for airline, uncomment the following lines and use a
-" patched font (more info on the README.rst)
-  if !exists('g:airline_symbols')
-     let g:airline_symbols = {}
-  endif
-  let g:airline_left_sep = '⮀'
-  let g:airline_left_alt_sep = '⮁'
-  let g:airline_right_sep = '⮂'
-  let g:airline_right_alt_sep = '⮃'
-  let g:airline_symbols.branch = '⭠'
-  let g:airline_symbols.readonly = '⭤'
 endif
 
 if s:has_plugin('vim-gitgutter')
