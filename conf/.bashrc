@@ -30,6 +30,8 @@ export PATH="$PATH:$HOME/devel/flutter/bin"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export HELM_HOST=:44134
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 
 # convinence
 alias ls='ls --color'
@@ -51,21 +53,31 @@ alias dcf='docker-compose -f docker-compose.yml -f docker-compose.backend.yml -f
 
 # prompt
 source /usr/local/share/liquidprompt
-#PS1='$(gbt $?)'
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-source $HOME/.cargo/env
 
 # completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 complete -C aws_completer aws
 which -s kubectl && source <(kubectl completion bash)
 which -s kompose && source <(kompose completion bash)
 
-
 # iterm2 integration
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# credentials
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
+
+# functions
+function android_emulator {
+    EMULATOR_NAME=$1
+    if [ -z $EMULATOR_NAME ]; then
+        emulator -list-avds
+        return
+    fi
+    pushd ${ANDROID_HOME}/tools
+    emulator -avd ${EMULATOR_NAME} -wipe-data &
+    popd
+}
+
