@@ -37,21 +37,21 @@ Plug 'farmergreg/vim-lastplace'
 
 """ IDE features
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
+"Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
 " Snippits
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 " Fuzzy find
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checks
 Plug 'vim-syntastic/syntastic'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Searching
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'eugen0329/vim-esearch'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+"Plug 'eugen0329/vim-esearch'
 " Extract variables
-Plug 'fvictorio/vim-extract-variable'
+"Plug 'fvictorio/vim-extract-variable'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -60,18 +60,18 @@ Plug 'tpope/vim-fugitive'
 
 """ Languages
 " Python
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Lua
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-lua-inspect'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-lua-ftplugin'
+"Plug 'xolox/vim-lua-inspect'
 " Javascript
-Plug 'pangloss/vim-javascript'
+"Plug 'pangloss/vim-javascript'
 " Markdown
-Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'JamshedVesuna/vim-markdown-preview'
 
 call plug#end()
 
