@@ -20,18 +20,17 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools/
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH="/usr/local/opt/gettext/bin:$PATH"
-#export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
 export PATH=/opt/puppetlabs/pdk/bin:$PATH
-export PATH="$PATH:$HOME/devel/flutter/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export HELM_HOST=:44134
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home
 export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+export C_INCLUDE_PATH="$C_INCLUDE_PATH:/usr/local/include"
 
 # convinence
 alias ls='ls --color'
@@ -45,11 +44,12 @@ alias vmsoff='VBoxManage list runningvms | sed -ne "s/.*{\(.*\)}/\1/gp" | xargs 
 alias vmsrunning='VBoxManage list runningvms'
 alias vmsall='VBoxManage list vms'
 
-alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias wanip='curl -s ifconfig.me'
 alias pichidrive='rsync -n --exclude=".AppleDouble" --exclude=".DS_Store" --progress -rtvze "/usr/local/bin/ssh" /Volumes/My\ Passport/Pictures robinkautz@rsync.hidrive.strato.com:/users/robinkautz/'
 
 # bgf
 alias dcf='docker-compose -f docker-compose.yml -f docker-compose.backend.yml -f docker-compose.frontend.yml'
+alias dca='docker-compose -f docker-compose.yml -f docker-compose.backend.yml -f docker-compose.bergwacht.yml -f docker-compose.frontend.yml'
 
 # prompt
 source /usr/local/share/liquidprompt
