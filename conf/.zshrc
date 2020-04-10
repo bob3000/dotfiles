@@ -36,7 +36,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting virtualenv colored-man-pages dircycle history-substring-search)
+plugins=(git zsh-syntax-highlighting virtualenv colored-man-pages dircycle history-substring-search docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,6 +45,10 @@ source $ZSH/oh-my-zsh.sh
 # History
 HISTSIZE=10000
 SAVEHIST=10000
+setopt histignorespace
+setopt hist_ignore_all_dups
+setopt append_history
+setopt share_history
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -98,11 +102,18 @@ alias dca='docker-compose -f docker-compose.yml -f docker-compose.backend.yml -f
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
 
 # Basic auto/tab complete:
+fpath+=~/.zfunc
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+
+# use the vi navigation keys in menu completion
+bindkey -M menuselect '^h' vi-backward-char
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^l' vi-forward-char
+bindkey -M menuselect '^j' vi-down-line-or-history
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -133,4 +144,6 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+
+~/.iterm2_shell_integration.zsh
 
