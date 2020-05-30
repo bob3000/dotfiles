@@ -1,4 +1,4 @@
-"nter --install  Vim plug
+"  Vim plug
 " https://github.com/junegunn/vim-plug
 " ------------------------------------------------------------------------------
 
@@ -37,19 +37,21 @@ Plug 'farmergreg/vim-lastplace'
 
 """ IDE features
 " Autocompletion
-Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
+"Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
 " Snippits
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 " Fuzzy find
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checks
 Plug 'vim-syntastic/syntastic'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Searching
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'eugen0329/vim-esearch'
+"Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+"Plug 'eugen0329/vim-esearch'
+" Extract variables
+"Plug 'fvictorio/vim-extract-variable'
 
 """ Git
 Plug 'airblade/vim-gitgutter'
@@ -58,17 +60,18 @@ Plug 'tpope/vim-fugitive'
 
 """ Languages
 " Python
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Lua
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-lua-inspect'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-lua-ftplugin'
+"Plug 'xolox/vim-lua-inspect'
 " Javascript
-Plug 'pangloss/vim-javascript'
+"Plug 'pangloss/vim-javascript'
 " Markdown
-Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'JamshedVesuna/vim-markdown-preview'
 
 call plug#end()
 
@@ -195,7 +198,7 @@ set ignorecase
 set smartcase
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Spell check
 set spelllang=en
@@ -285,6 +288,9 @@ cnoreabbrev Qall qall
 
 " Key mappings
 " ------------------------------------------------------------------------------
+
+" move to beginning of the line in ex mode
+:cnoremap <C-a> <C-b>
 
 " gf but in a vsplit
 nnoremap gv :vertical wincmd f<cr>
@@ -389,12 +395,7 @@ endif
 
 if s:has_plugin('tmuxline.vim')
     let g:tmuxline_preset = 'full'
-    let g:tmuxline_separators = {
-    \ 'left' : '⮀',
-    \ 'left_alt': '⮁',
-    \ 'right' : '⮂',
-    \ 'right_alt' : '⮃',
-    \ 'space' : ' '}
+    let g:tmuxline_powerline_separators = 0
 endif
 
 " Fix whitespaces before save
@@ -407,11 +408,11 @@ if s:has_plugin('YouCompleteMe')
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 endif
 
-if s:has_plugin('ultisnips')
+" if s:has_plugin('ultisnips')
     let g:UltiSnipsExpandTrigger = '<C-j>'
     let g:UltiSnipsJumpForwardTrigger = '<C-j>'
     let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-endif
+" endif
 
 if s:has_plugin('ctrlp.vim')
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -429,7 +430,8 @@ if s:has_plugin('syntastic')
   set statusline+=%*
   "let g:syntastic_python_checkers = ['flake8', 'mypy']
   let g:syntastic_python_checkers = ['flake8']
-  let g:syntastic_go_checkers = ['golint', 'govet']
+  let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+  " let g:syntastic_go_checkers = ['gometalinter']
 
   let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
@@ -474,8 +476,8 @@ endif
 if s:has_plugin('vim-airline')
   let g:airline_theme = 'nord'
   let g:airline#extensions#branch#enabled = 1
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tmuxline#enabled = 0
+  let g:airline_powerline_fonts = 0
+  let g:airline#extensions#tmuxline#enabled = 1
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
   let g:airline#extensions#tabline#buffers_label = ''
   let g:airline#extensions#tabline#fnamemod = ':t' " Show the filename
@@ -487,15 +489,16 @@ if s:has_plugin('vim-airline')
         \ [ 'a', 'b', 'c' ],
         \ [ 'x', 'z', 'error', 'warning' ]
         \ ]
-  let g:airline_powerline_fonts = 0
   let g:airline_theme = 'bubblegum'
   let g:airline#extensions#whitespace#enabled = 0
-
-" to use fancy symbols for airline, uncomment the following lines and use a
-" patched font (more info on the README.rst)
 endif
 
 if s:has_plugin('vim-gitgutter')
+  let g:gitgutter_sign_added = '•'
+  let g:gitgutter_sign_modified = '•'
+  let g:gitgutter_sign_removed = '•'
+  let g:gitgutter_sign_modified_removed = '•'
+  let g:gitgutter_map_keys = 0
   nmap [c <Plug>GitGutterPrevHunk
   nmap ]c <Plug>GitGutterNextHunk
 endif
