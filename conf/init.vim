@@ -71,13 +71,13 @@ Plug 'python-mode/python-mode', { 'branch': 'master' }
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 " Lua
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-lua-ftplugin'
-"Plug 'xolox/vim-lua-inspect'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'xolox/vim-lua-inspect'
 " Javascript
-"Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Markdown
-"Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
@@ -109,7 +109,7 @@ augroup END
 set mouse=a
 
 set background=dark
-silent! colorscheme nord
+silent! colorscheme molokai
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags='li\|p'
