@@ -34,15 +34,21 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'moll/vim-bbye'
 " Remember cursor position
 Plug 'farmergreg/vim-lastplace'
+" Quick movement
+Plug 'justinmk/vim-sneak'
+" editor config
+Plug 'editorconfig/editorconfig-vim'
 
 """ IDE features
+" Autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Autocompletion
 "Plug 'Valloric/YouCompleteMe', {'do' : './install.py --go-completer'}
 " Snippits
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 " Fuzzy find
-"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checks
 Plug 'vim-syntastic/syntastic'
 " Commenting
@@ -60,7 +66,7 @@ Plug 'tpope/vim-fugitive'
 
 """ Languages
 " Python
-"Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'branch': 'master' }
 " Golang
 "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
@@ -72,6 +78,12 @@ Plug 'tpope/vim-fugitive'
 "Plug 'pangloss/vim-javascript'
 " Markdown
 "Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'rust-lang/rust.vim'
+Plug 'rhysd/vim-clang-format'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'"
 
 call plug#end()
 
@@ -373,6 +385,10 @@ let g:python_host_prog = "/usr/local/bin/python3"
 
 "  Plugin config
 " ------------------------------------------------------------------------------
+
+" enable as soon as neovim 0.5 is released
+" lua require'nvim_lsp'.rust_analyzer.setup({})
+
 if s:has_plugin('vim-esearch')
     let g:esearch = {
           \ 'adapter':    'ag',
@@ -395,7 +411,7 @@ endif
 
 if s:has_plugin('tmuxline.vim')
     let g:tmuxline_preset = 'full'
-    let g:tmuxline_powerline_separators = 0
+    let g:tmuxline_powerline_separators = 1
 endif
 
 " Fix whitespaces before save
@@ -476,7 +492,7 @@ endif
 if s:has_plugin('vim-airline')
   let g:airline_theme = 'nord'
   let g:airline#extensions#branch#enabled = 1
-  let g:airline_powerline_fonts = 0
+  let g:airline_powerline_fonts = 1
   let g:airline#extensions#tmuxline#enabled = 1
   let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
   let g:airline#extensions#tabline#buffers_label = ''
@@ -653,3 +669,4 @@ augroup omnifuncs
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup endif
+
