@@ -1,2 +1,3 @@
-keycode 133 = Escape
-keycode 105 = Super_L
+clear lock
+keycode 66 = Escape
+
