@@ -22,3 +22,5 @@
     conflictstyle = merge
 [include]
 path = ~/.gitconfig.local
+[pull]
+	ff = only
