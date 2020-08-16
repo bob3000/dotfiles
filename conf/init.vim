@@ -78,12 +78,14 @@ Plug 'xolox/vim-lua-inspect'
 Plug 'pangloss/vim-javascript'
 " Markdown
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'plasticboy/vim-markdown'"
+
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'"
 
 call plug#end()
 
@@ -110,6 +112,10 @@ set mouse=a
 
 set background=dark
 silent! colorscheme molokai
+" do not display the tilde on the left
+hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+" transparent background
+hi Normal guibg=NONE ctermbg=NONE
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags='li\|p'
@@ -210,7 +216,7 @@ set ignorecase
 set smartcase
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Spell check
 set spelllang=en
@@ -304,7 +310,12 @@ cnoreabbrev Qall qall
 " move to beginning of the line in ex mode
 :cnoremap <C-a> <C-b>
 
-" gf but in a vsplit
+" spell check
+
+vnoremap <leader>a <Plug>(coc-codeaction-selected)
+nnoremap <leader>a <Plug>(coc-codeaction-selected)
+
+"" gf but in a vsplit
 nnoremap gv :vertical wincmd f<cr>
 
 " Save file
@@ -368,6 +379,10 @@ nnoremap <cr> o<esc>
 autocmd CmdwinEnter * nnoremap <CR> <CR>
 autocmd CmdwinLeave * nnoremap <cr> o<esc>
 
+" Save buffer on focus loss
+"autocmd FocusLost * :wa
+autocmd FocusLost * silent! wa
+
 " Allow sourcing of vimrc
 nnoremap <leader>y :source ~/.config/nvim/init.vim<cr>
 " Allow editing of vimrc
@@ -388,6 +403,9 @@ let g:python_host_prog = "/usr/local/bin/python3"
 
 " enable as soon as neovim 0.5 is released
 " lua require'nvim_lsp'.rust_analyzer.setup({})
+if s:has_plugin('rust.vim' )
+    let g:rustfmt_autosave = 1
+endif
 
 if s:has_plugin('vim-esearch')
     let g:esearch = {
@@ -422,6 +440,15 @@ endif
 if s:has_plugin('YouCompleteMe')
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:ycm_language_server =
+    \ [
+    \   {
+    \     'name': 'rust',
+    \     'cmdline': ['rust-analyzer'],
+    \     'filetypes': ['rust'],
+    \     'project_root_files': ['Cargo.toml']
+    \   }
+    \ ]
 endif
 
 " if s:has_plugin('ultisnips')
