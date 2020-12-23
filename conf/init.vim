@@ -40,7 +40,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Formatting
 Plug 'Chiel92/vim-autoformat'
 " Fuzzy find
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Syntax checks
 Plug 'vim-syntastic/syntastic'
 " Commenting
@@ -610,3 +611,25 @@ if s:has_plugin('coc.nvim')
   augroup END
 endif
 
+if s:has_plugin('fzf.vim')
+  " Search files
+  nnoremap <S-p> :Files<CR>
+  " Search files (gitignored)
+  nnoremap <C-p> :GFiles<CR>
+  " Search buffers
+  nnoremap <silent><leader>l :Buffers<CR>
+  " Git commits
+  nnoremap <silent><leader>g :Commits<CR>
+  " Grep strings
+  nnoremap <C-g> :Rg<Cr>
+
+  " Mapping selecting mappings
+  nmap <leader><tab> <plug>(fzf-maps-n)
+  xmap <leader><tab> <plug>(fzf-maps-x)
+  omap <leader><tab> <plug>(fzf-maps-o)
+
+  " Insert mode completion
+  imap <c-x><c-k> <plug>(fzf-complete-word)
+  imap <c-x><c-f> <plug>(fzf-complete-path)
+  imap <c-x><c-l> <plug>(fzf-complete-line)
+endif
