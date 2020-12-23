@@ -14,6 +14,7 @@ export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -36,7 +37,7 @@ alias brightness='pkexec --user root xfpm-power-backlight-helper --set-brightnes
 alias windowclass='xprop | grep WM_CLASS | awk "{print \$4}"'
 
 # speciffic
-alias dca='docker-compose -f docker-compose.yml -f docker-compose.backend.yml -f docker-compose.bergwacht.yml -f docker-compose.frontend.yml'
+alias dc='source dev.env && docker-compose -p gdn -f compose-dev.yml'
 
 # credentials
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
