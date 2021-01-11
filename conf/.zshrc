@@ -17,6 +17,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# make vim fzf plugin use ripgrep
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # key bindings
 ## make C-u behave like in bash
@@ -57,6 +59,9 @@ eval "$(starship init zsh)"
 
 # better cd
 eval "$(zoxide init zsh)"
+
+# GTK3 includes
+source <(pkg-config --cflags-only-I --libs gtk+-3.0 | sed 's/ *-I/\nexport CPATH=$CPATH:/g' | tail -n+2 | head -n -1)
 
 # temporary stuff
 source $HOME/.zshrc.local.d/*
