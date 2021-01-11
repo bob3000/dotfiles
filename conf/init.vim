@@ -8,6 +8,7 @@ call plug#begin(g:plugin_path)
 
 """ Themes
 Plug 'tomasr/molokai'
+Plug 'sainnhe/sonokai'
 """ Tmux theme generator
 Plug 'edkolev/tmuxline.vim'
 
@@ -85,7 +86,8 @@ endfunction
 set mouse=a
 
 set background=dark
-silent! colorscheme molokai
+" silent! colorscheme molokai
+silent! colorscheme sonokai
 " do not display the tilde on the left
 hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 " transparent background
@@ -266,6 +268,9 @@ set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
 
+" Key mappings
+" ------------------------------------------------------------------------------
+
 " Remap annoying mistakes to something useful
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
@@ -277,9 +282,6 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Qa q
 cnoreabbrev Qall qall
-
-" Key mappings
-" ------------------------------------------------------------------------------
 
 " move to beginning of the line in ex mode
 :cnoremap <C-a> <C-b>
@@ -394,7 +396,7 @@ augroup file-types
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Indention for certain filetypes
-  autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+  " autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
   autocmd FileType vim setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
   autocmd FileType javascript,javascrip.jsx,json,jsonc,typescript,typescriptreact,tsx setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
@@ -445,16 +447,6 @@ endif
 if s:has_plugin('tmuxline.vim')
   let g:tmuxline_preset = 'full'
   let g:tmuxline_powerline_separators = 1
-endif
-
-if s:has_plugin('ctrlp.vim')
-  set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-  set wildignore+=*.DS_Store,*.egg,*.egg-info/*,*.log,*.pyc,*.pyo,*.swp
-  set wildignore+=*.cache/*,.eggs,.env,.flaskenv,.idea/*,.mypy_cache/*
-  set wildignore+=.pytest_cache/*,.tox/*,.vagrant,_mailinglist,*build/*
-  set wildignore+=*dist/*,_build/*,*.cover.log,*.coverage
-  set wildignore+=.venv/*,*venv-*/*,*venv/*
-  set wildignore+=*.coverage.*,*htmlcov/*
 endif
 
 if s:has_plugin('syntastic')
@@ -568,6 +560,9 @@ if s:has_plugin('coc.nvim')
   " Apply AutoFix to problem on the current line.
   nmap <leader>qf  <Plug>(coc-fix-current)
 
+  " Symbol renaming.
+  nmap <leader>rn <Plug>(coc-rename)
+
   " Mappings for CoCList
   " Show all diagnostics.
   nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -613,23 +608,14 @@ endif
 
 if s:has_plugin('fzf.vim')
   " Search files
-  nnoremap <S-p> :Files<CR>
-  " Search files (gitignored)
-  nnoremap <C-p> :GFiles<CR>
+  nnoremap <C-p> :Files<CR>
   " Search buffers
   nnoremap <silent><leader>l :Buffers<CR>
   " Git commits
-  nnoremap <silent><leader>g :Commits<CR>
+  nnoremap <silent><leader>g :BCommits<CR>
   " Grep strings
   nnoremap <C-g> :Rg<Cr>
-
-  " Mapping selecting mappings
-  nmap <leader><tab> <plug>(fzf-maps-n)
-  xmap <leader><tab> <plug>(fzf-maps-x)
-  omap <leader><tab> <plug>(fzf-maps-o)
-
-  " Insert mode completion
-  imap <c-x><c-k> <plug>(fzf-complete-word)
-  imap <c-x><c-f> <plug>(fzf-complete-path)
-  imap <c-x><c-l> <plug>(fzf-complete-line)
+  " Undo History
+  nnoremap <C-h> :History<Cr>
 endif
+
