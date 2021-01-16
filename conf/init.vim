@@ -9,12 +9,13 @@ call plug#begin(g:plugin_path)
 """ Themes
 Plug 'tomasr/molokai'
 Plug 'sainnhe/sonokai'
+Plug 'morhetz/gruvbox'
 """ Tmux theme generator
 Plug 'edkolev/tmuxline.vim'
 
 """ Basics
 " File browser
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 " Manage buffers in a list
 Plug 'jlanzarotta/bufexplorer'
 " Syntax and highlighting for every language
@@ -32,6 +33,9 @@ Plug 'tpope/vim-repeat'
 Plug 'moll/vim-bbye'
 " Remember cursor position
 Plug 'farmergreg/vim-lastplace'
+" Emoji support
+Plug 'ryanoasis/vim-devicons'
+Plug 'adelarsq/vim-devicons-emoji'
 " editor config
 Plug 'editorconfig/editorconfig-vim'
 
@@ -44,7 +48,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Syntax checks
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 " Commenting
 Plug 'tpope/vim-commentary'
 
@@ -54,10 +58,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 
 """ Languages
-" rust (used by syntastic)
-Plug 'rust-lang/rust.vim'
-" javascript (used by syntastic)
-Plug 'quramy/tsuquyomi'
 " jsonc
 Plug 'kevinoid/vim-jsonc'
 " toml
@@ -73,6 +73,9 @@ Plug 'plasticboy/vim-markdown'"
 
 call plug#end()
 
+" Functions
+" ------------------------------------------------------------------------------
+
 " Shortcut for checking if a plugin is loaded
 function! s:has_plugin(plugin)
   let lookup = 'g:plugs["' . a:plugin . '"]'
@@ -87,7 +90,8 @@ set mouse=a
 
 set background=dark
 " silent! colorscheme molokai
-silent! colorscheme sonokai
+" silent! colorscheme sonokai
+silent! colorscheme gruvbox
 " do not display the tilde on the left
 hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 " transparent background
@@ -283,8 +287,11 @@ cnoreabbrev W w
 cnoreabbrev Qa q
 cnoreabbrev Qall qall
 
+" close all buffers but the current one
+nnoremap <leader>go :w <bar> %bd <bar> e# <bar> bd# <CR>
+
 " move to beginning of the line in ex mode
-:cnoremap <C-a> <C-b>
+cnoremap <C-a> <C-b>
 
 " gf but in a vsplit
 nnoremap gv :vertical wincmd f<cr>
@@ -425,11 +432,22 @@ augroup auto-resize
   autocmd VimResized * wincmd =
 augroup END
 
+" Gui config
+" ------------------------------------------------------------------------------
+
+if exists('g:neovide')
+  highlight Normal guibg=#282828
+  set guifont=Fira\ Code:h14
+  " set guifont=Noto\ Mono:h14
+  let g:neovide_transparency=1.0
+endif
+
 "  Plugin config
 " ------------------------------------------------------------------------------
 
 " enable as soon as neovim 0.5 is released
 " lua require'nvim_lsp'.rust_analyzer.setup({})
+
 if s:has_plugin('rust.vim' )
   let g:rustfmt_autosave = 1
 endif
@@ -449,25 +467,16 @@ if s:has_plugin('tmuxline.vim')
   let g:tmuxline_powerline_separators = 1
 endif
 
-if s:has_plugin('syntastic')
-  " these are checked via COC plugin
-  let g:syntastic_enable_c_checker = 0
-  let g:syntastic_enable_rust_checker = 0
-  let g:syntastic_enable_python_checker = 1
-  let g:syntastic_enable_ruby_checker = 1
-
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-
-  "let g:syntastic_python_checkers = ['flake8', 'mypy']
-  let g:syntastic_python_checkers = ['flake8']
-  let g:syntastic_c_checkers = ['clang_tidy']
-  let g:syntastic_ruby_checkers = ['rubocop']
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
+if s:has_plugin('ale')
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_open_list = 1
+  let g:ale_keep_list_window_open = 0
+  let g:ale_disable_lsp = 1
+  let g:airline#extensions#ale#enabled = 1
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_insert_leave = 0
+  let g:ale_lint_on_enter = 0
 endif
 
 if s:has_plugin('bufexplorer')
