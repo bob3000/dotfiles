@@ -29,8 +29,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 " Allow plugins to be repeated with dot
 Plug 'tpope/vim-repeat'
-" Close buffers without losing window layout
-Plug 'moll/vim-bbye'
 " Remember cursor position
 Plug 'farmergreg/vim-lastplace'
 " Emoji support
@@ -58,6 +56,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 
 """ Languages
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 " jsonc
 Plug 'kevinoid/vim-jsonc'
 " toml
@@ -90,10 +91,10 @@ set mouse=a
 
 set background=dark
 " silent! colorscheme molokai
-" silent! colorscheme sonokai
-silent! colorscheme gruvbox
+silent! colorscheme sonokai
+" silent! colorscheme gruvbox
 " do not display the tilde on the left
-hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 " transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -287,6 +288,9 @@ cnoreabbrev W w
 cnoreabbrev Qa q
 cnoreabbrev Qall qall
 
+" sort selection
+vnoremap <leader>o :'<,'>!sort<CR>
+
 " close all buffers but the current one
 nnoremap <leader>go :w <bar> %bd <bar> e# <bar> bd# <CR>
 
@@ -303,9 +307,10 @@ nnoremap <silent><leader>w :silent w<cr>
 nnoremap <leader><leader> <C-^>
 " Show registers
 nnoremap <leader>s :reg<cr>
-" Close current buffer
-nnoremap <silent><leader>x :bd<cr>
-
+" Close current buffer while keeping the window open
+nnoremap <silent><leader>x :b#<bar>bd#<bar>b<CR>
+" Close current window
+nnoremap <silent><leader>q :q<CR>
 " Force j and k to work on display lines
 nnoremap k gk
 nnoremap j gj
@@ -435,11 +440,12 @@ augroup END
 " Gui config
 " ------------------------------------------------------------------------------
 
+set guifont=Fira\ Code\ Medium:h14,Noto\ Mono:h14,Noto\ Color\ Emoji:h14
+" set guifont=JetBrains\ Mono\ Nerd\ Font,DejaVu\ Sans\ Mono,Iosevka:h14
+
 if exists('g:neovide')
   highlight Normal guibg=#282828
-  set guifont=Fira\ Code:h14
-  " set guifont=Noto\ Mono:h14
-  let g:neovide_transparency=1.0
+  " let g:neovide_transparency=1.0
 endif
 
 "  Plugin config
@@ -447,14 +453,6 @@ endif
 
 " enable as soon as neovim 0.5 is released
 " lua require'nvim_lsp'.rust_analyzer.setup({})
-
-if s:has_plugin('rust.vim' )
-  let g:rustfmt_autosave = 1
-endif
-
-if s:has_plugin('vim-bbye')
-  nnoremap <Leader>q :Bdelete<CR>
-endif
 
 if s:has_plugin('vim-markdown-preview')
   let g:vim_markdown_preview_github=1
@@ -555,6 +553,7 @@ if s:has_plugin('coc.nvim')
   nmap <silent> gy <Plug>(coc-type-definition)
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+  nnoremap <silent> gs :CocCommand clangd.switchSourceHeader<CR>
 
   " Use K to show documentation in preview window.
   nnoremap <silent> K :call <SID>show_documentation()<CR>
