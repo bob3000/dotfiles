@@ -6,10 +6,12 @@ export WORDCHARS='*?_-~=&;!#$%^(){}<>'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#AAAAAA,underline"
 
 if [[ -n $SSH_CONNECTION  ]]; then
-    export EDITOR='vim'
-  else
     export EDITOR='nvim'
+  else
+    export EDITOR='vim'
 fi
+export BROWSER=firefox
+export TERMINAL=kitty
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -17,19 +19,26 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# vim
 # make vim fzf plugin use ripgrep
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rga --files'
+export FZF_CTRL_T_COMMAND='fd . $HOME'
+export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || bat --color always {}"'
+export FZF_ALT_C_COMMAND='fd -t d . $HOME'
+export FZF_ALT_C_OPTS='--preview "exa -la {}"'
+export NeovideMultiGrid=1
 
 # key bindings
 ## make C-u behave like in bash
-bindkey \^U backward-kill-line
+bindkey '^U' backward-kill-line
 
 # convinence
 alias ls='ls --color'
 alias ll='lsd -l'
 alias la='lsd -a'
 alias git='LANG=en_US git'
-alias vim='nvim'
+alias open='xdg-open'
+# alias vim='nvim'
 alias qvim='nvim-qt 2> /dev/null'
 alias tmux-cwd='tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias xclip='xclip -selection clipboard'
@@ -60,8 +69,9 @@ eval "$(starship init zsh)"
 # better cd
 eval "$(zoxide init zsh)"
 
-# GTK3 includes
-source <(pkg-config --cflags-only-I --libs gtk+-3.0 | sed 's/ *-I/\nexport CPATH=$CPATH:/g' | tail -n+2 | head -n -1)
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # temporary stuff
 source $HOME/.zshrc.local.d/*
