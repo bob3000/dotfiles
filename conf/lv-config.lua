@@ -1,5 +1,3 @@
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
 lvim.transparent_window = true
 lvim.format_on_save = true
@@ -84,15 +82,14 @@ local rust_tools_opts = {
 }
 
 lvim.plugins = {
-	{ "lervag/vimtex", opt = true },
-	{ "npxbr/glow.nvim", opt = true },
+	{ "lervag/vimtex" },
 	{ "rktjmp/lush.nvim" },
 	{
 		"simrat39/rust-tools.nvim",
-		opt = true,
 		config = function()
 			require("rust-tools").setup(rust_tools_opts)
 		end,
+    ft = "rust"
 	},
 	{ "simrat39/symbols-outline.nvim" },
 	{ "tpope/vim-surround" },
@@ -103,7 +100,7 @@ lvim.plugins = {
 			require("colorizer").setup()
 		end,
 	},
-	{ "jvirtanen/vim-hcl", opt = true },
+	{ "jvirtanen/vim-hcl" },
 	{ "sainnhe/sonokai" },
 	{ "npxbr/gruvbox.nvim" },
 	{ "folke/trouble.nvim" },
@@ -112,6 +109,31 @@ lvim.plugins = {
 		config = function()
 			require("todo-comments").setup({})
 		end,
+	},
+	{ "andymass/vim-matchup" },
+	{
+		"windwp/nvim-spectre",
+		config = function()
+			require("spectre").setup()
+		end,
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		ft = "markdown",
+	},
+	{
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
+		event = "InsertEnter",
 	},
 	-- {"lukas-reineke/indent-blankline.nvim"},
 }
@@ -126,26 +148,65 @@ lvim.autocommands.custom_groups = {
 	{ "InsertLeave", "*", 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
 	{ "InsertEnter", "*", "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
 	{ "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
-
-	-- { "Filetype", "rust", "nnoremap <leader>lm <Cmd>RustExpandMacro<CR>" },
-	-- { "Filetype", "rust", "nnoremap <leader>lH <Cmd>RustToggleInlayHints<CR>" },
-	-- { "Filetype", "rust", "nnoremap <leader>le <Cmd>RustRunnables<CR>" },
-	-- { "Filetype", "rust", "nnoremap <leader>lh <Cmd>RustHoverActions<CR>" },
 }
 
 -- Additional Leader bindings for WhichKey
-lvim.builtin.which_key.mappings["x"] = {
-	name = "Custom Commands",
+lvim.builtin.which_key.mappings["t"] = {
+	name = "Extra Windows",
 	d = { "<cmd>TroubleToggle<CR>", "Togggle Trouble" },
 	o = { "<cmd>SymbolsOutline<CR>", "Togggle Symbols Outline" },
-	p = { "<cmd>Glow<CR>", "Preview Markdown" },
+	m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Browser" },
 	t = { "<cmd>TodoTrouble<CR>", "Togggle Todos" },
 }
 
-lvim.builtin.which_key.mappings["r"] = {
+lvim.builtin.which_key.mappings["R"] = {
 	name = "Rust Tools",
 	m = { "<cmd>RustExpandMacro<CR>", "Expand Macro" },
 	H = { "<cmd>RustToggleInlayHints<CR>", "Inlay Hints" },
 	r = { "<cmd>RustRunnables<CR>", "Runnables" },
 	h = { "<cmd>RustHoverActions<CR>", "Hover Actions" },
 }
+
+lvim.builtin.which_key.mappings["r"] = {
+	name = "Replace",
+	r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
+	w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
+	f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
+}
+
+-- DAP
+  local dap = require('dap')
+  -- install lldb-vscode
+  dap.adapters.lldb = {
+    type = "executable",
+    command = "lldb-vscode",
+    name = "lldb",
+  }
+  -- Rust
+  -- install lldb-vscode
+  dap.adapters.rust = {
+    type = "executable",
+    attach = {
+      pidProperty = "pid",
+      pidSelect = "ask",
+    },
+    command = "lldb-vscode", -- my binary was called 'lldb-vscode-11'
+    env = {
+      LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
+    },
+    name = "lldb",
+  }
+  dap.configurations.rust = {
+    {
+      type = "lldb",
+      name = "Debug",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      args = {},
+      runInTerminal = false,
+    },
+  }
