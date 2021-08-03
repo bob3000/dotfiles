@@ -73,54 +73,36 @@ local rust_tools_opts = {
 				{ "│", "FloatBorder" },
 			},
 		},
-		server = {
-			cmd = { DATA_PATH .. "/lspinstall/rust/rust-analyzer" },
-			on_attach = require("lsp").common_on_attach,
-			capabilities = require("lsp").common_capabilities,
-		}, -- rust-analyser options
 	},
 }
 
 lvim.plugins = {
+  -- laguages
+	{ "jvirtanen/vim-hcl" },
+  { "cespare/vim-toml" },
+  { "chr4/nginx.vim" },
 	{ "lervag/vimtex" },
-	{ "rktjmp/lush.nvim" },
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
 			require("rust-tools").setup(rust_tools_opts)
 		end,
-    ft = "rust"
-	},
-	{ "simrat39/symbols-outline.nvim" },
-	{ "tpope/vim-surround" },
-	{ "tpope/vim-repeat" },
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
-	},
-	{ "jvirtanen/vim-hcl" },
-	{ "sainnhe/sonokai" },
-	{ "npxbr/gruvbox.nvim" },
-	{ "folke/trouble.nvim" },
-	{
-		"folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	},
-	{ "andymass/vim-matchup" },
-	{
-		"windwp/nvim-spectre",
-		config = function()
-			require("spectre").setup()
-		end,
+    ft = { "rust", "rs" }
 	},
 	{
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
 		ft = "markdown",
+	},
+  -- colors / display
+	{ "rktjmp/lush.nvim" },
+	{ "sainnhe/sonokai" },
+	{ "npxbr/gruvbox.nvim" },
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
 	},
 	{
 		"karb94/neoscroll.nvim",
@@ -128,14 +110,50 @@ lvim.plugins = {
 			require("neoscroll").setup()
 		end,
 	},
-	{
-		"ray-x/lsp_signature.nvim",
-		config = function()
-			require("lsp_signature").on_attach()
-		end,
-		event = "InsertEnter",
-	},
 	-- {"lukas-reineke/indent-blankline.nvim"},
+  -- navigation
+	{ "simrat39/symbols-outline.nvim" },
+	{ "folke/trouble.nvim" },
+	{
+		"folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	},
+  -- editing
+	{ "tpope/vim-surround" },
+	{ "tpope/vim-repeat" },
+	{ "andymass/vim-matchup" },
+  -- search / replace
+	{
+		"windwp/nvim-spectre",
+		config = function()
+			require("spectre").setup()
+		end,
+	},
+  -- debugging
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require("dapui").setup()
+    end,
+    requires = { "mfussenegger/nvim-dap" },
+    ft = { "python", "rust" },
+  },
+	{
+		"nvim-telescope/telescope-dap.nvim",
+		config = function()
+      require('telescope').load_extension('dap')
+		end,
+	},
+  -- language server
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	config = function()
+	-- 		require("lsp_signature").on_attach()
+	-- 	end,
+	-- 	event = "InsertEnter",
+	-- },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -157,14 +175,20 @@ lvim.builtin.which_key.mappings["t"] = {
 	o = { "<cmd>SymbolsOutline<CR>", "Togggle Symbols Outline" },
 	m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Browser" },
 	t = { "<cmd>TodoTrouble<CR>", "Togggle Todos" },
+	D = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle DAP UI" },
 }
 
 lvim.builtin.which_key.mappings["R"] = {
 	name = "Rust Tools",
+	b = { "<cmd>lua require('core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
+	r = { "<cmd>lua require('core.terminal')._exec_toggle('cargo run;read')<CR>", "Cargo run" },
+	t = { "<cmd>lua require('core.terminal')._exec_toggle('cargo test;read')<CR>", "Cargo test" },
+	c = { "<cmd>lua require('core.terminal')._exec_toggle('cargo check;read')<CR>", "Cargo check" },
 	m = { "<cmd>RustExpandMacro<CR>", "Expand Macro" },
 	H = { "<cmd>RustToggleInlayHints<CR>", "Inlay Hints" },
-	r = { "<cmd>RustRunnables<CR>", "Runnables" },
+	R = { "<cmd>RustRunnables<CR>", "Runnables" },
 	h = { "<cmd>RustHoverActions<CR>", "Hover Actions" },
+	d = { "<cmd>RustDebuggables<CR>", "Debuggables" },
 }
 
 lvim.builtin.which_key.mappings["r"] = {
@@ -175,13 +199,7 @@ lvim.builtin.which_key.mappings["r"] = {
 }
 
 -- DAP
-  local dap = require('dap')
-  -- install lldb-vscode
-  dap.adapters.lldb = {
-    type = "executable",
-    command = "lldb-vscode",
-    name = "lldb",
-  }
+lvim.builtin.dap.on_config_done = function(dap)
   -- Rust
   -- install lldb-vscode
   dap.adapters.rust = {
@@ -198,7 +216,7 @@ lvim.builtin.which_key.mappings["r"] = {
   }
   dap.configurations.rust = {
     {
-      type = "lldb",
+      type = "rust",
       name = "Debug",
       request = "launch",
       program = function()
@@ -210,3 +228,4 @@ lvim.builtin.which_key.mappings["r"] = {
       runInTerminal = false,
     },
   }
+end
