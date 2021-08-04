@@ -88,6 +88,9 @@ local rust_tools_opts = {
 			},
 		},
 	},
+	server = {
+		on_attach = require("lsp").common_on_attach,
+	}, -- rust-analyser options
 }
 
 lvim.plugins = {
