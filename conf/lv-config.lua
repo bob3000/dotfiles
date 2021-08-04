@@ -14,6 +14,9 @@ lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 
+lvim.lang.lua.formatters = { { exe = "stylua", args = {} } }
+lvim.lsp.override = { "rust" }
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
 	{
@@ -64,7 +67,6 @@ lvim.builtin.which_key.mappings["r"] = {
 }
 
 -- Additional Plugins
-lvim.lsp.override = { "rust" }
 local rust_tools_opts = {
 	tools = { -- rust-tools options
 		autoSetHints = true,
@@ -89,24 +91,24 @@ local rust_tools_opts = {
 }
 
 lvim.plugins = {
-  -- laguages
+	-- laguages
 	{ "jvirtanen/vim-hcl" },
-  { "cespare/vim-toml" },
-  { "chr4/nginx.vim" },
+	{ "cespare/vim-toml" },
+	{ "chr4/nginx.vim" },
 	{ "lervag/vimtex" },
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
 			require("rust-tools").setup(rust_tools_opts)
 		end,
-    ft = { "rust", "rs" }
+		ft = { "rust", "rs" },
 	},
 	{
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
 		ft = "markdown",
 	},
-  -- colors / display
+	-- colors / display
 	{ "rktjmp/lush.nvim" },
 	{ "sainnhe/sonokai" },
 	{ "npxbr/gruvbox.nvim" },
@@ -123,7 +125,7 @@ lvim.plugins = {
 		end,
 	},
 	-- {"lukas-reineke/indent-blankline.nvim"},
-  -- navigation
+	-- navigation
 	{ "simrat39/symbols-outline.nvim" },
 	{ "folke/trouble.nvim" },
 	{
@@ -132,45 +134,45 @@ lvim.plugins = {
 			require("todo-comments").setup({})
 		end,
 	},
-  -- editing
+	-- editing
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-repeat" },
 	{ "andymass/vim-matchup" },
-  -- search / replace
+	-- search / replace
 	{
 		"windwp/nvim-spectre",
 		config = function()
 			require("spectre").setup()
 		end,
 	},
-  -- debugging
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
-    end,
-    requires = { "mfussenegger/nvim-dap" },
-    ft = { "python", "rust" },
-  },
+	-- debugging
+	{
+		"rcarriga/nvim-dap-ui",
+		config = function()
+			require("dapui").setup()
+		end,
+		requires = { "mfussenegger/nvim-dap" },
+		ft = { "python", "rust" },
+	},
 	{
 		"nvim-telescope/telescope-dap.nvim",
 		config = function()
-      require('telescope').load_extension('dap')
+			require("telescope").load_extension("dap")
 		end,
 	},
-  -- session
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    module = "persistence",
-    config = function()
-      require("persistence").setup( {
-        dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"), -- directory where session files are saved
-        options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
-      })
-    end,
-  }
-  -- language server
+	-- session
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		module = "persistence",
+		config = function()
+			require("persistence").setup({
+				dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"), -- directory where session files are saved
+				options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
+			})
+		end,
+	},
+	-- language server
 	-- {
 	-- 	"ray-x/lsp_signature.nvim",
 	-- 	config = function()
@@ -182,32 +184,32 @@ lvim.plugins = {
 
 -- DAP
 lvim.builtin.dap.on_config_done = function(dap)
-  -- Rust
-  -- install lldb-vscode
-  dap.adapters.rust = {
-    type = "executable",
-    attach = {
-      pidProperty = "pid",
-      pidSelect = "ask",
-    },
-    command = "lldb-vscode", -- my binary was called 'lldb-vscode-11'
-    env = {
-      LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
-    },
-    name = "lldb",
-  }
-  dap.configurations.rust = {
-    {
-      type = "rust",
-      name = "Debug",
-      request = "launch",
-      program = function()
-        return vim.fn.input('Path to executable: ', CACHE_PATH .. '/target/debug/', 'file')
-      end,
-      cwd = '${workspaceFolder}',
-      stopOnEntry = false,
-      args = {},
-      runInTerminal = false,
-    },
-  }
+	-- Rust
+	-- install lldb-vscode
+	dap.adapters.rust = {
+		type = "executable",
+		attach = {
+			pidProperty = "pid",
+			pidSelect = "ask",
+		},
+		command = "lldb-vscode", -- my binary was called 'lldb-vscode-11'
+		env = {
+			LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
+		},
+		name = "lldb",
+	}
+	dap.configurations.rust = {
+		{
+			type = "rust",
+			name = "Debug",
+			request = "launch",
+			program = function()
+				return vim.fn.input("Path to executable: ", CACHE_PATH .. "/target/debug/", "file")
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+			args = {},
+			runInTerminal = false,
+		},
+	}
 end
