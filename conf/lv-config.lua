@@ -1,4 +1,5 @@
 -- general
+lvim.debug = true
 lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
@@ -67,32 +68,6 @@ lvim.builtin.which_key.mappings["r"] = {
 }
 
 -- Additional Plugins
-local rust_tools_opts = {
-	tools = { -- rust-tools options
-		autoSetHints = true,
-		hover_with_actions = true,
-		runnables = {
-			use_telescope = true,
-		},
-		inlay_hints = {},
-		hover_actions = {
-			border = {
-				{ "╭", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╮", "FloatBorder" },
-				{ "│", "FloatBorder" },
-				{ "╯", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╰", "FloatBorder" },
-				{ "│", "FloatBorder" },
-			},
-		},
-	},
-	server = {
-		on_attach = require("lsp").common_on_attach,
-	}, -- rust-analyser options
-}
-
 lvim.plugins = {
 	-- laguages
 	{ "jvirtanen/vim-hcl" },
@@ -102,7 +77,41 @@ lvim.plugins = {
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
-			require("rust-tools").setup(rust_tools_opts)
+			local opts = {
+				tools = { -- rust-tools options
+					autoSetHints = true,
+					hover_with_actions = true,
+					runnables = {
+						use_telescope = true,
+					},
+					inlay_hints = {
+						show_parameter_hints = true,
+						parameter_hints_prefix = "<-",
+						other_hints_prefix = "=>",
+						max_len_align = false,
+						max_len_align_padding = 1,
+						right_align = false,
+						right_align_padding = 7,
+					},
+					hover_actions = {
+						border = {
+							{ "╭", "FloatBorder" },
+							{ "─", "FloatBorder" },
+							{ "╮", "FloatBorder" },
+							{ "│", "FloatBorder" },
+							{ "╯", "FloatBorder" },
+							{ "─", "FloatBorder" },
+							{ "╰", "FloatBorder" },
+							{ "│", "FloatBorder" },
+						},
+					},
+				},
+				server = {
+					cmd = { DATA_PATH .. "/lspinstall/rust/rust-analyzer" },
+					on_attach = require("lsp").common_on_attach,
+				},
+			}
+			require("rust-tools").setup(opts)
 		end,
 		ft = { "rust", "rs" },
 	},
@@ -113,8 +122,11 @@ lvim.plugins = {
 	},
 	-- colors / display
 	{ "rktjmp/lush.nvim" },
+	{ "sainnhe/everforest" },
 	{ "sainnhe/sonokai" },
-	{ "npxbr/gruvbox.nvim" },
+	{ "sainnhe/gruvbox-material" },
+	{ "morhetz/gruvbox" },
+	-- { "npxbr/gruvbox.nvim" },
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
@@ -141,6 +153,17 @@ lvim.plugins = {
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-repeat" },
 	{ "andymass/vim-matchup" },
+	{
+		"ethanholz/nvim-lastplace",
+		config = function()
+			require("nvim-lastplace").setup({
+				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+				lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+				lastplace_open_folds = true,
+			})
+		end,
+		event = "BufWinEnter",
+	},
 	-- search / replace
 	{
 		"windwp/nvim-spectre",
