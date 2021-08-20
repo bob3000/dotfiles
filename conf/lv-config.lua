@@ -1,12 +1,19 @@
 -- general
-lvim.debug = true
+lvim.debug = false
 lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
-lvim.colorscheme = "gruvbox"
+vim.g.gruvbox_material_palette = "original"
+vim.g.sonokai_style = "maia"
+lvim.colorscheme = "gruvbox-material"
 vim.o.guifont = "Fira Code:h10"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
+vim.o.spell = true
+vim.o.inccommand = "split"
+-- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
+vim.o.listchars = "tab:»·,eol:↲,extends:…,precedes:<,extends:>,trail:·"
+vim.o.list = true
 
 lvim.leader = "space"
 lvim.builtin.dashboard.active = true
@@ -15,7 +22,35 @@ lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 
+lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
 lvim.lang.lua.formatters = { { exe = "stylua", args = {} } }
+lvim.lang.tailwindcss = {
+	active = true,
+	lsp = {
+		provider = "tailwindcss",
+		setup = {
+			cmd = {
+				DATA_PATH .. "/lspinstall/tailwindcss/tailwindcss-intellisense.sh",
+				"--stdio",
+			},
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"svelte",
+			},
+		},
+	},
+}
+
+if lvim.lang.tailwindcss.active then
+	require("lsp").setup("tailwindcss")
+end
+
 lvim.lsp.override = { "rust" }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -51,7 +86,7 @@ lvim.builtin.which_key.mappings["R"] = {
 	name = "Rust Tools",
 	b = { "<cmd>lua require('core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
 	r = { "<cmd>lua require('core.terminal')._exec_toggle('cargo run;read')<CR>", "Cargo run" },
-	t = { "<cmd>lua require('core.terminal')._exec_toggle('cargo test;read')<CR>", "Cargo test" },
+	t = { "<cmd>lua require('core.terminal')._exec_toggle('cargo test -- --nocapture;read')<CR>", "Cargo test" },
 	c = { "<cmd>lua require('core.terminal')._exec_toggle('cargo check;read')<CR>", "Cargo check" },
 	m = { "<cmd>RustExpandMacro<CR>", "Expand Macro" },
 	H = { "<cmd>RustToggleInlayHints<CR>", "Inlay Hints" },
@@ -74,6 +109,12 @@ lvim.plugins = {
 	{ "cespare/vim-toml" },
 	{ "chr4/nginx.vim" },
 	{ "lervag/vimtex" },
+	{
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup()
+		end,
+	},
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -124,8 +165,12 @@ lvim.plugins = {
 	{ "rktjmp/lush.nvim" },
 	{ "sainnhe/everforest" },
 	{ "sainnhe/sonokai" },
+	{ "sainnhe/edge" },
 	{ "sainnhe/gruvbox-material" },
+	{ "ajmwagar/vim-deus" },
 	{ "morhetz/gruvbox" },
+	{ "christianchiarulli/nvcode-color-schemes.vim" },
+	{ "folke/tokyonight.nvim" },
 	-- { "npxbr/gruvbox.nvim" },
 	{
 		"norcalli/nvim-colorizer.lua",
@@ -153,6 +198,22 @@ lvim.plugins = {
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-repeat" },
 	{ "andymass/vim-matchup" },
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				context_commentstring = {
+					enable = true,
+				},
+			})
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
 	{
 		"ethanholz/nvim-lastplace",
 		config = function()
@@ -199,6 +260,12 @@ lvim.plugins = {
 		end,
 	},
 	-- language server
+	-- {
+	-- 	"tzachar/compe-tabnine",
+	-- 	run = "./install.sh",
+	-- 	requires = "hrsh7th/nvim-compe",
+	-- 	-- event = "InsertEnter",
+	-- },
 	-- {
 	-- 	"ray-x/lsp_signature.nvim",
 	-- 	config = function()
