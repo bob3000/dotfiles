@@ -82,6 +82,11 @@ lvim.builtin.which_key.mappings["S"] = {
 	d = { "<cmd>lua require('persistence').stop()<cr>", "Disable Saving" },
 }
 
+lvim.builtin.which_key.mappings["lt"] = {
+	"<cmd>%s/\\s\\+$//e<cr>",
+	"Trim trailing spaces",
+}
+
 lvim.builtin.which_key.mappings["R"] = {
 	name = "Rust Tools",
 	b = { "<cmd>lua require('core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
