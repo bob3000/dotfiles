@@ -12,7 +12,7 @@ vim.o.relativenumber = true
 vim.o.spell = true
 vim.o.inccommand = "split"
 -- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
-vim.o.listchars = "tab:»·,eol:↲,extends:…,precedes:<,extends:>,trail:·"
+vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.list = true
 
 lvim.leader = "space"
@@ -83,8 +83,13 @@ lvim.builtin.which_key.mappings["S"] = {
 }
 
 lvim.builtin.which_key.mappings["lt"] = {
-	"<cmd>%s/\\s\\+$//e<cr>",
+	"<cmd>FixWhitespace<cr>",
 	"Trim trailing spaces",
+}
+
+lvim.builtin.which_key.mappings["sP"] = {
+	"<cmd>Telescope projects<cr>",
+	"Projects",
 }
 
 lvim.builtin.which_key.mappings["R"] = {
@@ -172,10 +177,9 @@ lvim.plugins = {
 	{ "sainnhe/sonokai" },
 	{ "sainnhe/edge" },
 	{ "sainnhe/gruvbox-material" },
-	{ "ajmwagar/vim-deus" },
-	{ "morhetz/gruvbox" },
+	-- { "ajmwagar/vim-deus" },
 	{ "christianchiarulli/nvcode-color-schemes.vim" },
-	{ "folke/tokyonight.nvim" },
+	-- { "folke/tokyonight.nvim" },
 	-- { "npxbr/gruvbox.nvim" },
 	{
 		"norcalli/nvim-colorizer.lua",
@@ -202,6 +206,7 @@ lvim.plugins = {
 	-- editing
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-repeat" },
+	{ "bronson/vim-trailing-whitespace" },
 	{ "andymass/vim-matchup" },
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
