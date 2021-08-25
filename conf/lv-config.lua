@@ -1,3 +1,5 @@
+local components = require("core.lualine.components")
+
 -- general
 lvim.debug = false
 lvim.transparent_window = true
@@ -23,6 +25,22 @@ lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
+
+-- status line
+lvim.builtin.lualine.options.theme = "gruvbox"
+lvim.builtin.lualine.sections.lualine_x = {
+	"string.format('col:%3d', vim.api.nvim_win_get_cursor(0)[2])",
+	components.diagnostics,
+	components.treesitter,
+	components.lsp,
+	components.filetype,
+}
+lvim.builtin.lualine.sections.lualine_z = {
+	components.scrollbar,
+	"(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
+}
+
+-- language server
 lvim.lang.lua.formatters = { { exe = "stylua", args = {} } }
 lvim.lang.tailwindcss = {
 	active = true,
