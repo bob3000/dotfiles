@@ -7,15 +7,20 @@ lvim.format_on_save = true
 lvim.lint_on_save = true
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
+vim.o.autowrite = true
 lvim.colorscheme = "gruvbox-material"
+-- lvim.colorscheme = "onedarker"
 vim.o.guifont = "Fira Code:h10"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
+vim.o.spelllang = "en_us,de_de"
+vim.o.spellfile = "~/.config/lvim/spell/en.utf-8.add,~/.config/lvim/spell/de.utf-8.add"
 vim.o.spell = true
 vim.o.inccommand = "split"
 -- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.list = true
+vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix" }
 
 lvim.leader = "space"
 lvim.builtin.dashboard.active = true
@@ -108,6 +113,16 @@ lvim.builtin.which_key.mappings["lt"] = {
 lvim.builtin.which_key.mappings["sP"] = {
 	"<cmd>Telescope projects<cr>",
 	"Projects",
+}
+
+lvim.builtin.which_key.mappings["s/"] = {
+	"<cmd>Telescope search_history<cr>",
+	"Search History",
+}
+
+lvim.builtin.which_key.mappings["s:"] = {
+	"<cmd>Telescope command_history<cr>",
+	"Command History",
 }
 
 lvim.builtin.which_key.mappings["R"] = {
@@ -242,6 +257,10 @@ lvim.plugins = {
 			require("nvim-ts-autotag").setup()
 		end,
 	},
+	-- {
+	-- 	"metakirby5/codi.vim",
+	-- 	cmd = "Codi",
+	-- },
 	{
 		"ethanholz/nvim-lastplace",
 		config = function()
@@ -254,6 +273,13 @@ lvim.plugins = {
 		event = "BufWinEnter",
 	},
 	-- search / replace
+	-- {
+	-- 	"junegunn/fzf",
+	-- 	run = function()
+	-- 		vim.fn["fzf#install"]()
+	-- 	end,
+	-- },
+	-- { "junegunn/fzf.vim" },
 	{
 		"windwp/nvim-spectre",
 		config = function()
