@@ -1,4 +1,5 @@
 local components = require("core.lualine.components")
+local ls_install_prefix = vim.fn.stdpath("data") .. "/lspinstall"
 
 -- general
 lvim.debug = false
@@ -53,7 +54,7 @@ lvim.lang.tailwindcss = {
 		provider = "tailwindcss",
 		setup = {
 			cmd = {
-				DATA_PATH .. "/lspinstall/tailwindcss/tailwindcss-intellisense.sh",
+				ls_install_prefix .. "/lspinstall/tailwindcss/tailwindcss-intellisense.sh",
 				"--stdio",
 			},
 			filetypes = {
@@ -351,7 +352,7 @@ lvim.builtin.dap.on_config_done = function(dap)
 			name = "Debug",
 			request = "launch",
 			program = function()
-				return vim.fn.input("Path to executable: ", CACHE_PATH .. "/target/debug/", "file")
+				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 			end,
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
