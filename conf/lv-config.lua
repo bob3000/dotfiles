@@ -192,8 +192,9 @@ lvim.plugins = {
 					},
 				},
 				server = {
-					cmd = { DATA_PATH .. "/lspinstall/rust/rust-analyzer" },
+					cmd = { vim.fn.stdpath("data") .. "/lspinstall/rust/rust-analyzer" },
 					on_attach = require("lsp").common_on_attach,
+					on_init = require("lsp").common_on_init,
 				},
 			}
 			require("rust-tools").setup(opts)
