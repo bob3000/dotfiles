@@ -9,8 +9,12 @@ lvim.lint_on_save = true
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
-lvim.colorscheme = "gruvbox-material"
+
+-- lvim.colorscheme = "gruvbox-material"
 -- lvim.colorscheme = "onedarker"
+lvim.colorscheme = "catppuccino"
+-- lvim.colorscheme = "neon_latte"
+
 vim.o.guifont = "Fira Code:h10"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
@@ -22,8 +26,10 @@ vim.o.inccommand = "split"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.list = true
 vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix" }
+vim.g.vim_markdown_folding_disabled = true
 
 lvim.leader = "space"
+lvim.builtin.autopairs.active = true
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
@@ -32,8 +38,12 @@ lvim.builtin.nvimtree.show_icons.git = 1
 
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
 
+-- keymappings
+lvim.keys.normal_mode["Y"] = "y$"
+
 -- status line
 lvim.builtin.lualine.options.theme = "gruvbox"
+-- lvim.builtin.lualine.options.theme = "catppuccino"
 lvim.builtin.lualine.sections.lualine_x = {
 	"string.format('col:%3d', vim.api.nvim_win_get_cursor(0)[2])",
 	components.diagnostics,
@@ -206,7 +216,68 @@ lvim.plugins = {
 		run = "cd app && npm install",
 		ft = "markdown",
 	},
+	{ "godlygeek/tabular" },
+	{ "plasticboy/vim-markdown" },
 	-- colors / display
+	{
+		"Pocco81/Catppuccino.nvim",
+		config = function()
+			require("catppuccino").setup({
+				colorscheme = "dark_catppuccino",
+				transparency = true,
+				term_colors = false,
+				styles = {
+					comments = "italic",
+					functions = "NONE",
+					keywords = "italic",
+					strings = "NONE",
+					variables = "NONE",
+				},
+				integrations = {
+					treesitter = true,
+					native_lsp = {
+						enabled = true,
+						virtual_text = {
+							errors = "italic",
+							hints = "italic",
+							warnings = "italic",
+							information = "italic",
+						},
+						underlines = {
+							errors = "underline",
+							hints = "underline",
+							warnings = "underline",
+							information = "underline",
+						},
+					},
+					lsp_trouble = true,
+					lsp_saga = false,
+					gitgutter = false,
+					gitsigns = true,
+					telescope = true,
+					nvimtree = {
+						enabled = true,
+						show_root = true,
+					},
+					which_key = true,
+					indent_blankline = {
+						enabled = true,
+						colored_indent_levels = true,
+					},
+					dashboard = true,
+					neogit = false,
+					vim_sneak = false,
+					fern = false,
+					barbar = true,
+					bufferline = true,
+					markdown = true,
+					lightspeed = false,
+					ts_rainbow = false,
+					hop = false,
+				},
+			})
+		end,
+	},
 	{ "rktjmp/lush.nvim" },
 	{ "sainnhe/everforest" },
 	{ "sainnhe/sonokai" },
@@ -236,6 +307,14 @@ lvim.plugins = {
 		"folke/todo-comments.nvim",
 		config = function()
 			require("todo-comments").setup({})
+		end,
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+		after = "telescope.nvim",
+		config = function()
+			require("telescope").load_extension("fzf")
 		end,
 	},
 	-- editing
