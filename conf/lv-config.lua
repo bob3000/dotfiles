@@ -10,9 +10,9 @@ vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
 
--- lvim.colorscheme = "gruvbox-material"
+lvim.colorscheme = "gruvbox-material"
 -- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "catppuccino"
+-- lvim.colorscheme = "catppuccino"
 -- lvim.colorscheme = "neon_latte"
 
 vim.o.guifont = "Fira Code:h10"
@@ -25,7 +25,7 @@ vim.o.inccommand = "split"
 -- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.list = true
-vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix" }
+vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix", "TelescopePrompt" }
 vim.g.vim_markdown_folding_disabled = true
 
 lvim.leader = "space"
@@ -163,6 +163,7 @@ lvim.plugins = {
 	{ "cespare/vim-toml" },
 	{ "chr4/nginx.vim" },
 	{ "lervag/vimtex" },
+	{ "Glench/Vim-Jinja2-Syntax" },
 	{
 		"lewis6991/spellsitter.nvim",
 		config = function()
