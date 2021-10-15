@@ -1,16 +1,15 @@
-local components = require("core.lualine.components")
-local ls_install_prefix = vim.fn.stdpath("data") .. "/lspinstall"
+-- globals
+local components = require("lvim.core.lualine.components")
 
 -- general
-lvim.debug = false
+lvim.log.level = "warn"
+lvim.colorscheme = "gruvbox-material"
 lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
-
-lvim.colorscheme = "gruvbox-material"
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "catppuccino"
 -- lvim.colorscheme = "neon_latte"
@@ -28,6 +27,7 @@ vim.o.list = true
 vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix", "TelescopePrompt" }
 vim.g.vim_markdown_folding_disabled = true
 
+-- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 lvim.builtin.autopairs.active = true
 lvim.builtin.dashboard.active = true
@@ -35,7 +35,6 @@ lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
-
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
 
 -- keymappings
@@ -56,30 +55,25 @@ lvim.builtin.lualine.sections.lualine_z = {
 	"(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
 }
 
+-- if you don't want all the parsers change this to a table of the ones you want
+lvim.builtin.treesitter.ensure_installed = {
+	"bash",
+	"c",
+	"javascript",
+	"json",
+	"lua",
+	"python",
+	"typescript",
+	"css",
+	"rust",
+	"yaml",
+}
+
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true
+
 -- language server
 lvim.lang.lua.formatters = { { exe = "stylua", args = {} } }
-lvim.lang.tailwindcss = {
-	active = true,
-	lsp = {
-		provider = "tailwindcss",
-		setup = {
-			cmd = {
-				ls_install_prefix .. "/lspinstall/tailwindcss/tailwindcss-intellisense.sh",
-				"--stdio",
-			},
-			filetypes = {
-				"html",
-				"css",
-				"scss",
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"svelte",
-			},
-		},
-	},
-}
 
 if lvim.lang.tailwindcss.active then
 	require("lsp").setup("tailwindcss")
@@ -173,6 +167,8 @@ lvim.plugins = {
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
+			local lsp_installer_servers = require("nvim-lsp-installer.servers")
+			local _, requested_server = lsp_installer_servers.get_server("rust_analyzer")
 			local opts = {
 				tools = { -- rust-tools options
 					autoSetHints = true,
@@ -203,9 +199,9 @@ lvim.plugins = {
 					},
 				},
 				server = {
-					cmd = { vim.fn.stdpath("data") .. "/lspinstall/rust/rust-analyzer" },
-					on_attach = require("lsp").common_on_attach,
-					on_init = require("lsp").common_on_init,
+					cmd = requested_server._default_options.cmd,
+					on_attach = require("lvim.lsp").common_on_attach,
+					on_init = require("lvim.lsp").common_on_init,
 				},
 			}
 			require("rust-tools").setup(opts)
@@ -384,17 +380,17 @@ lvim.plugins = {
 		end,
 	},
 	-- session
-	{
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		module = "persistence",
-		config = function()
-			require("persistence").setup({
-				dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"), -- directory where session files are saved
-				options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
-			})
-		end,
-	},
+	-- {
+	-- 	"folke/persistence.nvim",
+	-- 	event = "BufReadPre", -- this will only start session saving when an actual file was opened
+	-- 	module = "persistence",
+	-- 	config = function()
+	-- 		require("persistence").setup({
+	-- 			dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"), -- directory where session files are saved
+	-- 			options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
+	-- 		})
+	-- 	end,
+	-- },
 	-- language server
 	-- {
 	-- 	"tzachar/compe-tabnine",
