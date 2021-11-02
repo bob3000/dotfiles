@@ -79,7 +79,7 @@ if lvim.lang.tailwindcss.active then
 	require("lsp").setup("tailwindcss")
 end
 
-lvim.lsp.override = { "rust" }
+lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer", "rust" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
@@ -130,12 +130,12 @@ lvim.builtin.which_key.mappings["s:"] = {
 	"Command History",
 }
 
-lvim.builtin.which_key.mappings["R"] = {
+lvim.builtin.which_key.mappings["U"] = {
 	name = "Rust Tools",
-	b = { "<cmd>lua require('core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
-	r = { "<cmd>lua require('core.terminal')._exec_toggle('cargo run;read')<CR>", "Cargo run" },
-	t = { "<cmd>lua require('core.terminal')._exec_toggle('cargo test -- --nocapture;read')<CR>", "Cargo test" },
-	c = { "<cmd>lua require('core.terminal')._exec_toggle('cargo check;read')<CR>", "Cargo check" },
+	b = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
+	r = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo run;read')<CR>", "Cargo run" },
+	t = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo test -- --nocapture;read')<CR>", "Cargo test" },
+	c = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo check;read')<CR>", "Cargo check" },
 	m = { "<cmd>RustExpandMacro<CR>", "Expand Macro" },
 	H = { "<cmd>RustToggleInlayHints<CR>", "Inlay Hints" },
 	R = { "<cmd>RustRunnables<CR>", "Runnables" },
@@ -304,14 +304,6 @@ lvim.plugins = {
 		"folke/todo-comments.nvim",
 		config = function()
 			require("todo-comments").setup({})
-		end,
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "make",
-		after = "telescope.nvim",
-		config = function()
-			require("telescope").load_extension("fzf")
 		end,
 	},
 	-- editing
