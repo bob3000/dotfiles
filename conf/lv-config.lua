@@ -107,6 +107,7 @@ linters.setup({
 
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
+	{ exe = "black" },
 	{ exe = "stylua" },
 	{
 		exe = "prettier",
