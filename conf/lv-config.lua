@@ -126,6 +126,7 @@ lvim.autocommands.custom_groups = {
 	{ "InsertLeave", "*", 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
 	{ "InsertEnter", "*", "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
 	{ "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
+	{ "BufRead,BufNewFile", "*.nomad", "set filetype=hcl" },
 }
 
 -- Additional Leader bindings for WhichKey
