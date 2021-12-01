@@ -28,6 +28,9 @@ export FZF_ALT_C_COMMAND='fd -t d . $HOME'
 export FZF_ALT_C_OPTS='--preview "exa -la {}"'
 export NeovideMultiGrid=1
 
+export LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-/home/bob/.config/lvim}"
+export LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-/home/bob/.local/share/lunarvim}"
+
 # key bindings
 ## make C-u behave like in bash
 bindkey '^U' backward-kill-line
@@ -46,6 +49,10 @@ alias sudo='sudo -v; sudo '
 alias wanip='curl -s ifconfig.me'
 alias brightness='pkexec --user root xfpm-power-backlight-helper --set-brightness'
 alias windowclass='xprop | grep WM_CLASS | awk "{print \$4}"'
+
+# enable completion
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 # speciffic
 alias dc='source dev.env && docker-compose -p gdn -f compose-dev.yml'
