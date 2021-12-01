@@ -59,25 +59,60 @@ lvim.builtin.lualine.sections.lualine_z = {
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
-	"javascript",
-	"json",
-	"lua",
-	"python",
-	"typescript",
+	"cmake",
+	"comment",
 	"css",
+	"dockerfile",
+	"dot",
+	"go",
+	"gomod",
+	"hcl",
+	"html",
+	"javascript",
+	"jsdoc",
+	"json",
+	"jsonc",
+	"latex",
+	"lua",
+	"php",
+	"python",
+	"regex",
 	"rust",
+	"scss",
+	"svelte",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
 	"yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- language server
-lvim.lang.lua.formatters = { { exe = "stylua", args = {} } }
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	{ exe = "eslint" },
+	{ exe = "flake8" },
+	{ exe = "luacheck", args = { "--globals", "lvim" } },
+	{
+		exe = "shellcheck",
+		args = { "--severity", "warning" },
+	},
+	{
+		exe = "codespell",
+		-- filetypes = { "typescript", "typescriptreact", "rust", "c", "python" },
+	},
+})
 
-if lvim.lang.tailwindcss.active then
-	require("lsp").setup("tailwindcss")
-end
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ exe = "stylua" },
+	{
+		exe = "prettier",
+		filetypes = { "javascript", "typescript", "typescriptreact", "json" },
+	},
+})
 
 lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer", "rust" })
 
@@ -153,10 +188,8 @@ lvim.builtin.which_key.mappings["r"] = {
 -- Additional Plugins
 lvim.plugins = {
 	-- laguages
-	{ "jvirtanen/vim-hcl" },
-	{ "cespare/vim-toml" },
 	{ "chr4/nginx.vim" },
-	{ "lervag/vimtex" },
+	-- { "lervag/vimtex" },
 	{ "Glench/Vim-Jinja2-Syntax" },
 	{
 		"lewis6991/spellsitter.nvim",
@@ -216,69 +249,10 @@ lvim.plugins = {
 	{ "godlygeek/tabular" },
 	{ "plasticboy/vim-markdown" },
 	-- colors / display
-	{
-		"Pocco81/Catppuccino.nvim",
-		config = function()
-			require("catppuccino").setup({
-				colorscheme = "dark_catppuccino",
-				transparency = true,
-				term_colors = false,
-				styles = {
-					comments = "italic",
-					functions = "NONE",
-					keywords = "italic",
-					strings = "NONE",
-					variables = "NONE",
-				},
-				integrations = {
-					treesitter = true,
-					native_lsp = {
-						enabled = true,
-						virtual_text = {
-							errors = "italic",
-							hints = "italic",
-							warnings = "italic",
-							information = "italic",
-						},
-						underlines = {
-							errors = "underline",
-							hints = "underline",
-							warnings = "underline",
-							information = "underline",
-						},
-					},
-					lsp_trouble = true,
-					lsp_saga = false,
-					gitgutter = false,
-					gitsigns = true,
-					telescope = true,
-					nvimtree = {
-						enabled = true,
-						show_root = true,
-					},
-					which_key = true,
-					indent_blankline = {
-						enabled = true,
-						colored_indent_levels = true,
-					},
-					dashboard = true,
-					neogit = false,
-					vim_sneak = false,
-					fern = false,
-					barbar = true,
-					bufferline = true,
-					markdown = true,
-					lightspeed = false,
-					ts_rainbow = false,
-					hop = false,
-				},
-			})
-		end,
-	},
 	{ "rktjmp/lush.nvim" },
-	{ "sainnhe/everforest" },
-	{ "sainnhe/sonokai" },
-	{ "sainnhe/edge" },
+	-- { "sainnhe/everforest" },
+	-- { "sainnhe/sonokai" },
+	-- { "sainnhe/edge" },
 	{ "sainnhe/gruvbox-material" },
 	-- { "ajmwagar/vim-deus" },
 	{ "christianchiarulli/nvcode-color-schemes.vim" },
@@ -312,16 +286,6 @@ lvim.plugins = {
 	{ "bronson/vim-trailing-whitespace" },
 	{ "andymass/vim-matchup" },
 	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-				},
-			})
-		end,
-	},
-	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup()
@@ -343,13 +307,6 @@ lvim.plugins = {
 		event = "BufWinEnter",
 	},
 	-- search / replace
-	-- {
-	-- 	"junegunn/fzf",
-	-- 	run = function()
-	-- 		vim.fn["fzf#install"]()
-	-- 	end,
-	-- },
-	-- { "junegunn/fzf.vim" },
 	{
 		"windwp/nvim-spectre",
 		config = function()
@@ -385,18 +342,7 @@ lvim.plugins = {
 	-- },
 	-- language server
 	-- {
-	-- 	"tzachar/compe-tabnine",
-	-- 	run = "./install.sh",
-	-- 	requires = "hrsh7th/nvim-compe",
-	-- 	-- event = "InsertEnter",
-	-- },
-	-- {
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	config = function()
-	-- 		require("lsp_signature").on_attach()
-	-- 	end,
-	-- 	event = "InsertEnter",
-	-- },
+	-- note taking
 }
 
 -- DAP
