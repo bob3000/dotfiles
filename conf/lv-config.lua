@@ -7,6 +7,8 @@ lvim.colorscheme = "gruvbox-material"
 lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
@@ -273,6 +275,16 @@ lvim.plugins = {
 		end,
 	},
 	-- {"lukas-reineke/indent-blankline.nvim"},
+	-- completion
+	{ "hrsh7th/cmp-emoji" },
+	{
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup()
+		end,
+	},
 	-- navigation
 	{ "simrat39/symbols-outline.nvim" },
 	{ "folke/trouble.nvim" },
