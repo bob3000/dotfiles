@@ -38,6 +38,7 @@ lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
+lvim.builtin.notify.active = true
 
 -- keymappings
 lvim.keys.normal_mode["Y"] = "y$"
@@ -117,7 +118,7 @@ formatters.setup({
 	},
 })
 
-lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer", "rust" })
+lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
@@ -191,7 +192,7 @@ lvim.builtin.which_key.mappings["r"] = {
 
 -- Additional Plugins
 lvim.plugins = {
-	-- laguages
+	-- languages
 	{ "chr4/nginx.vim" },
 	-- { "lervag/vimtex" },
 	{ "Glench/Vim-Jinja2-Syntax" },
@@ -236,7 +237,7 @@ lvim.plugins = {
 					},
 				},
 				server = {
-					cmd = requested_server._default_options.cmd,
+					cmd_env = requested_server._default_options.cmd_env,
 					on_attach = require("lvim.lsp").common_on_attach,
 					on_init = require("lvim.lsp").common_on_init,
 				},
