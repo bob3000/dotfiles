@@ -17,6 +17,7 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # vim
@@ -35,7 +36,7 @@ export LUNARVIM_RUNTIME_DIR="${LUNARVIM_RUNTIME_DIR:-/home/bob/.local/share/luna
 ## make C-u behave like in bash
 bindkey '^U' backward-kill-line
 
-# convinence
+# convenience
 alias ls='ls --color'
 alias ll='lsd -l'
 alias la='lsd -a'
@@ -54,7 +55,7 @@ alias windowclass='xprop | grep WM_CLASS | awk "{print \$4}"'
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
-# speciffic
+# specific
 alias dc='source dev.env && docker-compose -p gdn -f compose-dev.yml'
 
 # credentials
@@ -66,6 +67,9 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # kubectl
 source <(kubectl completion zsh)
 source <(helm completion zsh)
+
+# Nomad
+complete -C /usr/bin/nomad nomad
 
 # AWS
 complete -C '/usr/bin/aws_completer' aws
@@ -79,6 +83,10 @@ eval "$(zoxide init zsh)"
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# node version manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # temporary stuff
 source $HOME/.zshrc.local.d/*
