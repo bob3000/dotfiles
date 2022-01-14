@@ -335,7 +335,7 @@ lvim.plugins = {
 			require("dapui").setup()
 		end,
 		requires = { "mfussenegger/nvim-dap" },
-		ft = { "python", "rust" },
+		ft = { "python", "rust", "c", "c++" },
 	},
 	{
 		"nvim-telescope/telescope-dap.nvim",
@@ -361,33 +361,5 @@ lvim.plugins = {
 }
 
 -- DAP
-lvim.builtin.dap.on_config_done = function(dap)
-	-- Rust
-	-- install lldb-vscode
-	dap.adapters.rust = {
-		type = "executable",
-		attach = {
-			pidProperty = "pid",
-			pidSelect = "ask",
-		},
-		command = "lldb-vscode", -- my binary was called 'lldb-vscode-11'
-		env = {
-			LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
-		},
-		name = "lldb",
-	}
-	dap.configurations.rust = {
-		{
-			type = "rust",
-			name = "Debug",
-			request = "launch",
-			program = function()
-				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-			end,
-			cwd = "${workspaceFolder}",
-			stopOnEntry = false,
-			args = {},
-			runInTerminal = false,
-		},
-	}
-end
+local dap_install = require("dap-install")
+dap_install.config("codelldb", {})
