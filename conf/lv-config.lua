@@ -89,6 +89,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"typescript",
 	"vim",
 	"yaml",
+	"zig",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
