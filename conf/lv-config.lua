@@ -69,6 +69,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"dot",
 	"go",
 	"gomod",
+	"graphql",
 	"hcl",
 	"html",
 	"javascript",
@@ -118,6 +119,9 @@ formatters.setup({
 	},
 })
 
+lvim.lsp.override = vim.tbl_filter(function(it)
+	return it ~= "tailwindcss" and it ~= "graphql"
+end, lvim.lsp.override)
 lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -131,6 +135,7 @@ lvim.autocommands.custom_groups = {
 	{ "InsertEnter", "*", "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
 	{ "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
 	{ "BufRead,BufNewFile", "*.nomad", "set filetype=hcl" },
+	{ "BufRead,BufNewFile", "*.tsx", 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
 }
 
 -- Additional Leader bindings for WhichKey
