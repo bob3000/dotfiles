@@ -113,6 +113,7 @@ linters.setup({
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ exe = "black" },
+	{ exe = "shfmt", args = { "-i", "2", "-bn", "-sr", "-ci" } },
 	{ exe = "stylua" },
 	{
 		exe = "prettier",
@@ -121,7 +122,7 @@ formatters.setup({
 })
 
 lvim.lsp.override = vim.tbl_filter(function(it)
-	return it ~= "tailwindcss" and it ~= "graphql"
+	return it ~= "tailwindcss" and it ~= "graphql" and it ~= "zeta_note" and it ~= "tflint" and it ~= "ansiblels"
 end, lvim.lsp.override)
 lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
 
@@ -137,9 +138,11 @@ lvim.autocommands.custom_groups = {
 	{ "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
 	{ "BufRead,BufNewFile", "*.nomad", "set filetype=hcl" },
 	{ "BufRead,BufNewFile", "*.tsx", 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
+	{ "FileType", "zig,zir", "set shiftwidth=4" },
 }
 
 -- Additional Leader bindings for WhichKey
+
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Extra Windows",
 	d = { "<cmd>TroubleToggle<CR>", "Togggle Trouble" },
