@@ -3,9 +3,8 @@ local components = require("lvim.core.lualine.components")
 
 -- general
 lvim.log.level = "warn"
-lvim.colorscheme = "gruvbox-material"
--- lvim.colorscheme = "github_dimmed"
-lvim.transparent_window = true
+-- breaks light themes
+-- lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
 vim.opt.foldmethod = "expr"
@@ -15,7 +14,12 @@ vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "catppuccino"
+-- lvim.builtin.lualine.options.theme = "catppuccino"
 -- lvim.colorscheme = "neon_latte"
+-- lvim.colorscheme = "github_light"
+-- lvim.builtin.lualine.options.theme = "ayu_light"
+lvim.colorscheme = "gruvbox-material"
+lvim.builtin.lualine.options.theme = "gruvbox"
 
 vim.o.timeoutlen = 150
 vim.o.guifont = "Fira Code:h10"
@@ -48,8 +52,9 @@ lvim.keys.normal_mode["j"] = "gj"
 lvim.keys.normal_mode["k"] = "gk"
 
 -- status line
-lvim.builtin.lualine.options.theme = "gruvbox"
--- lvim.builtin.lualine.options.theme = "catppuccino"
+lvim.builtin.lualine.options.component_separators = { left = "", right = "" }
+lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
+lvim.builtin.bufferline.options.separator_style = "slant"
 lvim.builtin.lualine.sections.lualine_x = {
 	"string.format('col:%3d', vim.api.nvim_win_get_cursor(0)[2])",
 	components.diagnostics,
@@ -271,19 +276,18 @@ lvim.plugins = {
 	-- { "sainnhe/everforest" },
 	-- { "sainnhe/sonokai" },
 	-- { "sainnhe/edge" },
+	-- { "projekt0n/github-nvim-theme" },
 	{
-		"projekt0n/github-nvim-theme",
+		"olimorris/onedarkpro.nvim",
 		config = function()
-			require("github-theme").setup({
-				theme_style = "light",
-			})
+			require("onedarkpro").load()
 		end,
 	},
 	{ "sainnhe/gruvbox-material" },
+	-- { "catppuccin/nvim" },
 	-- { "ajmwagar/vim-deus" },
-	{ "christianchiarulli/nvcode-color-schemes.vim" },
+	-- { "christianchiarulli/nvcode-color-schemes.vim" },
 	-- { "folke/tokyonight.nvim" },
-	-- { "npxbr/gruvbox.nvim" },
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
