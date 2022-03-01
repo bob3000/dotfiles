@@ -12,14 +12,14 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
+lvim.colorscheme = "gruvbox-material"
+lvim.builtin.lualine.options.theme = "gruvbox"
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "catppuccino"
 -- lvim.builtin.lualine.options.theme = "catppuccino"
 -- lvim.colorscheme = "neon_latte"
 -- lvim.colorscheme = "github_light"
 -- lvim.builtin.lualine.options.theme = "ayu_light"
-lvim.colorscheme = "gruvbox-material"
-lvim.builtin.lualine.options.theme = "gruvbox"
 
 vim.o.timeoutlen = 150
 vim.o.guifont = "Fira Code:h10"
@@ -45,6 +45,8 @@ lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
 lvim.builtin.notify.active = true
+lvim.builtin.nvimtree.setup.disable_netrw = false
+lvim.builtin.nvimtree.setup.hijack_netrw = false
 
 -- keymappings
 lvim.keys.normal_mode["Y"] = "y$"
@@ -277,12 +279,12 @@ lvim.plugins = {
 	-- { "sainnhe/sonokai" },
 	-- { "sainnhe/edge" },
 	-- { "projekt0n/github-nvim-theme" },
-	{
-		"olimorris/onedarkpro.nvim",
-		config = function()
-			require("onedarkpro").load()
-		end,
-	},
+	-- {
+	-- 	"olimorris/onedarkpro.nvim",
+	-- 	config = function()
+	-- 		require("onedarkpro").load()
+	-- 	end,
+	-- },
 	{ "sainnhe/gruvbox-material" },
 	-- { "catppuccin/nvim" },
 	-- { "ajmwagar/vim-deus" },
