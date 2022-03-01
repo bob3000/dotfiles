@@ -4,6 +4,7 @@ local components = require("lvim.core.lualine.components")
 -- general
 lvim.log.level = "warn"
 lvim.colorscheme = "gruvbox-material"
+-- lvim.colorscheme = "github_dimmed"
 lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
@@ -16,6 +17,7 @@ vim.o.autowrite = true
 -- lvim.colorscheme = "catppuccino"
 -- lvim.colorscheme = "neon_latte"
 
+vim.o.timeoutlen = 150
 vim.o.guifont = "Fira Code:h10"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
@@ -42,6 +44,8 @@ lvim.builtin.notify.active = true
 
 -- keymappings
 lvim.keys.normal_mode["Y"] = "y$"
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["k"] = "gk"
 
 -- status line
 lvim.builtin.lualine.options.theme = "gruvbox"
@@ -205,12 +209,12 @@ lvim.plugins = {
 	{ "chr4/nginx.vim" },
 	-- { "lervag/vimtex" },
 	{ "Glench/Vim-Jinja2-Syntax" },
-	{
-		"lewis6991/spellsitter.nvim",
-		config = function()
-			require("spellsitter").setup()
-		end,
-	},
+	-- {
+	-- 	"lewis6991/spellsitter.nvim",
+	-- 	config = function()
+	-- 		require("spellsitter").setup()
+	-- 	end,
+	-- },
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -267,6 +271,14 @@ lvim.plugins = {
 	-- { "sainnhe/everforest" },
 	-- { "sainnhe/sonokai" },
 	-- { "sainnhe/edge" },
+	{
+		"projekt0n/github-nvim-theme",
+		config = function()
+			require("github-theme").setup({
+				theme_style = "light",
+			})
+		end,
+	},
 	{ "sainnhe/gruvbox-material" },
 	-- { "ajmwagar/vim-deus" },
 	{ "christianchiarulli/nvcode-color-schemes.vim" },
