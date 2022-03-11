@@ -1,14 +1,20 @@
 -- globals
 local components = require("lvim.core.lualine.components")
-
+require("telescope").load_extension("neoclip")
+local _time = os.date("*t")
+if _time.hour >= 8 and _time.hour < 18 then
+	vim.o.background = "light"
+else
+	vim.o.background = "dark"
+end
 -- general
 lvim.log.level = "warn"
 -- breaks light themes
 -- lvim.transparent_window = true
 lvim.format_on_save = true
 lvim.lint_on_save = true
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
@@ -22,7 +28,7 @@ lvim.builtin.lualine.options.theme = "gruvbox"
 -- lvim.builtin.lualine.options.theme = "ayu_light"
 
 vim.o.timeoutlen = 150
-vim.o.guifont = "Fira Code:h10"
+vim.o.guifont = "JetBrains Mono Medium:h11"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
 vim.o.spelllang = "en_us,de_de"
@@ -31,6 +37,7 @@ vim.o.spell = true
 vim.o.inccommand = "split"
 -- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
+vim.o.fillchars = "eob: "
 vim.o.list = true
 vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix", "TelescopePrompt" }
 vim.g.vim_markdown_folding_disabled = true
@@ -43,7 +50,6 @@ lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
-lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { "gitui", "gi", "GitUI" }
 lvim.builtin.notify.active = true
 lvim.builtin.nvimtree.setup.disable_netrw = false
 lvim.builtin.nvimtree.setup.hijack_netrw = false
@@ -154,6 +160,26 @@ lvim.autocommands.custom_groups = {
 
 -- Additional Leader bindings for WhichKey
 
+lvim.builtin.which_key.mappings["B"] = {
+	"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>",
+	"Background",
+}
+
+lvim.builtin.which_key.mappings["o"] = {
+	"<cmd>SymbolsOutline<CR>",
+	"Outline",
+}
+
+lvim.builtin.which_key.mappings["n"] = {
+	"<cmd>Neogen<CR>",
+	"Doc comment",
+}
+
+lvim.builtin.which_key.mappings["i"] = {
+	"<cmd>TroubleToggle<CR>",
+	"Togggle Trouble",
+}
+
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Extra Windows",
 	d = { "<cmd>TroubleToggle<CR>", "Togggle Trouble" },
@@ -188,6 +214,11 @@ lvim.builtin.which_key.mappings["s/"] = {
 lvim.builtin.which_key.mappings["s:"] = {
 	"<cmd>Telescope command_history<cr>",
 	"Command History",
+}
+
+lvim.builtin.which_key.mappings["sy"] = {
+	"<cmd>Telescope neoclip<cr>",
+	"Yank History",
 }
 
 lvim.builtin.which_key.mappings["U"] = {
@@ -285,6 +316,8 @@ lvim.plugins = {
 	-- 		require("onedarkpro").load()
 	-- 	end,
 	-- },
+	{ "mcchrish/zenbones.nvim" },
+	{ "rebelot/kanagawa.nvim" },
 	{ "sainnhe/gruvbox-material" },
 	-- { "catppuccin/nvim" },
 	-- { "ajmwagar/vim-deus" },
@@ -304,6 +337,44 @@ lvim.plugins = {
 	},
 	-- {"lukas-reineke/indent-blankline.nvim"},
 	-- completion
+	{
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({})
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		requires = {
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		config = function()
+			require("neoclip").setup({
+				history = 1000,
+				keys = {
+					telescope = {
+						i = {
+							select = "<cr>",
+							paste = "<c-p>",
+							paste_behind = "<c-k>",
+							replay = "<c-q>", -- replay a macro
+							delete = "<c-d>", -- delete an entry
+							custom = {},
+						},
+						n = {
+							select = "<cr>",
+							paste = "p",
+							paste_behind = "P",
+							replay = "q",
+							delete = "d",
+							custom = {},
+						},
+					},
+				},
+			})
+		end,
+	},
 	{ "hrsh7th/cmp-emoji" },
 	{
 		"Saecki/crates.nvim",
