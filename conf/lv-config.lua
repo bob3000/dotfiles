@@ -39,13 +39,13 @@ vim.o.inccommand = "split"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.fillchars = "eob: "
 vim.o.list = true
-vim.g.extra_whitespace_ignored_filetypes = { "dashboard", "quickfix", "TelescopePrompt" }
+vim.g.extra_whitespace_ignored_filetypes = { "alpha", "quickfix", "TelescopePrompt" }
 vim.g.vim_markdown_folding_disabled = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 lvim.builtin.autopairs.active = true
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
@@ -60,9 +60,9 @@ lvim.keys.normal_mode["j"] = "gj"
 lvim.keys.normal_mode["k"] = "gk"
 
 -- status line
+lvim.builtin.bufferline.options.separator_style = "slant"
 lvim.builtin.lualine.options.component_separators = { left = "", right = "" }
 lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
-lvim.builtin.bufferline.options.separator_style = "slant"
 lvim.builtin.lualine.sections.lualine_x = {
 	"string.format('col:%3d', vim.api.nvim_win_get_cursor(0)[2])",
 	components.diagnostics,
@@ -139,9 +139,14 @@ formatters.setup({
 })
 
 lvim.lsp.override = vim.tbl_filter(function(it)
-	return it ~= "tailwindcss" and it ~= "graphql" and it ~= "zeta_note" and it ~= "tflint" and it ~= "ansiblels"
+	return it ~= "html"
+		and it ~= "tailwindcss"
+		and it ~= "graphql"
+		and it ~= "zeta_note"
+		and it ~= "tflint"
+		and it ~= "ansiblels"
 end, lvim.lsp.override)
-lvim.lsp.override = vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
+vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
@@ -245,7 +250,7 @@ lvim.builtin.which_key.mappings["r"] = {
 lvim.plugins = {
 	-- languages
 	{ "chr4/nginx.vim" },
-	-- { "lervag/vimtex" },
+	{ "lervag/vimtex" },
 	{ "Glench/Vim-Jinja2-Syntax" },
 	-- {
 	-- 	"lewis6991/spellsitter.nvim",
@@ -266,6 +271,7 @@ lvim.plugins = {
 						use_telescope = true,
 					},
 					inlay_hints = {
+						only_current_line = false,
 						show_parameter_hints = true,
 						parameter_hints_prefix = "<-",
 						other_hints_prefix = "=>",
@@ -288,6 +294,15 @@ lvim.plugins = {
 					},
 				},
 				server = {
+					settings = {
+						-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+						["rust-analyzer"] = {
+							checkOnSave = {
+								command = "clippy",
+								allFeatures = true,
+							},
+						},
+					},
 					cmd_env = requested_server._default_options.cmd_env,
 					on_attach = require("lvim.lsp").common_on_attach,
 					on_init = require("lvim.lsp").common_on_init,
