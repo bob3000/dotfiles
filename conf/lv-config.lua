@@ -18,6 +18,7 @@ lvim.lint_on_save = true
 vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
+vim.o.laststatus = 3
 lvim.colorscheme = "gruvbox-material"
 lvim.builtin.lualine.options.theme = "gruvbox"
 -- lvim.colorscheme = "onedarker"
@@ -139,15 +140,15 @@ formatters.setup({
 	},
 })
 
-lvim.lsp.override = vim.tbl_filter(function(it)
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(it)
 	return it ~= "html"
 		and it ~= "tailwindcss"
 		and it ~= "graphql"
 		and it ~= "zeta_note"
 		and it ~= "tflint"
 		and it ~= "ansiblels"
-end, lvim.lsp.override)
-vim.list_extend(lvim.lsp.override, { "rust_analyzer" })
+end, lvim.lsp.automatic_configuration.skipped_servers)
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
