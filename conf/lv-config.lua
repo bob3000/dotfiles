@@ -96,6 +96,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"latex",
 	"lua",
 	"php",
+	"prisma",
 	"python",
 	"regex",
 	"rust",
@@ -350,6 +351,7 @@ lvim.plugins = {
 			require("neoscroll").setup()
 		end,
 	},
+	{ "stevearc/dressing.nvim" },
 	-- {"lukas-reineke/indent-blankline.nvim"},
 	-- completion
 	{
@@ -391,6 +393,8 @@ lvim.plugins = {
 		end,
 	},
 	{ "hrsh7th/cmp-emoji" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "editorconfig/editorconfig-vim" },
 	{
 		"Saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
