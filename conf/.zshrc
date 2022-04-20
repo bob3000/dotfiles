@@ -18,6 +18,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
+export PATH="$HOME/.zigmod/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # vim
@@ -38,8 +39,8 @@ bindkey '^U' backward-kill-line
 
 # convenience
 alias ls='ls --color'
-alias ll='lsd -l'
-alias la='lsd -a'
+alias ll='exa -l'
+alias la='exa -a'
 alias git='LANG=en_US git'
 alias open='xdg-open'
 # alias vim='nvim'
@@ -50,6 +51,7 @@ alias sudo='sudo -v; sudo '
 alias wanip='curl -s ifconfig.me'
 alias brightness='pkexec --user root xfpm-power-backlight-helper --set-brightness'
 alias windowclass='xprop | grep WM_CLASS | awk "{print \$4}"'
+alias neovide='neovide --multigrid -- -u ~/.local/share/lunarvim/lvim/init.lua --cmd "set runtimepath+=~/.local/share/lunarvim/lvim"'
 
 # enable completion
 autoload bashcompinit && bashcompinit
