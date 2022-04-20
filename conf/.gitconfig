@@ -8,7 +8,13 @@
 [core]
     quotepath = false
     autocrlf = input
-    pager = less -r
+    pager = delta
+[diff]
+    colorMoved = default
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
 [color]
     diff = auto
     status = auto
@@ -19,7 +25,7 @@
 [web]
     browser = open
 [merge]
-    conflictstyle = merge
+    conflictstyle = diff3
 [include]
   path = ~/.gitconfig.local
 [filter "lfs"]
@@ -27,5 +33,3 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-[commit]
-  gpgsign = true
