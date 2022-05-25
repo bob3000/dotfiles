@@ -83,6 +83,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"cmake",
 	"comment",
 	"css",
+	"dart",
 	"dockerfile",
 	"dot",
 	"go",
@@ -90,6 +91,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"graphql",
 	"hcl",
 	"html",
+	"java",
 	"javascript",
 	"jsdoc",
 	"json",
@@ -151,21 +153,40 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
+lvim.autocommands = {
 	{
 		"InsertEnter",
-		"*",
-		"if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif",
+		{
+			pattern = { "*" },
+			command = "if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif",
+		},
 	},
-	{ "InsertLeave", "*", 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
-	{ "InsertEnter", "*", "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
-	{ "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
-	{ "BufRead,BufNewFile", "*.nomad", "set filetype=hcl" },
-	{ "BufRead,BufNewFile", "*.tsx", 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
-	{ "FileType", "zig,zir", "set shiftwidth=4" },
+	{
+		"InsertLeave",
+		{ pattern = { "*" }, command = 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
+	},
+	{
+		"InsertEnter",
+		{ pattern = { "*" }, command = "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
+	},
+	{
+		"InsertLeave",
+		{ pattern = { "*" }, command = 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
+	},
+	{ "BufRead,BufNewFile", { pattern = { "*.nomad" }, command = "set filetype=hcl" } },
+	{
+		"BufRead,BufNewFile",
+		{ pattern = { "*.tsx" }, command = 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
+	},
+	{ "FileType", { pattern = { "zig", "zir" }, command = "set shiftwidth=4" } },
 }
 
 -- Additional Leader bindings for WhichKey
+
+lvim.builtin.which_key.mappings["a"] = {
+	"<cmd>LvimToggleFormatOnSave<cr>",
+	"Format on save",
+}
 
 lvim.builtin.which_key.mappings["B"] = {
 	"<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>",
@@ -480,7 +501,7 @@ lvim.plugins = {
 
 -- DAP
 local dap_install = require("dap-install")
-dap_install.config("codelldb", {})
+dap_install.config("ccppr_lldb", {})
 dap_install.config("ccppr_vsc", {
 	adapters = {
 		type = "executable",
