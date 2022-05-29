@@ -32,9 +32,11 @@ vim.o.timeoutlen = 150
 vim.o.guifont = "JetBrains Mono Medium:h11"
 vim.o.colorcolumn = "80,120"
 vim.o.relativenumber = true
-vim.o.spelllang = "en_us,de_de"
-vim.o.spellfile = "~/.config/lvim/spell/en.utf-8.add,~/.config/lvim/spell/de.utf-8.add"
 vim.o.spell = true
+vim.o.spellfile = vim.env.HOME .. "/.config/lvim/spell/en.utf-8.add"
+vim.o.spelllang = "en_us,de_de,programming"
+vim.o.spelloptions = "camel"
+vim.o.spellcapcheck = ""
 vim.o.inccommand = "split"
 -- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
@@ -275,12 +277,20 @@ lvim.plugins = {
 	{ "chr4/nginx.vim" },
 	{ "lervag/vimtex" },
 	{ "Glench/Vim-Jinja2-Syntax" },
-	-- {
-	-- 	"lewis6991/spellsitter.nvim",
-	-- 	config = function()
-	-- 		require("spellsitter").setup()
-	-- 	end,
-	-- },
+	{
+		"psliwka/vim-dirtytalk",
+		config = function()
+			vim.cmd("DirtytalkUpdate")
+		end,
+	},
+	{
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup({
+				enable = true,
+			})
+		end,
+	},
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -445,10 +455,6 @@ lvim.plugins = {
 			require("nvim-ts-autotag").setup()
 		end,
 	},
-	-- {
-	-- 	"metakirby5/codi.vim",
-	-- 	cmd = "Codi",
-	-- },
 	{
 		"ethanholz/nvim-lastplace",
 		config = function()
@@ -482,46 +488,4 @@ lvim.plugins = {
 			require("telescope").load_extension("dap")
 		end,
 	},
-	-- session
-	-- {
-	-- 	"folke/persistence.nvim",
-	-- 	event = "BufReadPre", -- this will only start session saving when an actual file was opened
-	-- 	module = "persistence",
-	-- 	config = function()
-	-- 		require("persistence").setup({
-	-- 			dir = vim.fn.expand(vim.fn.stdpath("cache") .. "/sessions/"), -- directory where session files are saved
-	-- 			options = { "buffers", "curdir", "tabpages", "winsize" }, -- sessionoptions used for saving
-	-- 		})
-	-- 	end,
-	-- },
-	-- language server
-	-- {
-	-- note taking
 }
-
--- DAP
-local dap_install = require("dap-install")
-dap_install.config("ccppr_lldb", {})
-dap_install.config("ccppr_vsc", {
-	adapters = {
-		type = "executable",
-	},
-	configurations = {
-		{
-			type = "cpptools",
-			request = "launch",
-			name = "Launch with pretty-print",
-			program = function()
-				return vim.fn.input("Path to exe: ", vim.fn.getcwd() .. "/", "file")
-			end,
-			cwd = "${workspaceFolder}",
-			stopOnEntry = true,
-			setupCommands = {
-				{
-					description = "Enable pretty-printing",
-					text = "-enable-pretty-printing",
-				},
-			},
-		},
-	},
-})
