@@ -129,6 +129,7 @@ linters.setup({
 	},
 	{
 		exe = "codespell",
+		args = { "--config", vim.env.HOME .. "/.config/codespell/codespell.ini" },
 		-- filetypes = { "typescript", "typescriptreact", "rust", "c", "python" },
 	},
 })
