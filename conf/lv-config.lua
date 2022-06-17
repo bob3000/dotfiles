@@ -50,12 +50,13 @@ lvim.leader = "space"
 lvim.builtin.autopairs.active = true
 lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.notify.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
-lvim.builtin.notify.active = true
+lvim.builtin.nvimtree.setup.git.enable = true
 lvim.builtin.nvimtree.setup.disable_netrw = false
 lvim.builtin.nvimtree.setup.hijack_netrw = false
+lvim.builtin.nvimtree.setup.view.width = 40
 
 -- keymappings
 lvim.keys.normal_mode["Y"] = "y$"
@@ -82,6 +83,7 @@ lvim.builtin.lualine.sections.lualine_z = {
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
+	"cpp",
 	"cmake",
 	"comment",
 	"css",
@@ -100,6 +102,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"jsonc",
 	"latex",
 	"lua",
+	"make",
 	"php",
 	"prisma",
 	"python",
@@ -217,7 +220,11 @@ lvim.builtin.which_key.mappings["t"] = {
 	o = { "<cmd>SymbolsOutline<CR>", "Togggle Symbols Outline" },
 	m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Browser" },
 	t = { "<cmd>TodoTrouble<CR>", "Togggle Todos" },
-	D = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle DAP UI" },
+}
+
+lvim.builtin.which_key.mappings["dD"] = {
+	"<cmd>lua require('dapui').toggle()<cr>",
+	"Toggle DAP UI",
 }
 
 lvim.builtin.which_key.mappings["S"] = {
@@ -281,7 +288,7 @@ lvim.plugins = {
 	{
 		"psliwka/vim-dirtytalk",
 		config = function()
-			vim.cmd("DirtytalkUpdate")
+			-- vim.cmd("DirtytalkUpdate")
 		end,
 	},
 	{
@@ -297,6 +304,9 @@ lvim.plugins = {
 		config = function()
 			local lsp_installer_servers = require("nvim-lsp-installer.servers")
 			local _, requested_server = lsp_installer_servers.get_server("rust_analyzer")
+			local extension_path = vim.env.HOME .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0"
+			local codelldb_path = extension_path .. "adapter/codelldb"
+			local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 			local opts = {
 				tools = { -- rust-tools options
 					autoSetHints = true,
@@ -341,6 +351,9 @@ lvim.plugins = {
 					on_attach = require("lvim.lsp").common_on_attach,
 					on_init = require("lvim.lsp").common_on_init,
 				},
+				dap = {
+					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+				},
 			}
 			require("rust-tools").setup(opts)
 		end,
@@ -379,11 +392,22 @@ lvim.plugins = {
 		end,
 	},
 	{
-		"karb94/neoscroll.nvim",
+		"declancm/cinnamon.nvim",
 		config = function()
-			require("neoscroll").setup()
+			require("cinnamon").setup({
+				default_keymaps = true, -- Create default keymaps.
+				extra_keymaps = false, -- Create extra keymaps.
+				extended_keymaps = false, -- Create extended keymaps.
+				override_keymaps = false, -- Replace any existing keymaps.
+			})
 		end,
 	},
+	-- {
+	-- 	"karb94/neoscroll.nvim",
+	-- 	config = function()
+	-- 		require("neoscroll").setup()
+	-- 	end,
+	-- },
 	{ "stevearc/dressing.nvim" },
 	-- {"lukas-reineke/indent-blankline.nvim"},
 	-- completion
@@ -468,6 +492,12 @@ lvim.plugins = {
 		event = "BufWinEnter",
 	},
 	-- search / replace
+	-- {
+	-- 	"nvim-telescope/telescope-live-grep-args.nvim",
+	-- 	config = function()
+	-- 		require("telescope").load_extension("live_grep_args")
+	-- 	end,
+	-- },
 	{
 		"windwp/nvim-spectre",
 		config = function()
@@ -490,3 +520,62 @@ lvim.plugins = {
 		end,
 	},
 }
+
+-- debugging
+local dap = require("dap")
+dap.adapters.lldb = {
+	type = "executable",
+	command = "/usr/bin/lldb-vscode", -- adjust as needed, must be absolute path
+	name = "lldb",
+}
+dap.configurations.cpp = {
+	{
+		name = "Launch",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+		args = {},
+
+		-- 💀
+		-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+		--
+		--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+		--
+		-- Otherwise you might get the following error:
+		--
+		--    Error on launch: Failed to attach to the target process
+		--
+		-- But you should be aware of the implications:
+		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+		-- runInTerminal = false,
+	},
+}
+
+-- If you want to use this for Rust and C, add something like this:
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+dap.adapters.firefox = {
+	type = "executable",
+	command = "node",
+	args = {
+		os.getenv("HOME")
+			.. "/.vscode-oss/extensions/firefox-devtools.vscode-firefox-debug-2.9.1/dist/adapter.bundle.js",
+	},
+}
+
+dap.configurations.typescript = {
+	name = "Debug with Firefox",
+	type = "firefox",
+	request = "launch",
+	reAttach = true,
+	url = "http://localhost:5050",
+	webRoot = "${workspaceFolder}",
+	firefoxExecutable = "/usr/bin/firefox-developer-edition",
+}
+dap.configurations.typescriptreact = { dap.configurations.typescript }
