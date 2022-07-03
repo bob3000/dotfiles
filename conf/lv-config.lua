@@ -148,14 +148,14 @@ formatters.setup({
 	},
 })
 
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(it)
-	return it ~= "html"
-		and it ~= "tailwindcss"
-		and it ~= "graphql"
-		and it ~= "zeta_note"
-		and it ~= "tflint"
-		and it ~= "ansiblels"
-end, lvim.lsp.automatic_configuration.skipped_servers)
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(it)
+-- 	return it ~= "html"
+-- 		and it ~= "tailwindcss"
+-- 		and it ~= "graphql"
+-- 		and it ~= "zeta_note"
+-- 		and it ~= "tflint"
+-- 		and it ~= "ansiblels"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
