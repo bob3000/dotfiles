@@ -62,6 +62,8 @@ lvim.builtin.nvimtree.setup.view.width = 40
 lvim.keys.normal_mode["Y"] = "y$"
 lvim.keys.normal_mode["j"] = "gj"
 lvim.keys.normal_mode["k"] = "gk"
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
 -- status line
 lvim.builtin.bufferline.options.separator_style = "slant"
@@ -302,19 +304,12 @@ lvim.plugins = {
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
-			local lsp_installer_servers = require("nvim-lsp-installer.servers")
-			local _, requested_server = lsp_installer_servers.get_server("rust_analyzer")
-			local extension_path = vim.env.HOME .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.7.0"
-			local codelldb_path = extension_path .. "adapter/codelldb"
-			local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 			local opts = {
-				tools = { -- rust-tools options
-					autoSetHints = true,
-					hover_with_actions = true,
-					runnables = {
-						use_telescope = true,
-					},
+				tools = {
+					executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+					reload_workspace_from_cargo_toml = true,
 					inlay_hints = {
+						auto = true,
 						only_current_line = false,
 						show_parameter_hints = true,
 						parameter_hints_prefix = "<-",
@@ -323,6 +318,7 @@ lvim.plugins = {
 						max_len_align_padding = 1,
 						right_align = false,
 						right_align_padding = 7,
+						highlight = "Comment",
 					},
 					hover_actions = {
 						border = {
@@ -335,25 +331,21 @@ lvim.plugins = {
 							{ "╰", "FloatBorder" },
 							{ "│", "FloatBorder" },
 						},
+						auto_focus = true,
 					},
 				},
 				server = {
-					settings = {
-						-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-						["rust-analyzer"] = {
-							checkOnSave = {
-								command = "clippy",
-								allFeatures = true,
-							},
-						},
-					},
-					cmd_env = requested_server._default_options.cmd_env,
 					on_attach = require("lvim.lsp").common_on_attach,
 					on_init = require("lvim.lsp").common_on_init,
 				},
-				dap = {
-					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-				},
+			}
+			local extension_path = vim.fn.expand("~/") .. ".vscode/extensions/vadimcn.vscode-lldb-1.7.3/"
+
+			local codelldb_path = extension_path .. "adapter/codelldb"
+			local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+
+			opts.dap = {
+				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
 			}
 			require("rust-tools").setup(opts)
 		end,
