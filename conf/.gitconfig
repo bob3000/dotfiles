@@ -5,6 +5,7 @@
     pull = pull --no-ff
     co = checkout
     st = status
+    pf = push --force-with-lease
 [core]
     quotepath = false
     autocrlf = input
@@ -33,3 +34,5 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[gpg]
+	program = gpg
