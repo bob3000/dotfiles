@@ -8,7 +8,7 @@ else
 	vim.o.background = "dark"
 end
 -- general
-lvim.log.level = "warn"
+lvim.log.level = "info"
 -- breaks light themes
 -- lvim.transparent_window = true
 lvim.format_on_save = true
@@ -19,8 +19,9 @@ vim.g.gruvbox_material_palette = "original"
 vim.g.sonokai_style = "maia"
 vim.o.autowrite = true
 vim.o.laststatus = 3
-lvim.colorscheme = "gruvbox-material"
+lvim.builtin.theme.name = "gruvbox-material"
 lvim.builtin.lualine.options.theme = "gruvbox"
+lvim.colorscheme = "gruvbox-material"
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "catppuccino"
 -- lvim.builtin.lualine.options.theme = "catppuccino"
@@ -69,13 +70,6 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.builtin.bufferline.options.separator_style = "slant"
 lvim.builtin.lualine.options.component_separators = { left = "", right = "" }
 lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
-lvim.builtin.lualine.sections.lualine_x = {
-	"string.format('col:%3d', vim.api.nvim_win_get_cursor(0)[2])",
-	components.diagnostics,
-	components.treesitter,
-	components.lsp,
-	components.filetype,
-}
 lvim.builtin.lualine.sections.lualine_z = {
 	components.scrollbar,
 	"(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
@@ -112,6 +106,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"rust",
 	"scss",
 	"svelte",
+	"sql",
 	"toml",
 	"tsx",
 	"typescript",
@@ -139,6 +134,8 @@ linters.setup({
 	},
 })
 
+local nullls = require("lvim.lsp.null-ls")
+nullls.debug = true
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{ exe = "black" },
@@ -147,6 +144,9 @@ formatters.setup({
 	{
 		exe = "prettier",
 		filetypes = { "javascript", "typescript", "typescriptreact", "json" },
+	},
+	{
+		name = "npm_groovy_lint",
 	},
 })
 
@@ -182,6 +182,7 @@ lvim.autocommands = {
 		{ pattern = { "*" }, command = 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
 	},
 	{ "BufRead,BufNewFile", { pattern = { "*.nomad" }, command = "set filetype=hcl" } },
+	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile.*" }, command = "set filetype=groovy" } },
 	{
 		"BufRead,BufNewFile",
 		{ pattern = { "*.tsx" }, command = 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
@@ -243,6 +244,11 @@ lvim.builtin.which_key.mappings["lt"] = {
 
 lvim.builtin.which_key.mappings["sP"] = {
 	"<cmd>Telescope projects<cr>",
+	"Projects",
+}
+
+lvim.builtin.which_key.mappings["sg"] = {
+	"<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
 	"Projects",
 }
 
@@ -484,12 +490,12 @@ lvim.plugins = {
 		event = "BufWinEnter",
 	},
 	-- search / replace
-	-- {
-	-- 	"nvim-telescope/telescope-live-grep-args.nvim",
-	-- 	config = function()
-	-- 		require("telescope").load_extension("live_grep_args")
-	-- 	end,
-	-- },
+	{
+		"nvim-telescope/telescope-live-grep-args.nvim",
+		config = function()
+			require("telescope").load_extension("live_grep_args")
+		end,
+	},
 	{
 		"windwp/nvim-spectre",
 		config = function()
@@ -497,14 +503,6 @@ lvim.plugins = {
 		end,
 	},
 	-- debugging
-	{
-		"rcarriga/nvim-dap-ui",
-		config = function()
-			require("dapui").setup()
-		end,
-		requires = { "mfussenegger/nvim-dap" },
-		ft = { "python", "rust", "c", "c++" },
-	},
 	{
 		"nvim-telescope/telescope-dap.nvim",
 		config = function()
