@@ -10,6 +10,7 @@
     quotepath = false
     autocrlf = input
     pager = delta
+	hookspath = /Users/robin/.git/hooks
 [diff]
     colorMoved = default
 [interactive]
@@ -36,3 +37,5 @@
   required = true
 [gpg]
 	program = gpg
+[pull]
+	rebase = true
