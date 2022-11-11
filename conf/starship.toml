@@ -1,5 +1,5 @@
 [docker_context]
-disabled = true
+disabled = false
 
 [kubernetes]
 disabled = false
