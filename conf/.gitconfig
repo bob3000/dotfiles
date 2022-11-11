@@ -6,6 +6,7 @@
     co = checkout
     st = status
     pf = push --force-with-lease
+	up = pull --rebase --autostash
 [core]
     quotepath = false
     autocrlf = input
