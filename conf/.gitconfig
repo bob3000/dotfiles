@@ -6,12 +6,12 @@
     co = checkout
     st = status
     pf = push --force-with-lease
-	up = pull --rebase --autostash
+  	up = pull --rebase --autostash
 [core]
     quotepath = false
     autocrlf = input
     pager = delta
-	hookspath = /Users/robin/.git/hooks
+  	hookspath = ~/.git/hooks
 [diff]
     colorMoved = default
 [interactive]
