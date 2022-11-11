@@ -1,34 +1,18 @@
--- globals
+-- vim:ts=2:sw=2:ai:foldmethod=marker:foldlevel=0:
+
+-- imports
+-- {{{
 local components = require("lvim.core.lualine.components")
-require("telescope").load_extension("neoclip")
 local _time = os.date("*t")
 if _time.hour >= 8 and _time.hour < 18 then
 	vim.o.background = "light"
 else
 	vim.o.background = "dark"
 end
--- general
-lvim.log.level = "info"
--- breaks light themes
--- lvim.transparent_window = true
-lvim.format_on_save = true
-lvim.lint_on_save = true
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.g.gruvbox_material_palette = "original"
-vim.g.sonokai_style = "maia"
-vim.o.autowrite = true
-vim.o.laststatus = 3
-lvim.builtin.theme.name = "gruvbox-material"
-lvim.builtin.lualine.options.theme = "gruvbox"
-lvim.colorscheme = "gruvbox-material"
--- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "catppuccino"
--- lvim.builtin.lualine.options.theme = "catppuccino"
--- lvim.colorscheme = "neon_latte"
--- lvim.colorscheme = "github_light"
--- lvim.builtin.lualine.options.theme = "ayu_light"
+-- }}}
 
+-- nvim config
+-- {{{
 vim.o.timeoutlen = 150
 vim.o.guifont = "JetBrains Mono Medium:h11"
 vim.o.colorcolumn = "80,120"
@@ -39,34 +23,42 @@ vim.o.spelllang = "en_us,de_de,programming"
 vim.o.spelloptions = "camel"
 vim.o.spellcapcheck = ""
 vim.o.inccommand = "split"
--- vim.o.listchars = "tab:»·,eol:↲,nbsp:␣,extends:…,space:␣,precedes:<,extends:>,trail:·"
 vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.fillchars = "eob: "
 vim.o.list = true
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+  "rust_analyzer",
+})
+-- }}}
+
+-- globals
+-- {{{
+vim.g.gruvbox_material_palette = "original"
 vim.g.extra_whitespace_ignored_filetypes = { "alpha", "quickfix", "TelescopePrompt" }
 vim.g.vim_markdown_folding_disabled = true
+-- }}}
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- lvim config
+-- {{{
+lvim.log.level = "warn"
+lvim.format_on_save.enabled = false
+lvim.colorscheme = "lunar"
 lvim.leader = "space"
 lvim.builtin.autopairs.active = true
 lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.notify.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.setup.git.enable = true
 lvim.builtin.nvimtree.setup.disable_netrw = false
 lvim.builtin.nvimtree.setup.hijack_netrw = false
 lvim.builtin.nvimtree.setup.view.width = 40
-
--- keymappings
-lvim.keys.normal_mode["Y"] = "y$"
-lvim.keys.normal_mode["j"] = "gj"
-lvim.keys.normal_mode["k"] = "gk"
-lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.builtin.lualine.options.theme = "gruvbox"
+lvim.colorscheme = "gruvbox-material"
+-- }}}
 
 -- status line
+-- {{{
 lvim.builtin.bufferline.options.separator_style = "slant"
 lvim.builtin.lualine.options.component_separators = { left = "", right = "" }
 lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
@@ -74,8 +66,10 @@ lvim.builtin.lualine.sections.lualine_z = {
 	components.scrollbar,
 	"(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
 }
+-- }}}
 
--- if you don't want all the parsers change this to a table of the ones you want
+-- treesitter
+-- {{{
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
@@ -114,82 +108,16 @@ lvim.builtin.treesitter.ensure_installed = {
 	"yaml",
 	"zig",
 }
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+-- }}}
 
-local linters = require("lvim.lsp.null-ls.linters")
-linters.setup({
-	{ exe = "eslint" },
-	{ exe = "flake8" },
-	{ exe = "luacheck", args = { "--globals", "lvim" } },
-	{
-		exe = "shellcheck",
-		args = { "--severity", "warning" },
-	},
-	{
-		exe = "codespell",
-		args = { "--config", vim.env.HOME .. "/.config/codespell/codespell.ini" },
-		-- filetypes = { "typescript", "typescriptreact", "rust", "c", "python" },
-	},
-})
-
-local nullls = require("lvim.lsp.null-ls")
-nullls.debug = true
-local formatters = require("lvim.lsp.null-ls.formatters")
-formatters.setup({
-	{ exe = "black" },
-	{ exe = "shfmt", args = { "-i", "2", "-bn", "-sr", "-ci" } },
-	{ exe = "stylua" },
-	{
-		exe = "prettier",
-		filetypes = { "javascript", "typescript", "typescriptreact", "json" },
-	},
-	{
-		name = "npm_groovy_lint",
-	},
-})
-
--- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(it)
--- 	return it ~= "html"
--- 		and it ~= "tailwindcss"
--- 		and it ~= "graphql"
--- 		and it ~= "zeta_note"
--- 		and it ~= "tflint"
--- 		and it ~= "ansiblels"
--- end, lvim.lsp.automatic_configuration.skipped_servers)
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands = {
-	{
-		"InsertEnter",
-		{
-			pattern = { "*" },
-			command = "if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif",
-		},
-	},
-	{
-		"InsertLeave",
-		{ pattern = { "*" }, command = 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
-	},
-	{
-		"InsertEnter",
-		{ pattern = { "*" }, command = "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
-	},
-	{
-		"InsertLeave",
-		{ pattern = { "*" }, command = 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
-	},
-	{ "BufRead,BufNewFile", { pattern = { "*.nomad" }, command = "set filetype=hcl" } },
-	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile.*" }, command = "set filetype=groovy" } },
-	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile" }, command = "set filetype=groovy" } },
-	{
-		"BufRead,BufNewFile",
-		{ pattern = { "*.tsx" }, command = 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
-	},
-	{ "FileType", { pattern = { "zig", "zir" }, command = "set shiftwidth=4" } },
-}
+-- keymappings
+-- {{{
+lvim.keys.normal_mode["Y"] = "y$"
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["k"] = "gk"
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 
 -- Additional Leader bindings for WhichKey
 
@@ -203,11 +131,6 @@ lvim.builtin.which_key.mappings["B"] = {
 	"Background",
 }
 
-lvim.builtin.which_key.mappings["o"] = {
-	"<cmd>SymbolsOutline<CR>",
-	"Outline",
-}
-
 lvim.builtin.which_key.mappings["n"] = {
 	"<cmd>Neogen<CR>",
 	"Doc comment",
@@ -215,13 +138,12 @@ lvim.builtin.which_key.mappings["n"] = {
 
 lvim.builtin.which_key.mappings["i"] = {
 	"<cmd>TroubleToggle<CR>",
-	"Togggle Trouble",
+	"Toggle Trouble",
 }
 
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Extra Windows",
 	d = { "<cmd>TroubleToggle<CR>", "Togggle Trouble" },
-	o = { "<cmd>SymbolsOutline<CR>", "Togggle Symbols Outline" },
 	m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Browser" },
 	t = { "<cmd>TodoTrouble<CR>", "Togggle Todos" },
 }
@@ -231,21 +153,9 @@ lvim.builtin.which_key.mappings["dD"] = {
 	"Toggle DAP UI",
 }
 
-lvim.builtin.which_key.mappings["S"] = {
-	name = "Session",
-	o = { "<cmd>lua require('persistence').load()<cr>", "Open Session" },
-	l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Last Session" },
-	d = { "<cmd>lua require('persistence').stop()<cr>", "Disable Saving" },
-}
-
 lvim.builtin.which_key.mappings["lt"] = {
 	"<cmd>FixWhitespace<cr>",
 	"Trim trailing spaces",
-}
-
-lvim.builtin.which_key.mappings["sP"] = {
-	"<cmd>Telescope projects<cr>",
-	"Projects",
 }
 
 lvim.builtin.which_key.mappings["sg"] = {
@@ -261,11 +171,6 @@ lvim.builtin.which_key.mappings["s/"] = {
 lvim.builtin.which_key.mappings["s:"] = {
 	"<cmd>Telescope command_history<cr>",
 	"Command History",
-}
-
-lvim.builtin.which_key.mappings["sy"] = {
-	"<cmd>Telescope neoclip<cr>",
-	"Yank History",
 }
 
 lvim.builtin.which_key.mappings["U"] = {
@@ -287,13 +192,101 @@ lvim.builtin.which_key.mappings["r"] = {
 	w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
 	f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
 }
+-- }}}
+
+-- linters
+-- {{{
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	{ exe = "eslint" },
+	{ exe = "flake8" },
+	{ exe = "luacheck", args = { "--globals", "lvim" } },
+	{
+		exe = "shellcheck",
+		args = { "--severity", "warning" },
+	},
+	{
+		exe = "codespell",
+		args = { "--config", vim.env.HOME .. "/.config/codespell/codespell.ini" },
+		-- filetypes = { "typescript", "typescriptreact", "rust", "c", "python" },
+	},
+})
+-- }}}
+
+-- formatters
+-- {{{
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ exe = "black" },
+	{ exe = "shfmt", args = { "-i", "2", "-bn", "-sr", "-ci" } },
+	{ exe = "stylua" },
+	{
+		exe = "prettier",
+		filetypes = { "javascript", "typescript", "typescriptreact", "json" },
+	},
+	{ name = "npm_groovy_lint" },
+})
+-- }}}
+
+-- autocommands
+-- {{{
+lvim.autocommands = {
+	{
+		"InsertEnter",
+		{
+			pattern = { "*" },
+			command = "if &relativenumber | let g:ms_relativenumberoff = 1 | setlocal number norelativenumber | endif",
+		},
+	},
+	{
+		"InsertLeave",
+		{ pattern = { "*" }, command = 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
+	},
+	{
+		"InsertEnter",
+		{ pattern = { "*" }, command = "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
+	},
+	{
+		"InsertLeave",
+		{ pattern = { "*" }, command = 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
+	},
+	{ "BufRead,BufNewFile", { pattern = { "*.nomad" }, command = "set filetype=hcl" } },
+	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile.*", "Jenkinsfile" }, command = "set filetype=groovy" } },
+	{
+		"BufRead,BufNewFile",
+		{ pattern = { "*.tsx" }, command = 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
+	},
+	{ "FileType", { pattern = { "zig", "zir" }, command = "set shiftwidth=4" } },
+}
+-- }}}
 
 -- Additional Plugins
+-- {{{
 lvim.plugins = {
-	-- languages
-	{ "chr4/nginx.vim" },
-	{ "lervag/vimtex" },
-	{ "Glench/Vim-Jinja2-Syntax" },
+  -- color
+	{ "rktjmp/lush.nvim" },
+	{ "sainnhe/gruvbox-material" },
+	{ "rebelot/kanagawa.nvim" },
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+  -- style
+	{ "stevearc/dressing.nvim" },
+	{
+		"declancm/cinnamon.nvim",
+		config = function()
+			require("cinnamon").setup({
+				default_keymaps = true, -- Create default keymaps.
+				extra_keymaps = false, -- Create extra keymaps.
+				extended_keymaps = false, -- Create extended keymaps.
+				override_keymaps = false, -- Replace any existing keymaps.
+			})
+		end,
+	},
+  -- spelling
 	{
 		"psliwka/vim-dirtytalk",
 		config = function()
@@ -308,6 +301,24 @@ lvim.plugins = {
 			})
 		end,
 	},
+	-- syntax
+	{ "chr4/nginx.vim" },
+	{ "Glench/Vim-Jinja2-Syntax" },
+	-- navigation
+	{
+		"folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	},
+  -- markdown
+	{ "plasticboy/vim-markdown" },
+	{
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		ft = "markdown",
+	},
+  -- rust
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
@@ -359,56 +370,13 @@ lvim.plugins = {
 		ft = { "rust", "rs" },
 	},
 	{
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		ft = "markdown",
-	},
-	{ "godlygeek/tabular" },
-	{ "plasticboy/vim-markdown" },
-	-- colors / display
-	{ "rktjmp/lush.nvim" },
-	-- { "sainnhe/everforest" },
-	-- { "sainnhe/sonokai" },
-	-- { "sainnhe/edge" },
-	-- { "projekt0n/github-nvim-theme" },
-	-- {
-	-- 	"olimorris/onedarkpro.nvim",
-	-- 	config = function()
-	-- 		require("onedarkpro").load()
-	-- 	end,
-	-- },
-	{ "mcchrish/zenbones.nvim" },
-	{ "rebelot/kanagawa.nvim" },
-	{ "sainnhe/gruvbox-material" },
-	-- { "catppuccin/nvim" },
-	-- { "ajmwagar/vim-deus" },
-	-- { "christianchiarulli/nvcode-color-schemes.vim" },
-	-- { "folke/tokyonight.nvim" },
-	{
-		"norcalli/nvim-colorizer.lua",
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function()
-			require("colorizer").setup()
+			require("crates").setup()
 		end,
 	},
-	{
-		"declancm/cinnamon.nvim",
-		config = function()
-			require("cinnamon").setup({
-				default_keymaps = true, -- Create default keymaps.
-				extra_keymaps = false, -- Create extra keymaps.
-				extended_keymaps = false, -- Create extended keymaps.
-				override_keymaps = false, -- Replace any existing keymaps.
-			})
-		end,
-	},
-	-- {
-	-- 	"karb94/neoscroll.nvim",
-	-- 	config = function()
-	-- 		require("neoscroll").setup()
-	-- 	end,
-	-- },
-	{ "stevearc/dressing.nvim" },
-	-- {"lukas-reineke/indent-blankline.nvim"},
 	-- completion
 	{
 		"danymat/neogen",
@@ -417,57 +385,8 @@ lvim.plugins = {
 		end,
 		requires = "nvim-treesitter/nvim-treesitter",
 	},
-	{
-		"AckslD/nvim-neoclip.lua",
-		requires = {
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		config = function()
-			require("neoclip").setup({
-				history = 1000,
-				keys = {
-					telescope = {
-						i = {
-							select = "<cr>",
-							paste = "<c-p>",
-							paste_behind = "<c-k>",
-							replay = "<c-q>", -- replay a macro
-							delete = "<c-d>", -- delete an entry
-							custom = {},
-						},
-						n = {
-							select = "<cr>",
-							paste = "p",
-							paste_behind = "P",
-							replay = "q",
-							delete = "d",
-							custom = {},
-						},
-					},
-				},
-			})
-		end,
-	},
 	{ "hrsh7th/cmp-emoji" },
 	{ "hrsh7th/cmp-cmdline" },
-	{ "editorconfig/editorconfig-vim" },
-	{
-		"Saecki/crates.nvim",
-		event = { "BufRead Cargo.toml" },
-		requires = { { "nvim-lua/plenary.nvim" } },
-		config = function()
-			require("crates").setup()
-		end,
-	},
-	-- navigation
-	{ "simrat39/symbols-outline.nvim" },
-	{ "folke/trouble.nvim" },
-	{
-		"folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	},
 	-- editing
 	{ "tpope/vim-surround" },
 	{ "tpope/vim-repeat" },
@@ -511,8 +430,10 @@ lvim.plugins = {
 		end,
 	},
 }
+-- }}}
 
 -- debugging
+-- {{{
 local dap = require("dap")
 dap.adapters.lldb = {
 	type = "executable",
@@ -530,24 +451,10 @@ dap.configurations.cpp = {
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
 		args = {},
-
-		-- 💀
-		-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-		--
-		--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-		--
-		-- Otherwise you might get the following error:
-		--
-		--    Error on launch: Failed to attach to the target process
-		--
-		-- But you should be aware of the implications:
-		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-		-- runInTerminal = false,
 	},
 }
 
 -- If you want to use this for Rust and C, add something like this:
-
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
@@ -570,3 +477,4 @@ dap.configurations.typescript = {
 	firefoxExecutable = "/usr/bin/firefox-developer-edition",
 }
 dap.configurations.typescriptreact = { dap.configurations.typescript }
+-- }}}
