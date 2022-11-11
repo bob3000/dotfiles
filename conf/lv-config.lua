@@ -183,6 +183,7 @@ lvim.autocommands = {
 	},
 	{ "BufRead,BufNewFile", { pattern = { "*.nomad" }, command = "set filetype=hcl" } },
 	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile.*" }, command = "set filetype=groovy" } },
+	{ "BufRead,BufNewFile", { pattern = { "Jenkinsfile" }, command = "set filetype=groovy" } },
 	{
 		"BufRead,BufNewFile",
 		{ pattern = { "*.tsx" }, command = 'lua require("lvim.lsp.manager").setup("tailwindcss")' },
