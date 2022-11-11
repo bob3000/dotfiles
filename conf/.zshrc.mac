@@ -1,0 +1,27 @@
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/mysql-client/bin:$PATH"
+export FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+# functions
+## AWS
+function awssmart_ssm_connect() {
+    echo "Region lookup:" $AWS_REGION
+    export customer=$(aws ec2 describe-instances \
+                    --query "Reservations[*].Instances[*].{CustomerName:Tags[?Key=='Name']}|[]|[][CustomerName[0].Value]" \
+                    --filters Name=instance-state-name,Values=running \
+                    --no-paginate --output text | fzf --height=10 --prompt="Select instance> ")
+    export instance_id=$(aws ec2 describe-instances \
+                        --query 'Reservations[0].Instances[].InstanceId' \
+                        --filters Name=instance-state-name,Values=running Name=tag:Name,Values=$customer \
+                        --output text;)
+   echo "Connecting to: $customer $instance_id"
+   aws ssm start-session --target $instance_id
+}
+
+# node version manager
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

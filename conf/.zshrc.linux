@@ -1,0 +1,18 @@
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+export SSH_ASKPASS=/usr/bin/pinentry-gnome3
+
+# convenience
+alias xclip='xclip -selection clipboard'
+
+# specific
+alias dc='source dev.env && docker-compose -p gdn -f compose-dev.yml'
+
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# node version manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# Set up Node Version Manager
+source /usr/share/nvm/init-nvm.sh
