@@ -55,7 +55,7 @@ test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
 eval "$(starship init zsh)"
 
 # temporary stuff
-source $HOME/.zshrc.local.d/*
+test -d "${HOME}/.zshrc.local.d" && source $HOME/.zshrc.local.d/*
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
     source ~/.zshrc.mac
