@@ -6,6 +6,7 @@ exa
 fd
 flake8
 fzf
+gcc
 gettext
 git
 git-delta
@@ -13,11 +14,13 @@ gnupg
 go
 jq
 lazygit
+make
 neovim
 netcat
 ngrep
 prettier
 python
+python-pip
 readline
 ripgrep
 shellcheck
