@@ -3,6 +3,7 @@ set -eux
 
 function main() {
   if [[ "$OSTYPE" =~ ^darwin ]]; then
+    brew update
     xargs brew install < packages/pkglist.brew
     exit 0
   fi
@@ -14,14 +15,12 @@ function main() {
         pacman -Sy
         pacman -S --noconfirm --needed - < packages/pkglist.pacman
       ;;
-      centos) echo 2 or 3
+      centos)
+        echo "not implemented"
       ;;
       ubuntu|debian) echo default
-        if [[ "$USER" == "linuxbrew" ]]; then
-          xargs brew install < packages/pkglist.brew
-        else
-          apt
-        fi
+        apt-get update
+        xargs apt-get install -y < packages/pkglist.apt
       ;;
     esac
   fi
