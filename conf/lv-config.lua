@@ -27,7 +27,7 @@ vim.o.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.o.fillchars = "eob: "
 vim.o.list = true
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  "rust_analyzer",
+	"rust_analyzer",
 })
 -- }}}
 
@@ -263,7 +263,7 @@ lvim.autocommands = {
 -- Additional Plugins
 -- {{{
 lvim.plugins = {
-  -- color
+	-- color
 	{ "rktjmp/lush.nvim" },
 	{ "sainnhe/gruvbox-material" },
 	{ "rebelot/kanagawa.nvim" },
@@ -273,7 +273,7 @@ lvim.plugins = {
 			require("colorizer").setup()
 		end,
 	},
-  -- style
+	-- style
 	{ "stevearc/dressing.nvim" },
 	{
 		"declancm/cinnamon.nvim",
@@ -286,12 +286,10 @@ lvim.plugins = {
 			})
 		end,
 	},
-  -- spelling
+	-- spelling
 	{
 		"psliwka/vim-dirtytalk",
-		config = function()
-			-- vim.cmd("DirtytalkUpdate")
-		end,
+		run = ":DirtytalkUpdate",
 	},
 	{
 		"lewis6991/spellsitter.nvim",
@@ -311,14 +309,14 @@ lvim.plugins = {
 			require("todo-comments").setup({})
 		end,
 	},
-  -- markdown
+	-- markdown
 	{ "plasticboy/vim-markdown" },
 	{
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
 		ft = "markdown",
 	},
-  -- rust
+	-- rust
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()

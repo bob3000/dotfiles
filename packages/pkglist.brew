@@ -17,6 +17,7 @@ go
 jq
 lazygit
 make
+neofetch
 neovim
 ngrep
 nvm
