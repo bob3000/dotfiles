@@ -1,4 +1,4 @@
-FROM docker.io/manjarolinux/base
+FROM docker.io/archlinux/archlinux
 ARG IMG_USR=bob
 
 WORKDIR /home/${IMG_USR}/code/dotfiles
