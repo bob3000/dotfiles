@@ -1,4 +1,4 @@
-FROM docker.io/manjarolinux/base
+FROM docker.io/archlinux/archlinux
 ARG IMG_USR=bob
 
 WORKDIR /home/${IMG_USR}/code/dotfiles
@@ -6,7 +6,7 @@ COPY . .
 RUN ./install_pkg.sh
 RUN pacman -S --noconfirm zsh \
   && useradd -m ${IMG_USR} -s /usr/bin/zsh \
-  && chown -R ${IMG_USR}: /home/${IMG_USR}
+  && chown -R ${IMG_USR}:${IMG_USR} /home/${IMG_USR}
 USER ${IMG_USR}
 RUN curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
