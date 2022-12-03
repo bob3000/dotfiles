@@ -80,6 +80,7 @@ lvim.builtin.treesitter.ensure_installed = {
 	"dart",
 	"dockerfile",
 	"dot",
+	"fish",
 	"go",
 	"gomod",
 	"graphql",
