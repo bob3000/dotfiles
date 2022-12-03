@@ -4,6 +4,8 @@ coreutils
 eslint
 exa
 fd
+fish
+fisher
 flake8
 fzf
 gcc

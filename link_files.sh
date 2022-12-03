@@ -5,7 +5,7 @@ function backup_and_link() {
   src=$1
   dest=$2
   if [ -L "$dest" ]; then
-    return;
+    return
   fi
 
   if [ -f "$dest" ]; then
@@ -23,6 +23,7 @@ function link_common_files() {
   backup_and_link "$PWD/conf/starship.toml" "${HOME}/.config/starship.toml"
   backup_and_link "$PWD/conf/lv-config.lua" "${HOME}/.config/lvim/config.lua"
   backup_and_link "$PWD/conf/.zshrc" "${HOME}/.zshrc"
+  backup_and_link "$PWD/conf/fish/config.fish" "${HOME}/.config/fish/config.fish"
 }
 
 function link_mac_files() {
