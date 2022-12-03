@@ -113,6 +113,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- keymappings
 -- {{{
+
+local ok, _ = pcall(require, "peek")
+if ok then
+	vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+	vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+end
 lvim.keys.normal_mode["Y"] = "y$"
 lvim.keys.normal_mode["j"] = "gj"
 lvim.keys.normal_mode["k"] = "gk"
@@ -310,7 +316,19 @@ lvim.plugins = {
 		end,
 	},
 	-- markdown
-	{ "plasticboy/vim-markdown" },
+	{
+		"jakewvincent/mkdnflow.nvim",
+		rocks = "luautf8",
+		config = function()
+			require("mkdnflow").setup({
+				-- Config goes here; leave blank for defaults
+			})
+		end,
+	},
+	{
+		"toppair/peek.nvim",
+		run = "deno task --quiet build:fast",
+	},
 	{
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
