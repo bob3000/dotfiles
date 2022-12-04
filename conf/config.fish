@@ -1,5 +1,11 @@
 set fish_greeting
 
+# fisher install decors/fish-colored-man
+# fisher install jomik/fish-gruvbox
+# fisher install jorgebucaran/autopair.fish
+# fisher install jorgebucaran/nvm.fish
+# fisher install jorgebucaran/replay.fish
+
 if status is-interactive
   # Commands to run in interactive sessions can go here
   starship init fish | source
