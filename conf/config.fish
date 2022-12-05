@@ -44,15 +44,15 @@ set -g man_standout -b black 93a1a1
 set -g man_underline -u 93a1a1
 
 # convenience
-abbr ls 'ls --color'
-abbr ll 'exa -l'
-abbr la 'exa -a'
-abbr tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
-abbr sudo 'sudo -v; sudo '
-abbr wanip 'curl -s ifconfig.me'
-abbr icat "kitty +kitten icat"
-abbr d "kitty +kitten diff"
-abbr emoji "kitty +kitten unicode_input"
+alias ls 'ls --color'
+alias ll 'exa -l'
+alias la 'exa -a'
+alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
+alias sudo 'sudo -v; sudo '
+alias wanip 'curl -s ifconfig.me'
+alias icat "kitty +kitten icat"
+alias d "kitty +kitten diff"
+alias emoji "kitty +kitten unicode_input"
 
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
