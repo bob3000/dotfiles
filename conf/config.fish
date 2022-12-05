@@ -56,3 +56,8 @@ abbr emoji "kitty +kitten unicode_input"
 
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
+
+switch (uname)
+  case Darwin
+    source /opt/homebrew/etc/grc.fish
+end

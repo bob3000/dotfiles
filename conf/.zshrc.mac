@@ -19,6 +19,9 @@ function awssmart_ssm_connect() {
    aws ssm start-session --target $instance_id
 }
 
+# colorizer
+[[ -s "$(brew --prefix)/etc/grc.zsh" ]] && source $(brew --prefix)/etc/grc.zsh
+
 # node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
