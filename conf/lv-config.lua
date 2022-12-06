@@ -151,7 +151,7 @@ lvim.builtin.which_key.mappings["i"] = {
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Extra Windows",
 	d = { "<cmd>TroubleToggle<CR>", "Togggle Trouble" },
-	m = { "<cmd>MarkdownPreviewToggle<CR>", "Markdown Browser" },
+	m = { "<cmd>PeekOpen<CR>", "Markdown Browser" },
 	t = { "<cmd>TodoTrouble<CR>", "Togggle Todos" },
 }
 
@@ -317,6 +317,7 @@ lvim.plugins = {
 		end,
 	},
 	-- markdown
+	{ "mzlogin/vim-markdown-toc" },
 	{
 		"jakewvincent/mkdnflow.nvim",
 		rocks = "luautf8",
@@ -329,11 +330,6 @@ lvim.plugins = {
 	{
 		"toppair/peek.nvim",
 		run = "deno task --quiet build:fast",
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		ft = "markdown",
 	},
 	-- rust
 	{
