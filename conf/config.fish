@@ -1,6 +1,7 @@
 set fish_greeting
 
 # fisher install decors/fish-colored-man
+# fisher install edc/bass
 # fisher install jomik/fish-gruvbox
 # fisher install jorgebucaran/autopair.fish
 # fisher install jorgebucaran/nvm.fish
