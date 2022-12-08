@@ -3,6 +3,14 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
+-- use dark or light background depending on time of day
+local _time = os.date("*t")
+if _time.hour >= 8 and _time.hour < 18 then
+	vim.o.background = "light"
+else
+	vim.o.background = "dark"
+end
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -36,7 +44,20 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
+
+-- Close window
+keymap("n", "<leader>q", "<cmd>q<CR>", opts)
+
+-- Save buffer
+keymap("n", "<leader>w", "<cmd>lua vim.lsp.buf.format{ async = false }; vim.api.nvim_command('write')<CR>", opts)
+keymap("n", "<leader>W", "<cmd>lua vim.api.nvim_command('write')<CR>", opts)
+
+-- Toggle background
+keymap("n", "<leader>B", "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", opts)
+
+-- Autosave toggle
+vim.api.nvim_set_keymap("n", "<leader>a", ":ASToggle<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -55,14 +76,24 @@ keymap("v", ">", ">gv", opts)
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
+-- Neogen
+keymap("n", "<leader>n", ":Neogen<CR>", opts)
+
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+-- Wiki
+keymap("n", "<leader>gw", "<cmd>lua _WIKI_TOGGLE()<CR>", opts)
+
+-- Edit config
+keymap("n", "<leader>gc", "<cmd>lua _CONFIG_TOGGLE()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)

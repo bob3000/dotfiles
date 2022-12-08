@@ -31,6 +31,7 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  snapshot_path = vim.fn.stdpath("config") .. '/plugin',
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -63,6 +64,8 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" }
   use { "lunarvim/darkplus.nvim", commit = "13ef9daad28d3cf6c5e793acfc16ddbf456e1c83" }
+	use { "sainnhe/gruvbox-material" }
+  use "olimorris/onedarkpro.nvim"
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" } -- The completion plugin
@@ -71,6 +74,8 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
+	use { "hrsh7th/cmp-emoji" }
+	use { "hrsh7th/cmp-cmdline" }
 
   -- snippets
   use { "L3MON4D3/LuaSnip", commit = "8f8d493e7836f2697df878ef9c128337cbf2bb84" } --snippet engine
@@ -100,6 +105,93 @@ return packer.startup(function(use)
   use { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" }
   use { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+
+	-- markdown
+	use { "mzlogin/vim-markdown-toc" }
+	use { "jakewvincent/mkdnflow.nvim",
+    rocks = "luautf8",
+    config = function()
+        require('mkdnflow').setup({})
+    end
+  }
+	use { "toppair/peek.nvim", run = "deno task --quiet build:fast", }
+
+  -- rust
+  use { "simrat39/rust-tools.nvim" }
+	use {
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup()
+		end,
+	}
+
+	-- spelling
+	use {
+		"psliwka/vim-dirtytalk",
+		run = ":DirtytalkUpdate",
+	}
+	use {
+		"lewis6991/spellsitter.nvim",
+		config = function()
+			require("spellsitter").setup({
+				enable = true,
+			})
+		end
+	}
+	-- syntax
+	use { "chr4/nginx.vim" }
+	use { "Glench/Vim-Jinja2-Syntax" }
+
+	-- editing
+	use { "tpope/vim-surround" }
+	use { "tpope/vim-repeat" }
+	use { "bronson/vim-trailing-whitespace" }
+	use { "andymass/vim-matchup" }
+  use { "farmergreg/vim-lastplace" }
+	use {
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end
+	}
+	use {
+		"danymat/neogen",
+		config = function() require("neogen").setup({}) end,
+		requires = "nvim-treesitter/nvim-treesitter",
+	}
+  use({
+    "Pocco81/auto-save.nvim",
+    config = function() require("auto-save").setup({}) end,
+  })
+
+	-- search / replace
+	use {
+		"nvim-telescope/telescope-live-grep-args.nvim",
+		config = function()
+			require("telescope").load_extension("live_grep_args")
+		end
+	}
+	use {
+		"windwp/nvim-spectre",
+		config = function()
+			require("spectre").setup()
+		end
+	}
+
+  -- ui
+	use {
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end
+	}
+  use {
+    'declancm/cinnamon.nvim',
+    config = function() require('cinnamon').setup() end
+  }
+  use { "folke/which-key.nvim" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

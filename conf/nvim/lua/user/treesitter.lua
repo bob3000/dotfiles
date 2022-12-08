@@ -9,14 +9,53 @@ if not status_ok then
 end
 
 configs.setup({
-  ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
-  -- ensure_installed = "all", -- one of "all" or a list of languages
+	ensure_installed = {
+		"bash",
+		"c",
+		"cmake",
+		"comment",
+		"cpp",
+		"css",
+		"dockerfile",
+		"dot",
+		"fish",
+		"go",
+		"gomod",
+		"graphql",
+		"hcl",
+		"html",
+		"java",
+		"javascript",
+		"jsdoc",
+		"json",
+		"jsonc",
+		"latex",
+		"lua",
+		"make",
+		"markdown",
+		"markdown_inline",
+		"php",
+		"prisma",
+		"python",
+		"regex",
+		"rust",
+		"scss",
+		"sql",
+		"svelte",
+		"toml",
+		"tsx",
+		"typescript",
+		"vim",
+		"yaml",
+		"zig",
+	}, -- put the language you want in this array
+	-- ensure_installed = "all", -- one of "all" or a list of languages
 	ignore_install = { "" }, -- List of parsers to ignore installing
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  
-  highlight = {
+
+	highlight = {
 		enable = true, -- false will disable the whole extension
-		disable = { "css" }, -- list of language that will be disabled
+		disable = { }, -- list of language that will be disabled
 	},
 	autopairs = {
 		enable = true,
@@ -27,5 +66,4 @@ configs.setup({
 		enable = true,
 		enable_autocmd = false,
 	},
-
 })
