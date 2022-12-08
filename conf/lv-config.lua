@@ -34,7 +34,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 -- globals
 -- {{{
 vim.g.gruvbox_material_palette = "original"
-vim.g.extra_whitespace_ignored_filetypes = { "alpha", "quickfix", "TelescopePrompt" }
+vim.g.extra_whitespace_ignored_filetypes = { "alpha", "quickfix", "TelescopePrompt", "mason", "toggleterm" }
 vim.g.vim_markdown_folding_disabled = true
 -- }}}
 
