@@ -33,7 +33,7 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-local wiki = Terminal:new({ cmd = "nvim ~/Nextcloud/Synced/wiki/index.md", hidden = true })
+local wiki = Terminal:new({ cmd = "cd ~/Nextcloud/Synced/wiki && tmux new-session -A -s wiki 'nvim index.md'", hidden = true })
 local config = Terminal:new({ cmd = "nvim ~/.config/nvim/init.lua", hidden = true })
 
 function _LAZYGIT_TOGGLE()
