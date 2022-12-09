@@ -56,6 +56,9 @@ keymap("n", "<leader>W", "<cmd>lua vim.api.nvim_command('write')<CR>", opts)
 -- Toggle background
 keymap("n", "<leader>B", "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", opts)
 
+-- Search and Replace
+keymap("n", "<leader>S", "<cmd>lua require('spectre').open()<CR>", opts)
+
 -- Autosave toggle
 vim.api.nvim_set_keymap("n", "<leader>a", ":ASToggle<CR>", opts)
 
