@@ -1,3 +1,5 @@
+-- language server configurations
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
 	"bashls",
 	"cssls",
@@ -5,8 +7,8 @@ local servers = {
 	"jsonls",
 	"pyright",
 	"sumneko_lua",
-  "svelte",
-  "tailwindcss",
+	"svelte",
+	"tailwindcss",
 	"tsserver",
 	"yamlls",
 }
