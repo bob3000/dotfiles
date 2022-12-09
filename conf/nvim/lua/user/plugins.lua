@@ -91,6 +91,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
+  use { "nvim-telescope/telescope-media-files.nvim" }
 
   -- Treesitter
   use {
@@ -131,14 +132,6 @@ return packer.startup(function(use)
 	use {
 		"psliwka/vim-dirtytalk",
 		run = ":DirtytalkUpdate",
-	}
-	use {
-		"lewis6991/spellsitter.nvim",
-		config = function()
-			require("spellsitter").setup({
-				enable = true,
-			})
-		end
 	}
 	-- syntax
 	use { "chr4/nginx.vim" }
