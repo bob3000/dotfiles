@@ -60,7 +60,10 @@ keymap("n", "<leader>B", "<cmd>let &background = ( &background == 'dark' ? 'ligh
 keymap("n", "<leader>S", "<cmd>lua require('spectre').open()<CR>", opts)
 
 -- Autosave toggle
-vim.api.nvim_set_keymap("n", "<leader>a", ":ASToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>ASToggle<CR>", opts)
+
+-- Fix trailing whitespace
+vim.api.nvim_set_keymap("n", "<leader>lw", "<cmd>FixWhitespace<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
