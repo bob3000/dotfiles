@@ -61,7 +61,7 @@ test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
 switch (uname)
   case Darwin
-    source /opt/homebrew/etc/grc.fish
+    # source /opt/homebrew/etc/grc.fish
   case Linux
-    eval (grc-rs --aliases)
+    # eval (grc-rs --aliases)
 end
