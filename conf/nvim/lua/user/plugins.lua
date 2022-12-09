@@ -192,6 +192,8 @@ return packer.startup(function(use)
     config = function() require('cinnamon').setup() end
   }
   use { "folke/which-key.nvim" }
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
