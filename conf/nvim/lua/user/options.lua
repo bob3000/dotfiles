@@ -58,4 +58,5 @@ vim.g.extra_whitespace_ignored_filetypes = {
   "TelescopePrompt",
   "mason",
   "toggleterm",
+  "lspinfo",
 }
