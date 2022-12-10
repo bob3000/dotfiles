@@ -31,7 +31,7 @@ end
 
 -- Have packer use a popup window
 packer.init {
-  snapshot_path = vim.fn.stdpath("config") .. '/plugin',
+  snapshot_path = vim.fn.stdpath("config") .. "/plugin",
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -114,7 +114,7 @@ return packer.startup(function(use)
 	use { "jakewvincent/mkdnflow.nvim",
     rocks = "luautf8",
     config = function()
-        require('mkdnflow').setup({})
+        require("mkdnflow").setup({})
     end
   }
 	use { "toppair/peek.nvim", run = "deno task --quiet build:fast", }
@@ -184,13 +184,18 @@ return packer.startup(function(use)
 		end
 	}
   use {
-    'declancm/cinnamon.nvim',
-    config = function() require('cinnamon').setup() end
+    "declancm/cinnamon.nvim",
+    config = function() require("cinnamon").setup() end
   }
   use { "folke/which-key.nvim" }
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
-  use { 'gelguy/wilder.nvim' }
+  use { "gelguy/wilder.nvim" }
+  use {
+    "simrat39/symbols-outline.nvim",
+    config = function() require("symbols-outline").setup() end
+  }
+  use "simrat39/symbols-outline.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

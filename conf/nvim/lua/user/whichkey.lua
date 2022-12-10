@@ -87,6 +87,7 @@ local mappings = {
 		"Buffers",
 	},
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["o"] = { "<cmd>:SymbolsOutline<cr>", "Outline" },
 	["w"] = { "<cmd>lua vim.lsp.buf.format{ async = false }; vim.api.nvim_command('write')<CR>", "Format and Save" },
 	["W"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },

@@ -54,10 +54,14 @@ vim.opt.list = true
 vim.g.gruvbox_material_palette = "original"
 vim.g.extra_whitespace_ignored_filetypes = {
   "alpha",
+  "lspinfo",
+  "mason",
+  "No Name",
+  "Outline",
+  "packer",
   "quickfix",
   "TelescopePrompt",
-  "mason",
   "toggleterm",
-  "lspinfo",
   "Trouble",
+  "WhichKey",
 }
