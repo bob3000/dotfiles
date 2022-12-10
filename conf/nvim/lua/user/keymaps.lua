@@ -60,10 +60,10 @@ keymap("n", "<leader>B", "<cmd>let &background = ( &background == 'dark' ? 'ligh
 keymap("n", "<leader>S", "<cmd>lua require('spectre').open()<CR>", opts)
 
 -- Autosave toggle
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>ASToggle<CR>", opts)
+keymap("n", "<leader>a", "<cmd>ASToggle<CR>", opts)
 
 -- Fix trailing whitespace
-vim.api.nvim_set_keymap("n", "<leader>lw", "<cmd>FixWhitespace<CR>", opts)
+keymap("n", "<leader>lw", "<cmd>FixWhitespace<CR>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -94,12 +94,6 @@ keymap("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.l
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-
--- Wiki
-keymap("n", "<leader>gw", "<cmd>lua _WIKI_TOGGLE()<CR>", opts)
-
--- Edit config
-keymap("n", "<leader>gc", "<cmd>lua _CONFIG_TOGGLE()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
