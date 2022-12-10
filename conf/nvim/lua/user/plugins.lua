@@ -138,6 +138,7 @@ return packer.startup(function(use)
 	-- syntax
 	use { "chr4/nginx.vim" }
 	use { "Glench/Vim-Jinja2-Syntax" }
+  use { "p00f/nvim-ts-rainbow" }
 
 	-- editing
 	use { "tpope/vim-surround" }
