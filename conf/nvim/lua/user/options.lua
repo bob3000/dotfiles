@@ -51,6 +51,11 @@ vim.opt.inccommand = "split"
 vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
 vim.opt.list = true
 
+local status_ok, _ = pcall(require, "nvim-navic")
+if status_ok then
+  vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+end
+
 vim.g.gruvbox_material_palette = "original"
 vim.g.extra_whitespace_ignored_filetypes = {
   "alpha",

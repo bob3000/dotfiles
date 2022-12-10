@@ -195,7 +195,10 @@ return packer.startup(function(use)
     "simrat39/symbols-outline.nvim",
     config = function() require("symbols-outline").setup() end
   }
-  use "simrat39/symbols-outline.nvim"
+  use {
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

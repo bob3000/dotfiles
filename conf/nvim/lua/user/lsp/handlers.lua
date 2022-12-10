@@ -82,10 +82,16 @@ M.on_attach = function(client, bufnr)
 
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
-	if not status_ok then
-		return
+	if status_ok then
+		illuminate.on_attach(client)
 	end
-	illuminate.on_attach(client)
+
+	local status_ok, navic = pcall(require, "nvim-navic")
+	if status_ok then
+		if client.server_capabilities.documentSymbolProvider then
+			navic.attach(client, bufnr)
+		end
+	end
 end
 
 return M
