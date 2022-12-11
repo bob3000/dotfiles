@@ -9,6 +9,7 @@ local servers = {
 	"sumneko_lua",
 	"svelte",
 	"tailwindcss",
+	"terraformls",
 	"tsserver",
 	"yamlls",
 }
