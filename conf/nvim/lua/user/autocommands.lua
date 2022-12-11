@@ -51,24 +51,39 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	callback = function()
-	local line_count = vim.api.nvim_buf_line_count(0)
+		local line_count = vim.api.nvim_buf_line_count(0)
 		if line_count >= 5000 then
 			vim.cmd("IlluminatePauseBuf")
 		end
 	end,
 })
 
-
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  callback = function()
-    vim.opt.relativenumber = false
-    vim.opt.cursorline = false
-  end
+	callback = function()
+		vim.opt.relativenumber = false
+		vim.opt.cursorline = false
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  callback = function()
-    vim.opt.relativenumber = true
-    vim.opt.cursorline = true
-  end
+	callback = function()
+		vim.opt.relativenumber = true
+		vim.opt.cursorline = true
+	end,
+})
+
+-- disable buffer line on dashboard
+vim.api.nvim_create_autocmd("User", {
+	pattern = "AlphaReady",
+	desc = "disable tabline for alpha",
+	callback = function()
+		vim.opt.showtabline = 0
+	end,
+})
+vim.api.nvim_create_autocmd("BufUnload", {
+	buffer = 0,
+	desc = "enable tabline after alpha",
+	callback = function()
+		vim.opt.showtabline = 2
+	end,
 })
