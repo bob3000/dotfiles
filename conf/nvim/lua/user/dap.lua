@@ -8,6 +8,8 @@ if not dap_ui_status_ok then
 	return
 end
 
+-- dap.set_log_level("DEBUG")
+
 dapui.setup({
 	expand_lines = true,
 	icons = { expanded = "", collapsed = "", circular = "" },
