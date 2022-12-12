@@ -154,10 +154,11 @@ return packer.startup(function(use)
 		config = function() require("neogen").setup({}) end,
 		requires = "nvim-treesitter/nvim-treesitter",
 	}
-  use({
+  use {
     "Pocco81/auto-save.nvim",
     config = function() require("auto-save").setup({}) end,
-  })
+  }
+  use { "chentoast/marks.nvim", config = function() require("marks").setup({}) end }
 
 	-- search / replace
 	use {
