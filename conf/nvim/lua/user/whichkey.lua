@@ -215,6 +215,21 @@ local mappings = {
 		u = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
 		t = { "<cmd>DapTerminate<cr>", "Terminate" },
 	},
+	R = {
+		name = "Rust Tools",
+		b = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo build;read')<CR>", "Cargo build" },
+		r = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo run;read')<CR>", "Cargo run" },
+		t = {
+			"<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo test -- --nocapture;read')<CR>",
+			"Cargo test",
+		},
+		c = { "<cmd>lua require('lvim.core.terminal')._exec_toggle('cargo check;read')<CR>", "Cargo check" },
+		m = { "<cmd>RustExpandMacro<CR>", "Expand Macro" },
+		H = { "<cmd>RustToggleInlayHints<CR>", "Inlay Hints" },
+		R = { "<cmd>RustRunnables<CR>", "Runnables" },
+		h = { "<cmd>RustHoverActions<CR>", "Hover Actions" },
+		d = { "<cmd>RustDebuggables<CR>", "Debuggables" },
+	},
 }
 
 -- DAP
