@@ -108,23 +108,14 @@ return packer.startup(function(use)
 
 	-- markdown
 	use { "mzlogin/vim-markdown-toc" }
-	use { "jakewvincent/mkdnflow.nvim",
-    rocks = "luautf8",
-    config = function()
-        require("mkdnflow").setup({})
-    end
-  }
-	use { "toppair/peek.nvim", run = "deno task --quiet build:fast", }
+	use { "jakewvincent/mkdnflow.nvim", rocks = "luautf8" }
+	use { "toppair/peek.nvim", run = "deno task --quiet build:fast" }
 
   -- rust
   use { "simrat39/rust-tools.nvim" }
-	use {
-		"Saecki/crates.nvim",
+	use { "Saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
 		requires = { { "nvim-lua/plenary.nvim" } },
-		config = function()
-			require("crates").setup()
-		end,
 	}
 
 	-- spelling
@@ -143,61 +134,25 @@ return packer.startup(function(use)
 	use { "bronson/vim-trailing-whitespace" }
 	use { "andymass/vim-matchup" }
   use { "farmergreg/vim-lastplace" }
-	use {
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end
-	}
-	use {
-		"danymat/neogen",
-		config = function() require("neogen").setup({}) end,
-		requires = "nvim-treesitter/nvim-treesitter",
-	}
-  use {
-    "Pocco81/auto-save.nvim",
-    config = function() require("auto-save").setup({}) end,
-  }
-  use { "chentoast/marks.nvim", config = function() require("marks").setup({}) end }
+	use { "windwp/nvim-ts-autotag" }
+	use { "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }
+  use { "Pocco81/auto-save.nvim" }
+  use { "chentoast/marks.nvim" }
 
 	-- search / replace
-	use {
-		"nvim-telescope/telescope-live-grep-args.nvim",
-		config = function()
-			require("telescope").load_extension("live_grep_args")
-		end
-	}
-	use {
-		"windwp/nvim-spectre",
-		config = function()
-			require("spectre").setup()
-		end
-	}
+	use { "nvim-telescope/telescope-live-grep-args.nvim" }
+	use { "windwp/nvim-spectre" }
 
   -- ui
-	use {
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end
-	}
-  use {
-    "declancm/cinnamon.nvim",
-    config = function() require("cinnamon").setup() end
-  }
+	use { "norcalli/nvim-colorizer.lua" }
+  use { "declancm/cinnamon.nvim" }
   use { "folke/which-key.nvim" }
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
   use { "gelguy/wilder.nvim" }
-  use {
-    "simrat39/symbols-outline.nvim",
-    config = function() require("symbols-outline").setup() end
-  }
-  use {
-      "SmiteshP/nvim-navic",
-      requires = "neovim/nvim-lspconfig"
-  }
-  use "samjwill/nvim-unception"
+  use { "simrat39/symbols-outline.nvim" }
+  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }
+  use { "samjwill/nvim-unception" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
