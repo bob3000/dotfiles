@@ -192,6 +192,16 @@ local mappings = {
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 		w = { "<cmd>lua _WIKI_TOGGLE()<cr>", "Wiki" },
 	},
+	x = {
+		name = "Trouble",
+		x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
+		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+		l = { "<cmd>TroubleToggle loclist<cr>", "Location List" },
+		q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix List" },
+		R = { "<cmd>TroubleToggle lsp_references<cr>", "Lsp References" },
+		t = { "<cmd>TodoTrouble<cr>", "Todos" },
+	},
 }
 
 which_key.setup(setup)
