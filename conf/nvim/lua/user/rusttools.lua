@@ -3,6 +3,12 @@ if not status_ok then
 	return
 end
 
+local dbg_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/")
+local codelldb_path = dbg_path .. "adapter/codelldb"
+local liblldb_path = dbg_path .. "lldb/lib/liblldb.so"
+-- for MacOS use
+-- local liblldb_path = dbg_path .. "lldb/lib/liblldb.dylib"
+
 rust_tools.setup({
   tools = {
     -- executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
@@ -32,6 +38,9 @@ rust_tools.setup({
       },
       auto_focus = true,
     },
+  },
+  dap = {
+    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
   },
 	server = {
 		on_attach = function(_, bufnr)
