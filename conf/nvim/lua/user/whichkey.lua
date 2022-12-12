@@ -99,7 +99,8 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-	["M"] = { "<cmd>:PeekOpen<cr>", "Markdown" },
+	["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
+	["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
 
 	p = {
 		name = "Packer",
@@ -202,7 +203,21 @@ local mappings = {
 		R = { "<cmd>TroubleToggle lsp_references<cr>", "Lsp References" },
 		t = { "<cmd>TodoTrouble<cr>", "Todos" },
 	},
+	d = {
+		name = "Debug",
+		b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+		c = { "<cmd>DapContinue<cr>", "Continue" },
+		i = { "<cmd>DapStepInto<cr>", "Step Into" },
+		o = { "<cmd>DapStepOver<cr>", "Step Over" },
+		O = { "<cmd>DapStepOut<cr>", "Step Out" },
+		r = { "<cmd>DapToggleRepl<cr>", "Toggle Repl" },
+		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
+		u = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
+		t = { "<cmd>DapTerminate<cr>", "Terminate" },
+	},
 }
+
+-- DAP
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
