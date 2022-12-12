@@ -2,8 +2,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
 	callback = function()
 		vim.cmd([[
-      nnoremap <silent> <buffer> q :close<CR> 
-      set nobuflisted 
+      nnoremap <silent> <buffer> q :close<CR>
+      set nobuflisted
     ]])
 	end,
 })
@@ -69,6 +69,13 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		vim.opt.relativenumber = true
 		vim.opt.cursorline = true
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "Jenkinsfile", "Jenkinsfile.*" },
+	callback = function()
+		vim.bo.filetype = "groovy"
 	end,
 })
 

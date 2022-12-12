@@ -18,6 +18,7 @@ null_ls.setup {
     },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
+    formatting.npm_groovy_lint,
     diagnostics.flake8,
   },
 }
