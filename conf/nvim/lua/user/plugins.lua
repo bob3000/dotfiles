@@ -104,7 +104,8 @@ return packer.startup(function(use)
   -- DAP
   use { "mfussenegger/nvim-dap" }
   use { "rcarriga/nvim-dap-ui" }
-  use { 'mfussenegger/nvim-dap-python' }
+  use { 'mfussenegger/nvim-dap-python', requires = {"mfussenegger/nvim-dap"} }
+  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
 
 	-- markdown
 	use { "mzlogin/vim-markdown-toc" }
