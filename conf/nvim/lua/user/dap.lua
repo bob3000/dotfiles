@@ -10,6 +10,7 @@ end
 
 -- dap.set_log_level("DEBUG")
 require("user.dap.vscodeff").setup(dap)
+require("user.dap.python").setup(dap)
 -- require("user.dap.vscodejs").setup(dap)
 
 dapui.setup({
