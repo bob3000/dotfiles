@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]]
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -63,10 +63,10 @@ return packer.startup(function(use)
   use { "LunarVim/bigfile.nvim" } -- disable treesitter etc on big files
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim" } -- colorscheme blue
-  use { "lunarvim/darkplus.nvim" } -- colorscheme dark
-	use { "sainnhe/gruvbox-material" } -- ❤️
-  use { "olimorris/onedarkpro.nvim" } -- dark formal
+	use { "sainnhe/gruvbox-material" } -- 👾
+	use { "sainnhe/everforest" } -- 🌳
+	use { "sainnhe/sonokai" } -- 👻
+	use { "sainnhe/edge" } -- 🎊
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" } -- The completion plugin
@@ -145,7 +145,7 @@ return packer.startup(function(use)
 
   -- ui
 	use { "norcalli/nvim-colorizer.lua" } -- colorize color descriptions
-  use { "declancm/cinnamon.nvim" } -- smooth scrolling
+  use { "declancm/cinnamon.nvim", disable = true } -- smooth scrolling
   use { "folke/which-key.nvim" } -- automatic key cheat sheet
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- diagnostics box
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" } -- TODO marks overview
