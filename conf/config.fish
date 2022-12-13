@@ -48,6 +48,7 @@ set -g man_underline -u 93a1a1
 alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
 alias ls 'ls --color'
 alias ll 'exa -l'
+alias lt 'exa --tree'
 alias la 'exa -a'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias sudo 'sudo -v; sudo '
