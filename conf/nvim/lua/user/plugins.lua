@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -48,112 +48,111 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
-  use { "numToStr/Comment.nvim" }
-  use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua" }
-  use { "akinsho/bufferline.nvim" }
-  use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" }
-  use { "akinsho/toggleterm.nvim" }
-  use { "ahmedkhalf/project.nvim" }
-  use { "lewis6991/impatient.nvim" }
-  use { "lukas-reineke/indent-blankline.nvim" }
-  use { "goolord/alpha-nvim" }
-  use { "LunarVim/bigfile.nvim" }
+  use { "numToStr/Comment.nvim" } -- Code commenting
+  use { "JoosepAlviste/nvim-ts-context-commentstring" } -- treesitter commenting support
+  use { "kyazdani42/nvim-web-devicons" } -- Icons
+  use { "kyazdani42/nvim-tree.lua" } -- File Explorer
+  use { "akinsho/bufferline.nvim" } -- Buffer overview
+  use { "moll/vim-bbye" } -- don't close windows on buffer close
+  use { "nvim-lualine/lualine.nvim" } -- status line
+  use { "akinsho/toggleterm.nvim" } -- terminal window
+  use { "ahmedkhalf/project.nvim" } -- switch between projects
+  use { "lewis6991/impatient.nvim" } -- module resolution cache
+  use { "lukas-reineke/indent-blankline.nvim" } -- indention markers
+  use { "goolord/alpha-nvim" } -- startup screen
+  use { "LunarVim/bigfile.nvim" } -- disable treesitter etc on big files
 
   -- Colorschemes
-  use { "folke/tokyonight.nvim" }
-  use { "lunarvim/darkplus.nvim" }
-	use { "sainnhe/gruvbox-material" }
-  use "olimorris/onedarkpro.nvim"
+  use { "folke/tokyonight.nvim" } -- colorscheme blue
+  use { "lunarvim/darkplus.nvim" } -- colorscheme dark
+	use { "sainnhe/gruvbox-material" } -- ❤️
+  use { "olimorris/onedarkpro.nvim" } -- dark formal
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" } -- The completion plugin
   use { "hrsh7th/cmp-buffer" } -- buffer completions
   use { "hrsh7th/cmp-path" } -- path completions
   use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
-  use { "hrsh7th/cmp-nvim-lsp" }
-  use { "hrsh7th/cmp-nvim-lua" }
-	use { "hrsh7th/cmp-emoji" }
-	use { "hrsh7th/cmp-cmdline" }
+  use { "hrsh7th/cmp-nvim-lsp" } -- lsp completion source
+  use { "hrsh7th/cmp-nvim-lua" } -- lua lsp completion source
+	use { "hrsh7th/cmp-emoji" } -- emoji completion source
+	use { "hrsh7th/cmp-cmdline" } -- command line completion source
 
   -- snippets
   use { "L3MON4D3/LuaSnip" } --snippet engine
   use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
   -- LSP
-  -- use { "williamboman/nvim-lsp-installer" } -- simple to use language server installer
   use { "neovim/nvim-lspconfig" } -- enable LSP
-  use { "williamboman/mason.nvim" }
-  use { "williamboman/mason-lspconfig.nvim" }
+  use { "williamboman/mason.nvim" } -- Tool installer
+  use { "williamboman/mason-lspconfig.nvim" } -- Language server configurator
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
-  use { "RRethy/vim-illuminate" }
-  use { "b0o/schemastore.nvim"}
+  use { "RRethy/vim-illuminate" } -- word group highlighter
+  use { "b0o/schemastore.nvim"} -- json schema store source
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim" }
-  use { "nvim-telescope/telescope-media-files.nvim" }
+  use { "nvim-telescope/telescope.nvim" } -- fuzzy finder
+  use { "nvim-telescope/telescope-media-files.nvim", disable = true } -- does not work ATM
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/nvim-treesitter" } -- enables treesitter
 
   -- Git
-  use { "lewis6991/gitsigns.nvim" }
+  use { "lewis6991/gitsigns.nvim" } -- git hunk markers and tools
 
   -- DAP
-  use { "mfussenegger/nvim-dap" }
-  use { "rcarriga/nvim-dap-ui" }
-  use { 'mfussenegger/nvim-dap-python', requires = {"mfussenegger/nvim-dap"} }
-  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+  use { "mfussenegger/nvim-dap" } -- enables debugging
+  use { "rcarriga/nvim-dap-ui" } -- Debugger UI
+  use { 'mfussenegger/nvim-dap-python', requires = {"mfussenegger/nvim-dap"} } -- Python debugger integration
+  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} } -- JS / TS debugger integration
 
 	-- markdown
-	use { "mzlogin/vim-markdown-toc" }
-	use { "jakewvincent/mkdnflow.nvim", rocks = "luautf8" }
-	use { "toppair/peek.nvim", run = "deno task --quiet build:fast" }
+	use { "mzlogin/vim-markdown-toc" } -- generates Table of Contents
+	use { "jakewvincent/mkdnflow.nvim", rocks = "luautf8" } -- wiki style md link navigation
+	use { "toppair/peek.nvim", run = "deno task --quiet build:fast" } -- markdown preview
 
   -- rust
-  use { "simrat39/rust-tools.nvim" }
-	use { "Saecki/crates.nvim",
+  use { "simrat39/rust-tools.nvim" } -- best rust IDE experience
+	use { "Saecki/crates.nvim", -- creates update checker
 		event = { "BufRead Cargo.toml" },
 		requires = { { "nvim-lua/plenary.nvim" } },
 	}
 
 	-- spelling
 	use {
-		"psliwka/vim-dirtytalk",
+		"psliwka/vim-dirtytalk", -- programmer spelling dictionary
 		run = ":DirtytalkUpdate",
 	}
 	-- syntax
-	use { "chr4/nginx.vim" }
-	use { "Glench/Vim-Jinja2-Syntax" }
-  use { "p00f/nvim-ts-rainbow" }
+	use { "chr4/nginx.vim" } -- nginx syntax highlighting
+	use { "Glench/Vim-Jinja2-Syntax" } -- Jinja2 syntax highlighting
+  use { "p00f/nvim-ts-rainbow" } -- Rainbow colored bracket pairs
 
 	-- editing
-	use { "tpope/vim-surround" }
-	use { "tpope/vim-repeat" }
-	use { "bronson/vim-trailing-whitespace" }
-	use { "andymass/vim-matchup" }
-  use { "farmergreg/vim-lastplace" }
-	use { "windwp/nvim-ts-autotag" }
-	use { "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }
-  use { "Pocco81/auto-save.nvim" }
-  use { "chentoast/marks.nvim" }
+	use { "tpope/vim-surround" } -- surround text with quotes and braces
+	use { "tpope/vim-repeat" } -- better repeat command
+	use { "bronson/vim-trailing-whitespace" } -- fix trailing whitespaces
+	use { "andymass/vim-matchup" } -- better % key matching
+  use { "farmergreg/vim-lastplace" } -- remember last cursor position
+	use { "windwp/nvim-ts-autotag" } -- auto close html tags
+	use { "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" } -- generate comment templates
+  use { "Pocco81/auto-save.nvim" } -- save buffers automatically
+  use { "chentoast/marks.nvim" } -- display jump marks
 
 	-- search / replace
-	use { "nvim-telescope/telescope-live-grep-args.nvim" }
-	use { "windwp/nvim-spectre" }
+	use { "nvim-telescope/telescope-live-grep-args.nvim" } -- limit grep search to folders
+	use { "windwp/nvim-spectre" } -- search and replace tool
 
   -- ui
-	use { "norcalli/nvim-colorizer.lua" }
-  use { "declancm/cinnamon.nvim" }
-  use { "folke/which-key.nvim" }
-  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
-  use { "gelguy/wilder.nvim" }
-  use { "simrat39/symbols-outline.nvim" }
-  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }
-  use { "samjwill/nvim-unception" }
+	use { "norcalli/nvim-colorizer.lua" } -- colorize color descriptions
+  use { "declancm/cinnamon.nvim" } -- smooth scrolling
+  use { "folke/which-key.nvim" } -- automatic key cheat sheet
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- diagnostics box
+  use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" } -- TODO marks overview
+  use { "gelguy/wilder.nvim" } -- ex mode auto completion
+  use { "simrat39/symbols-outline.nvim" } -- shows file structure
+  use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" } -- file bread crumbs
+  use { "samjwill/nvim-unception" } -- allow opening nvim in a floating terminal
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
