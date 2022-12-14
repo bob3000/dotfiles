@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-nvim-lua" } -- lua lsp completion source
 	use { "hrsh7th/cmp-emoji" } -- emoji completion source
 	use { "hrsh7th/cmp-cmdline" } -- command line completion source
+  use { "ray-x/lsp_signature.nvim" }
 
   -- snippets
   use { "L3MON4D3/LuaSnip" } --snippet engine
