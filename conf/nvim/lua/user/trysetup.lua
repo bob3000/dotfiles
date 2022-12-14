@@ -1,10 +1,10 @@
-local function try_setup(module, method, ...)
+local function try_setup(module, method, options)
 	local mod_ok, mod = pcall(require, module)
 	if not mod_ok then
 		vim.notify("[warn] module " .. module .. " not found")
 		return
 	end
-	local meth_ok, _ = pcall(mod[method], unpack(...))
+	local meth_ok, _ = pcall(mod[method], options)
 	if not meth_ok then
 		vim.notify("[warn] method " .. method .. " not found on module " .. module)
 		return
