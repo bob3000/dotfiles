@@ -39,17 +39,25 @@ vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX 
 vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.iskeyword:append("-") -- treats words with `-` as single words
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
-vim.opt.linebreak = true
-vim.opt.colorcolumn = "80,120"
-vim.opt.relativenumber = true
-vim.opt.spell = true
-vim.opt.spellfile = vim.env.HOME .. "/.config/nvim/spell/en.utf-8.add"
-vim.opt.spelllang = "en_us,de_de,programming"
-vim.opt.spelloptions = "camel"
-vim.opt.spellcapcheck = ""
-vim.opt.inccommand = "split"
-vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·"
-vim.opt.list = true
+vim.opt.linebreak = true -- wrap long lines at a breakat character
+vim.opt.colorcolumn = "80,120" -- display a visual column at a fixed number of characters
+vim.opt.relativenumber = true -- use line numbers relative to the cursor
+vim.opt.spell = true -- enable spell checking
+vim.opt.spellfile = vim.env.HOME .. "/.config/nvim/spell/en.utf-8.add" -- custom word file
+vim.opt.spelllang = "en_us,de_de,programming" -- spelling dictionaries
+vim.opt.spelloptions = "camel" -- consider camel case in spell checking
+vim.opt.spellcapcheck = "" -- don't check for capital letters after full stop
+vim.opt.inccommand = "split" -- show find / replace previews
+vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
+vim.opt.list = true -- show some invisible characters
+
+-- use dark or light background depending on time of day
+local _time = os.date("*t")
+if _time.hour >= 8 and _time.hour < 18 then
+	vim.o.background = "light"
+else
+	vim.o.background = "dark"
+end
 
 -- use lualine integration for the moment
 -- local status_ok, _ = pcall(require, "nvim-navic")

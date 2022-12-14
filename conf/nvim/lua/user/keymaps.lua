@@ -3,14 +3,6 @@ local keymap = vim.keymap.set
 -- Silent keymap option
 local opts = { silent = true }
 
--- use dark or light background depending on time of day
-local _time = os.date("*t")
-if _time.hour >= 8 and _time.hour < 18 then
-	vim.o.background = "light"
-else
-	vim.o.background = "dark"
-end
-
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "

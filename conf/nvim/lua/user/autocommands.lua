@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	end,
 })
 
+-- switch to absolute line numbers in insert mode
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	callback = function()
 		vim.opt.relativenumber = false
@@ -65,6 +66,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 	end,
 })
 
+-- switch to relative line numbers in normal mode
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	callback = function()
 		vim.opt.relativenumber = true
@@ -72,6 +74,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 	end,
 })
 
+-- treat Jenkinsfile as groovy
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "Jenkinsfile", "Jenkinsfile.*" },
 	callback = function()
@@ -87,6 +90,7 @@ vim.api.nvim_create_autocmd("User", {
 		vim.opt.showtabline = 0
 	end,
 })
+
 vim.api.nvim_create_autocmd("BufUnload", {
 	buffer = 0,
 	desc = "enable tabline after alpha",
