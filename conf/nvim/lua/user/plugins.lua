@@ -145,11 +145,10 @@ return packer.startup(function(use)
 
   -- ui
 	use { "norcalli/nvim-colorizer.lua" } -- colorize color descriptions
-  use { "declancm/cinnamon.nvim", disable = false } -- smooth scrolling
+  use { "declancm/cinnamon.nvim" } -- smooth scrolling
   use { "folke/which-key.nvim" } -- automatic key cheat sheet
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" } -- diagnostics box
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" } -- TODO marks overview
-  use { "gelguy/wilder.nvim" } -- ex mode auto completion
   use { "simrat39/symbols-outline.nvim" } -- shows file structure
   use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" } -- file bread crumbs
   use { "samjwill/nvim-unception" } -- allow opening nvim in a floating terminal
