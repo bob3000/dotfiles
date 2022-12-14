@@ -36,6 +36,13 @@ keymap("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", opts)
 keymap("n", "<S-A-p>", "<cmd>BufferLineTogglePin<CR>", opts)
 keymap("n", "gB", "<cmd>BufferLinePick<CR>", opts)
 
+-- luasnip
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if luasnip_ok then
+	keymap("i", "<C-l>", "<cmd>lua require('luasnip').jump(1)<cr>", opts)
+	keymap("i", "<C-h>", "<cmd>lua require('luasnip').jump(-1)<cr>", opts)
+end
+
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
