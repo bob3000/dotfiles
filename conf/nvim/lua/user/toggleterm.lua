@@ -39,7 +39,7 @@ function _LAZYGIT_TOGGLE()
 end
 
 local wiki =
-	Terminal:new({ cmd = "cd ~/Nextcloud/Synced/wiki && tmux new-session -A -s wiki 'nvim index.md'", hidden = true })
+	Terminal:new({ cmd = "tmux new-session -A -c ~/Nextcloud/Synced/wiki -s wiki 'nvim index.md'", hidden = true })
 function _WIKI_TOGGLE()
 	wiki:toggle()
 end
