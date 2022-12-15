@@ -2,6 +2,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
 	"bashls",
+  "clangd",
 	"cssls",
 	"gopls",
 	"html",
