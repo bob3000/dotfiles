@@ -104,8 +104,9 @@ return packer.startup(function(use)
   -- DAP
   use { "mfussenegger/nvim-dap" } -- enables debugging
   use { "rcarriga/nvim-dap-ui" } -- Debugger UI
-  use { 'mfussenegger/nvim-dap-python', requires = {"mfussenegger/nvim-dap"} } -- Python debugger integration
+  use { "mfussenegger/nvim-dap-python", requires = {"mfussenegger/nvim-dap"} } -- Python debugger integration
   use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} } -- JS / TS debugger integration
+  use { "leoluz/nvim-dap-go" } -- Go debugger integration
 
 	-- markdown
 	use { "mzlogin/vim-markdown-toc" } -- generates Table of Contents
