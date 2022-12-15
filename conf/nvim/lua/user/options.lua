@@ -73,10 +73,12 @@ vim.g.extra_whitespace_ignored_filetypes = {
 	"Trouble",
 	"WhichKey",
 	"alpha",
+	"help",
 	"lspinfo",
 	"mason",
 	"packer",
 	"quickfix",
 	"toggleterm",
-	"help",
+	"markdown",
+	"md",
 }
