@@ -67,15 +67,16 @@ end
 
 vim.g.gruvbox_material_palette = "original"
 vim.g.extra_whitespace_ignored_filetypes = {
+	"No Name",
+	"Outline",
+	"TelescopePrompt",
+	"Trouble",
+	"WhichKey",
 	"alpha",
 	"lspinfo",
 	"mason",
-	"No Name",
-	"Outline",
 	"packer",
 	"quickfix",
-	"TelescopePrompt",
 	"toggleterm",
-	"Trouble",
-	"WhichKey",
+	"help",
 }

@@ -23,6 +23,7 @@ configs.setup({
 		"gomod",
 		"graphql",
 		"hcl",
+		"help",
 		"html",
 		"java",
 		"javascript",
