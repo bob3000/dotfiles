@@ -1,19 +1,26 @@
 -- language server configurations
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local servers = {
+	"ansiblels",
 	"bashls",
-  "clangd",
+	"clangd",
+	"cmake",
+	"groovyls",
 	"cssls",
+	"dockerls",
 	"gopls",
 	"html",
 	"jsonls",
+	"marksman",
 	"pyright",
+	"sqlls",
 	"sumneko_lua",
 	"svelte",
 	"tailwindcss",
 	"terraformls",
 	"tsserver",
 	"yamlls",
+	"zls",
 }
 
 local settings = {
