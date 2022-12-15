@@ -8,7 +8,8 @@ if not dap_ui_status_ok then
 	return
 end
 
--- dap.set_log_level("DEBUG")
+dap.set_log_level("ERROR")
+require("user.dap.lldb").setup(dap)
 require("user.dap.vscodeff").setup(dap)
 require("user.dap.python").setup(dap)
 -- require("user.dap.vscodejs").setup(dap)
