@@ -53,7 +53,7 @@ vim.opt.list = true -- show some invisible characters
 
 -- use dark or light background depending on time of day
 local _time = os.date("*t")
-if _time.hour >= 8 and _time.hour < 18 then
+if _time.hour >= 10 and _time.hour < 16 then
 	vim.o.background = "light"
 else
 	vim.o.background = "dark"
