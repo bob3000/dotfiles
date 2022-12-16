@@ -153,7 +153,6 @@ return packer.startup(function(use)
   use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" } -- TODO marks overview
   use { "simrat39/symbols-outline.nvim" } -- shows file structure
   use { "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" } -- file bread crumbs
-  use { "samjwill/nvim-unception" } -- allow opening nvim in a floating terminal
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
