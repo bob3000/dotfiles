@@ -66,6 +66,11 @@ end
 -- end
 
 vim.g.gruvbox_material_palette = "original"
+vim.g.gruvbox_material_dim_inactive_windows = true
+vim.g.everforest_dim_inactive_windows = true
+vim.g.edge_dim_inactive_windows = true
+vim.g.sonokai_dim_inactive_windows = true
+
 vim.g.extra_whitespace_ignored_filetypes = {
 	"No Name",
 	"Outline",
