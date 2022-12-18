@@ -90,6 +90,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+-- treat .tf files as hcl
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.tf" },
+	callback = function()
+		vim.bo.filetype = "hcl"
+	end,
+})
+
 -- disable buffer line on dashboard
 vim.api.nvim_create_autocmd("User", {
 	pattern = "AlphaReady",
