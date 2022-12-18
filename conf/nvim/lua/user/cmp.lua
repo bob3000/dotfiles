@@ -10,11 +10,6 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
 local kind_icons = {
 	Text = "",
 	Method = "",
@@ -49,7 +44,9 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-
+	completion = {
+		keyword_length = 1,
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
