@@ -51,7 +51,6 @@ alias ll 'exa -l'
 alias lt 'exa --tree'
 alias la 'exa -a'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
-alias sudo 'sudo -v; sudo '
 alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
 alias d "kitty +kitten diff"
