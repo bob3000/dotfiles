@@ -206,6 +206,7 @@ local mappings = {
 	d = {
 		name = "Debug",
 		b = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+		B = { "<cmd>lua require'dap'.clear_breakpoints()<cr>", "Clear Breakpoints" },
 		c = { "<cmd>DapContinue<cr>", "Continue" },
 		i = { "<cmd>DapStepInto<cr>", "Step Into" },
 		o = { "<cmd>DapStepOver<cr>", "Step Over" },
