@@ -120,6 +120,12 @@ return packer.startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	}
 
+  -- Node
+  use {
+      "vuki656/package-info.nvim",
+      requires = "MunifTanjim/nui.nvim",
+  }
+
 	-- spelling
 	use {
 		"psliwka/vim-dirtytalk", -- programmer spelling dictionary
