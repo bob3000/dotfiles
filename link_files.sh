@@ -24,6 +24,7 @@ function link_common_files() {
   backup_and_link "$PWD/conf/lv-config.lua" "${HOME}/.config/lvim/config.lua"
   backup_and_link "$PWD/conf/.zshrc" "${HOME}/.zshrc"
   backup_and_link "$PWD/conf/fish/config.fish" "${HOME}/.config/fish/config.fish"
+  backup_and_link "$PWD/conf/tmuxline" "${HOME}/.tmux/tmuxline"
 }
 
 function link_mac_files() {
