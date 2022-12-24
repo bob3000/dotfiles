@@ -15,9 +15,9 @@ if status is-interactive
 end
 
 if set -q $SSH_CONNECTION
-    set EDITOR 'nvim'
-  else
     set EDITOR 'vim'
+  else
+    set EDITOR 'nvim'
 end
 set LC_ALL en_US.UTF-8
 set LANG en_US.UTF-8
