@@ -28,5 +28,6 @@ null_ls.setup({
 		formatting.isort,
 		formatting.stylua,
 		formatting.npm_groovy_lint,
+		formatting.shfmt,
 	},
 })
