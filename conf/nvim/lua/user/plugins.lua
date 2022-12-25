@@ -131,6 +131,7 @@ return packer.startup(function(use)
 		"psliwka/vim-dirtytalk", -- programmer spelling dictionary
 		run = ":DirtytalkUpdate",
 	}
+
 	-- syntax
 	use { "chr4/nginx.vim" } -- nginx syntax highlighting
 	use { "Glench/Vim-Jinja2-Syntax" } -- Jinja2 syntax highlighting
