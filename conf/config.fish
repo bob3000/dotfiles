@@ -7,13 +7,6 @@ set fish_greeting
 # fisher install jorgebucaran/nvm.fish
 # fisher install jorgebucaran/replay.fish
 
-if status is-interactive
-  # Commands to run in interactive sessions can go here
-  starship init fish | source
-  fzf_key_bindings
-  theme_gruvbox dark medium
-end
-
 if set -q $SSH_CONNECTION
     set EDITOR 'vim'
   else
@@ -28,8 +21,6 @@ set GOPATH $HOME/.go
 set PATH "$GOPATH/bin:$PATH"
 set PATH "$HOME/.cargo/bin:$PATH"
 set PATH "$HOME/.local/bin:$PATH"
-
-set nvm_default_version lts/hydrogen
 
 # make vim fzf plugin use ripgrep
 set FZF_DEFAULT_COMMAND 'rga --files'
@@ -58,6 +49,14 @@ alias emoji "kitty +kitten unicode_input"
 
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
+
+if status is-interactive
+  # Commands to run in interactive sessions can go here
+  starship init fish | source
+  fzf_key_bindings
+  fnm env --use-on-cd | source # fast node manager
+  theme_gruvbox dark medium
+end
 
 switch (uname)
   case Darwin
