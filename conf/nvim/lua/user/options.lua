@@ -85,4 +85,5 @@ vim.g.extra_whitespace_ignored_filetypes = {
 	"quickfix",
 	"toggleterm",
 	"markdown",
+	"null-ls-info",
 }
