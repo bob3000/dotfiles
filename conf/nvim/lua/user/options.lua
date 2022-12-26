@@ -80,10 +80,10 @@ vim.g.extra_whitespace_ignored_filetypes = {
 	"alpha",
 	"help",
 	"lspinfo",
+	"markdown",
 	"mason",
+	"null-ls-info",
 	"packer",
 	"quickfix",
 	"toggleterm",
-	"markdown",
-	"null-ls-info",
 }

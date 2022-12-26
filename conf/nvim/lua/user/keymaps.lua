@@ -36,6 +36,9 @@ keymap("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", opts)
 keymap("n", "<S-A-p>", "<cmd>BufferLineTogglePin<CR>", opts)
 keymap("n", "gB", "<cmd>BufferLinePick<CR>", opts)
 
+-- sort visual lines
+keymap("v", "gs", ":'<,'>sort<CR>", opts)
+
 -- luasnip
 local luasnip_ok, _ = pcall(require, "luasnip")
 if luasnip_ok then
