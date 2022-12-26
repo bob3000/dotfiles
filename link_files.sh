@@ -26,6 +26,7 @@ function link_common_files() {
 	backup_and_link "$PWD/conf/fish/config.fish" "${HOME}/.config/fish/config.fish"
 	backup_and_link "$PWD/conf/.tmux/tmuxline" "${HOME}/.tmux/tmuxline"
 	backup_and_link "$PWD/conf/.tmux/scripts" "${HOME}/.tmux/scripts"
+  backup_and_link "$PWD/conf/starship.toml" "${HOME}/.config/starship.toml"
 }
 
 function link_mac_files() {
