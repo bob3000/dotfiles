@@ -5,3 +5,9 @@ format = """$character"""
 
 # move the rest of the prompt to the right
 right_format = """$all"""
+
+[time]
+disabled = false
+format = '🕙 [$time]($style) '
+time_format = '%T'
+utc_time_offset = '+1'
