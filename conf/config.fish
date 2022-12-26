@@ -53,6 +53,7 @@ test -e "$HOME/.credentials" && source "$HOME/.credentials"
 if status is-interactive
   # Commands to run in interactive sessions can go here
   starship init fish | source
+  enable_transience
   fzf_key_bindings
   fnm env --use-on-cd | source # fast node manager
   theme_gruvbox dark medium
