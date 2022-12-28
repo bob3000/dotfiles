@@ -39,7 +39,7 @@ alias git='LANG=en_US git'
 alias tmux-cwd='tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias sudo='sudo -v; sudo '
 alias wanip='curl -s ifconfig.me'
-alias neovide='neovide --multigrid -- -u ~/.local/share/lunarvim/lvim/init.lua --cmd "set runtimepath+=~/.local/share/lunarvim/lvim"'
+alias neovide='neovide --multigrid'
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias emoji="kitty +kitten unicode_input"
