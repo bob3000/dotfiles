@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 -- treat some file extension as hcl
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.nomad", "*.tf", "*.tfvars" },
+	pattern = { "*.nomad" },
 	callback = function()
 		vim.bo.filetype = "hcl"
 	end,
