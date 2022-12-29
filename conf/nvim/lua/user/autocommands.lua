@@ -90,6 +90,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+-- treat some file extension as terraform
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.tfvars" },
+	callback = function()
+		vim.bo.filetype = "terraform"
+	end,
+})
+
 -- disable buffer line on dashboard
 vim.api.nvim_create_autocmd("User", {
 	pattern = "AlphaReady",
