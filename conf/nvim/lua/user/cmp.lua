@@ -8,6 +8,12 @@ if not snip_status_ok then
 	return
 end
 
+local has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local kind_icons = {
@@ -39,13 +45,26 @@ local kind_icons = {
 }
 
 cmp.setup({
+	-- disable cmp in comments
+	enabled = function()
+		-- disable completion in comments
+		local context = require("cmp.config.context")
+		-- keep command mode completion enabled when cursor is in a comment
+		if vim.api.nvim_get_mode().mode == "c" then
+			return true
+		else
+			return not context.in_treesitter_capture("comment")
+				and not context.in_syntax_group("Comment")
+				and has_words_before()
+		end
+	end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 	completion = {
-		keyword_length = 1,
+		keyword_length = 2,
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
