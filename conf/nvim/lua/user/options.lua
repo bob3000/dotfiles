@@ -33,7 +33,7 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.guifont = "JetBrains Mono Medium:h11" -- the font used in graphical neovim applications
+vim.opt.guifont = "JetBrains Mono Nerd Font Medium:h11" -- the font used in graphical neovim applications
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20" -- cursor style
 vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
@@ -51,20 +51,6 @@ vim.opt.spellcapcheck = "" -- don't check for capital letters after full stop
 vim.opt.inccommand = "split" -- show find / replace previews
 vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
 vim.opt.list = true -- show some invisible characters
-
--- use dark or light background depending on time of day
-local _time = os.date("*t")
-if _time.hour >= 10 and _time.hour < 16 then
-	vim.o.background = "light"
-else
-	vim.o.background = "dark"
-end
-
--- use lualine integration for the moment
--- local status_ok, _ = pcall(require, "nvim-navic")
--- if status_ok then
---   vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
--- end
 
 vim.g.gruvbox_material_palette = "original"
 vim.g.gruvbox_material_dim_inactive_windows = true
