@@ -28,7 +28,9 @@ null_ls.setup({
 			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
-		formatting.codespell,
+		formatting.codespell.with({
+			extra_args = { "--skip", "*.latex" },
+		}),
 		formatting.isort,
 		formatting.stylua,
 		formatting.npm_groovy_lint,
