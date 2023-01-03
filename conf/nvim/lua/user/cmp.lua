@@ -100,7 +100,6 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "emoji" },
-		{ name = "cmdline" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
