@@ -98,6 +98,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+-- compile latex on write
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*.latex" },
+	callback = function()
+		vim.cmd("TexlabBuild")
+	end,
+})
+
 -- disable buffer line on dashboard
 vim.api.nvim_create_autocmd("User", {
 	pattern = "AlphaReady",

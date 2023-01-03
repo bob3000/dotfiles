@@ -18,6 +18,7 @@ local servers = {
 	"svelte",
 	"tailwindcss",
 	"terraformls",
+	"texlab",
 	"tsserver",
 	"yamlls",
 	"zls",

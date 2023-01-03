@@ -113,6 +113,9 @@ return packer.startup(function(use)
 	use { "jakewvincent/mkdnflow.nvim", rocks = "luautf8" } -- wiki style md link navigation
 	use { "toppair/peek.nvim", run = "deno task --quiet build:fast" } -- markdown preview
 
+  -- latex
+  use { "jakewvincent/texmagic.nvim", opt = true } -- build latex
+
   -- rust
   use { "simrat39/rust-tools.nvim" } -- best rust IDE experience
 	use { "Saecki/crates.nvim", -- creates update checker
