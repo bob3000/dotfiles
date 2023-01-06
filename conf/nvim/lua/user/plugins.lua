@@ -138,7 +138,7 @@ return packer.startup(function(use)
 	-- syntax
 	use { "chr4/nginx.vim" } -- nginx syntax highlighting
 	use { "Glench/Vim-Jinja2-Syntax" } -- Jinja2 syntax highlighting
-  use { "p00f/nvim-ts-rainbow" } -- Rainbow colored bracket pairs
+  use { "mrjones2014/nvim-ts-rainbow" } -- Rainbow colored bracket pairs
 
 	-- editing
 	use { "tpope/vim-surround" } -- surround text with quotes and braces
