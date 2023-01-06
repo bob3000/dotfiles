@@ -101,6 +101,7 @@ local mappings = {
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
 	["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
+	["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
 
 	p = {
 		name = "Packer",

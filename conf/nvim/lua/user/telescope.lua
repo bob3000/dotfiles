@@ -5,7 +5,7 @@ end
 
 local lga_status_ok, lga_actions = pcall(require, "telescope-live-grep-args.nvim")
 if not lga_status_ok then
-  return
+	return
 end
 
 local actions = require("telescope.actions")
@@ -35,7 +35,15 @@ telescope.setup({
 				},
 			},
 		},
+		undo = {
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
+		},
 	},
 })
 
 telescope.load_extension("live_grep_args")
+telescope.load_extension("undo")

@@ -150,6 +150,7 @@ return packer.startup(function(use)
 	use { "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" } -- generate comment templates
   use { "Pocco81/auto-save.nvim" } -- save buffers automatically
   use { "chentoast/marks.nvim" } -- display jump marks
+  use { "debugloop/telescope-undo.nvim" } -- search undo tree
 
 	-- search / replace
 	use { "nvim-telescope/telescope-live-grep-args.nvim" } -- limit grep search to folders
