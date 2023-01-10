@@ -6,6 +6,7 @@ set fish_greeting
 # fisher install jorgebucaran/autopair.fish
 # fisher install jorgebucaran/nvm.fish
 # fisher install jorgebucaran/replay.fish
+# fisher install 2m/fish-history-merge
 
 if set -q $SSH_CONNECTION
     set EDITOR 'vim'
@@ -37,10 +38,10 @@ set -g man_underline -u 93a1a1
 
 # convenience
 alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
-alias ls 'ls --color'
-alias ll 'exa -l'
+alias l 'exa --icons'
+alias ll 'exa -l --icons'
 alias lt 'exa --tree'
-alias la 'exa -a'
+alias la 'exa -a --icons'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
