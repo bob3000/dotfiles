@@ -43,6 +43,7 @@ configs.setup({
 		"scss",
 		"sql",
 		"svelte",
+		"terraform",
 		"toml",
 		"tsx",
 		"typescript",
