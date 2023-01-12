@@ -6,3 +6,28 @@ disabled = false
 format = '🕙 [$time]($style) '
 time_format = '%T'
 utc_time_offset = '+1'
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+
+[sudo]
+disabled = false
+
+[kubernetes]
+disabled = false
+
+[shell]
+fish_indicator = ''
+powershell_indicator = '_'
+zsh_indicator = '💤'
+unknown_indicator = 'mystery shell'
+style = 'cyan bold'
+disabled = false
+
+[status]
+symbol = '🔴 '
+# success_symbol = '🟢 '
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
+map_symbol = true
+disabled = false
