@@ -66,6 +66,9 @@ if status is-interactive
   theme_gruvbox dark medium
 end
 
+# key bindings
+bind \er ranger  # start ranger file manager
+
 switch (uname)
   case Darwin
     # source /opt/homebrew/etc/grc.fish

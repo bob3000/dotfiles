@@ -25,6 +25,7 @@ ngrep
 prettier
 python
 python-pip
+ranger
 readline
 ripgrep
 shellcheck
