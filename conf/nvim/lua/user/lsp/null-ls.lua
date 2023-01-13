@@ -14,14 +14,10 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	debug = false,
 	sources = {
-		code_actions.cspell.with({
-			filetypes = { "gitcommit" },
-		}),
+		code_actions.cspell,
 		code_actions.gitsigns,
 		diagnostics.codespell,
-		diagnostics.cspell.with({
-			filetypes = { "gitcommit" },
-		}),
+		diagnostics.cspell,
 		diagnostics.flake8,
 		formatting.prettier.with({
 			extra_filetypes = { "toml" },
