@@ -24,7 +24,6 @@ local plugins = {
 	{ "nvim-lualine/lualine.nvim" }, -- status line
 	{ "akinsho/toggleterm.nvim" }, -- terminal window
 	{ "ahmedkhalf/project.nvim" }, -- switch between projects
-	{ "lewis6991/impatient.nvim" }, -- module resolution cache
 	{ "lukas-reineke/indent-blankline.nvim" }, -- indentation markers
 	{ "goolord/alpha-nvim" }, -- startup screen
 	{ "LunarVim/bigfile.nvim" }, -- disable treesitter etc on big files
