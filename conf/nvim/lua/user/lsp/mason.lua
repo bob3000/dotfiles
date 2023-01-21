@@ -5,7 +5,7 @@ local servers = {
 	"bashls",
 	"clangd",
 	"cmake",
-	"groovyls",
+	-- "groovyls",
 	"cssls",
 	"dockerls",
 	"gopls",

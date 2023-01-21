@@ -75,7 +75,7 @@ vim.g.extra_whitespace_ignored_filetypes = {
 	"markdown",
 	"mason",
 	"null-ls-info",
-	"packer",
+	"lazy",
 	"quickfix",
 	"toggleterm",
 }

@@ -111,7 +111,7 @@ local plugins = {
 	-- editing
 	{ "tpope/vim-surround" }, -- surround text with quotes and braces
 	{ "tpope/vim-repeat" }, -- better repeat command
-	{ "bronson/vim-trailing-whitespace" }, -- fix trailing whitespaces
+	{ "bronson/vim-trailing-whitespace", lazy = false, priority = 100 }, -- fix trailing whitespaces
 	{ "andymass/vim-matchup" }, -- better % key matching
 	{ "farmergreg/vim-lastplace" }, -- remember last cursor position
 	{ "windwp/nvim-ts-autotag" }, -- auto close html tags

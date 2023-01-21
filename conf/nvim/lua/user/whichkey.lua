@@ -103,15 +103,6 @@ local mappings = {
 	["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
 	["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
 
-	p = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
-
 	g = {
 		name = "Git",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
