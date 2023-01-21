@@ -60,7 +60,7 @@ local plugins = {
 
 	-- Telescope
 	{ "nvim-telescope/telescope.nvim" }, -- fuzzy finder
-	{ "nvim-telescope/telescope-media-files.nvim", disable = true }, -- does not work ATM
+	{ "nvim-telescope/telescope-media-files.nvim", enabled = false }, -- does not work ATM
 
 	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter" }, -- enables treesitter
@@ -71,13 +71,14 @@ local plugins = {
 	-- DAP
 	{ "mfussenegger/nvim-dap" }, -- enables debugging
 	{ "rcarriga/nvim-dap-ui" }, -- Debugger UI
-	{ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } }, -- Python debugger integration
-	{ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }, -- JS / TS debugger integration
+	{ "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } }, -- Python debugger integration
+	{ "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } }, -- JS / TS debugger integration
 	{ "leoluz/nvim-dap-go" }, -- Go debugger integration
 
 	-- markdown
 	{ "mzlogin/vim-markdown-toc" }, -- generates Table of Contents
-	{ "jakewvincent/mkdnflow.nvim", rocks = "luautf8" }, -- wiki style md link navigation
+  -- requires "luautf8"
+	{ "jakewvincent/mkdnflow.nvim" }, -- wiki style md link navigation
 	{ "toppair/peek.nvim", build = "deno task --quiet build:fast" }, -- markdown preview
 
 	-- latex
@@ -88,13 +89,13 @@ local plugins = {
 	{
 		"Saecki/crates.nvim", -- creates update checker
 		event = { "BufRead Cargo.toml" },
-		requires = { { "nvim-lua/plenary.nvim" } },
+		dependencies = { { "nvim-lua/plenary.nvim" } },
 	},
 
 	-- Node
 	{
 		"vuki656/package-info.nvim",
-		requires = "MunifTanjim/nui.nvim",
+		dependencies = "MunifTanjim/nui.nvim",
 	},
 
 	-- spelling
@@ -111,11 +112,11 @@ local plugins = {
 	-- editing
 	{ "tpope/vim-surround" }, -- surround text with quotes and braces
 	{ "tpope/vim-repeat" }, -- better repeat command
-	{ "bronson/vim-trailing-whitespace", lazy = false, priority = 100 }, -- fix trailing whitespaces
+	{ "bronson/vim-trailing-whitespace", }, -- fix trailing whitespaces
 	{ "andymass/vim-matchup" }, -- better % key matching
 	{ "farmergreg/vim-lastplace" }, -- remember last cursor position
 	{ "windwp/nvim-ts-autotag" }, -- auto close html tags
-	{ "danymat/neogen", requires = "nvim-treesitter/nvim-treesitter" }, -- generate comment templates
+	{ "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter" }, -- generate comment templates
 	{ "Pocco81/auto-save.nvim" }, -- save buffers automatically
 	{ "chentoast/marks.nvim" }, -- display jump marks
 	{ "debugloop/telescope-undo.nvim" }, -- search undo tree
@@ -130,10 +131,10 @@ local plugins = {
 	{ "norcalli/nvim-colorizer.lua" }, -- colorize color descriptions
 	{ "declancm/cinnamon.nvim" }, -- smooth scrolling
 	{ "folke/which-key.nvim" }, -- automatic key cheat sheet
-	{ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }, -- diagnostics box
-	{ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }, -- TODO marks overview
+	{ "folke/trouble.nvim", dependencies = "kyazdani42/nvim-web-devicons" }, -- diagnostics box
+	{ "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" }, -- TODO marks overview
 	{ "simrat39/symbols-outline.nvim" }, -- shows file structure
-	{ "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" }, -- file bread crumbs
+	{ "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
 }
 
 local opts = {

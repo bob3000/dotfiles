@@ -2,6 +2,7 @@ require "user.impatient"
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
+-- plugin config
 require "user.autocommands"
 require "user.colorscheme"
 require "user.cmp"
