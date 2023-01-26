@@ -47,6 +47,7 @@ alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
 alias d "kitty +kitten diff"
 alias emoji "kitty +kitten unicode_input"
+alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
