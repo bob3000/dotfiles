@@ -76,7 +76,7 @@ local plugins = {
 
 	-- markdown
 	{ "mzlogin/vim-markdown-toc" }, -- generates Table of Contents
-  -- requires "luautf8"
+	-- requires "luautf8"
 	{ "jakewvincent/mkdnflow.nvim" }, -- wiki style md link navigation
 	{ "toppair/peek.nvim", build = "deno task --quiet build:fast" }, -- markdown preview
 
@@ -111,7 +111,11 @@ local plugins = {
 	-- editing
 	{ "tpope/vim-surround" }, -- surround text with quotes and braces
 	{ "tpope/vim-repeat" }, -- better repeat command
-	{ "bronson/vim-trailing-whitespace", event = "VeryLazy" }, -- fix trailing whitespaces
+	{
+		"bronson/vim-trailing-whitespace",
+		event = "VeryLazy",
+		version = "907174052a504e60e9b915f5c083ee5f6e067080", -- https://github.com/bronson/vim-trailing-whitespace/issues/26
+	}, -- fix trailing whitespaces
 	{ "andymass/vim-matchup" }, -- better % key matching
 	{ "farmergreg/vim-lastplace" }, -- remember last cursor position
 	{ "windwp/nvim-ts-autotag" }, -- auto close html tags
