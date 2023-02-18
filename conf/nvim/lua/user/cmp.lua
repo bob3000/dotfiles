@@ -53,8 +53,10 @@ cmp.setup({
 		if vim.api.nvim_get_mode().mode == "c" then
 			return true
 		else
+      local buftype = vim.api.nvim_buf_get_option(0, "buftype")
 			return not context.in_treesitter_capture("comment")
 				and not context.in_syntax_group("Comment")
+        and not buftype == "prompt"
 				and has_words_before()
 		end
 	end,
