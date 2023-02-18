@@ -10,7 +10,7 @@ project.setup({
       update_root = true
     },
 	manual_mode = false,
-	silent_chdir = false,
+	silent_chdir = true,
 
 	-- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
 	detection_methods = { "pattern" },
