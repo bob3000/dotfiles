@@ -30,6 +30,8 @@ set FZF_CTRL_T_OPTS '--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is 
 set FZF_ALT_C_COMMAND 'fd -t d . $HOME'
 set FZF_ALT_C_OPTS '--preview "exa -la {}"'
 
+set -x NEOVIDE_MULTIGRID true
+
 # man colors
 set -g man_blink -o red
 set -g man_bold -o green
