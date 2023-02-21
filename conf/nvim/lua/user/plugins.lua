@@ -72,6 +72,7 @@ local plugins = {
 	{ "rcarriga/nvim-dap-ui" }, -- Debugger UI
 	{ "mfussenegger/nvim-dap-python", dependencies = { "mfussenegger/nvim-dap" } }, -- Python debugger integration
 	{ "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } }, -- JS / TS debugger integration
+	{ "microsoft/vscode-js-debug", version = "v1.74.1", build = "npm install --legacy-peer-deps && npm run compile" }, -- javascript debugger
 	{ "leoluz/nvim-dap-go" }, -- Go debugger integration
 
 	-- markdown
