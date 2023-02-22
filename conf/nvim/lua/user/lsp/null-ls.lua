@@ -19,6 +19,7 @@ null_ls.setup({
 		diagnostics.codespell,
 		diagnostics.cspell,
 		diagnostics.flake8,
+		diagnostics.markdownlint,
 		formatting.prettier.with({
 			extra_filetypes = { "toml" },
 		}),
