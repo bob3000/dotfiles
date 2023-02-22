@@ -10,7 +10,6 @@ local servers = {
 	"gopls",
 	"html",
 	"jsonls",
-	"marksman",
 	"pyright",
 	"sqlls",
 	"lua_ls",
