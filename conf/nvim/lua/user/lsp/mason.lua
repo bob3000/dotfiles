@@ -16,10 +16,10 @@ local servers = {
 	"svelte",
 	"tailwindcss",
 	"terraformls",
-	"texlab",
+	-- "texlab",
 	"tsserver",
 	"yamlls",
-	"zls",
+	-- "zls",
 }
 
 local settings = {
