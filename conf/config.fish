@@ -22,6 +22,7 @@ set GOPATH $HOME/.go
 set PATH "$GOPATH/bin:$PATH"
 set PATH "$HOME/.cargo/bin:$PATH"
 set PATH "$HOME/.local/bin:$PATH"
+# set PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # make vim fzf plugin use ripgrep
 set FZF_DEFAULT_COMMAND 'rga --files'
