@@ -64,6 +64,7 @@ vim.g.edge_dim_inactive_windows = true
 vim.g.sonokai_dim_inactive_windows = true
 
 vim.g.extra_whitespace_ignored_filetypes = {
+  "nofile",
 	"No Name",
 	"Outline",
 	"TelescopePrompt",
@@ -71,11 +72,11 @@ vim.g.extra_whitespace_ignored_filetypes = {
 	"WhichKey",
 	"alpha",
 	"help",
+	"lazy",
 	"lspinfo",
 	"markdown",
 	"mason",
 	"null-ls-info",
-	"lazy",
 	"quickfix",
 	"toggleterm",
 }
