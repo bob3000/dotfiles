@@ -51,7 +51,72 @@ M.setup = function()
 	})
 end
 
+local function attach_keymaps(_, bufnr)
+  local keymap = vim.keymap
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+	keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+	keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+	keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+	-- keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+	-- keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	-- keymap.set("n", "<space>wl", function()
+	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	-- end, bufopts)
+
+	local which_key_ok, which_key = pcall(require, "which-key")
+	if which_key_ok then
+		local whichkey_opts = {
+			mode = "n", -- NORMAL mode
+			prefix = "<leader>",
+			buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+			silent = true, -- use `silent` when creating keymaps
+			noremap = true, -- use `noremap` when creating keymaps
+			nowait = true, -- use `nowait` when creating keymaps
+		}
+
+		local mappings = {
+			l = {
+				name = "LSP",
+				a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+				D = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Definitions" },
+				W = {
+					"<cmd>FixWhitespace<CR>",
+					"Fix Whitespace",
+				},
+				f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+				i = { "<cmd>LspInfo<cr>", "Info" },
+				I = { "<cmd>Mason<cr>", "Mason Info" },
+				j = {
+					vim.diagnostic.goto_next,
+					"Next Diagnostic",
+				},
+				k = {
+					vim.diagnostic.goto_prev,
+					"Prev Diagnostic",
+				},
+				l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+				q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
+				r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+				S = {
+					"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+					"Workspace Symbols",
+				},
+				e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
+			},
+		}
+		whichkey_opts.buffer = bufnr
+		which_key.register(mappings, whichkey_opts)
+	end
+end
+
 M.on_attach = function(client, bufnr)
+	attach_keymaps(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
@@ -60,13 +125,13 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	local status_ok, illuminate = pcall(require, "illuminate")
-	if status_ok then
+	local illuminate_ok, illuminate = pcall(require, "illuminate")
+	if illuminate_ok then
 		illuminate.on_attach(client)
 	end
 
-	local status_ok, navic = pcall(require, "nvim-navic")
-	if status_ok then
+	local navic_ok, navic = pcall(require, "nvim-navic")
+	if navic_ok then
 		if client.server_capabilities.documentSymbolProvider then
 			navic.attach(client, bufnr)
 		end
