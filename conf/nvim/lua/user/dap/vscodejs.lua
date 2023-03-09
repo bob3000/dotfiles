@@ -7,10 +7,11 @@ M.setup = function(dap)
 	local dap_js_ok, dap_js = pcall(require, "dap-vscode-js")
 	if dap_js_ok then
 		-- look for mocha locally and globally
+    -- TODO: move mocha detection to ftp
 		local mocha = nil
-		if os.execute("which ./node_modules/mocha/bin/mocha.js") == 0 then
+		if os.execute("test -f ./node_modules/mocha/bin/mocha.js") == 0 then
 			mocha = "./node_modules/mocha/bin/mocha.js"
-		elseif os.execute("which mocha") == 0 then
+		elseif os.execute("which mocha 2> /dev/null") == 0 then
 			mocha = io.popen("which mocha"):read("l")
 		end
 
