@@ -52,7 +52,7 @@ M.setup = function()
 end
 
 local function attach_keymaps(_, bufnr)
-  local keymap = vim.keymap
+	local keymap = vim.keymap
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
