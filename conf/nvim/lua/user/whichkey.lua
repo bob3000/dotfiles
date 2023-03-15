@@ -137,7 +137,6 @@ local mappings = {
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
-
 	t = {
 		name = "Terminal",
 		c = { "<cmd>lua _CONFIG_TOGGLE()<cr>", "Config" },
@@ -171,6 +170,7 @@ local mappings = {
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
 		u = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
 		t = { "<cmd>DapTerminate<cr>", "Terminate" },
+		v = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "nvim debug server" },
 	},
 }
 

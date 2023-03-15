@@ -13,6 +13,7 @@ require("user.dap.lldb").setup(dap)
 -- require("user.dap.vscodeff").setup(dap)
 require("user.dap.python").setup(dap)
 require("user.dap.vscodejs").setup(dap)
+require("user.dap.vimkind").setup(dap)
 
 dapui.setup({
 	expand_lines = true,
