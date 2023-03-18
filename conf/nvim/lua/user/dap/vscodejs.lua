@@ -6,15 +6,6 @@ M.setup = function(dap)
 	local lazy_path = vim.fn.glob(vim.fn.stdpath("data") .. "/lazy")
 	local dap_js_ok, dap_js = pcall(require, "dap-vscode-js")
 	if dap_js_ok then
-		-- look for mocha locally and globally
-    -- TODO: move mocha detection to ftp
-		local mocha = nil
-		if os.execute("test -f ./node_modules/mocha/bin/mocha.js") == 0 then
-			mocha = "./node_modules/mocha/bin/mocha.js"
-		elseif os.execute("which mocha 2> /dev/null") == 0 then
-			mocha = io.popen("which mocha"):read("l")
-		end
-
 		dap_js.setup({
 			-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
 			debugger_path = lazy_path .. "/vscode-js-debug", -- Path to vscode-js-debug installation.
@@ -30,10 +21,10 @@ M.setup = function(dap)
 				{
 					type = "pwa-node",
 					request = "launch",
-					name = "Debug Mocha Tests",
+					name = "Node Mocha file",
 					-- trace = true, -- include debugger info
 					runtimeExecutable = "node",
-					runtimeArgs = { mocha, "${file}" },
+					runtimeArgs = { "mocha", "${file}" },
 					rootPath = "${workspaceFolder}",
 					cwd = "${workspaceFolder}",
 					console = "integratedTerminal",
@@ -42,21 +33,50 @@ M.setup = function(dap)
 				{
 					type = "pwa-node",
 					request = "launch",
-					name = "Launch file",
+					name = "Node Launch file",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
 				},
 				{
 					type = "pwa-node",
 					request = "attach",
-					name = "Attach",
+					name = "Node Attach",
 					processId = require("dap.utils").pick_process,
 					cwd = "${workspaceFolder}",
 				},
 				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Deno Attach",
+					processId = require("dap.utils").pick_process,
+					cwd = "${workspaceFolder}",
+					runtimeExecutable = "deno",
+					attachSimplePort = 9229,
+				},
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Deno Launch file",
+					cwd = "${workspaceFolder}",
+					program = "${file}",
+					runtimeExecutable = "deno",
+					runtimeArgs = { "run", "-A", "--inspect-brk", "${file}" },
+					attachSimplePort = 9229,
+				},
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Deno Test file",
+					runtimeExecutable = "deno",
+					cwd = "${workspaceFolder}",
+					program = "${file}",
+					runtimeArgs = { "test", "--inspect-brk" },
+					attachSimplePort = 9229,
+				},
+				{
 					type = "pwa-chrome",
 					request = "launch",
-					name = 'Start Chrome with "localhost"',
+					name = 'Start Chrome on "localhost:3000"',
 					url = "http://localhost:3000",
 					webRoot = "${workspaceFolder}",
 					userDataDir = "${workspaceFolder}/.vscode-oss/vscode-chrome-debug-userdatadir",
