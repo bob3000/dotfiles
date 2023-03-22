@@ -67,7 +67,7 @@ Open `nvim` and enter the following:
 from inside neovim do:
 
 ```lua
-:MasonInstall isort black flake8 delve codespell shfmt js-debug-adapter firefox-debug-adapter cspell markdownlink
+:MasonInstall isort black flake8 delve codespell shfmt firefox-debug-adapter cspell markdownlint codelldb
 ```
 
 ## Credits

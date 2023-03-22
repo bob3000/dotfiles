@@ -44,6 +44,18 @@ M.setup = function(dap)
 	}
 	dap.configurations.c = dap.configurations.rust
 	dap.configurations.cpp = dap.configurations.rust
+	dap.configurations.zig = {
+		{
+			type = "codelldb",
+			request = "launch",
+			name = "Launch File",
+			program = function()
+				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+			end,
+			args = { "/usr/bin/zig" },
+			cwd = "${workspaceFolder}",
+		},
+	}
 end
 
 return M

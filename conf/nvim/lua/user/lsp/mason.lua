@@ -19,7 +19,7 @@ local servers = {
 	-- "texlab",
 	"tsserver",
 	"yamlls",
-	-- "zls",
+	"zls",
 }
 
 local settings = {
