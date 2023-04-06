@@ -14,6 +14,7 @@ local servers = {
 	"pyright",
 	"sqlls",
 	"lua_ls",
+  "solargraph",
 	"tailwindcss",
 	"terraformls",
 	-- "texlab",
