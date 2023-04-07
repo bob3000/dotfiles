@@ -45,21 +45,21 @@ local kind_icons = {
 }
 
 cmp.setup({
-	-- disable cmp in comments
-	enabled = function()
-		-- disable completion in comments
-		local context = require("cmp.config.context")
-		-- keep command mode completion enabled when cursor is in a comment
-		if vim.api.nvim_get_mode().mode == "c" then
-			return true
-		else
-			local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-			return not context.in_treesitter_capture("comment")
-				and not context.in_syntax_group("Comment")
-				and not buftype ~= "prompt"
-			-- and has_words_before() -- causes trouble, let's see if we need it
-		end
-	end,
+	-- seems to cause more harm than good
+	-- enabled = function()
+	-- 	-- disable completion in comments
+	-- 	local context = require("cmp.config.context")
+	-- 	-- keep command mode completion enabled when cursor is in a comment
+	-- 	if vim.api.nvim_get_mode().mode == "c" then
+	-- 		return true
+	-- 	else
+	-- 		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+	-- 		return not context.in_treesitter_capture("comment")
+	-- 			and not context.in_syntax_group("Comment")
+	-- 			and not buftype ~= "prompt"
+	--        and has_words_before()
+	-- 	end
+	-- end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -69,8 +69,8 @@ cmp.setup({
 		keyword_length = 2,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-		["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
@@ -91,8 +91,8 @@ cmp.setup({
 				buffer = "[Buffer]",
 				path = "[Path]",
 				emoji = "[Emoji]",
-        tmux = "[Tmux]",
-        spell = "[Spell]"
+				tmux = "[Tmux]",
+				spell = "[Spell]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -104,14 +104,14 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "emoji" },
-    { name = "tmux" },
+		{ name = "tmux" },
 		{
 			name = "spell",
 			option = {
 				keep_all_entries = false,
 				enable_in_context = function()
-          local allowed_filetypes = { markdown = true }
-          local filetype = vim.bo.filetype
+					local allowed_filetypes = { markdown = true }
+					local filetype = vim.bo.filetype
 					return allowed_filetypes[filetype] ~= nil
 				end,
 			},
