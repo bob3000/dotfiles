@@ -3,7 +3,7 @@ if not status_ok then
 	return
 end
 
-local lga_status_ok, lga_actions = pcall(require, "telescope-live-grep-args.nvim")
+local lga_status_ok, lga_actions = pcall(require, "telescope-live-grep-args.actions")
 if not lga_status_ok then
 	return
 end
@@ -20,8 +20,8 @@ telescope.setup({
 
 		mappings = {
 			i = {
-				["<Down>"] = actions.cycle_history_next,
-				["<Up>"] = actions.cycle_history_prev,
+				["<C-n>"] = actions.cycle_history_next,
+				["<C-p>"] = actions.cycle_history_prev,
 			},
 		},
 	},
@@ -34,6 +34,7 @@ telescope.setup({
 					["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 				},
 			},
+      theme = "ivy"
 		},
 		undo = {
 			side_by_side = true,
