@@ -43,7 +43,9 @@ local plugins = {
 	{ "hrsh7th/cmp-nvim-lua" }, -- lua lsp completion source
 	{ "hrsh7th/cmp-emoji" }, -- emoji completion source
 	{ "hrsh7th/cmp-cmdline" }, -- command line completion source
-	{ "ray-x/lsp_signature.nvim" },
+	{ "f3fora/cmp-spell" }, -- spell completions
+	{ "andersevenrud/cmp-tmux" }, -- tmux completions
+	{ "ray-x/lsp_signature.nvim" }, -- lsp signature docs
 
 	-- snippets
 	{ "L3MON4D3/LuaSnip" }, --snippet engine

@@ -8,11 +8,11 @@ if not snip_status_ok then
 	return
 end
 
-local has_words_before = function()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+-- local has_words_before = function()
+-- 	unpack = unpack or table.unpack
+-- 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+-- 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+-- end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -53,11 +53,11 @@ cmp.setup({
 		if vim.api.nvim_get_mode().mode == "c" then
 			return true
 		else
-      local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+			local buftype = vim.api.nvim_buf_get_option(0, "buftype")
 			return not context.in_treesitter_capture("comment")
 				and not context.in_syntax_group("Comment")
-        and not buftype ~= "prompt"
-				and has_words_before()
+				and not buftype ~= "prompt"
+			-- and has_words_before() -- causes trouble, let's see if we need it
 		end
 	end,
 	snippet = {
@@ -86,11 +86,13 @@ cmp.setup({
 			vim_item.kind = kind_icons[vim_item.kind]
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
-				nvim_lua = "[LSP_LUA]",
+				nvim_lua = "[LSP_Lua]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 				emoji = "[Emoji]",
+        tmux = "[Tmux]",
+        spell = "[Spell]"
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -102,6 +104,18 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "emoji" },
+    { name = "tmux" },
+		{
+			name = "spell",
+			option = {
+				keep_all_entries = false,
+				enable_in_context = function()
+          local allowed_filetypes = { markdown = true }
+          local filetype = vim.bo.filetype
+					return allowed_filetypes[filetype] ~= nil
+				end,
+			},
+		},
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
