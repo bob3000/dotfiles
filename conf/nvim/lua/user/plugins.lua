@@ -48,7 +48,7 @@ local plugins = {
 	{ "ray-x/lsp_signature.nvim" }, -- lsp signature docs
 
 	-- snippets
-	{ "L3MON4D3/LuaSnip" }, --snippet engine
+	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, --snippet engine
 	{ "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
 
 	-- LSP

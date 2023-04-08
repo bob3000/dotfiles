@@ -1,6 +1,6 @@
 require "user.options"
-require "user.keymaps"
 require "user.plugins"
+require "user.keymaps"
 -- plugin config
 require "user.autocommands"
 require "user.colorscheme"
