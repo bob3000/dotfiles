@@ -58,6 +58,7 @@ local plugins = {
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
 	{ "RRethy/vim-illuminate" }, -- word group highlighter
 	{ "b0o/schemastore.nvim" }, -- json schema store source
+	{ "j-hui/fidget.nvim" }, -- language server status display
 
 	-- Telescope
 	{ "nvim-telescope/telescope.nvim" }, -- fuzzy finder

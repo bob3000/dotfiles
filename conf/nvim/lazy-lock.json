@@ -19,6 +19,7 @@
   "crates.nvim": { "branch": "main", "commit": "1d4bb1e7a0fe8bae3f97061be5fbf6f9081a27e2" },
   "edge": { "branch": "master", "commit": "bdebafb8229403a1e138344802b6817b1cf660e8" },
   "everforest": { "branch": "master", "commit": "3e259a9a606778cd9181ecb65301ec92af8a1681" },
+  "fidget.nvim": { "branch": "main", "commit": "0ba1e16d07627532b6cae915cc992ecac249fb97" },
   "friendly-snippets": { "branch": "main", "commit": "8d91ba2dc2421a54981115f61b914974f938fa77" },
   "gitsigns.nvim": { "branch": "main", "commit": "372d5cb485f2062ac74abc5b33054abac21d8b58" },
   "gruvbox-material": { "branch": "master", "commit": "a6c5f652788b36c6ff2a0fdbefa271cb46f8f5e7" },
