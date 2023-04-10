@@ -127,8 +127,6 @@ local plugins = {
 	{ "Pocco81/auto-save.nvim" }, -- save buffers automatically
 	{ "chentoast/marks.nvim" }, -- display jump marks
 	{ "debugloop/telescope-undo.nvim" }, -- search undo tree
-	-- TODO: remove editorconfig when nvim 0.9 is released
-	{ "gpanders/editorconfig.nvim" }, -- read editorconfig files
 
 	-- search / replace
 	{ "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
