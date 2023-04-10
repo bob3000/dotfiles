@@ -51,7 +51,7 @@ M.setup = function()
 	})
 end
 
-local function attach_keymaps(_, bufnr)
+M.attach_keymaps = function(_, bufnr)
 	local keymap = vim.keymap
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -110,13 +110,16 @@ local function attach_keymaps(_, bufnr)
 				e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
 			},
 		}
-		whichkey_opts.buffer = bufnr
+
+    if bufnr ~= nil then
+      whichkey_opts.buffer = bufnr
+    end
 		which_key.register(mappings, whichkey_opts)
 	end
 end
 
 M.on_attach = function(client, bufnr)
-	attach_keymaps(client, bufnr)
+	M.attach_keymaps(client, bufnr)
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
