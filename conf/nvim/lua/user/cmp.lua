@@ -91,7 +91,6 @@ cmp.setup({
 				buffer = "[Buffer]",
 				path = "[Path]",
 				emoji = "[Emoji]",
-				tmux = "[Tmux]",
 				spell = "[Spell]",
 			})[entry.source.name]
 			return vim_item
@@ -104,7 +103,6 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "emoji" },
-		{ name = "tmux" },
 		{
 			name = "spell",
 			option = {

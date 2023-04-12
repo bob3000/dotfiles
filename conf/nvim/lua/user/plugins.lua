@@ -44,7 +44,6 @@ local plugins = {
 	{ "hrsh7th/cmp-emoji" }, -- emoji completion source
 	{ "hrsh7th/cmp-cmdline" }, -- command line completion source
 	{ "f3fora/cmp-spell" }, -- spell completions
-	{ "andersevenrud/cmp-tmux" }, -- tmux completions
 	{ "ray-x/lsp_signature.nvim" }, -- lsp signature docs
 
 	-- snippets
