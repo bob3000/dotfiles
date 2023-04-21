@@ -10,11 +10,17 @@ M.setup = function(dap)
     venvPath = io.popen("poetry env info --path"):read("l")
   end
 
-  -- input module name to debug
-  local modName = ""
-  local function moduleName()
-    return vim.fn.input("module name: ")
+  local function dirname()
+    local cwd = vim.fn.getcwd()
+    local path_table = vim.fn.split(cwd, "/")
+    return path_table[#path_table]
   end
+
+  -- input module name to debug
+  -- local modName = ""
+  -- local function moduleName()
+  --   return vim.fn.input("module name: ")
+  -- end
 
 	dap.configurations.python = {
 		{
@@ -28,13 +34,13 @@ M.setup = function(dap)
 		},
 		{
 			name = "Poetry module",
-      module = moduleName,
+      module = dirname(),
 			type = "python",
 			request = "launch",
       python = venvPath .. "/bin/python",
 			reAttach = true,
 			cwd = "${workspaceFolder}",
-			args = { "poetry", "run", modName },
+			-- args = { "poetry", "run", modName },
 		},
 	}
 end
