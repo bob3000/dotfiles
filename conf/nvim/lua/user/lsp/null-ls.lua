@@ -29,7 +29,7 @@ null_ls.setup({
 		formatting.prettier.with({
 			extra_filetypes = { "toml" },
 		}),
-		formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.black.with({ extra_args = { "--fast", "--line-length", "79" } }),
 		formatting.codespell.with({
 			extra_args = { "--skip", "*.latex,*.md" },
 		}),
