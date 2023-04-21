@@ -17,7 +17,6 @@ local function try_setup(module, method, ...)
 	end
 end
 
-try_setup("auto-save", "setup", {})
 try_setup("neogen", "setup", {})
 try_setup("spectre", "setup", {})
 try_setup("colorizer", "setup", {})
@@ -30,7 +29,6 @@ try_setup("nvim-ts-autotag", "setup", {})
 try_setup("crates", "setup", {})
 try_setup("dap-python", "setup", { "python", {} })
 try_setup("lsp_signature", "setup", {})
-try_setup("fidget", "setup", {})
 try_setup("dap-go", "setup", {})
 try_setup("texmagic", "setup", {})
 try_setup("package-info", "setup", { { package_manager = "npm" } })

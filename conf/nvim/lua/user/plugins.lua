@@ -57,7 +57,6 @@ local plugins = {
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
 	{ "RRethy/vim-illuminate" }, -- word group highlighter
 	{ "b0o/schemastore.nvim" }, -- json schema store source
-	{ "j-hui/fidget.nvim" }, -- language server status display
 
 	-- Telescope
 	{ "nvim-telescope/telescope.nvim" }, -- fuzzy finder
@@ -124,7 +123,6 @@ local plugins = {
 	{ "farmergreg/vim-lastplace" }, -- remember last cursor position
 	{ "windwp/nvim-ts-autotag" }, -- auto close html tags
 	{ "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter" }, -- generate comment templates
-	{ "Pocco81/auto-save.nvim" }, -- save buffers automatically
 	{ "chentoast/marks.nvim" }, -- display jump marks
 	{ "debugloop/telescope-undo.nvim" }, -- search undo tree
 
