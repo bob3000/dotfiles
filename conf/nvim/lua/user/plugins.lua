@@ -60,7 +60,7 @@ local plugins = {
 
 	-- Telescope
 	{ "nvim-telescope/telescope.nvim" }, -- fuzzy finder
-	{ "nvim-telescope/telescope-media-files.nvim", enabled = false }, -- does not work ATM
+	{ "nvim-telescope/telescope-media-files.nvim" }, -- preview media files
 
 	-- Treesitter
 	{ "nvim-treesitter/nvim-treesitter" }, -- enables treesitter
