@@ -7,7 +7,7 @@ M.setup = function(dap)
 
   local venvPath = ""
   if os.execute("test -f pyproject.toml") == 0 then
-    venvPath = io.popen("poetry env info --path"):read("l")
+    venvPath = io.popen("poetry env info --path"):read("l") or ""
   end
 
   local function dirname()
