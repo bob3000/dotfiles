@@ -5,7 +5,12 @@ end
 
 local handlers_ok, handlers = pcall(require, "user.lsp.handlers")
 if not handlers_ok then
-  vim.notify("could not attach key maps", vim.log.levels.ERROR)
+	vim.notify("could not attach key maps", vim.log.levels.ERROR)
+end
+
+local cspell_ok, cspell = pcall(require, "cspell")
+if not cspell_ok then
+	vim.notify("could not load cspell null-ls module", vim.log.levels.ERROR)
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -17,13 +22,18 @@ local code_actions = null_ls.builtins.code_actions
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 null_ls.setup({
-  on_attach = handlers.attach_keymaps,
+	on_attach = handlers.attach_keymaps,
 	debug = false,
 	sources = {
-		code_actions.cspell,
+		cspell.code_actions,
 		code_actions.gitsigns,
 		diagnostics.codespell,
-		diagnostics.cspell,
+		cspell.diagnostics.with({
+			diagnostic_config = {
+				underline = true,
+				signs = false,
+			},
+		}),
 		diagnostics.flake8,
 		diagnostics.markdownlint,
 		formatting.prettier.with({
