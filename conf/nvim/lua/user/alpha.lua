@@ -23,7 +23,7 @@ dashboard.section.buttons.val = {
 }
 local function footer()
   return {
-    "   ꧁༒☬★彡འ彡★☬༒꧂",
+    "    ꧁༒☬★彡འ彡★☬༒꧂",
     [[    °           °]],
     [[     °  °   °  °]],
     [[          °]],
