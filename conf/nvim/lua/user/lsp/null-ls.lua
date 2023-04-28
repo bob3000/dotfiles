@@ -27,7 +27,12 @@ null_ls.setup({
 	sources = {
 		cspell.code_actions,
 		code_actions.gitsigns,
-		diagnostics.codespell,
+		diagnostics.codespell.with({
+			diagnostic_config = {
+				underline = true,
+				signs = false,
+			},
+		}),
 		cspell.diagnostics.with({
 			diagnostic_config = {
 				underline = true,
