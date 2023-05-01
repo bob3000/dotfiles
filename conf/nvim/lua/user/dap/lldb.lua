@@ -18,22 +18,18 @@ M.setup = function(dap)
 	}
 	dap.configurations.rust = {
 		{
-			name = "Launch file",
+			name = "Launch main",
 			type = "codelldb",
 			request = "launch",
-			program = function()
-				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-			end,
-			cwd = "${workspaceFolder}",
+			program = vim.fn.getcwd() .. "/target/debug/" .. vim.fn.expand("%:p:h:h:t"),
+      cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 		},
 		{
-			name = "Launch file with args",
+			name = "Launch main with args",
 			type = "codelldb",
 			request = "launch",
-			program = function()
-				return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-			end,
+			program = vim.fn.getcwd() .. "/target/debug/" .. vim.fn.expand("%:p:h:h:t"),
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 			args = function()
