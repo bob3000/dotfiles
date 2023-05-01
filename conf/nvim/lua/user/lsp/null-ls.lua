@@ -31,6 +31,8 @@ null_ls.setup({
 			diagnostic_config = {
 				underline = true,
 				signs = false,
+        -- NOT WORKING: won't expand tilde
+        -- extra_args = { "--config", "~/.config/codespell/codespell.ini" },
 			},
 		}),
 		cspell.diagnostics.with({
@@ -45,9 +47,6 @@ null_ls.setup({
 			extra_filetypes = { "toml" },
 		}),
 		formatting.black.with({ extra_args = { "--fast", "--line-length", "79" } }),
-		formatting.codespell.with({
-			extra_args = { "--skip", "*.latex,*.md" },
-		}),
 		formatting.isort,
 		formatting.stylua,
 		formatting.npm_groovy_lint,
