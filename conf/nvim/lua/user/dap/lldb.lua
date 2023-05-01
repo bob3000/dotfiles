@@ -21,7 +21,10 @@ M.setup = function(dap)
 			name = "Launch main",
 			type = "codelldb",
 			request = "launch",
-			program = vim.fn.getcwd() .. "/target/debug/" .. vim.fn.expand("%:p:h:h:t"),
+			program = function()
+        local executable = vim.fn.input("Executable: ")
+        return vim.fn.getcwd() .. "/target/debug/" .. executable
+      end,
       cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 		},
@@ -29,7 +32,10 @@ M.setup = function(dap)
 			name = "Launch main with args",
 			type = "codelldb",
 			request = "launch",
-			program = vim.fn.getcwd() .. "/target/debug/" .. vim.fn.expand("%:p:h:h:t"),
+			program = function()
+        local executable = vim.fn.input("Executable: ")
+        return vim.fn.getcwd() .. "/target/debug/" .. executable
+      end,
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 			args = function()
