@@ -18,7 +18,7 @@ disabled = false
 disabled = false
 
 [shell]
-fish_indicator = ''
+fish_indicator = '🐠'
 powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
