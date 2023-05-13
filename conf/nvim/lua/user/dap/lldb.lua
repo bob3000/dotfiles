@@ -18,14 +18,33 @@ M.setup = function(dap)
 	}
 	dap.configurations.rust = {
 		{
+			name = "Launch tests",
+			type = "codelldb",
+			request = "launch",
+			program = function()
+				local command =
+					"ls -1t --indicator-style=slash $(cargo test --no-run --message-format=json | jq -r 'select(.profile.test == true) | .filenames[]') | head -n1"
+				local handle = io.popen(command)
+				if handle ~= nil then
+					local result = handle:read("*a")
+					handle:close()
+					return vim.trim(result)
+				end
+				vim.notify("could not find test to debug")
+			end,
+			cwd = "${workspaceFolder}",
+			stopOnEntry = false,
+		},
+		{
 			name = "Launch main",
 			type = "codelldb",
 			request = "launch",
 			program = function()
-        local executable = vim.fn.input("Executable: ")
-        return vim.fn.getcwd() .. "/target/debug/" .. executable
-      end,
-      cwd = "${workspaceFolder}",
+				local exe = vim.fs.basename(vim.fn.getcwd())
+				vim.notify(exe)
+				return "${workspaceFolder}/target/debug/" .. exe
+			end,
+			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 		},
 		{
@@ -33,9 +52,10 @@ M.setup = function(dap)
 			type = "codelldb",
 			request = "launch",
 			program = function()
-        local executable = vim.fn.input("Executable: ")
-        return vim.fn.getcwd() .. "/target/debug/" .. executable
-      end,
+				local exe = vim.fs.basename(vim.fn.getcwd())
+				vim.notify(exe)
+				return "${workspaceFolder}/target/debug/" .. exe
+			end,
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
 			args = function()
