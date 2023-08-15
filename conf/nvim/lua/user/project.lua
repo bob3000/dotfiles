@@ -18,6 +18,7 @@ project.setup({
 	-- patterns used to detect root dir, when **"pattern"** is in detection_methods
 	patterns = {
     "build.zig",
+    "meson.build",
 		"Makefile",
 		"package.json",
 		"Cargo.toml",
