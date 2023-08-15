@@ -80,7 +80,6 @@ local opts = {
 
 local mappings = {
 	[";"] = { "<cmd>Alpha<cr>", "Alpha" },
-	["a"] = { "<cmd>ASToggle<CR>", "Autosave Toggle" },
 	["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
