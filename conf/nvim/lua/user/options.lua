@@ -36,10 +36,10 @@ vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the lef
 vim.opt.guifont = "JetBrains Mono:h15" -- the font used in graphical neovim applications
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20" -- cursor style
 vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
-vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.iskeyword:append("-") -- treats words with `-` as single words
-vim.opt.formatoptions:remove({ "c", "r", "o" }) -- This is a sequence of letters which describes how automatic formatting is to be done
+vim.opt.shortmess:append "c" -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.whichwrap:append "<,>,[,],h,l" -- keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.iskeyword:append "-" -- treats words with `-` as single words
+vim.opt.formatoptions:remove { "c", "r", "o" } -- This is a sequence of letters which describes how automatic formatting is to be done
 vim.opt.linebreak = true -- wrap long lines at a breakat character
 vim.opt.colorcolumn = "80,120" -- display a visual column at a fixed number of characters
 vim.opt.relativenumber = true -- use line numbers relative to the cursor
@@ -54,7 +54,7 @@ vim.opt.list = true -- show some invisible characters
 
 local status_ok, _ = pcall(require, "nvim-navic")
 if status_ok then
-	vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
 vim.g.gruvbox_material_palette = "original"
@@ -65,18 +65,18 @@ vim.g.sonokai_dim_inactive_windows = true
 
 vim.g.extra_whitespace_ignored_filetypes = {
   "nofile",
-	"No Name",
-	"Outline",
-	"TelescopePrompt",
-	"Trouble",
-	"WhichKey",
-	"alpha",
-	"help",
-	"lazy",
-	"lspinfo",
-	"markdown",
-	"mason",
-	"null-ls-info",
-	"quickfix",
-	"toggleterm",
+  "No Name",
+  "Outline",
+  "TelescopePrompt",
+  "Trouble",
+  "WhichKey",
+  "alpha",
+  "help",
+  "lazy",
+  "lspinfo",
+  "markdown",
+  "mason",
+  "null-ls-info",
+  "quickfix",
+  "toggleterm",
 }
