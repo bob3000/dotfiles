@@ -58,5 +58,6 @@ null_ls.setup {
     formatting.stylua,
     formatting.npm_groovy_lint,
     formatting.shfmt,
+    formatting.uncrustify,
   },
 }
