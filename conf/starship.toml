@@ -5,7 +5,7 @@ right_format = """$time"""
 disabled = false
 format = '🕙 [$time]($style) '
 time_format = '%T'
-utc_time_offset = '+1'
+utc_time_offset = '+0'
 
 [directory]
 truncation_length = 8
