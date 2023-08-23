@@ -110,7 +110,7 @@ local plugins = {
   -- syntax
   { "chr4/nginx.vim" }, -- nginx syntax highlighting
   { "Glench/Vim-Jinja2-Syntax" }, -- Jinja2 syntax highlighting
-  { "mrjones2014/nvim-ts-rainbow" }, -- Rainbow colored bracket pairs
+  { "HiPhish/nvim-ts-rainbow2" }, -- Rainbow colored bracket pairs
 
   -- editing
   { "tpope/vim-surround" }, -- surround text with quotes and braces
