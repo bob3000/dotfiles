@@ -23,7 +23,6 @@ configs.setup {
     "gomod",
     "graphql",
     "hcl",
-    "help",
     "html",
     "java",
     "javascript",
@@ -48,6 +47,7 @@ configs.setup {
     "tsx",
     "typescript",
     "vim",
+    "vimdoc",
     "yaml",
     "zig",
   }, -- put the language you want in this array
