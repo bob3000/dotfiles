@@ -25,7 +25,7 @@ export FZF_DEFAULT_COMMAND='rga --files'
 export FZF_CTRL_T_COMMAND='fd . $HOME'
 export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || bat --color always {}"'
 export FZF_ALT_C_COMMAND='fd -t d . $HOME'
-export FZF_ALT_C_OPTS='--preview "exa -la {}"'
+export FZF_ALT_C_OPTS='--preview "eza -la {}"'
 
 # key bindings
 ## make C-u behave like in bash
@@ -33,8 +33,8 @@ bindkey '^U' backward-kill-line
 
 # convenience
 alias ls='ls --color'
-alias ll='exa -l'
-alias la='exa -a'
+alias ll='eza -l'
+alias la='eza -a'
 alias git='LANG=en_US git'
 alias tmux-cwd='tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias sudo='sudo -v; sudo '

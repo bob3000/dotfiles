@@ -22,6 +22,7 @@ set GOPATH $HOME/.go
 set PATH "$GOPATH/bin:$PATH"
 set PATH "$HOME/.cargo/bin:$PATH"
 set PATH "$HOME/.local/bin:$PATH"
+set PATH "$HOME/.dotnet/tools:$PATH"
 # set PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # make vim fzf plugin use ripgrep
@@ -29,7 +30,7 @@ set FZF_DEFAULT_COMMAND 'rga --files'
 set FZF_CTRL_T_COMMAND 'fd . $HOME'
 set FZF_CTRL_T_OPTS '--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || bat --color always {}"'
 set FZF_ALT_C_COMMAND 'fd -t d . $HOME'
-set FZF_ALT_C_OPTS '--preview "exa -la {}"'
+set FZF_ALT_C_OPTS '--preview "eza -la {}"'
 
 set -x NEOVIDE_MULTIGRID true
 
@@ -41,10 +42,10 @@ set -g man_underline -u 93a1a1
 
 # convenience
 alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
-alias l 'exa --icons'
-alias ll 'exa -l --icons'
-alias lt 'exa --tree'
-alias la 'exa -a --icons'
+alias l 'eza --icons'
+alias ll 'eza -l --icons'
+alias lt 'eza --tree'
+alias la 'eza -a --icons'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
