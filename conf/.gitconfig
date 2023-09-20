@@ -1,35 +1,37 @@
 [alias]
-    diff = diff --word-diff
-    mdiff = diff --diff-filter=CMRTUXB
-    merge = merge --no-ff
-    pull = pull --no-ff
-    co = checkout
-    st = status
-    pf = push --force-with-lease
-  	up = pull --rebase --autostash
+  diff = diff --word-diff
+  mdiff = diff --diff-filter=CMRTUXB
+  merge = merge --no-ff
+  pull = pull --no-ff
+  co = checkout
+  st = status
+  pf = push --force-with-lease
+  up = pull --rebase --autostash
+  findcommit = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+  findmessage = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 [core]
-    quotepath = false
-    autocrlf = input
-    pager = delta
-  	hookspath = ~/.git/hooks
-    editor = nvim
+  quotepath = false
+  autocrlf = input
+  pager = delta
+  hookspath = ~/.git/hooks
+  editor = nvim
 [diff]
-    colorMoved = default
+  colorMoved = default
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-    navigate = true
+  navigate = true
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = true
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
 [push]
-    default = tracking
+  default = tracking
 [web]
-    browser = open
+  browser = open
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 [include]
   path = ~/.gitconfig.local
 [filter "lfs"]
@@ -38,8 +40,8 @@
   process = git-lfs filter-process
   required = true
 [gpg]
-	program = gpg
+  program = gpg
 [pull]
-	rebase = true
+  rebase = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
