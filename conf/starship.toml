@@ -30,4 +30,15 @@ symbol = '🔴 '
 # success_symbol = '🟢 '
 format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
 map_symbol = true
+pipestatus = true
+disabled = false
+
+[memory_usage]
+threshold = 80
+disabled = false
+
+[os]
+disabled = true
+
+[git_metrics]
 disabled = false
