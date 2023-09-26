@@ -34,7 +34,7 @@ pipestatus = true
 disabled = false
 
 [memory_usage]
-threshold = 80
+threshold = 95
 disabled = false
 
 [os]
