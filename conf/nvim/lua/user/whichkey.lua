@@ -14,7 +14,7 @@ local setup = {
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     presets = {
-      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
       motions = true, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
       windows = true, -- default bindings on <c-w>
@@ -76,6 +76,26 @@ local opts = {
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
+}
+
+local opts_no_prefix = {
+  mode = "n", -- NORMAL mode
+  prefix = "",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local mappings_no_prefix = {
+  ["<M-c>"] = { "<cmd>DapContinue<cr>", "Continue" },
+  ["<M-h>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
+  ["<M-t>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
+  ["<M-j>"] = { "<cmd>DapStepOver<cr>", "Step Over" },
+  ["<M-l>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
+  ["<M-r>"] = { "<cmd>DapToggleRepl<cr>", "Toggle Repl" },
+  ["<M-b>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
+  ["<M-u>"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
 }
 
 local mappings = {
@@ -176,3 +196,4 @@ local mappings = {
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
+which_key.register(mappings_no_prefix, opts_no_prefix)
