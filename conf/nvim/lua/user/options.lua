@@ -62,6 +62,9 @@ vim.g.gruvbox_material_dim_inactive_windows = true
 vim.g.everforest_dim_inactive_windows = true
 vim.g.edge_dim_inactive_windows = true
 vim.g.sonokai_dim_inactive_windows = true
+if vim.g.neovide then
+  vim.g.neovide_input_macos_alt_is_meta = true
+end
 
 vim.g.extra_whitespace_ignored_filetypes = {
   "nofile",
