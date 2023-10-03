@@ -59,9 +59,18 @@ end
 
 vim.g.gruvbox_material_palette = "original"
 vim.g.gruvbox_material_dim_inactive_windows = true
+
+vim.g.everforest_palette = "medium"
+vim.g.everforest_enable_italic = true
+vim.g.everforest_ui_contrast = "low"
+vim.g.everforest_show_eob = false
 vim.g.everforest_dim_inactive_windows = true
+vim.g.everforest_float_style = "bright"
+vim.g.everforest_better_performance = true
+
 vim.g.edge_dim_inactive_windows = true
 vim.g.sonokai_dim_inactive_windows = true
+
 if vim.g.neovide then
   vim.g.neovide_input_macos_alt_is_meta = true
 end
