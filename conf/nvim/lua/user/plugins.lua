@@ -139,6 +139,8 @@ local plugins = {
   { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" }, -- TODO marks overview
   { "simrat39/symbols-outline.nvim" }, -- shows file structure
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
+  { "stevearc/dressing.nvim", opts = {} },
+  { "rcarriga/nvim-notify", opts = {} },
 }
 
 local opts = {
