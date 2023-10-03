@@ -2,6 +2,7 @@ local status_ok, project = pcall(require, "project_nvim")
 if not status_ok then
   return
 end
+
 project.setup {
   sync_root_with_cwd = true,
   respect_buf_cwd = true,
@@ -17,14 +18,15 @@ project.setup {
 
   -- patterns used to detect root dir, when **"pattern"** is in detection_methods
   patterns = {
+    ".editorconfig",
+    ".git",
+    "Cargo.toml",
+    "Gemfile",
+    "Makefile",
     "build.zig",
     "meson.build",
-    "Makefile",
     "package.json",
-    "Cargo.toml",
     "pyproject.toml",
-    "Gemfile",
-    ".git",
   },
 }
 
