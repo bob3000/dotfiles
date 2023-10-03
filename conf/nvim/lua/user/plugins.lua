@@ -54,7 +54,7 @@ local plugins = {
   { "neovim/nvim-lspconfig" }, -- enable LSP
   { "williamboman/mason.nvim" }, -- Tool installer
   { "williamboman/mason-lspconfig.nvim" }, -- Language server configurator
-  { "jose-elias-alvarez/null-ls.nvim" }, -- for formatters and linters
+  { "nvimtools/none-ls.nvim" }, -- for formatters and linters
   { "RRethy/vim-illuminate" }, -- word group highlighter
   { "b0o/schemastore.nvim" }, -- json schema store source
   { "davidmh/cspell.nvim" }, -- cspell integration
