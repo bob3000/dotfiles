@@ -17,6 +17,9 @@
   editor = nvim
 [diff]
   colorMoved = default
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -32,6 +35,9 @@
   browser = open
 [merge]
   conflictstyle = diff3
+  tool = nvimdiff
+[mergetool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$BASE\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\"
 [include]
   path = ~/.gitconfig.local
 [filter "lfs"]
