@@ -68,6 +68,7 @@ local plugins = {
 
   -- Git
   { "lewis6991/gitsigns.nvim" }, -- git hunk markers and tools
+  { "akinsho/git-conflict.nvim", version = "*", config = true }, -- merge conflict resolution
 
   -- DAP
   { "mfussenegger/nvim-dap" }, -- enables debugging

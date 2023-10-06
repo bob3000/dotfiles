@@ -50,16 +50,6 @@ function _CONFIG_TOGGLE()
   config:toggle()
 end
 
-local node = Terminal:new { cmd = "node", hidden = true }
-function _NODE_TOGGLE()
-  node:toggle()
-end
-
-local htop = Terminal:new { cmd = "htop", hidden = true }
-function _HTOP_TOGGLE()
-  htop:toggle()
-end
-
 local python = Terminal:new { cmd = "ipython", hidden = true }
 function _PYTHON_TOGGLE()
   python:toggle()

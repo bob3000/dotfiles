@@ -161,8 +161,6 @@ local mappings = {
   t = {
     name = "Terminal",
     c = { "<cmd>lua _CONFIG_TOGGLE()<cr>", "Config" },
-    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
@@ -173,6 +171,7 @@ local mappings = {
     name = "Trouble",
     x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
     w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+    c = { "<cmd>GitConflictListQf<cr>", "Git Conflicts" },
     d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
     l = { "<cmd>TroubleToggle loclist<cr>", "Location List" },
     q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix List" },
