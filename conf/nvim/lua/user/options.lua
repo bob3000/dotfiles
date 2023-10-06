@@ -57,8 +57,29 @@ if status_ok then
   vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
-vim.g.gruvbox_material_palette = "original"
+vim.g.gruvbox_material_palette = "medium"
+vim.g.gruvbox_material_enable_italic = true
+vim.g.gruvbox_material_ui_contrast = "low"
+vim.g.gruvbox_material_show_eob = false
 vim.g.gruvbox_material_dim_inactive_windows = true
+vim.g.gruvbox_material_float_style = "bright"
+vim.g.gruvbox_material_better_performance = true
+
+vim.g.edge_palette = "medium"
+vim.g.edge_enable_italic = true
+vim.g.edge_ui_contrast = "low"
+vim.g.edge_show_eob = false
+vim.g.edge_dim_inactive_windows = true
+vim.g.edge_float_style = "bright"
+vim.g.edge_better_performance = true
+
+vim.g.sonokai_palette = "medium"
+vim.g.sonokai_enable_italic = true
+vim.g.sonokai_ui_contrast = "low"
+vim.g.sonokai_show_eob = false
+vim.g.sonokai_dim_inactive_windows = true
+vim.g.sonokai_float_style = "bright"
+vim.g.sonokai_better_performance = true
 
 vim.g.everforest_palette = "medium"
 vim.g.everforest_enable_italic = true
@@ -67,9 +88,6 @@ vim.g.everforest_show_eob = false
 vim.g.everforest_dim_inactive_windows = true
 vim.g.everforest_float_style = "bright"
 vim.g.everforest_better_performance = true
-
-vim.g.edge_dim_inactive_windows = true
-vim.g.sonokai_dim_inactive_windows = true
 
 if vim.g.neovide then
   vim.g.neovide_input_macos_alt_is_meta = true
