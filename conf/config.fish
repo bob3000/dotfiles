@@ -9,9 +9,9 @@ set fish_greeting
 # fisher install 2m/fish-history-merge
 
 if set -q $SSH_CONNECTION
-    set EDITOR 'vim'
-  else
-    set EDITOR 'nvim'
+    set EDITOR vim
+else
+    set EDITOR nvim
 end
 set LC_ALL en_US.UTF-8
 set LANG en_US.UTF-8
@@ -27,9 +27,9 @@ set PATH "$HOME/.dotnet/tools:$PATH"
 
 # make vim fzf plugin use ripgrep
 set FZF_DEFAULT_COMMAND 'rga --files'
-set FZF_CTRL_T_COMMAND 'fd . $HOME'
+set FZF_CTRL_T_COMMAND 'fd --exclude "Library/*" . $HOME'
 set FZF_CTRL_T_OPTS '--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || bat --color always {}"'
-set FZF_ALT_C_COMMAND 'fd -t d . $HOME'
+set FZF_ALT_C_COMMAND 'fd --exclude "Library/*" -t d . $HOME'
 set FZF_ALT_C_OPTS '--preview "eza -la {}"'
 
 set -x NEOVIDE_MULTIGRID true
@@ -57,26 +57,19 @@ alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
 if status is-interactive
-  # Commands to run in interactive sessions can go here
-  function starship_transient_rprompt_func
-    starship module time
-  end
-  function starship_transient_prompt_func
-    starship module character
-  end
-  starship init fish | source
-  enable_transience
-  fzf_key_bindings
-  fnm env --use-on-cd | source # fast node manager
-  theme_gruvbox dark medium
+    # Commands to run in interactive sessions can go here
+    function starship_transient_rprompt_func
+        starship module time
+    end
+    function starship_transient_prompt_func
+        starship module character
+    end
+    starship init fish | source
+    enable_transience
+    fzf_key_bindings
+    fnm env --use-on-cd | source # fast node manager
+    theme_gruvbox dark medium
 end
 
 # key bindings
-bind \er ranger  # start ranger file manager
-
-switch (uname)
-  case Darwin
-    # source /opt/homebrew/etc/grc.fish
-  case Linux
-    # eval (grc-rs --aliases)
-end
+bind \er ranger # start ranger file manager
