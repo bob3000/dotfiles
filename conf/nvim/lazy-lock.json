@@ -22,7 +22,7 @@
   "friendly-snippets": { "branch": "main", "commit": "43727c2ff84240e55d4069ec3e6158d74cb534b6" },
   "gitsigns.nvim": { "branch": "main", "commit": "2272cf9f0c092e908f892f5b075e6cc2a8d3d07d" },
   "gruvbox-material": { "branch": "master", "commit": "b5f8c6a6c1cda630c53b061b765068a0898d47a3" },
-  "indent-blankline.nvim": { "branch": "master", "commit": "c60e76a638b1d2a4299b9bfc38461cdb02ae8397" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "da789082a43e2bb8930c7be0e265ce37768394d8" },
   "lazy.nvim": { "branch": "main", "commit": "59335c5b9d116f5d3948f833288a89e2a829a005" },
   "lsp_signature.nvim": { "branch": "master", "commit": "bdf3dc7bb03edd25c2173e0e31c2fb122052ed23" },
   "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
