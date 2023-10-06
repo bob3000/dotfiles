@@ -5,9 +5,17 @@ end
 
 local dbg_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/")
 local codelldb_path = dbg_path .. "adapter/codelldb"
-local liblldb_path = dbg_path .. "lldb/lib/liblldb.so"
--- for MacOS use
--- local liblldb_path = dbg_path .. "lldb/lib/liblldb.dylib"
+local liblldb_path = dbg_path .. "lldb/lib/liblldb"
+local this_os = vim.loop.os_uname().sysname;
+
+-- The path in windows is different
+if this_os:find "Windows" then
+  codelldb_path = dbg_path .. "adapter\\codelldb.exe"
+  liblldb_path = dbg_path .. "lldb\\bin\\liblldb.dll"
+else
+  -- The liblldb extension is .so for linux and .dylib for macOS
+  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+end
 
 local opts = {
   mode = "n", -- NORMAL mode
