@@ -142,6 +142,9 @@ local plugins = {
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
   { "stevearc/dressing.nvim", opts = {} },
   { "rcarriga/nvim-notify", opts = {} },
+
+  -- ai
+  { "David-Kunz/gen.nvim" }, -- colorize color descriptions
 }
 
 local opts = {

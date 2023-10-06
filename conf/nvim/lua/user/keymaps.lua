@@ -53,6 +53,9 @@ end
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
+-- invoke LLAMA
+keymap("v", "<leader>]", ":Gen<CR>")
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
