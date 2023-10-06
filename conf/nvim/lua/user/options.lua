@@ -91,6 +91,7 @@ vim.g.everforest_better_performance = true
 
 if vim.g.neovide then
   vim.g.neovide_input_macos_alt_is_meta = true
+  vim.opt.linespace = -1
 end
 
 vim.g.extra_whitespace_ignored_filetypes = {
