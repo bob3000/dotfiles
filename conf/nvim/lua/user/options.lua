@@ -33,7 +33,7 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.guifont = "JetBrains Mono:h15" -- the font used in graphical neovim applications
+vim.opt.guifont = "JetBrains Mono:h13" -- the font used in graphical neovim applications
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20" -- cursor style
 vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.shortmess:append "c" -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
@@ -90,8 +90,16 @@ vim.g.everforest_float_style = "bright"
 vim.g.everforest_better_performance = true
 
 if vim.g.neovide then
-  vim.g.neovide_input_macos_alt_is_meta = true
   vim.opt.linespace = -1
+  vim.g.neovide_input_macos_alt_is_meta = true
+  vim.g.neovide_scroll_animation_length = 1.0
+  vim.g.neovide_underline_automatic_scaling = true
+  vim.g.neovide_scale_factor = 1.0
+  vim.g.neovide_transparency = 1.0
+  vim.g.neovide_hide_mouse_when_typing = true
+  vim.g.neovide_cursor_animation_length = 0.1
+  vim.g.neovide_cursor_trail_size = 0.4
+  vim.g.neovide_cursor_antialiasing = true
 end
 
 vim.g.extra_whitespace_ignored_filetypes = {

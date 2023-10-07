@@ -20,7 +20,6 @@ end
 try_setup("neogen", "setup", {})
 try_setup("spectre", "setup", {})
 try_setup("colorizer", "setup", {})
-try_setup("cinnamon", "setup", {})
 try_setup("symbols-outline", "setup", { { auto_close = true } })
 try_setup("marks", "setup", {})
 try_setup("neogen", "setup", { { snippet_engine = "luasnip" } })
@@ -33,3 +32,6 @@ try_setup("dap-go", "setup", {})
 try_setup("texmagic", "setup", {})
 try_setup("dressing", "setup", {})
 try_setup("package-info", "setup", { { package_manager = "npm" } })
+if vim.fn.has('gui_running') ~= 1 then
+  try_setup("cinnamon", "setup", {})
+end
