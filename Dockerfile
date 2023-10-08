@@ -9,8 +9,20 @@ RUN pacman -S --noconfirm zsh \
   && chown -R ${IMG_USR}:${IMG_USR} /home/${IMG_USR}
 USER ${IMG_USR}
 RUN curl --proto '=https' -y --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl -fsSL https://fnm.vercel.app/install | bash
 RUN ./link_files.sh
 WORKDIR /home/${IMG_USR}
-RUN git clone https://github.com/bob3000/neovim-config.git .config/nvim
+RUN git clone https://github.com/bob3000/neovim-config.git .config/nvim \
+   && nvim --headless -c 'quitall' \
+   && nvim --headless -c 'TSUpdateSync' +qa \
+   && nvim --headless -c 'MasonUpdate' -c 'sleep 20' +qa
+RUN fish -c "fish_add_path -U -a /home/bob/.local/share/fnm \
+  && fisher install decors/fish-colored-man \
+  edc/bass \
+  jomik/fish-gruvbox \
+  jorgebucaran/autopair.fish \
+  jorgebucaran/nvm.fish \
+  jorgebucaran/replay.fish \
+  2m/fish-history-merge"
 ENTRYPOINT ["fish"]
 # CMD [ "-c", "neofetch" ]
