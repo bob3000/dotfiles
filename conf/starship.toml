@@ -10,6 +10,8 @@ utc_time_offset = '+0'
 [directory]
 truncation_length = 8
 truncation_symbol = '…/'
+fish_style_pwd_dir_length = 2
+truncate_to_repo = false
 
 [sudo]
 disabled = false
