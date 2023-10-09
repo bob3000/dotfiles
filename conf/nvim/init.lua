@@ -4,7 +4,6 @@ require "user.keymaps" -- has to run after plugins for some keymaps to work
 -- plugin config
 require "user.autocommands"
 require "user.colorscheme"
-require "user.cmp"
 require "user.telescope"
 require "user.gitsigns"
 require "user.gitconflict"
@@ -22,6 +21,8 @@ require "user.indentline"
 require "user.alpha"
 require "user.lsp"
 require "user.dap"
+require "user.cratesnvim" -- put before cmp and after lsp
+require "user.cmp"
 require "user.rusttools"
 require "user.whichkey"
 require "user.peeknvim"
