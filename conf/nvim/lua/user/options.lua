@@ -89,19 +89,6 @@ vim.g.everforest_dim_inactive_windows = true
 vim.g.everforest_float_style = "bright"
 vim.g.everforest_better_performance = true
 
-if vim.g.neovide then
-  vim.opt.linespace = -1
-  vim.g.neovide_input_macos_alt_is_meta = true
-  vim.g.neovide_scroll_animation_length = 1.0
-  vim.g.neovide_underline_automatic_scaling = true
-  vim.g.neovide_scale_factor = 1.0
-  vim.g.neovide_transparency = 1.0
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_animation_length = 0.1
-  vim.g.neovide_cursor_trail_size = 0.4
-  vim.g.neovide_cursor_antialiasing = true
-end
-
 vim.g.extra_whitespace_ignored_filetypes = {
   "nofile",
   "No Name",
