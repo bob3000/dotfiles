@@ -22,9 +22,9 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # make vim fzf plugin use ripgrep
 export FZF_DEFAULT_COMMAND='rga --files'
-export FZF_CTRL_T_COMMAND='fd . $HOME'
+export FZF_CTRL_T_COMMAND='fd --exclude "Library/*" . $HOME'
 export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || bat --color always {}"'
-export FZF_ALT_C_COMMAND='fd -t d . $HOME'
+export FZF_ALT_C_COMMAND='fd --exclude "Library/*" -t d . $HOME'
 export FZF_ALT_C_OPTS='--preview "eza -la {}"'
 
 # key bindings
