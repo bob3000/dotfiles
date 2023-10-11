@@ -31,6 +31,7 @@ try_setup("dap-go", "setup", {})
 try_setup("texmagic", "setup", {})
 try_setup("dressing", "setup", {})
 try_setup("package-info", "setup", { { package_manager = "npm" } })
+try_setup("refactoring", "setup", {})
 if vim.fn.has('gui_running') ~= 1 then
   try_setup("cinnamon", "setup", {})
 end

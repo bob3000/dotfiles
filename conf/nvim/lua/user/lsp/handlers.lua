@@ -101,6 +101,10 @@ M.attach_keymaps = function(_, bufnr)
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+        R = {
+          "<Esc><cmd>lua require('refactoring').select_refactor()<cr>",
+          "Refactor",
+        },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
         S = {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",

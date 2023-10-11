@@ -78,14 +78,9 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local opts_no_prefix = {
-  mode = "n", -- NORMAL mode
+local opts_no_prefix = vim.tbl_deep_extend("force", opts, {
   prefix = "",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+})
 
 local mappings_no_prefix = {
   ["<M-c>"] = { "<cmd>DapContinue<cr>", "Continue" },

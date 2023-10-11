@@ -123,6 +123,7 @@ local plugins = {
   { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter" }, -- generate comment templates
   { "chentoast/marks.nvim" }, -- display jump marks
   { "debugloop/telescope-undo.nvim" }, -- search undo tree
+  { "ThePrimeagen/refactoring.nvim" }, -- refactor functions
 
   -- search / replace
   { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
