@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- configure plaintext files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -16,8 +17,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- disable spelling for certain file types
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "Outline" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
+
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 
+-- even windows when split
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd "tabdo wincmd ="
@@ -30,16 +40,10 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
+-- highlight on yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.java" },
-  callback = function()
-    vim.lsp.codelens.refresh()
   end,
 })
 
