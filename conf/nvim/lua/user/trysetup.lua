@@ -1,3 +1,6 @@
+ -- 5.1 compatibility
+table.unpack = table.unpack or unpack
+
 --- protected setup call
 ---@param module string module to call on
 ---@param method string method to be called
@@ -9,7 +12,7 @@ local function try_setup(module, method, ...)
     -- vim.notify("[warn] module " .. module .. " not found", vim.log.levels.WARN)
     return
   end
-  local meth_ok, _ = pcall(mod[method], unpack(...))
+  local meth_ok, _ = pcall(mod[method], table.unpack(...))
   if not meth_ok then
     -- turn on for debugging
     -- vim.notify("[warn] method " .. method .. " not found on module " .. module, vim.log.levels.WARN)
@@ -32,6 +35,6 @@ try_setup("texmagic", "setup", {})
 try_setup("dressing", "setup", {})
 try_setup("package-info", "setup", { { package_manager = "npm" } })
 try_setup("refactoring", "setup", {})
-if vim.fn.has('gui_running') ~= 1 then
+if vim.fn.has("gui_running") ~= 1 then
   try_setup("cinnamon", "setup", {})
 end
