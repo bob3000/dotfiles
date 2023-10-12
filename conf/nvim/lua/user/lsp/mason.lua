@@ -11,9 +11,9 @@ local servers = {
   -- "gopls",
   "html",
   "jsonls",
+  "lua_ls",
   "pyright",
   -- "sqlls",
-  "lua_ls",
   -- "omnisharp",
   -- "solargraph",
   -- "tailwindcss",
@@ -22,6 +22,23 @@ local servers = {
   "tsserver",
   "yamlls",
   -- "zls",
+}
+
+local linter_formatter = {
+  "black",
+  "cspell",
+  "flake8",
+  "isort",
+  "jq",
+  "markdownlint",
+  "prettier",
+  "shfmt",
+  "stylua",
+}
+
+local debugger = {
+  "codelldb",
+  "python",
 }
 
 local settings = {
@@ -41,6 +58,15 @@ require("mason").setup(settings)
 require("mason-lspconfig").setup {
   ensure_installed = servers,
   automatic_installation = true,
+}
+
+require("mason-null-ls").setup {
+  ensure_installed = linter_formatter,
+  automatic_installation = true,
+}
+
+require("mason-nvim-dap").setup {
+  ensure_installed = debugger,
 }
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")

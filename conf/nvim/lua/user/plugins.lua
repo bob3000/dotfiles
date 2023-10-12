@@ -58,6 +58,14 @@ local plugins = {
   { "RRethy/vim-illuminate" }, -- word group highlighter
   { "b0o/schemastore.nvim" }, -- json schema store source
   { "davidmh/cspell.nvim" }, -- cspell integration
+  { -- install null-ls dependencies
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  { -- install debuggers
+    "jay-babu/mason-nvim-dap.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
 
   -- Telescope
   { "nvim-telescope/telescope.nvim" }, -- fuzzy finder
