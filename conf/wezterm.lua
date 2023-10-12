@@ -5,9 +5,17 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.default_prog = { '/usr/bin/fish', '-l' }
+-- options
+config.scrollback_lines = 10000
 config.color_scheme = 'Everforest Dark (Gogh)'
+config.default_prog = { '/usr/bin/fish', '-l' }
 config.hide_tab_bar_if_only_one_tab = true
+
+-- cursor
+config.cursor_blink_rate = 1800
+config.cursor_thickness = 1.0
+
+-- font
 config.font = wezterm.font_with_fallback {
   {
     family = 'JetBrains Mono',
@@ -23,5 +31,9 @@ config.font = wezterm.font_with_fallback {
   'Noto Color Emoji',
 }
 config.font_size = 13.0
+config.line_height = 0.9
+config.cell_width = 0.95
+config.underline_thickness = 2.0
+config.underline_position = -2.1
 
 return config
