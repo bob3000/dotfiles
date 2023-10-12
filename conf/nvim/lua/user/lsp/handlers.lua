@@ -140,6 +140,7 @@ M.on_attach = function(client, bufnr)
   if navic_ok then
     if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
+      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end
   end
 end

@@ -52,11 +52,6 @@ vim.opt.inccommand = "split" -- show find / replace previews
 vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
 vim.opt.list = true -- show some invisible characters
 
-local status_ok, _ = pcall(require, "nvim-navic")
-if status_ok then
-  vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-end
-
 vim.g.gruvbox_material_palette = "medium"
 vim.g.gruvbox_material_enable_italic = true
 vim.g.gruvbox_material_ui_contrast = "low"
