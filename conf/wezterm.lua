@@ -7,9 +7,15 @@ end
 
 -- options
 config.scrollback_lines = 10000
-config.color_scheme = 'Everforest Dark (Gogh)'
 config.default_prog = { '/usr/bin/fish', '-l' }
 config.hide_tab_bar_if_only_one_tab = true
+
+-- colors
+config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.8,
+}
 
 -- cursor
 config.cursor_blink_rate = 1800
@@ -35,5 +41,13 @@ config.line_height = 0.9
 config.cell_width = 0.95
 config.underline_thickness = 2.0
 config.underline_position = -2.1
+
+-- window
+config.window_padding = {
+  left = 2,
+  right = 2,
+  top = 2,
+  bottom = 2,
+}
 
 return config
