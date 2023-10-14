@@ -1,4 +1,6 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
+
 local config = {}
 
 if wezterm.config_builder then
@@ -85,7 +87,31 @@ config.keys = {
   { key = "9", mods = "LEADER",       action=wezterm.action{ActivateTab=8}},
   { key = "&", mods = "LEADER|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=true}}},
   { key = "x", mods = "LEADER",       action=wezterm.action{CloseCurrentPane={confirm=true}}},
-
+  { key = 's', mods = 'LEADER',       action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }, },
+  {
+    key = 'S',
+    mods = 'LEADER|SHIFT',
+    action = act.PromptInputLine {
+      description = wezterm.format {
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Green' } },
+        { Text = 'Enter name for new workspace' },
+      },
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:perform_action(
+            act.SwitchToWorkspace {
+              name = line,
+            },
+            pane
+          )
+        end
+      end),
+    },
+  },
 }
 
 -- status bar
@@ -125,6 +151,7 @@ wezterm.on("update-right-status", function(window, pane)
   for _, b in ipairs(wezterm.battery_info()) do
     table.insert(cells, string.format("%.0f%%", b.state_of_charge * 100))
   end
+  table.insert(cells, window:active_workspace())
 
   -- The powerline < symbol
   local LEFT_ARROW = utf8.char(0xe0b3);
