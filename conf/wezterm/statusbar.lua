@@ -1,7 +1,7 @@
 local M = {}
-M.setup = function(config,wezterm)
+M.setup = function(config,wezterm, color_scheme)
 
-  config.hide_tab_bar_if_only_one_tab = true
+  config.hide_tab_bar_if_only_one_tab = false
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
 
@@ -28,44 +28,25 @@ M.setup = function(config,wezterm)
   wezterm.on(
     'format-tab-title',
     function(tab, tabs, panes, config, hover, max_width)
-
-      local colors = {
-        "#343f44",
-        "#3d484d",
-        "#475258",
-        "#4f585e",
-        "#56635f",
-      };
-      local text_fg = "#c0c0c0";
-      local edge_background = colors[1]
-      local background = colors[5]
-      local foreground = text_fg
+      local title = tab_title(tab)
+      local colors = color_scheme["brights"]
 
       if tab.is_active then
-        background = colors[3]
-        foreground = text_fg
-      elseif hover then
-        background = colors[4]
-        foreground = text_fg
+        return {
+          { Background = { Color = colors[8] } },
+          { Foreground = { Color = color_scheme["background"] } },
+          { Text = title },
+          { Background = { Color = color_scheme["background"] } },
+          { Foreground = { Color = colors[8] } },
+          { Text = SOLID_RIGHT_ARROW },
+        }
       end
-
-      local edge_foreground = background
-
-      local title = tab_title(tab)
-
-      -- ensure that the titles fit in the available space,
-      -- and that we have room for the edges.
-      title = wezterm.truncate_right(title, max_width - 2)
-
       return {
-        { Background = { Color = edge_background } },
-        { Foreground = { Color = edge_foreground } },
-        { Text = SOLID_LEFT_ARROW },
-        { Background = { Color = background } },
-        { Foreground = { Color = foreground } },
+        { Background = { Color = colors[5] } },
+        { Foreground = { Color = color_scheme["background"] } },
         { Text = title },
-        { Background = { Color = edge_background } },
-        { Foreground = { Color = edge_foreground } },
+        { Background = { Color = color_scheme["background"] } },
+        { Foreground = { Color = colors[5] } },
         { Text = SOLID_RIGHT_ARROW },
       }
     end
@@ -115,16 +96,9 @@ M.setup = function(config,wezterm)
     local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
 
     -- Color palette for the backgrounds of each cell
-    local colors = {
-      "#343f44",
-      "#3d484d",
-      "#475258",
-      "#4f585e",
-      "#56635f",
-    };
-
+    local colors = color_scheme["ansi"]
     -- Foreground color for the text across the fade
-    local text_fg = "#c0c0c0";
+    local text_fg = color_scheme["foreground"]
 
     -- The elements to be formatted
     local elements = {};
@@ -132,7 +106,7 @@ M.setup = function(config,wezterm)
     local num_cells = 0;
 
     -- Translate a cell into elements
-    function push(text, is_last)
+    local function push(text, is_last)
       local cell_no = num_cells + 1
       table.insert(elements, {Foreground={Color=text_fg}})
       table.insert(elements, {Background={Color=colors[cell_no]}})

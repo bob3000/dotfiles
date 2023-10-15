@@ -5,13 +5,15 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+local colors = require("colors")
+
 require("options").setup(wezterm, config)
-require("colors").setup(config)
+colors.setup(config, wezterm)
 require("domains").setup(config)
 require("cursor").setup(config)
 require("fonts").setup(config, wezterm)
 require("window").setup(config)
 require("keys").setup(config, wezterm)
-require("statusbar").setup(config, wezterm)
+require("statusbar").setup(config, wezterm, colors.scheme)
 
 return config
