@@ -5,7 +5,7 @@ M.setup = function(config, wezterm)
   config.keys = {
     -- tmux like key map
     { key = ':', mods = 'LEADER|SHIFT', action=act.ActivateCommandPalette},
-    { key = "b", mods = "LEADER|CTRL",  action=act{SendString="\x01"}},
+    { key = "b", mods = "LEADER|CTRL",  action=act.ActivateLastTab},
     { key = "[", mods = "LEADER",       action=act.ActivateCopyMode},
     { key = "]", mods = "LEADER",       action=act.PasteFrom "Clipboard"},
     { key = "{", mods = "LEADER|SHIFT", action=act.RotatePanes "Clockwise"},
@@ -45,13 +45,9 @@ M.setup = function(config, wezterm)
       action = act.PromptInputLine {
         description = wezterm.format {
           { Attribute = { Intensity = 'Bold' } },
-          { Foreground = { AnsiColor = 'Green' } },
           { Text = 'Enter name for new workspace' },
         },
         action = wezterm.action_callback(function(window, pane, line)
-          -- line will be `nil` if they hit escape without entering anything
-          -- An empty string if they just hit enter
-          -- Or the actual line of text they wrote
           if line then
             window:perform_action(
               act.SwitchToWorkspace {
@@ -59,6 +55,39 @@ M.setup = function(config, wezterm)
               },
               pane
             )
+          end
+        end),
+      },
+    },
+    {
+      key = '$',
+      mods = 'LEADER|SHIFT',
+      action = act.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Text = 'Rename workspace' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            wezterm.mux.rename_workspace(
+              wezterm.mux.get_active_workspace(),
+              line
+            )
+          end
+        end),
+      },
+    },
+    {
+      key = ',',
+      mods = 'LEADER',
+      action = act.PromptInputLine {
+        description = wezterm.format {
+          { Attribute = { Intensity = 'Bold' } },
+          { Text = 'Rename tab' },
+        },
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:active_tab():set_title(line)
           end
         end),
       },
