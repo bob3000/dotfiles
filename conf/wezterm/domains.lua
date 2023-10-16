@@ -6,6 +6,10 @@ M.setup = function(config)
     },
   }
   config.default_gui_startup_args = { 'connect', 'unix' }
+  config.mux_env_remove = {
+    'SSH_CLIENT',
+    'SSH_CONNECTION',
+  }
 end
 
 return M
