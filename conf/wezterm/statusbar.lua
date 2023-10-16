@@ -1,20 +1,20 @@
 local M = {}
-M.setup = function(config,wezterm, color_scheme)
+M.setup = function(config, wezterm, color_scheme)
 
   config.hide_tab_bar_if_only_one_tab = false
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
 
-  -- The filled in variant of the < symbol
-  local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
   -- The filled in variant of the > symbol
   local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+  -- The hollow in variant of the > symbol
+  local LIGHT_RIGHT_ARROW = wezterm.nerdfonts.pl_left_soft_divider
 
   -- This function returns the suggested title for a tab.
   -- It prefers the title that was set via `tab:set_title()`
   -- or `wezterm cli set-tab-title`, but falls back to the
   -- title of the active pane in that tab.
-  function tab_title(tab_info)
+  local function tab_title(tab_info)
     local title = tab_info.tab_title
     -- if the tab title is explicitly set, take that
     if title and #title > 0 then
@@ -29,25 +29,20 @@ M.setup = function(config,wezterm, color_scheme)
     'format-tab-title',
     function(tab, tabs, panes, config, hover, max_width)
       local title = tab_title(tab)
+      title = wezterm.truncate_right(title, max_width - 2)
       local colors = color_scheme["brights"]
 
       if tab.is_active then
         return {
-          { Background = { Color = colors[8] } },
-          { Foreground = { Color = color_scheme["background"] } },
-          { Text = title },
-          { Background = { Color = color_scheme["background"] } },
-          { Foreground = { Color = colors[8] } },
-          { Text = SOLID_RIGHT_ARROW },
+          { Background = { Color = '#404040' } },
+          { Foreground = { Color = color_scheme["foreground"] } },
+          { Text = ' ' .. title },
+          { Text = LIGHT_RIGHT_ARROW },
         }
       end
       return {
-        { Background = { Color = colors[5] } },
-        { Foreground = { Color = color_scheme["background"] } },
-        { Text = title },
-        { Background = { Color = color_scheme["background"] } },
-        { Foreground = { Color = colors[5] } },
-        { Text = SOLID_RIGHT_ARROW },
+        { Text = ' ' .. title .. ' '},
+        { Text = LIGHT_RIGHT_ARROW },
       }
     end
   )

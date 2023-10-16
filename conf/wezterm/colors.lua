@@ -1,8 +1,9 @@
 local M = {}
 M.scheme = {}
 M.setup = function(config, wezterm)
-  config.color_scheme = "Gruvbox Dark (Gogh)"
-  M.scheme = wezterm.color.get_builtin_schemes()["Gruvbox Dark (Gogh)"]
+  local scheme_name = "Gruvbox Dark (Gogh)"
+  config.color_scheme = scheme_name
+  M.scheme = wezterm.color.get_builtin_schemes()[scheme_name]
 
   config.inactive_pane_hsb = {
     saturation = 0.9,
