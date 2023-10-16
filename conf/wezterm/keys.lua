@@ -71,19 +71,20 @@ M.setup = function(config, wezterm)
     },
   }
 
-  -- copy mode keys
-  -- local copy_mode = nil
-  -- copy_mode = wezterm.gui.default_key_tables().copy_mode
-  -- local copy_override = {
-  --   { key = '?', mods = 'LEADER|SHIFT', action=act.Search{CaseSensitiveString = ""}}
-  -- }
-  -- for _, key in ipairs(copy_override) do
-  --   table.insert(copy_mode, key)
-  -- end
-  --
-  -- config.key_tables = {
-  --     copy_mode = copy_mode,
-  -- }
+  local copy_mode = nil
+  if wezterm.gui then
+    copy_mode = wezterm.gui.default_key_tables().copy_mode
+    local copy_override = {
+      { key = '?', mods = 'LEADER|SHIFT', action=act.Search{CaseSensitiveString = ""}}
+    }
+    for _, key in ipairs(copy_override) do
+      table.insert(copy_mode, key)
+    end
+  end
+
+  config.key_tables = {
+      copy_mode = copy_mode,
+  }
 
 end
 
