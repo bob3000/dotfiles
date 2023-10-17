@@ -14,7 +14,7 @@ M.setup = function(config, wezterm)
     "Noto Sans Ol Chiki",
     "Noto Color Emoji",
   })
-  config.font_size = 13.0
+  config.font_size = 15.0
   config.line_height = 0.9
   config.cell_width = 0.95
   config.underline_thickness = 2.0
