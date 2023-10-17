@@ -4,6 +4,7 @@ M.setup = function(config, wezterm, color_scheme)
   config.hide_tab_bar_if_only_one_tab = false
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
+  config.tab_max_width = 32
 
   -- The filled in variant of the > symbol
   local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider

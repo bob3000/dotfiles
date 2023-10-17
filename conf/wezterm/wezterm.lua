@@ -15,5 +15,6 @@ require("fonts").setup(config, wezterm)
 require("window").setup(config)
 require("keys").setup(config, wezterm)
 require("statusbar").setup(config, wezterm, colors.scheme)
+require("startup").setup(config, wezterm)
 
 return config
