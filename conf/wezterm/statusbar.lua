@@ -53,13 +53,13 @@ M.setup = function(config, wezterm, color_scheme)
 
       -- Translate a cell into elements
       local function push(text, is_last)
-        local cell_no = math.fmod(tab.tab_id, #colors + 1)
+        local cell_no = math.fmod(tab.tab_id, #colors) + 1
         table.insert(elements, {Background={Color=colors[cell_no+1]}})
         table.insert(elements, {Foreground={Color=colors[cell_no]}})
         table.insert(elements, {Text=SOLID_RIGHT_ARROW})
         table.insert(elements, {Foreground={Color=text_fg}})
         table.insert(elements, {Background={Color=colors[cell_no+1]}})
-        table.insert(elements, {Text=" "..text.." "})
+        table.insert(elements, {Text=" ".. text .." "})
         if is_last then
           table.insert(elements, {Foreground={Color=colors[cell_no+1]}})
           table.insert(elements, {Background={Color='#333333'}})
@@ -80,7 +80,9 @@ M.setup = function(config, wezterm, color_scheme)
     -- Figure out the cwd and host of the current pane.
     -- This will pick up the hostname for the remote host if your
     -- shell is using OSC 7 on the remote host.
-    local cwd_uri = pane:get_current_working_dir()
+    -- TODO: Why is pane id sometimes 0?
+    local cwd_uri = nil
+    cwd_uri = pane:get_current_working_dir()
     if cwd_uri then
       cwd_uri = cwd_uri:sub(8);
       local slash = cwd_uri:find("/")
@@ -126,8 +128,8 @@ M.setup = function(config, wezterm, color_scheme)
 
     -- Translate a cell into elements
     local function push(text, is_last)
-      local cell_no = num_cells + 1
-      local color_no = math.fmod(cell_no, #colors)
+      local cell_no = num_cells
+      local color_no = math.fmod(cell_no, #colors) + 1
       table.insert(elements, {Foreground={Color=text_fg}})
       table.insert(elements, {Background={Color=colors[color_no]}})
       table.insert(elements, {Text=" "..text.." "})
