@@ -24,9 +24,18 @@ M.setup = function(config, wezterm)
 
     local cloud_tab, cloud_pane, cloud_window = general_window:spawn_tab {}
     cloud_tab:set_title 'cloud'
+    cloud_pane:split {
+      direction = 'Right',
+    }
 
     local remote_tab, remote_pane, remote_window = general_window:spawn_tab {}
     remote_tab:set_title 'remote'
+    local remote_pane_1 = remote_pane:split {
+      direction = 'Right',
+    }
+    local remote_pane_2 = remote_pane_1:split {
+      direction = 'Top',
+    }
 
     -- local workspace
     local local_dir = wezterm.home_dir .. '/code'
