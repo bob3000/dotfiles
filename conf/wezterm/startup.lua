@@ -22,6 +22,12 @@ M.setup = function(config, wezterm)
     local editor_tab, editor_pane, editor_window = general_window:spawn_tab {}
     editor_tab:set_title 'editor'
 
+    local cloud_tab, cloud_pane, cloud_window = general_window:spawn_tab {}
+    cloud_tab:set_title 'cloud'
+
+    local remote_tab, remote_pane, remote_window = general_window:spawn_tab {}
+    remote_tab:set_title 'remote'
+
     -- local workspace
     local local_dir = wezterm.home_dir .. '/code'
     local local_tab, local_pane, local_window = mux.spawn_window {
