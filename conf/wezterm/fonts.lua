@@ -6,13 +6,14 @@ M.setup = function(config, wezterm)
       weight = "Medium",
       harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
     },
-    { family = "Fira Code Nerd Font Mono", weight = "Medium" },
-    { family = "DejaVu Sans Mono", weight = "Medium" },
-    "Noto Serif Tibetan",
-    "Noto Sans Javanese",
+    -- { family = 'Terminus', weight = 'Bold' },
+    -- { family = "Fira Code Nerd Font Mono", weight = "Medium" },
+    -- { family = "DejaVu Sans Mono", weight = "Medium" },
     "Droid Sans Fallback",
-    "Noto Sans Ol Chiki",
     "Noto Color Emoji",
+    "Noto Sans Javanese",
+    -- "Noto Serif Tibetan",
+    -- "Noto Sans Ol Chiki",
   })
   config.font_size = 15.0
   config.line_height = 0.9
