@@ -8,12 +8,12 @@ M.setup = function(config, wezterm)
     },
     -- { family = 'Terminus', weight = 'Bold' },
     -- { family = "Fira Code Nerd Font Mono", weight = "Medium" },
-    -- { family = "DejaVu Sans Mono", weight = "Medium" },
+    { family = "DejaVu Sans Mono", weight = "Medium" },
     "Droid Sans Fallback",
     "Noto Color Emoji",
     "Noto Sans Javanese",
-    -- "Noto Serif Tibetan",
-    -- "Noto Sans Ol Chiki",
+    "Noto Serif Tibetan",
+    "Noto Sans Ol Chiki",
   })
   config.font_size = 15.0
   config.line_height = 0.9
