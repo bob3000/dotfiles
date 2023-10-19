@@ -31,10 +31,12 @@ M.setup = function(config, wezterm)
     local remote_tab, remote_pane, remote_window = general_window:spawn_tab {}
     remote_tab:set_title 'remote'
     local remote_pane_1 = remote_pane:split {
+      size = 0.666,
       direction = 'Right',
     }
     local remote_pane_2 = remote_pane_1:split {
-      direction = 'Top',
+      size = 0.5,
+      direction = 'Right',
     }
 
     -- local workspace
@@ -60,6 +62,9 @@ M.setup = function(config, wezterm)
       },
     }
     wiki_tab:set_title 'wiki'
+    wiki_pane:split {
+      direction = 'Right',
+    }
 
     mux.set_active_workspace 'coding'
   end)

@@ -101,18 +101,34 @@ M.setup = function(config, wezterm)
   }
 
   local copy_mode = nil
+  local search_mode = nil
   if wezterm.gui then
+    -- override copy mode keys
     copy_mode = wezterm.gui.default_key_tables().copy_mode
     local copy_override = {
-      { key = '?', mods = 'LEADER|SHIFT', action=act.Search{CaseSensitiveString = ""}}
+      { key = '?', mods = 'NONE', action = act.Search{CaseSensitiveString = ""}},
+      { key = 'B', mods = 'NONE', action = act.CopyMode 'MoveBackwardWord' },
+      { key = 'W', mods = 'NONE', action = act.CopyMode 'MoveForwardWord' },
+      { key = 'E', mods = 'NONE', action = act.CopyMode 'MoveForwardWordEnd',
+      },
     }
     for _, key in ipairs(copy_override) do
       table.insert(copy_mode, key)
+    end
+
+    -- override search mode keys
+    search_mode = wezterm.gui.default_key_tables().search_mode
+    local search_override = {
+      -- { key = 'Enter', mods = 'NONE', action = act.CopyMode 'AcceptPattern' },
+    }
+    for _, key in ipairs(search_override) do
+      table.insert(search_mode, key)
     end
   end
 
   config.key_tables = {
       copy_mode = copy_mode,
+      search_mode = search_mode,
   }
 
 end
