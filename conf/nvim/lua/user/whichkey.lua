@@ -95,7 +95,6 @@ local mappings_no_prefix = {
 
 local mappings = {
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["a"] = { "<cmd>Gen<cr>", "Invoke LLAMA" },
   ["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",

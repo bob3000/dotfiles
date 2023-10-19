@@ -53,9 +53,6 @@ end
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
--- invoke LLAMA
-keymap("v", "<leader>]", ":Gen<CR>")
-
 -- refactor
 keymap("v", "<leader>lR",
  "<Esc><cmd>lua require('refactoring').select_refactor()<cr>")
