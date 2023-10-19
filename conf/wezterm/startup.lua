@@ -59,6 +59,7 @@ M.setup = function(config, wezterm)
         PATH = path
       },
     }
+    wiki_tab:set_title 'wiki'
 
     mux.set_active_workspace 'coding'
   end)
