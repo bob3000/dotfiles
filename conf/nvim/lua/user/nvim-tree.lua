@@ -83,6 +83,11 @@ nvim_tree.setup {
     enable = true,
     update_cwd = true,
   },
+  actions = {
+    open_file = {
+      quit_on_open = true
+    }
+  },
   renderer = {
     root_folder_modifier = ":t",
     icons = {
