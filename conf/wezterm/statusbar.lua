@@ -2,6 +2,7 @@ local M = {}
 M.setup = function(config, wezterm, color_scheme)
 
   config.hide_tab_bar_if_only_one_tab = false
+  config.show_new_tab_button_in_tab_bar = false
   config.use_fancy_tab_bar = false
   config.tab_bar_at_bottom = true
   config.tab_max_width = 32
