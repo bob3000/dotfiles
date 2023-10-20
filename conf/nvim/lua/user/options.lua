@@ -83,6 +83,7 @@ vim.g.everforest_show_eob = false
 vim.g.everforest_dim_inactive_windows = true
 vim.g.everforest_float_style = "bright"
 vim.g.everforest_better_performance = true
+vim.g.everforest_transparent_background = false
 
 vim.g.extra_whitespace_ignored_filetypes = {
   "nofile",

@@ -70,6 +70,7 @@ local plugins = {
   -- Telescope
   { "nvim-telescope/telescope.nvim" }, -- fuzzy finder
   { "nvim-telescope/telescope-media-files.nvim" }, -- preview media files
+  { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
 
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter" }, -- enables treesitter
@@ -134,7 +135,6 @@ local plugins = {
   { "ThePrimeagen/refactoring.nvim" }, -- refactor functions
 
   -- search / replace
-  { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
   { "windwp/nvim-spectre" }, -- search and replace tool
 
   -- ui
