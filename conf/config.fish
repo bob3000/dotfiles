@@ -7,6 +7,19 @@ set fish_greeting
 # fisher install jorgebucaran/nvm.fish
 # fisher install jorgebucaran/replay.fish
 # fisher install 2m/fish-history-merge
+# fisher install PatrickF1/fzf.fish
+
+# fish fzf stttings
+function preview_files
+  if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
+    chafa -f kitty --size 86x120 "$argv"
+  else
+    bat --style=numbers --color=always --theme gruvbox-dark "$argv"
+  end
+end
+set fzf_preview_file_cmd preview_files
+set fzf_diff_highlighter delta --paging=never --width=20
+set fzf_preview_dir_cmd eza --all --color=always --tree
 
 if set -q $SSH_CONNECTION
     set EDITOR vim
