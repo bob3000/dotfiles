@@ -97,7 +97,8 @@ local mappings = {
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
   ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{" ..
+      "previewer = false, sort_mru = true, ignore_current_buffer = true})<cr>",
     "Buffers",
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
