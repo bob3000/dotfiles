@@ -15,6 +15,9 @@ require("user.dap.python").setup(dap)
 require("user.dap.vscodejs").setup(dap)
 require("user.dap.vimkind").setup(dap)
 
+-- use overseer json5 decoder
+require("dap.ext.vscode").json_decode = require("overseer.json").decode
+
 dapui.setup {
   expand_lines = true,
   icons = { expanded = "", collapsed = "", circular = "" },

@@ -137,6 +137,9 @@ local plugins = {
   -- search / replace
   { "windwp/nvim-spectre" }, -- search and replace tool
 
+  -- async tasks
+  { 'stevearc/overseer.nvim', opts = {} },
+
   -- ui
   { "norcalli/nvim-colorizer.lua" }, -- colorize color descriptions
   { "declancm/cinnamon.nvim" }, -- smooth scrolling

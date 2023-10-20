@@ -103,6 +103,7 @@ local mappings = {
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["o"] = { "<cmd>:SymbolsOutline<cr>", "Outline" },
+  ["O"] = { "<cmd>:OverseerToggle<cr>", "Overseer" },
   ["W"] = { "<cmd>lua vim.lsp.buf.format{ async = false }; vim.api.nvim_command('write')<CR>", "Format and Save" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -117,6 +118,7 @@ local mappings = {
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
   ["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
+  ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
 
   g = {
     name = "Git",
