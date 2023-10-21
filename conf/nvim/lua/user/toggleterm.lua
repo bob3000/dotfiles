@@ -40,12 +40,12 @@ function _LAZYGIT_TOGGLE()
 end
 
 local wiki =
-  Terminal:new { cmd = "tmux new-session -A -c ~/Nextcloud/Synced/wiki -s wiki 'nvim index.md'", hidden = true }
+  Terminal:new { dir = "~/Nextcloud/Synced/wiki", cmd = "nvim index.md", hidden = true }
 function _WIKI_TOGGLE()
   wiki:toggle()
 end
 
-local config = Terminal:new { cmd = "nvim ~/.config/nvim/init.lua", hidden = true }
+local config = Terminal:new { dir = "~/.config/nvim", cmd = "nvim init.lua", hidden = true }
 function _CONFIG_TOGGLE()
   config:toggle()
 end
