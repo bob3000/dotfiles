@@ -89,6 +89,7 @@ vim.g.extra_whitespace_ignored_filetypes = {
   "nofile",
   "No Name",
   "Outline",
+  "OverseerForm",
   "TelescopePrompt",
   "Trouble",
   "WhichKey",
