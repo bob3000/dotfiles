@@ -133,6 +133,7 @@ local plugins = {
   { "chentoast/marks.nvim" }, -- display jump marks
   { "debugloop/telescope-undo.nvim" }, -- search undo tree
   { "ThePrimeagen/refactoring.nvim" }, -- refactor functions
+  { "mg979/vim-visual-multi", branch = "master" },
 
   -- search / replace
   { "windwp/nvim-spectre" }, -- search and replace tool
