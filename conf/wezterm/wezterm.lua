@@ -9,7 +9,7 @@ local colors = require("colors")
 
 require("options").setup(wezterm, config)
 colors.setup(config, wezterm)
-require("domains").setup(config)
+require("domains").setup(config, wezterm)
 require("cursor").setup(config)
 require("fonts").setup(config, wezterm)
 require("window").setup(config)
