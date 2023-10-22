@@ -1,11 +1,11 @@
-local wezterm = require("wezterm")
+local wezterm = require "wezterm"
 local config = {}
 
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+  config = wezterm.config_builder()
 end
 
-local colors = require("colors")
+local colors = require "colors"
 
 require("options").setup(wezterm, config)
 colors.setup(config, wezterm)
