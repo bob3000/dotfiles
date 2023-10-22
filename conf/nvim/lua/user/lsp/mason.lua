@@ -31,6 +31,7 @@ local linter_formatter = {
   "isort",
   "jq",
   "markdownlint",
+  "markdown_toc",
   "prettier",
   "shfmt",
   "stylua",

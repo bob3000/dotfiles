@@ -31,8 +31,7 @@ null_ls.setup {
       diagnostic_config = {
         underline = true,
         signs = false,
-        -- NOT WORKING: won't expand tilde
-        -- extra_args = { "--config", "~/.config/codespell/codespell.ini" },
+        extra_args = { "--config", os.getenv("HOME") .. "/.config/codespell/codespell.ini" },
       },
     },
     cspell.diagnostics.with {
@@ -56,8 +55,8 @@ null_ls.setup {
     formatting.markdownlint,
     formatting.markdown_toc,
     formatting.stylua,
-    formatting.npm_groovy_lint,
+    -- formatting.npm_groovy_lint,
     formatting.shfmt,
-    formatting.uncrustify,
+    -- formatting.uncrustify,
   },
 }
