@@ -19,6 +19,7 @@ M.setup = function(config, wezterm)
       size = 0.25,
       cwd = coding_dir,
     }
+
     local editor_tab, editor_pane, editor_window = general_window:spawn_tab {}
     editor_tab:set_title 'editor'
 

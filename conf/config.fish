@@ -37,6 +37,7 @@ set PATH "$GOPATH/bin:$PATH"
 set PATH "$HOME/.cargo/bin:$PATH"
 set PATH "$HOME/.local/bin:$PATH"
 set PATH "$HOME/.dotnet/tools:$PATH"
+set PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 # set PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # make vim fzf plugin use ripgrep
