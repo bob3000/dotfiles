@@ -12,8 +12,7 @@ set fish_greeting
 # fish fzf stttings
 function preview_files
   if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
-    set -f size (wezterm cli list | awk -vc="$(wezterm cli list-clients | awk 'NR==2{print $NF}')" '$3==c{split($5,a,"x");print int(a[1]/2-6)"x"a[2]}')
-    chafa --format kitty --animate=off --center on --clear --size $size "$argv" 2> /dev/null
+    chafa --format kitty --animate=off --center on --clear --size "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" "$argv" 2> /dev/null
     # viu --static --transparent --height (echo $size | cut -d'x' -f2) --width (echo $size | cut -d'x' -f1) "$argv"
     # wezterm imgcat --height (echo $size | cut -d'x' -f2) --width (echo $size | cut -d'x' -f1) "$argv"
     # kitty +kitten icat --transfer-mode=file --stdin=no --place="$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x0 "$argv"
