@@ -6,7 +6,7 @@ M.setup = function(config, wezterm)
     path = "/opt/homebrew/bin:" .. os.getenv "PATH"
   end
 
-  wezterm.on("mux-startup", function(cmd)
+  wezterm.on("gui-startup", function(cmd)
     -- coding workspace
     local coding_dir = wezterm.home_dir .. "/code"
     local general_tab, general_pane, general_window = mux.spawn_window {

@@ -21,20 +21,20 @@ M.setup = function(config, wezterm)
       name = "unix",
     },
   }
-  config.default_gui_startup_args = { "connect", "unix" }
+  -- config.default_gui_startup_args = { "connect", "unix" }
   config.mux_env_remove = {
     "SSH_CLIENT",
     "SSH_CONNECTION",
   }
-  wezterm.on("gui-startup", function(cmd)
-    if not is_default_startup(cmd) then
-      -- for the default startup case, we want to switch to the unix domain instead
-      local unix = mux.get_domain "unix"
-      mux.set_default_domain(unix)
-      -- ensure that it is attached
-      unix:attach()
-    end
-  end)
+  -- wezterm.on("gui-startup", function(cmd)
+  --   if not is_default_startup(cmd) then
+  --     -- for the default startup case, we want to switch to the unix domain instead
+  --     local unix = mux.get_domain "unix"
+  --     mux.set_default_domain(unix)
+  --     -- ensure that it is attached
+  --     unix:attach()
+  --   end
+  -- end)
 end
 
 return M
