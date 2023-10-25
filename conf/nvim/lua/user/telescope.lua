@@ -34,17 +34,9 @@ telescope.setup {
         preview_height = 0.8,
       },
     },
-    media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = { "png", "webp", "jpg", "jpeg" },
-      -- find command (defaults to `fd`)
-      find_cmd = "rg",
-    },
   },
 }
 
-telescope.load_extension "media_files"
 telescope.load_extension "live_grep_args"
 telescope.load_extension "undo"
 telescope.load_extension "refactoring"

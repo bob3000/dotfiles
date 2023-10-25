@@ -69,7 +69,6 @@ local plugins = {
 
   -- Telescope
   { "nvim-telescope/telescope.nvim" }, -- fuzzy finder
-  { "nvim-telescope/telescope-media-files.nvim" }, -- preview media files
   { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
 
   -- Treesitter
