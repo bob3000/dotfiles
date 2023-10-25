@@ -101,6 +101,7 @@ local mappings = {
       "previewer = false, sort_mru = true, ignore_current_buffer = true})<cr>",
     "Buffers",
   },
+  ["C"] = { "<cmd>lua require('user.colorscheme').set_random_colorscheme()<cr>", "Random Colorschme" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["o"] = { "<cmd>:SymbolsOutline<cr>", "Outline" },
   ["O"] = { "<cmd>:OverseerToggle<cr>", "Overseer" },
