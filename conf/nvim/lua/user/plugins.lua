@@ -113,7 +113,7 @@ local plugins = {
   -- spelling
   {
     "psliwka/vim-dirtytalk", -- programmer spelling dictionary
-    build = ":DirtytalkUpdate",
+    build = ":DirtytalkUpdate<cr>",
   },
 
   -- syntax
