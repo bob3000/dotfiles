@@ -91,6 +91,8 @@ cmp.setup {
         buffer = "[Buffer]",
         path = "[Path]",
         emoji = "[Emoji]",
+        crates = "[Crates]",
+        neorg = "[Neorg]",
         spell = "[Spell]",
       })[entry.source.name]
       return vim_item
@@ -104,6 +106,7 @@ cmp.setup {
     { name = "path" },
     { name = "emoji" },
     { name = "crates" },
+    { name = "neorg" },
     {
       name = "spell",
       option = {

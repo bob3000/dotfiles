@@ -118,9 +118,10 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
+  ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace notes') end<cr>", "Neorg" },
   ["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
-
+  ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -154,6 +155,7 @@ local mappings = {
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+    N = { "<cmd>Telescope neorg search_headings<cr>", "Neorg headings" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
   t = {

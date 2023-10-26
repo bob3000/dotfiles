@@ -51,6 +51,8 @@ vim.opt.spellcapcheck = "" -- don't check for capital letters after full stop
 vim.opt.inccommand = "split" -- show find / replace previews
 vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
 vim.opt.list = true -- show some invisible characters
+vim.opt.foldlevel = 99 -- expand folds by default
+vim.opt.conceallevel = 2 -- change certain characters in normal mode
 
 vim.g.gruvbox_material_palette = "medium"
 vim.g.gruvbox_material_enable_italic = true

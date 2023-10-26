@@ -87,11 +87,20 @@ local plugins = {
   { "leoluz/nvim-dap-go" }, -- Go debugger integration
   { "jbyuki/one-small-step-for-vimkind" }, -- Lua debugger integration
 
-  -- markdown
+  -- markdown and note taking
   { "mzlogin/vim-markdown-toc" }, -- generates Table of Contents
   -- requires "luautf8"
   { "jakewvincent/mkdnflow.nvim" }, -- wiki style md link navigation
   { "toppair/peek.nvim", build = "deno task --quiet build:fast" }, -- markdown preview
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    config = require("lua.user.nvimneorg").setup,
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-neorg/neorg-telescope" },
+    },
+  },
 
   -- latex
   { "jakewvincent/texmagic.nvim", lazy = true }, -- build latex
@@ -113,7 +122,7 @@ local plugins = {
   -- spelling
   {
     "psliwka/vim-dirtytalk", -- programmer spelling dictionary
-    build = ":DirtytalkUpdate<cr>",
+    build = ":DirtytalkUpdate",
   },
 
   -- syntax
@@ -138,7 +147,7 @@ local plugins = {
   { "windwp/nvim-spectre" }, -- search and replace tool
 
   -- async tasks
-  { 'stevearc/overseer.nvim', opts = {} },
+  { "stevearc/overseer.nvim", opts = {} },
 
   -- ui
   { "norcalli/nvim-colorizer.lua" }, -- colorize color descriptions
@@ -150,6 +159,7 @@ local plugins = {
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
   { "stevearc/dressing.nvim", opts = {} },
   { "rcarriga/nvim-notify", opts = {} },
+  { "folke/zen-mode.nvim" },
 }
 
 local opts = {
