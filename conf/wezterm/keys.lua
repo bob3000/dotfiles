@@ -3,6 +3,9 @@ M.setup = function(config, wezterm)
   local act = wezterm.action
   config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
   config.keys = {
+    -- move fullscreen binding
+    { key = "Enter", mods = "ALT", action = act.SendKey { key = "Enter", mods = "ALT" } },
+    { key = "Enter", mods = "CTRL", action = 'ToggleFullScreen' },
     -- tmux like key map
     { key = ":", mods = "LEADER|SHIFT", action = act.ActivateCommandPalette },
     { key = "b", mods = "LEADER|CTRL", action = act.ActivateLastTab },
