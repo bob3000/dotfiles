@@ -33,6 +33,7 @@ local plugins = {
   { "sainnhe/everforest", lazy = true }, -- 🌳
   { "sainnhe/sonokai", lazy = true }, -- 👻
   { "sainnhe/edge", lazy = true }, -- 🎊
+  { "rebelot/kanagawa.nvim", lazy = true },
 
   -- cmp plugins
   { "hrsh7th/nvim-cmp" }, -- The completion plugin

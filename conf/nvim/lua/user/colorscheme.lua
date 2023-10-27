@@ -4,6 +4,7 @@ M.colorschemes = {
   "everforest",
   "gruvbox-material",
   "sonokai",
+  "kanagawa",
 }
 
 M.set_random_colorscheme = function()

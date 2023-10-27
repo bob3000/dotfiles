@@ -168,7 +168,7 @@ local mappings = {
     w = { "<cmd>lua _WIKI_TOGGLE()<cr>", "Wiki" },
   },
   x = {
-    name = "Trouble",
+    name = "Quickfix",
     x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
     w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
     c = { "<cmd>GitConflictListQf<cr>", "Git Conflicts" },
@@ -177,6 +177,7 @@ local mappings = {
     q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix List" },
     R = { "<cmd>TroubleToggle lsp_references<cr>", "Lsp References" },
     t = { "<cmd>TodoTrouble<cr>", "Todos" },
+    n = { "<cmd>Neorg toc qflist<cr>", "Neorg Headers" },
   },
   d = {
     name = "Debug",
