@@ -95,7 +95,7 @@ local plugins = {
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
-    config = require("lua.user.nvimneorg").setup,
+    config = require("user.nvimneorg").setup,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-neorg/neorg-telescope" },
