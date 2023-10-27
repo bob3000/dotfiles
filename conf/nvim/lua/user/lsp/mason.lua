@@ -25,6 +25,8 @@ local servers = {
 }
 
 local linter_formatter = {
+  "bash-debug-adapter",
+  "bash-language-server",
   "black",
   "cspell",
   "flake8",
