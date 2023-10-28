@@ -20,5 +20,5 @@ M.set_random_colorscheme = function()
   return true
 end
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme everforest")
 return M
