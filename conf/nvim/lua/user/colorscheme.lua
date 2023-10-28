@@ -5,6 +5,7 @@ M.colorschemes = {
   "gruvbox-material",
   "sonokai",
   "kanagawa",
+  "tokyonight",
 }
 
 M.set_random_colorscheme = function()
@@ -19,5 +20,5 @@ M.set_random_colorscheme = function()
   return true
 end
 
-vim.cmd("colorscheme everforest")
+vim.cmd("colorscheme tokyonight")
 return M

@@ -33,7 +33,14 @@ local plugins = {
   { "sainnhe/everforest", lazy = true }, -- 🌳
   { "sainnhe/sonokai", lazy = true }, -- 👻
   { "sainnhe/edge", lazy = true }, -- 🎊
-  { "rebelot/kanagawa.nvim", lazy = true },
+  { "rebelot/kanagawa.nvim", lazy = true, config = require("user.kanagawa").setup },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = {},
+    config = require("user.tokyonight").setup,
+  },
 
   -- cmp plugins
   { "hrsh7th/nvim-cmp" }, -- The completion plugin
