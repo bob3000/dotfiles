@@ -45,7 +45,6 @@ local plugins = {
   { "hrsh7th/cmp-emoji" }, -- emoji completion source
   { "hrsh7th/cmp-cmdline" }, -- command line completion source
   { "f3fora/cmp-spell" }, -- spell completions
-  { "ray-x/lsp_signature.nvim" }, -- lsp signature docs
 
   -- snippets
   { "L3MON4D3/LuaSnip", build = "make install_jsregexp" }, --snippet engine
@@ -73,7 +72,7 @@ local plugins = {
   { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter" }, -- enables treesitter
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- enables treesitter
 
   -- Git
   { "lewis6991/gitsigns.nvim" }, -- git hunk markers and tools
@@ -158,9 +157,17 @@ local plugins = {
   { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" }, -- TODO marks overview
   { "simrat39/symbols-outline.nvim" }, -- shows file structure
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
-  { "stevearc/dressing.nvim", opts = {} },
   { "rcarriga/nvim-notify", opts = {} },
   { "folke/zen-mode.nvim" },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
 }
 
 local opts = {
