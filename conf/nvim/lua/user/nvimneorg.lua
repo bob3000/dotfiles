@@ -26,7 +26,7 @@ M.setup = function()
       ["core.integrations.telescope"] = {}, -- telescope plugin
       ["core.concealer"] = {
         config = {
-          icon_preset = "diamond",
+          icon_preset = "varied",
         },
       }, -- Adds pretty icons to your documents
       ["core.dirman"] = { -- Manages Neorg workspaces

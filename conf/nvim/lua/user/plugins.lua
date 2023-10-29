@@ -24,7 +24,7 @@ local plugins = {
   { "nvim-lualine/lualine.nvim" }, -- status line
   { "akinsho/toggleterm.nvim" }, -- terminal window
   { "ahmedkhalf/project.nvim" }, -- switch between projects
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }, -- indentation markers
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl" }, -- indentation markers
   { "goolord/alpha-nvim" }, -- startup screen
   { "LunarVim/bigfile.nvim" }, -- disable treesitter etc on big files
 
@@ -38,7 +38,6 @@ local plugins = {
     "folke/tokyonight.nvim",
     lazy = true,
     priority = 1000,
-    opts = {},
     config = require("user.tokyonight").setup,
   },
 
@@ -154,7 +153,7 @@ local plugins = {
   { "windwp/nvim-spectre" }, -- search and replace tool
 
   -- async tasks
-  { "stevearc/overseer.nvim", opts = {} },
+  { "stevearc/overseer.nvim" },
 
   -- ui
   { "norcalli/nvim-colorizer.lua" }, -- colorize color descriptions
@@ -164,12 +163,11 @@ local plugins = {
   { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" }, -- TODO marks overview
   { "simrat39/symbols-outline.nvim" }, -- shows file structure
   { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" }, -- file bread crumbs
-  { "rcarriga/nvim-notify", opts = {} },
+  { "rcarriga/nvim-notify" },
   { "folke/zen-mode.nvim" },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {},
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
