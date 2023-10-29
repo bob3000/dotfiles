@@ -78,8 +78,15 @@ if not lspconfig_status_ok then
 end
 
 local opts = {}
+local skipped_filetypes = {
+  "NvimTree",
+}
 
 for _, server in pairs(servers) do
+  if skipped_filetypes[vim.bo.filetype] ~= nil then
+    goto continue
+  end
+
   opts = {
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
@@ -93,4 +100,5 @@ for _, server in pairs(servers) do
   end
 
   lspconfig[server].setup(opts)
+  ::continue::
 end
