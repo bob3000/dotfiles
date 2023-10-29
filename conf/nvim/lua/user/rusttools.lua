@@ -6,7 +6,7 @@ end
 local dbg_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/")
 local codelldb_path = dbg_path .. "adapter/codelldb"
 local liblldb_path = dbg_path .. "lldb/lib/liblldb"
-local this_os = vim.loop.os_uname().sysname;
+local this_os = vim.loop.os_uname().sysname
 
 -- The path in windows is different
 if this_os:find "Windows" then
@@ -102,7 +102,17 @@ rust_tools.setup {
     adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
   },
   server = {
-    on_attach = function(_, bufnr)
+    on_attach = function(client, bufnr)
+      -- breadcrumbs
+      local navic_ok, navic = pcall(require, "nvim-navic")
+      if navic_ok then
+        if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+          vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        end
+      end
+
+      -- register rust keymaps
       local which_key_ok, which_key = pcall(require, "which-key")
       if which_key_ok then
         opts.buffer = bufnr
