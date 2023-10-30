@@ -162,6 +162,7 @@ local mappings = {
     name = "Terminal",
     c = { "<cmd>lua _CONFIG_TOGGLE()<cr>", "Config" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    l = { "<cmd>lua _LUA_TOGGLE()<cr>", "Lua" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },

@@ -19,6 +19,12 @@ toggleterm.setup {
   float_opts = {
     border = "curved",
   },
+  winbar = {
+    enabled = false,
+    name_formatter = function(term) --  term: Terminal
+      return term.name
+    end,
+  },
 }
 
 function _G.set_terminal_keymaps()
@@ -39,8 +45,7 @@ function _LAZYGIT_TOGGLE()
   lazygit:toggle()
 end
 
-local wiki =
-  Terminal:new { dir = "~/Nextcloud/Synced/wiki", cmd = "nvim index.md", hidden = true }
+local wiki = Terminal:new { dir = "~/Nextcloud/Synced/wiki", cmd = "nvim index.md", hidden = true }
 function _WIKI_TOGGLE()
   wiki:toggle()
 end
@@ -53,4 +58,9 @@ end
 local python = Terminal:new { cmd = "ipython", hidden = true }
 function _PYTHON_TOGGLE()
   python:toggle()
+end
+
+local lua = Terminal:new { cmd = "lua", hidden = true }
+function _LUA_TOGGLE()
+  lua:toggle()
 end
