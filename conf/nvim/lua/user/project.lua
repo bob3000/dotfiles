@@ -24,6 +24,7 @@ project.setup {
     "Gemfile",
     "Makefile",
     "build.zig",
+    "index.norg",
     "meson.build",
     "package.json",
     "pyproject.toml",

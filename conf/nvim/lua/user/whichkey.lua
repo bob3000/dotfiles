@@ -118,7 +118,7 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
-  ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace notes') end<cr>", "Neorg" },
+  ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace work') end<cr>", "Neorg" },
   ["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },

@@ -33,7 +33,8 @@ M.setup = function()
         config = {
           workspaces = {
             notes = "~/Nextcloud/Synced/neorg/workspaces/notes",
-            default_workspace = "notes"
+            work = "~/Nextcloud/Synced/neorg/workspaces/work",
+            default_workspace = "work"
           },
         },
       },
