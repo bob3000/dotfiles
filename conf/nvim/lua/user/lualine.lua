@@ -18,7 +18,7 @@ local diagnostics = {
 
 local diff = {
   "diff",
-  colored = false,
+  colored = true,
   symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
   cond = hide_in_width,
 }
@@ -38,6 +38,18 @@ local spaces = function()
 end
 
 lualine.setup {
+  extensions = {
+    "lazy",
+    "man",
+    "mason",
+    "nvim-dap-ui",
+    "nvim-tree",
+    "overseer",
+    "quickfix",
+    "symbols-outline",
+    "toggleterm",
+    "trouble",
+  },
   options = {
     globalstatus = true,
     icons_enabled = true,
@@ -51,10 +63,9 @@ lualine.setup {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
     lualine_c = { diagnostics },
-    lualine_x = { diff, spaces, "encoding", filetype, "overseer" },
+    lualine_x = { diff, spaces, "encoding", "fileformat", filetype, "overseer" },
     lualine_y = { location },
     lualine_z = {
-      '%{&ft == "toggleterm" ? "terminal (".b:toggle_number.")" : ""}',
       "windows",
       "progress",
       "(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
