@@ -29,6 +29,11 @@ project.setup {
     "package.json",
     "pyproject.toml",
   },
+  -- What scope to change the directory, valid options are
+  -- * global (default)
+  -- * tab
+  -- * win
+  scope_chdir = 'win',
 }
 
 local tele_status_ok, telescope = pcall(require, "telescope")
