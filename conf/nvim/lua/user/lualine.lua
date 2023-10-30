@@ -54,6 +54,7 @@ lualine.setup {
     lualine_x = { diff, spaces, "encoding", filetype, "overseer" },
     lualine_y = { location },
     lualine_z = {
+      '%{&ft == "toggleterm" ? "terminal (".b:toggle_number.")" : ""}',
       "windows",
       "progress",
       "(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
