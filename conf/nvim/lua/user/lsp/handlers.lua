@@ -124,6 +124,10 @@ end
 
 M.on_attach = function(client, bufnr)
   M.attach_keymaps(client, bufnr)
+  if client.config.name == "null-ls" and vim.bo.filetype == "NvimTree" then
+    vim.lsp.buf_detach_client(bufnr, client.id)
+  end
+
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
   end

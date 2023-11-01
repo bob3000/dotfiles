@@ -22,7 +22,7 @@ local code_actions = null_ls.builtins.code_actions
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 null_ls.setup {
-  on_attach = handlers.attach_keymaps,
+  on_attach = handlers.on_attach,
   debug = false,
   sources = {
     cspell.code_actions,

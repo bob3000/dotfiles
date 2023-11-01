@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- disable spelling for certain file types
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "Outline" },
+  pattern = { "Outline", "NvimTree" },
   callback = function()
     vim.opt_local.spell = false
   end,
