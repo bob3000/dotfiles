@@ -1,12 +1,19 @@
+local status_ok, schemastore = pcall(require, "schemastore")
+if not status_ok then
+  return {}
+end
+
 local opts = {
   settings = {
     yaml = {
-      keyOrdering = false,
-      -- schemas = {
-      --      ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
-      --      ["../path/relative/to/file.yml"] = "/.github/workflows/*"
-      --      ["/path/from/root/of/project"] = "/.github/workflows/*"
-      --    },
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      schemas = schemastore.yaml.schemas(),
     },
   },
 }
