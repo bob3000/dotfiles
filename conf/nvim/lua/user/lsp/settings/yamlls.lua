@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local opts = {
+  autostart = false, -- conflicts with helm files
   settings = {
     yaml = {
       schemaStore = {

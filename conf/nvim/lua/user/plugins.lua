@@ -135,6 +135,7 @@ local plugins = {
   { "chr4/nginx.vim" }, -- nginx syntax highlighting
   { "Glench/Vim-Jinja2-Syntax" }, -- Jinja2 syntax highlighting
   { "HiPhish/rainbow-delimiters.nvim" }, -- Rainbow colored bracket pairs
+  { "towolf/vim-helm", lazy = false }, -- helm highlighting
 
   -- editing
   { "tpope/vim-surround" }, -- surround text with quotes and braces
