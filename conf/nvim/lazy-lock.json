@@ -14,6 +14,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp-spell": { "branch": "master", "commit": "32a0867efa59b43edbb2db67b0871cfad90c9b66" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+  "compiler.nvim": { "branch": "main", "commit": "ae7f6282686bbe95a430d5e520784b5353875376" },
   "crates.nvim": { "branch": "main", "commit": "aac57ef84cf4fecf7907114b22e875f84a6128ee" },
   "cspell.nvim": { "branch": "main", "commit": "0e9c586bd7f7ab3f1f2f000a084121203e0ee62c" },
   "edge": { "branch": "master", "commit": "d811acd067193fabadd04f081228fd97827ae5ae" },

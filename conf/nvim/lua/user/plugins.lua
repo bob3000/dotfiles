@@ -160,9 +160,6 @@ local plugins = {
   -- search / replace
   { "windwp/nvim-spectre" }, -- search and replace tool
 
-  -- async tasks
-  { "stevearc/overseer.nvim" },
-
   -- ui
   { "norcalli/nvim-colorizer.lua" }, -- colorize color descriptions
   { "declancm/cinnamon.nvim" }, -- smooth scrolling
@@ -182,7 +179,7 @@ local plugins = {
     },
   },
 
-  -- testing
+  -- testing / compiling
   {
     "nvim-neotest/neotest",
     dependencies = {
@@ -190,6 +187,16 @@ local plugins = {
       "rouge8/neotest-rust",
       "nvim-lua/plenary.nvim",
     },
+  },
+  {
+    "stevearc/overseer.nvim",
+    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+  },
+  { -- This plugin
+    "Zeioth/compiler.nvim",
+    cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+    dependencies = { "stevearc/overseer.nvim" },
+    opts = {},
   },
 }
 

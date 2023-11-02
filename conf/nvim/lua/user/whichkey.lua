@@ -95,7 +95,7 @@ local mappings_no_prefix = {
 
 local mappings = {
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
+  -- ["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{" ..
       "previewer = false, sort_mru = true, ignore_current_buffer = true})<cr>",
@@ -121,6 +121,13 @@ local mappings = {
   ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace work') end<cr>", "Neorg" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
+  B = {
+    name = "Build",
+    ["b"] = { "<cmd>CompilerOpen<cr>", "Build project" },
+    ["r"] = { "<cmd>CompilerRedo<cr>", "Redo build" },
+    ["s"] = { "<cmd>CompilerStop<cr>", "Build project" },
+    ["t"] = { "<cmd>CompilerToggleResults<cr>", "Toggle build UI" },
+  },
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
