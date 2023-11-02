@@ -76,6 +76,10 @@ local plugins = {
   -- Telescope
   { "nvim-telescope/telescope.nvim" }, -- fuzzy finder
   { "nvim-telescope/telescope-live-grep-args.nvim" }, -- limit grep search to folders
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+  },
 
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- enables treesitter
