@@ -115,6 +115,9 @@ local plugins = {
   -- latex
   { "jakewvincent/texmagic.nvim", lazy = true }, -- build latex
 
+  -- lua
+  { "folke/neodev.nvim" },
+
   -- rust
   { "simrat39/rust-tools.nvim" }, -- best rust IDE experience
   {
@@ -176,6 +179,16 @@ local plugins = {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+    },
+  },
+
+  -- testing
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-python",
+      "rouge8/neotest-rust",
+      "nvim-lua/plenary.nvim",
     },
   },
 }

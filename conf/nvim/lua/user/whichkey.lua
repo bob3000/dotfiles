@@ -119,7 +119,6 @@ local mappings = {
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
   ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace work') end<cr>", "Neorg" },
-  ["U"] = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
   g = {
@@ -157,6 +156,7 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     N = { "<cmd>Telescope neorg search_headings<cr>", "Neorg headings" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
+    u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo tree" },
   },
   t = {
     name = "Terminal",
@@ -167,6 +167,12 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
     w = { "<cmd>lua _WIKI_TOGGLE()<cr>", "Wiki" },
+  },
+  u = {
+    name = "Tests",
+    ["d"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug test" },
+    ["U"] = { "<cmd>lua require('neotest').run.run()<cr>", "Run tests" },
+    ["u"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run tests in file" },
   },
   x = {
     name = "Quickfix",
