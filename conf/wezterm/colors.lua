@@ -7,7 +7,7 @@ M.setup = function(config, wezterm)
 
   config.inactive_pane_hsb = {
     saturation = 0.9,
-    brightness = 0.8,
+    brightness = 0.6,
   }
 end
 
