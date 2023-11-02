@@ -52,21 +52,6 @@ M.setup = function(config, wezterm)
       cwd = local_dir .. "/neovim-config",
     }
 
-    -- wiki workspace
-    local wiki_dir = wezterm.home_dir .. "/Nextcloud/Synced/wiki"
-    local wiki_tab, wiki_pane, wiki_window = mux.spawn_window {
-      workspace = "wiki",
-      cwd = wiki_dir,
-      args = { "nvim", "index.md" },
-      set_environment_variables = {
-        PATH = path,
-      },
-    }
-    wiki_tab:set_title "wiki"
-    wiki_pane:split {
-      direction = "Right",
-    }
-
     mux.set_active_workspace "coding"
   end)
 end
