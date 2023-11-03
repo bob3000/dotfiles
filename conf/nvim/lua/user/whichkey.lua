@@ -118,7 +118,6 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
-  ["N"] = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace work') end<cr>", "Neorg" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
   B = {
@@ -149,6 +148,15 @@ local mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
+  },
+  N = {
+    name = "Neorg",
+    w = { "<cmd>lua if vim.bo.filetype=='norg' then vim.cmd('Neorg return') else vim.cmd('Neorg workspace work') end<cr>", "Workspace work" },
+    j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
+    t = { "<cmd>lua vim.cmd('Neorg journal tomorrow')<cr>", "Journal tomorrow" },
+    y = { "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", "Journal yesterday" },
+    i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
+    u = { "<cmd>lua vim.cmd('Neorg journal toc update')<cr>", "Journal toc update" },
   },
   s = {
     name = "Search",
