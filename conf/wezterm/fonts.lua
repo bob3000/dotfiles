@@ -19,7 +19,7 @@ M.setup = function(config, wezterm)
   config.line_height = 0.9
   config.cell_width = 0.95
   config.underline_thickness = 2.0
-  config.underline_position = -2.1
+  -- config.underline_position = -1.1
 end
 
 return M
