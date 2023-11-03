@@ -96,7 +96,7 @@ local mappings_no_prefix = {
 local mappings = {
   [";"] = { "<cmd>Alpha<cr>", "Alpha" },
   -- ["B"] = { "<cmd>let &background = ( &background == 'dark' ? 'light' : 'dark' )<cr>", "Background color" },
-  ["b"] = {
+  ["B"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{" ..
       "previewer = false, sort_mru = true, ignore_current_buffer = true})<cr>",
     "Buffers",
@@ -120,11 +120,11 @@ local mappings = {
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
-  B = {
+  b = {
     name = "Build",
-    ["b"] = { "<cmd>CompilerOpen<cr>", "Build project" },
-    ["r"] = { "<cmd>CompilerRedo<cr>", "Redo build" },
-    ["s"] = { "<cmd>CompilerStop<cr>", "Build project" },
+    ["o"] = { "<cmd>CompilerOpen<cr>", "Build optoins" },
+    ["b"] = { "<cmd>CompilerRedo<cr>", "Redo build" },
+    ["s"] = { "<cmd>CompilerStop<cr>", "Stop build" },
     ["t"] = { "<cmd>CompilerToggleResults<cr>", "Toggle build UI" },
   },
   g = {
