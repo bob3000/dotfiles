@@ -1,0 +1,74 @@
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+  return
+end
+
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
+end
+
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  sections = { "error", "warn" },
+  symbols = { error = " ", warn = " " },
+  colored = false,
+  always_visible = true,
+}
+
+local diff = {
+  "diff",
+  colored = true,
+  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  cond = hide_in_width,
+}
+
+local filetype = {
+  "filetype",
+  icons_enabled = false,
+}
+
+local location = {
+  "location",
+  padding = 0,
+}
+
+local spaces = function()
+  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+end
+
+lualine.setup {
+  extensions = {
+    "lazy",
+    "man",
+    "mason",
+    "nvim-dap-ui",
+    "nvim-tree",
+    "overseer",
+    "quickfix",
+    "symbols-outline",
+    "toggleterm",
+    "trouble",
+  },
+  options = {
+    globalstatus = true,
+    icons_enabled = true,
+    theme = "auto",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { "alpha", "dashboard" },
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch" },
+    lualine_c = { diagnostics },
+    lualine_x = { diff, spaces, "encoding", "fileformat", filetype, "overseer" },
+    lualine_y = { location },
+    lualine_z = {
+      "windows",
+      "progress",
+      "(vim.fn.mode() == 'v' or vim.fn.mode() == 'V') and string.format('%d words', vim.fn.wordcount()['visual_words'])",
+    },
+  },
+}
