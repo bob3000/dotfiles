@@ -28,6 +28,8 @@ function link_common_files() {
   backup_and_link "$PWD/conf/.tmux/scripts" "${HOME}/.tmux/scripts"
   backup_and_link "$PWD/conf/starship.toml" "${HOME}/.config/starship.toml"
   backup_and_link "$PWD/conf/bat" "${HOME}/.config/bat"
+  backup_and_link "$PWD/conf/k9s" "${HOME}/.config/k9s"
+  backup_and_link "$PWD/conf/lazygit/config.yml" "${HOME}/.config/lazygit/config.yml"
 }
 
 function link_mac_files() {

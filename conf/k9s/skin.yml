@@ -1,0 +1,104 @@
+color0: &color0 "#232a2e" #black
+color1: &color1 "#343f44" #lighter black
+color4: &color4 "#d3c6aa" #fg
+color8: &color8 "#7fbbb3" #blue
+color10: &color10 "#3a515d" #dark blue
+color11: &color11 "#e67e80" #red
+color13: &color13 "#dbbc7f" #yellow
+color14: &color14 "#a7c080" #green
+
+k9s:
+  # General K9s styles
+  body:
+    fgColor: *color4
+    bgColor: *color0
+    logoColor: *color10
+  # ClusterInfoView styles.
+  info:
+    fgColor: *color8
+    sectionColor: *color4
+  # Dialog styles.
+  dialog:
+    fgColor: *color4
+    bgColor: *color0
+    buttonFgColor: *color4
+    buttonBgColor: *color1
+    buttonFocusFgColor: *color4
+    buttonFocusBgColor: *color1
+    labelFgColor: *color8
+    fieldFgColor: *color11
+  frame:
+    # Borders styles.
+    border:
+      fgColor: *color10
+      focusColor: *color10
+    menu:
+      fgColor: *color4
+      keyColor: *color14
+      # Used for favorite namespaces
+      numKeyColor: *color14
+    # CrumbView attributes for history navigation.
+    crumbs:
+      fgColor: *color4
+      bgColor: *color0
+      activeColor: *color1
+    # Resource status and update styles
+    status:
+      newColor: *color8
+      modifyColor: *color13
+      addColor: *color14
+      pendingColor: *color13
+      errorColor: *color11
+      highlightcolor: *color8
+      killColor: *color14
+      completedColor: *color10
+    # Border title styles.
+    title:
+      fgColor: *color4
+      bgColor: *color0
+      highlightColor: *color8
+      counterColor: *color8
+      filterColor: *color13
+  views:
+    # Charts skins...
+    charts:
+      bgColor: *color0
+      dialBgColor: *color0
+      chartBgColor: *color0
+      defaultDialColors:
+        - *color8
+        - *color11
+      defaultChartColors:
+        - *color8
+        - *color11
+    # TableView attributes.
+    table:
+      fgColor: *color4
+      bgColor: *color0
+      cursorFgColor: *color0
+      cursorBgColor: *color0
+      markColor: *color4
+      # Header row styles.
+      header:
+        fgColor: *color4
+        bgColor: *color0
+        sorterColor: *color8
+    # Xray view attributes.
+    xray:
+      fgColor: *color4
+      bgColor: *color0
+      cursorColor: *color8
+      cursorTextColor: *color4
+      graphicColor: *color8
+    # YAML info styles.
+    yaml:
+      keyColor: *color8
+      colonColor: *color8
+      valueColor: *color4
+    # Logs styles.
+    logs:
+      fgColor: *color4
+      bgColor: *color0
+      indicator:
+        fgColor: *color4
+        bgColor: *color10
