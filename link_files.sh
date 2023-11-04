@@ -30,6 +30,7 @@ function link_common_files() {
   backup_and_link "$PWD/conf/bat" "${HOME}/.config/bat"
   backup_and_link "$PWD/conf/k9s" "${HOME}/.config/k9s"
   backup_and_link "$PWD/conf/lazygit/config.yml" "${HOME}/.config/lazygit/config.yml"
+  backup_and_link "$PWD/conf/nvim" "${HOME}/.config/nvim"
 }
 
 function link_mac_files() {

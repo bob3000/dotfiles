@@ -49,7 +49,7 @@ M.setup = function(config, wezterm)
     local_tab:set_title "config"
     local_pane:split {
       direction = "Right",
-      cwd = local_dir .. "/neovim-config",
+      cwd = local_dir .. "/dotfiles",
     }
 
     mux.set_active_workspace "coding"

@@ -44,7 +44,7 @@ npm i -g neovim
 Make sure to remove or move your current `nvim` directory
 
 ```sh
-git clone git@github.com:bob3000/neovim-config.git ~/.config/nvim
+ln -s $PWD/ ~/.config/nvim
 ```
 
 Run `nvim` and wait for the plugins to be installed

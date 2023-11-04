@@ -1,4 +1,5 @@
 bat
+cmake
 codespell
 coreutils
 deno
@@ -14,6 +15,7 @@ gettext
 git
 git-delta
 gnupg
+go
 jq
 lazygit
 libunistring
@@ -35,4 +37,5 @@ tmux
 tree
 unzip
 vim
+wezterm
 wget

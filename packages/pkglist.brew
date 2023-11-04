@@ -1,5 +1,6 @@
 bat
 black
+cmake
 codespell
 coreutils
 eslint
@@ -38,5 +39,6 @@ telnet
 tmux
 tree
 vim
+wezterm
 wget
 zsh
