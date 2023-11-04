@@ -73,7 +73,7 @@ rust_tools.setup {
     -- executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
     reload_workspace_from_cargo_toml = true,
     inlay_hints = {
-      auto = true,
+      auto = false,
       only_current_line = false,
       show_parameter_hints = true,
       parameter_hints_prefix = "<-",
@@ -111,6 +111,11 @@ rust_tools.setup {
           vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
         end
       end
+
+      -- enable native inlay_hints
+      pcall(function()
+        vim.lsp.inlay_hint(bufnr, true)
+      end)
 
       -- register rust keymaps
       local which_key_ok, which_key = pcall(require, "which-key")

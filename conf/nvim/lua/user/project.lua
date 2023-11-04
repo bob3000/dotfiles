@@ -22,6 +22,7 @@ project.setup {
     ".git",
     "Cargo.toml",
     "Gemfile",
+    "go.mod",
     "Makefile",
     "build.zig",
     "index.norg",

@@ -105,6 +105,7 @@ local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["o"] = { "<cmd>:SymbolsOutline<cr>", "Outline" },
   ["O"] = { "<cmd>:OverseerToggle<cr>", "Overseer" },
+  ["i"] = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Inlay hints" },
   ["W"] = { "<cmd>lua vim.lsp.buf.format{ async = false }; vim.api.nvim_command('write')<CR>", "Format and Save" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },

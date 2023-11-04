@@ -130,10 +130,32 @@ M.on_attach = function(client, bufnr)
 
   if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
+    -- enable native inlay_hints if available
+    pcall(function()
+      vim.lsp.inlay_hint(bufnr, true)
+    end)
   end
 
   if client.name == "lua_ls" then
     client.server_capabilities.documentFormattingProvider = false
+    -- enable native inlay_hints if available
+    pcall(function()
+      vim.lsp.inlay_hint(bufnr, true)
+    end)
+  end
+
+  if client.name == "clangd" then
+    -- enable native inlay_hints if available
+    pcall(function()
+      vim.lsp.inlay_hint(bufnr, true)
+    end)
+  end
+
+  if client.name == "gopls" then
+    -- enable native inlay_hints if available
+    pcall(function()
+      vim.lsp.inlay_hint(bufnr, true)
+    end)
   end
 
   local illuminate_ok, illuminate = pcall(require, "illuminate")
