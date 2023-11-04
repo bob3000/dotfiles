@@ -24,6 +24,7 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true
+  syntax-theme = gruvbox-dark
 [color]
   diff = auto
   status = auto
