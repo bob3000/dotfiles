@@ -10,7 +10,7 @@ RUN pacman -S --noconfirm zsh \
 RUN pacman -Sy \
   && pacman -S --noconfirm --needed - < packages/pkglist.pacman
 USER ${IMG_USR}
-RUN curl --proto '=https' -y --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN curl -fsSL https://fnm.vercel.app/install | bash
 RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN ./link_files.sh
@@ -27,5 +27,8 @@ RUN nvim --headless -c 'quitall'
 RUN wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.spl http://ftp.vim.org/vim/runtime/spell/de.utf-8.spl \
   && wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.sug http://ftp.vim.org/vim/runtime/spell/de.utf-8.sug
 RUN nvim --headless -c 'MasonInstallAll' -c 'sleep 30' -c 'quitall'
+USER root
+RUN rm -rf /var/cache/* /home/${IMG_USR}/.cache/*
+USER ${IMG_USR}
 WORKDIR /home/${IMG_USR}/code
 ENTRYPOINT ["fish"]
