@@ -94,3 +94,10 @@ for _, server in pairs(servers) do
 
   lspconfig[server].setup(opts)
 end
+
+vim.api.nvim_create_user_command("MasonInstallAll", function ()
+  vim.cmd("LspInstall " .. table.concat(servers, " "))
+  vim.cmd("LspInstall " .. "rust_analyzer") -- not in list servers
+  vim.cmd("NullLsInstall " .. table.concat(linter_formatter, " "))
+  vim.cmd("DapInstall " .. table.concat(debugger, " "))
+end, {})
