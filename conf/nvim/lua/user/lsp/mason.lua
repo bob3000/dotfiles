@@ -36,6 +36,7 @@ local linter_formatter = {
   "markdownlint",
   "markdown_toc",
   "prettier",
+  "shellcheck",
   "shfmt",
   "stylua",
 }

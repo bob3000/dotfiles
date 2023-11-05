@@ -3,12 +3,10 @@ cmake
 codespell
 coreutils
 deno
-eslint
 eza
 fd
 fish
 fisher
-flake8
 fzf
 gcc
 gettext
@@ -29,13 +27,8 @@ python
 python-pip
 readline
 ripgrep
-shellcheck
-shfmt
 starship
-stylua
 tmux
 tree
 unzip
-vim
-wezterm
 wget
