@@ -26,6 +26,6 @@ RUN fish -c "fish_add_path -U -a /home/bob/.local/share/fnm \
 RUN nvim --headless -c 'quitall'
 RUN wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.spl http://ftp.vim.org/vim/runtime/spell/de.utf-8.spl \
   && wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.sug http://ftp.vim.org/vim/runtime/spell/de.utf-8.sug
-RUN nvim --headless -c 'MasonInstallAll' -c 'sleep 10' -c 'quitall'
+RUN nvim --headless -c 'MasonInstallAll' -c 'sleep 30' -c 'quitall'
 WORKDIR /home/${IMG_USR}/code
 ENTRYPOINT ["fish"]
