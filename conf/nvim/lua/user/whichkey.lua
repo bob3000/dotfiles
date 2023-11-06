@@ -119,6 +119,7 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["M"] = { "<cmd>PeekOpen<cr>", "Markdown" },
   ["n"] = { "<cmd>Neogen<cr>", "Gen Comment" },
+  ["r"] = { "<cmd>bufdo e<cr>", "Refresh Buffers" },
   ["T"] = { "<cmd>OverseerRun<cr>", "OverseerRun" },
   ["Z"] = { "<cmd>ZenMode<cr>", "ZenMode" },
   b = {
