@@ -142,7 +142,7 @@ local plugins = {
   { "chr4/nginx.vim" }, -- nginx syntax highlighting
   { "Glench/Vim-Jinja2-Syntax" }, -- Jinja2 syntax highlighting
   { "HiPhish/rainbow-delimiters.nvim" }, -- Rainbow colored bracket pairs
-  { "towolf/vim-helm", lazy = false }, -- helm highlighting
+  { "towolf/vim-helm", lazy = false, enabled = true }, -- helm highlighting
 
   -- editing
   { "tpope/vim-surround" }, -- surround text with quotes and braces
@@ -176,6 +176,14 @@ local plugins = {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+    },
+
+    -- kitty
+    {
+      "mikesmithgh/kitty-scrollback.nvim",
+      lazy = true,
+      cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+      event = { "User KittyScrollbackLaunch" },
     },
   },
 

@@ -33,6 +33,7 @@ try_setup("texmagic", "setup", {})
 try_setup("package-info", "setup", { { package_manager = "npm" } })
 try_setup("refactoring", "setup", {})
 try_setup("neodev", "setup", { library = { plugins = { "neotest" }, types = true } })
+try_setup("kitty-scrollback", "setup", {})
 if vim.fn.has("gui_running") ~= 1 then
   try_setup("cinnamon", "setup", {})
 end
