@@ -1,0 +1,16 @@
+layout tall
+title shell
+cd ~/code
+launch fish
+launch fish
+new_tab editor
+launch fish
+new_tab cloud
+layout horizontal
+launch fish
+launch fish
+new_tab remote
+layout horizontal
+launch fish
+launch fish
+launch fish

@@ -19,7 +19,7 @@ function link_common_files() {
   backup_and_link "$PWD/conf/.gitconfig" "${HOME}/.gitconfig"
   backup_and_link "$PWD/conf/.pythonstartup" "${HOME}/.pythonstartup"
   backup_and_link "$PWD/conf/.tmux.conf" "${HOME}/.tmux.conf"
-  backup_and_link "$PWD/conf/kitty.conf" "${HOME}/.config/kitty/kitty.conf"
+  backup_and_link "$PWD/conf/kitty" "${HOME}/.config/kitty"
   backup_and_link "$PWD/conf/starship.toml" "${HOME}/.config/starship.toml"
   backup_and_link "$PWD/conf/lv-config.lua" "${HOME}/.config/lvim/config.lua"
   backup_and_link "$PWD/conf/.zshrc" "${HOME}/.zshrc"

@@ -30,6 +30,7 @@ if set -q $SSH_CONNECTION
 else
     set EDITOR nvim
 end
+set --export OSTYPE (uname)
 set LC_ALL en_US.UTF-8
 set LANG en_US.UTF-8
 set PAGER less
