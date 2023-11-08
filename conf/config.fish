@@ -49,7 +49,7 @@ set --export FZF_DEFAULT_COMMAND 'rga --files'
 set --export FZF_CTRL_T_COMMAND 'fd --exclude "Library/*" . $HOME'
 set --export FZF_CTRL_T_OPTS '--preview "[ $(file --mime {} | cut -d'=' -f2) = binary ] && echo {} is a binary file || bat --color always {}"'
 set --export FZF_ALT_C_COMMAND 'fd --exclude "Library/*" -t d . $HOME'
-set --export FZF_ALT_C_OPTS '--preview "eza -la {}"'
+set --export FZF_ALT_C_OPTS '--preview "eza --color always -la {}"'
 
 set -x NEOVIDE_MULTIGRID true
 
