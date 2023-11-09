@@ -1,7 +1,8 @@
+cd ~/code
 layout tall
 title shell
-cd ~/code
 launch fish
+title shell
 launch fish
 new_tab editor
 launch fish

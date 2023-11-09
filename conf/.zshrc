@@ -19,6 +19,7 @@ export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # make vim fzf plugin use ripgrep
 export FZF_DEFAULT_COMMAND='rga --files'
