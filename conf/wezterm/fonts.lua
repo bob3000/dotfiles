@@ -4,7 +4,7 @@ M.setup = function(config, wezterm)
     {
       family = "JetBrains Mono",
       weight = "Medium",
-      harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+      harfbuzz_features = { "calt=1", "ss01" },
     },
     -- { family = 'Terminus', weight = 'Bold' },
     -- { family = "Fira Code Nerd Font Mono", weight = "Medium" },
@@ -15,6 +15,7 @@ M.setup = function(config, wezterm)
     "Noto Serif Tibetan",
     "Noto Sans Ol Chiki",
   }
+  config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
   config.font_size = 15.0
   config.line_height = 0.9
   config.cell_width = 0.95
