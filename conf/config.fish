@@ -40,7 +40,7 @@ set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
+set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*" --bind ctrl-k:preview-up,ctrl-j:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
 set --export FZF_DEFAULT_COMMAND 'rga --files'
 set --export FZF_CTRL_T_COMMAND 'fd --color always --exclude "Library/*" . $HOME'
 set --export FZF_CTRL_T_OPTS '--ansi --multi --prompt="File> " --preview "preview_files {}"'
