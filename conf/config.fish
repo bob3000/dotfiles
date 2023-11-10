@@ -13,10 +13,6 @@ set fish_greeting
 function preview_files
   if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
     chafa --format kitty --animate=off --center on --clear --size "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" "$argv" 2> /dev/null
-    # viu --static --transparent --height (echo $size | cut -d'x' -f2) --width (echo $size | cut -d'x' -f1) "$argv"
-    # wezterm imgcat --height (echo $size | cut -d'x' -f2) --width (echo $size | cut -d'x' -f1) "$argv"
-    # kitty +kitten icat --transfer-mode=file --stdin=no --place="$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES"@0x0 "$argv"
-    # cat "$argv" | convert -scale $size - - | kitty +kitten icat --transfer-mode=file --stdin=yes
   else
     bat --style=numbers --color=always --theme gruvbox-dark "$argv"
   end
@@ -31,25 +27,25 @@ else
     set EDITOR nvim
 end
 set --export OSTYPE (uname)
-set LC_ALL en_US.UTF-8
-set LANG en_US.UTF-8
-set PAGER less
-set BROWSER brave
-set TERMINAL kitty
-set GOPATH $HOME/.go
-set PATH "$GOPATH/bin:$PATH"
-set PATH "$HOME/.cargo/bin:$PATH"
-set PATH "$HOME/.local/bin:$PATH"
-set PATH "$HOME/.dotnet/tools:$PATH"
-set PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
-# set PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+set --export LC_ALL en_US.UTF-8
+set --export LANG en_US.UTF-8
+set --export PAGER less
+set --export BROWSER brave
+set --export TERMINAL kitty
+set --export GOPATH $HOME/.go
+set --export PATH "$GOPATH/bin:$PATH"
+set --export PATH "$HOME/.cargo/bin:$PATH"
+set --export PATH "$HOME/.local/bin:$PATH"
+set --export PATH "$HOME/.dotnet/tools:$PATH"
+set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
+# set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
 set --export FZF_DEFAULT_COMMAND 'rga --files'
-set --export FZF_CTRL_T_COMMAND 'fd --exclude "Library/*" . $HOME'
-set --export FZF_CTRL_T_OPTS '--preview "[ $(file --mime {} | cut -d'=' -f2) = binary ] && echo {} is a binary file || bat --color always {}"'
-set --export FZF_ALT_C_COMMAND 'fd --exclude "Library/*" -t d . $HOME'
-set --export FZF_ALT_C_OPTS '--preview "eza --color always -la {}"'
+set --export FZF_CTRL_T_COMMAND 'fd --color always --exclude "Library/*" . $HOME'
+set --export FZF_CTRL_T_OPTS '--ansi --multi --prompt="File> " --preview "preview_files {}"'
+set --export FZF_ALT_C_COMMAND 'fd --color always --exclude "Library/*" -t d . $HOME'
+set --export FZF_ALT_C_OPTS '--ansi --multi --prompt="Directory> " --preview "eza --color always -la {}"'
 
 set -x NEOVIDE_MULTIGRID true
 
@@ -91,4 +87,4 @@ if status is-interactive
 end
 
 # key bindings
-bind \er ranger # start ranger file manager
+bind \cr _fzf_search_history
