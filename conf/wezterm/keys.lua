@@ -1,7 +1,7 @@
 local M = {}
 M.setup = function(config, wezterm)
   local act = wezterm.action
-  config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+  config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
   config.keys = {
     -- move fullscreen binding
     { key = "Enter", mods = "ALT", action = act.SendKey { key = "Enter", mods = "ALT" } },
