@@ -2,6 +2,7 @@ require "user.options"
 require "user.plugins"
 require "user.keymaps" -- has to run after plugins for some keymaps to work
 -- plugin config
+require "user.imagenvim"
 require "user.autocommands"
 require "user.colorscheme"
 require "user.telescope"

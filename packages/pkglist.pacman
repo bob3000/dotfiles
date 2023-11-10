@@ -14,9 +14,11 @@ git
 git-delta
 gnupg
 go
+imagemagick
 jq
 lazygit
 libunistring
+lua51
 make
 neofetch
 neovim
