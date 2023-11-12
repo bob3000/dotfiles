@@ -1,3 +1,23 @@
+local logo = [[
+         .:           ..           
+       .----.         :==.         
+     .-------:        :====:       
+    ::-===-----       :======      
+    :---==------.     :+++++=      
+    :-----=------:    :++++++      
+    ------::-------   :++++++      
+    ------. :-------. :++++++      
+    ------:  .-======::++++++      
+    ------:    -=======++++++      
+    -=====:     :======++++++      
+    -=====:      .=====++++++      
+     :====:        -===++++=.      
+       :==:         :==++=.        
+         -:          .==.          
+]]
+
+logo = string.rep("\n", 8) .. logo .. "\n\n"
+
 return {
   {
     "s1n7ax/nvim-window-picker",
@@ -24,5 +44,10 @@ return {
         -- Configuration here, or leave empty to use defaults
       })
     end,
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = { config = { header = vim.split(logo, "\n") } },
   },
 }
