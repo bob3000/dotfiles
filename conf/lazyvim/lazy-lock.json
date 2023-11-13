@@ -4,6 +4,7 @@
   "SchemaStore.nvim": { "branch": "main", "commit": "fe2ab14cf777a041b7c62af37346f7849400a754" },
   "Vim-Jinja2-Syntax": { "branch": "master", "commit": "2c17843b074b06a835f88587e1023ceff7e2c7d1" },
   "aerial.nvim": { "branch": "master", "commit": "51bdd35f4f984293d4200e52aeff44f12febc6f2" },
+  "auto-save.nvim": { "branch": "main", "commit": "e98cafef75271ec83dc84c933f124ab1bb675ef8" },
   "bufferline.nvim": { "branch": "main", "commit": "9e8d2f695dd50ab6821a6a53a840c32d2067a78a" },
   "catppuccin": { "branch": "main", "commit": "9f3c13bbcf16fcaec3a429c03743a13e5923f3e3" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
