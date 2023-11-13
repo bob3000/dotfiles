@@ -30,6 +30,7 @@ return {
   },
   {
     "mikesmithgh/kitty-scrollback.nvim",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     lazy = true,
     cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
     event = { "User KittyScrollbackLaunch" },
