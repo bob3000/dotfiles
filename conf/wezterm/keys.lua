@@ -1,7 +1,7 @@
 local M = {}
 M.setup = function(config, wezterm)
   local act = wezterm.action
-  config.disable_default_key_bindings = true
+  -- config.disable_default_key_bindings = true
   config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
   config.keys = {
     -- move fullscreen binding
