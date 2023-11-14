@@ -1,5 +1,31 @@
 return {
   {
+    "folke/zen-mode.nvim",
+    lazy = true,
+    opts = {
+      plugins = {
+        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+        gitsigns = { enabled = false }, -- disables git signs
+        tmux = { enabled = true }, -- disables the tmux statusline
+        kitty = {
+          enabled = true,
+          font = "+4", -- font size increment
+        },
+        alacritty = {
+          enabled = true,
+          font = "14", -- font size
+        },
+        wezterm = {
+          enabled = true,
+          font = "+4", -- (10% increase per step)
+        },
+      },
+    },
+    keys = {
+      { "<leader>Z", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+    },
+  },
+  {
     "nvim-neorg/neorg",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     build = ":Neorg sync-parsers",
@@ -40,7 +66,7 @@ return {
         },
       })
       require("telescope").load_extension("neorg")
-      local keys = {
+      local neorg_keys = {
         ["<leader>n"] = {
           name = "+neorg",
           w = {
@@ -48,7 +74,10 @@ return {
             "Workspace work",
           },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
-          M = { "<cmd>lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') })<cr>", "Update Meta" },
+          M = {
+            "<cmd>lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') })<cr>",
+            "Update Meta",
+          },
           t = { "<cmd>lua vim.cmd('Neorg journal tomorrow')<cr>", "Journal tomorrow" },
           y = { "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", "Journal yesterday" },
           i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
@@ -56,7 +85,7 @@ return {
           N = { "<cmd>Telescope neorg search_headings<cr>", "Neorg headings" },
         },
       }
-      require("which-key").register({ mode = { "n" }, keys })
+      require("which-key").register({ mode = { "n" }, neorg_keys })
     end,
   },
 }
