@@ -48,6 +48,7 @@ return {
             "Workspace work",
           },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
+          M = { "<cmd>lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') })<cr>", "Update Meta" },
           t = { "<cmd>lua vim.cmd('Neorg journal tomorrow')<cr>", "Journal tomorrow" },
           y = { "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", "Journal yesterday" },
           i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
