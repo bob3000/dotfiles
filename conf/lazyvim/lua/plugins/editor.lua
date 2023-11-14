@@ -41,9 +41,7 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
+      require("nvim-surround").setup()
     end,
   },
   {
@@ -74,7 +72,6 @@ return {
     },
     keys = {
       { "<leader>a", "<cmd>ASToggle<cr>", desc = "Toggle auto save" },
-      { "<leader>A", "<cmd>lua vim.g.autoformat = not vim.g.autoformat; vim.notify('Autoformat: ' .. tostring(vim.g.autoformat))<cr>", desc = "Toggle auto format" },
     },
   },
   {
