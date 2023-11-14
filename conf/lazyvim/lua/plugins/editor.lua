@@ -72,7 +72,10 @@ return {
       -- your config goes here
       -- or just leave it empty :)
     },
-    keys = { { "<leader>a", "<cmd>ASToggle<cr>", desc = "Toggle auto save" } },
+    keys = {
+      { "<leader>a", "<cmd>ASToggle<cr>", desc = "Toggle auto save" },
+      { "<leader>A", "<cmd>lua vim.g.autoformat = not vim.g.autoformat; vim.notify('Autoformat: ' .. tostring(vim.g.autoformat))<cr>", desc = "Toggle auto format" },
+    },
   },
   {
     "folke/which-key.nvim",
