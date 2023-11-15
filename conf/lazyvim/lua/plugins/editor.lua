@@ -63,6 +63,13 @@ return {
     },
   },
   {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, "overseer")
+    end,
+  },
+  {
     "okuuva/auto-save.nvim",
     cmd = "ASToggle", -- optional for lazy loading on command
     event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
