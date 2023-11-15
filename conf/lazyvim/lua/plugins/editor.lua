@@ -67,10 +67,13 @@ return {
     cmd = "ASToggle", -- optional for lazy loading on command
     event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
     opts = {
-      enabled = false,
+      enabled = true,
+      execution_message = {
+        enabled = false,
+      },
     },
     keys = {
-      { "<leader>cS", "<cmd>ASToggle<cr>", desc = "Toggle auto save" },
+      { "<leader>cS", "<cmd>ASToggle<cr>", desc = "Toggle Auto Save" },
     },
   },
   {
