@@ -106,13 +106,34 @@ return {
         },
       })
       require("telescope").load_extension("neorg")
+
+      -- default keybinds
+      local neorg_callbacks = require("neorg.core.callbacks")
+
+      neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
+        -- Map all the below keybinds only when the "norg" mode is active
+        keybinds.map_event_to_mode("norg", {
+          i = { -- Bind in insert mode
+            { "<C-l>", "core.integrations.telescope.insert_link" },
+          },
+        }, {
+          silent = true,
+          noremap = true,
+        })
+      end)
+
+      -- global keybinds
       local neorg_keys = {
         ["<leader>n"] = {
           name = "+neorg",
-          w = { "<cmd>lua vim.cmd('Neorg workspace work')<cr>", "Workspace work", },
+          w = { "<cmd>lua vim.cmd('Neorg workspace work')<cr>", "Workspace work" },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
           M = {
-            "<cmd>lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') })<cr>",
+            "<cmd>"
+            .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
+            .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
+            .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
+            .. "<cr>",
             "Update Meta",
           },
           r = { "<cmd>lua vim.cmd('Neorg return')<cr>", "Journal tomorrow" },
@@ -120,7 +141,8 @@ return {
           y = { "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", "Journal yesterday" },
           i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
           u = { "<cmd>lua vim.cmd('Neorg journal toc update')<cr>", "Journal toc update" },
-          N = { "<cmd>Telescope neorg search_headings<cr>", "Neorg headings" },
+          H = { "<cmd>lua vim.cmd('Telescope neorg search_headings')<cr>", "Neorg headings" },
+          L = { "<cmd>lua vim.cmd('Telescope neorg find_linkable')<cr>", "Neorg linkable" },
         },
       }
       require("which-key").register({ mode = { "n" }, neorg_keys })
