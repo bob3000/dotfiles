@@ -25,8 +25,42 @@ return {
     event = "VeryLazy",
     version = "*",
     config = function()
-      require("window-picker").setup()
+      local colors = require("helper.colors").get_colors()
+      require("window-picker").setup({
+        hint = "floating-big-letter",
+        highlights = {
+          statusline = {
+            focused = {
+              fg = colors.fg,
+              bg = colors.bg5,
+              bold = true,
+            },
+            unfocused = {
+              fg = colors.fg,
+              bg = colors.bg5,
+              bold = true,
+            },
+          },
+          winbar = {
+            focused = {
+              fg = colors.fg,
+              bg = colors.bg5,
+              bold = true,
+            },
+            unfocused = {
+              fg = colors.fg,
+              bg = colors.bg5,
+              bold = true,
+            },
+          },
+        },
+      })
     end,
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = { "VeryLazy" },
+    config = true,
   },
   {
     "mikesmithgh/kitty-scrollback.nvim",
