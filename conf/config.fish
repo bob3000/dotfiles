@@ -21,6 +21,8 @@ set fzf_preview_file_cmd preview_files
 set fzf_diff_highlighter delta --paging=never --width=20
 set fzf_preview_dir_cmd eza --all --color=always --tree
 
+set --export PYENV_ROOT $HOME/.pyenv
+
 if set -q $SSH_CONNECTION
     set EDITOR vim
 else
@@ -38,6 +40,8 @@ set --export PATH "$HOME/.cargo/bin:$PATH"
 set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
+set --export PATH "$PYENV_ROOT/bin:$PATH"
+
 # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*" --bind ctrl-k:preview-up,ctrl-j:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
@@ -83,6 +87,7 @@ if status is-interactive
     enable_transience
     fzf_key_bindings
     fnm env --use-on-cd | source # fast node manager
+    pyenv init - | source
     theme_gruvbox dark medium
 end
 
