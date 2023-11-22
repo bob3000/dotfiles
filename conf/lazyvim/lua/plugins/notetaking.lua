@@ -31,8 +31,8 @@ return {
     build = "luarocks --local --lua-version 5.1 install magick",
     event = { "BufEnter *.norg" },
     config = function()
-      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
-      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
 
       require("image").setup({
         backend = "kitty",
@@ -74,6 +74,7 @@ return {
       require("neorg").setup({
         load = {
           ["core.defaults"] = {}, -- Loads default behaviour
+          -- ["core.integrations.image"] = {}, -- draw images
           ["core.summary"] = {}, -- create index files
           ["core.export.markdown"] = {}, -- markdown export
           ["core.completion"] = {
@@ -82,7 +83,7 @@ return {
             },
           }, -- completion engine
           -- calendar requires nvim > 0.10.0
-          -- ["core.ui.calendar"] = {}, -- calendar widget
+          ["core.ui.calendar"] = {}, -- calendar widget
           ["core.presenter"] = {
             config = {
               zen_mode = "zen-mode",
@@ -127,13 +128,14 @@ return {
         ["<leader>n"] = {
           name = "+neorg",
           w = { "<cmd>lua vim.cmd('Neorg workspace work')<cr>", "Workspace work" },
+          c = { "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>", "Date picker" },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
           M = {
             "<cmd>"
-            .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
-            .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
-            .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
-            .. "<cr>",
+              .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
+              .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
+              .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
+              .. "<cr>",
             "Update Meta",
           },
           r = { "<cmd>lua vim.cmd('Neorg return')<cr>", "Journal tomorrow" },
