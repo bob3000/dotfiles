@@ -1,6 +1,6 @@
 {
   "LazyVim": { "branch": "main", "commit": "879e29504d43e9f178d967ecc34d482f902e5a91" },
-  "LuaSnip": { "branch": "master", "commit": "1def35377854535bb3b0f4cc7a33c083cdb12571" },
+  "LuaSnip": { "branch": "master", "commit": "6a001360cea89df50f7c5cc8c7a75e6a21f1ef5c" },
   "SchemaStore.nvim": { "branch": "main", "commit": "177cae4f44ddf7c166ef263956378ae308ff77ff" },
   "Vim-Jinja2-Syntax": { "branch": "master", "commit": "2c17843b074b06a835f88587e1023ceff7e2c7d1" },
   "aerial.nvim": { "branch": "master", "commit": "ef08437108247d8805ae388f2699537eac2fd810" },
@@ -47,6 +47,7 @@
   "neotest-python": { "branch": "master", "commit": "48bf141103b94c9384e5542cd185b291909ac305" },
   "neotest-rust": { "branch": "main", "commit": "48c1e146ed0eb775fef6aca75903baf3cedadc01" },
   "neotest-zig": { "branch": "main", "commit": "742f97f971a39d44b4832b432083608834a0e59c" },
+  "newpaper.nvim": { "branch": "main", "commit": "e324b24a6d416f54740e45c29b6f3bf46c3bb4c2" },
   "nginx.vim": { "branch": "master", "commit": "cffaec54f0c7f9518de053634413a20e90eac825" },
   "noice.nvim": { "branch": "main", "commit": "92433164e2f7118d4122c7674c3834d9511722ba" },
   "nui.nvim": { "branch": "main", "commit": "c9b4de623d19a85b353ff70d2ae9c77143abe69c" },
