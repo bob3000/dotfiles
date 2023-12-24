@@ -3,11 +3,11 @@ M.setup = function(config, wezterm)
   config.font = wezterm.font_with_fallback {
     {
       family = "JetBrains Mono",
-      weight = "Medium",
+      weight = "Light",
       harfbuzz_features = { "calt=1", "ss01" },
     },
     -- { family = 'Terminus', weight = 'Bold' },
-    -- { family = "Fira Code Nerd Font Mono", weight = "Medium" },
+    -- { family = "Fira Code Nerd Font Mono", weight = "Light", harfbuzz_features = { "calt=1", "ss01" } },
     { family = "DejaVu Sans Mono", weight = "Medium" },
     "Droid Sans Fallback",
     "Noto Color Emoji",
@@ -15,6 +15,8 @@ M.setup = function(config, wezterm)
     "Noto Serif Tibetan",
     "Noto Sans Ol Chiki",
   }
+  config.freetype_load_flags = "NO_HINTING"
+  config.freetype_load_target = "Light"
   config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
   config.font_size = 15.0
   config.line_height = 0.9
