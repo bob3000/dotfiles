@@ -1,7 +1,7 @@
 local colorscheme = nil
 if os.getenv("SYSTEM_COLORS") == "light" then
   vim.opt.background = "light"
-  colorscheme = "newpaper"
+  colorscheme = "everforest"
 else
   vim.opt.background = "dark"
   colorscheme = "everforest"

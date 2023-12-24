@@ -12,7 +12,7 @@ M.scheme_for_appearance = function(appearance)
     if appearance:find "Dark" then
       return "Everforest Dark (Gogh)"
     else
-      return "Papercolor Light (Gogh)"
+      return "Everforest Light (Gogh)"
     end
   end
 
