@@ -19,3 +19,6 @@ vim.g.root_spec = { "lsp", root_marker, "cwd" }
 vim.g.autoformat = false
 
 vim.opt.spell = true
+
+local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
+vim.fn.serverstart(socket)
