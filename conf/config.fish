@@ -14,7 +14,7 @@ function preview_files
     if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
         chafa --format kitty --animate=off --center on --clear --size "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" "$argv" 2>/dev/null
     else
-        bat --style=numbers --color=always --theme gruvbox-dark "$argv"
+        bat --style=numbers --color=always --theme gruvbox-$SYSTEM_COLORS "$argv"
     end
 end
 set fzf_preview_file_cmd preview_files
@@ -89,7 +89,7 @@ if status is-interactive
     fzf_key_bindings
     fnm env --use-on-cd | source # fast node manager
     pyenv init - | source
-    theme_gruvbox dark medium
+    # theme_gruvbox dark medium
 end
 
 # key bindings

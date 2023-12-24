@@ -1,5 +1,5 @@
 local M = {}
-M.setup = function(wezterm, config)
+M.setup = function(wezterm, config, colors)
   config.scrollback_lines = 10000
 
   -- config.window_background_gradient = {
@@ -15,11 +15,13 @@ M.setup = function(wezterm, config)
   if wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
     config.set_environment_variables = {
+      SYSTEM_COLORS = string.lower(colors.get_appearance(wezterm)),
       SHELL = "/opt/homebrew/bin/fish",
     }
   elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     config.default_prog = { "/usr/bin/fish", "-l" }
     config.set_environment_variables = {
+      SYSTEM_COLORS = string.lower(colors.get_appearance(wezterm)),
       SHELL = "/usr/bin/fish",
     }
   end
