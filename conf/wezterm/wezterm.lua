@@ -7,7 +7,7 @@ end
 
 local colors = require "colors"
 
-require("options").setup(wezterm, config, colors)
+require("options").setup(wezterm, config)
 colors.setup(config, wezterm)
 require("domains").setup(config, wezterm)
 require("cursor").setup(config)

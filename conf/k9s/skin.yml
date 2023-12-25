@@ -1,105 +1,44 @@
 # -----------------------------------------------------------------------------
-# K9s Gruvbox Dark Skin
-# Author: [@indiebrain](https://github.com/indiebrain)
+# Transparent skin
+# Preserve your terminal session background color
 # -----------------------------------------------------------------------------
 
-# Styles...
-foreground: &foreground "#ebdbb2"
-background: &background "#272727"
-current_line: &current_line "#ebdbb2"
-selection: &selection "#3c3735"
-comment: &comment "#bdad93"
-cyan: &cyan "#689d69"
-green: &green "#989719"
-orange: &orange "#d79920"
-magenta: &magenta "#b16185"
-blue: &blue "#448488"
-red: &red "#cc231c"
-
+# Skin...
 k9s:
   body:
-    fgColor: *foreground
-    bgColor: *background
-    logoColor: *blue
+    bgColor: default
   prompt:
-    fgColor: *foreground
-    bgColor: *background
-    suggestColor: *orange
+    bgColor: default
   info:
-    fgColor: *magenta
-    sectionColor: *foreground
-  help:
-    fgColor: *foreground
-    bgColor: *background
-    keyColor: *magenta
-    numKeyColor: *blue
-    sectionColor: *green
+    sectionColor: default
   dialog:
-    fgColor: *foreground
-    bgColor: *background
-    buttonFgColor: *foreground
-    buttonBgColor: *magenta
-    buttonFocusFgColor: white
-    buttonFocusBgColor: *cyan
-    labelFgColor: *orange
-    fieldFgColor: *foreground
+    bgColor: default
+    labelFgColor: default
+    fieldFgColor: default
   frame:
-    border:
-      fgColor: *selection
-      focusColor: *current_line
-    menu:
-      fgColor: *foreground
-      keyColor: *magenta
-      numKeyColor: *magenta
     crumbs:
-      fgColor: *foreground
-      bgColor: *comment
-      activeColor: *blue
-    status:
-      newColor: *cyan
-      modifyColor: *blue
-      addColor: *green
-      errorColor: *red
-      highlightColor: *orange
-      killColor: *comment
-      completedColor: *comment
+      bgColor: default
     title:
-      fgColor: *foreground
-      bgColor: *background
-      highlightColor: *orange
-      counterColor: *blue
-      filterColor: *magenta
+      bgColor: default
+      counterColor: default
+    menu:
+      fgColor: default
   views:
     charts:
-      bgColor: background
-      defaultDialColors:
-        - *blue
-        - *red
-      defaultChartColors:
-        - *blue
-        - *red
+      bgColor: default
     table:
-      fgColor: *foreground
-      bgColor: *background
-      cursorFgColor: "#fff"
-      cursorBgColor: *current_line
+      bgColor: default
       header:
-        fgColor: *foreground
-        bgColor: *background
-        sorterColor: *selection
+        fgColor: default
+        bgColor: default
     xray:
-      fgColor: *foreground
-      bgColor: *background
-      cursorColor: *current_line
-      graphicColor: *blue
-      showIcons: false
-    yaml:
-      keyColor: *magenta
-      colonColor: *blue
-      valueColor: *foreground
+      bgColor: default
     logs:
-      fgColor: *foreground
-      bgColor: *background
+      bgColor: default
       indicator:
-        fgColor: *foreground
-        bgColor: *background
+        bgColor: default
+        toggleOnColor: default
+        toggleOffColor: default
+    yaml:
+      colonColor: default
+      valueColor: default
