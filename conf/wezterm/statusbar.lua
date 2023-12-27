@@ -31,11 +31,13 @@ M.setup = function(config, wezterm, color_scheme)
     title = wezterm.truncate_right(title, max_width - 2)
 
     -- get last tab index
+    local tab_ids = {}
     local max_id = 0
-    for _, t in ipairs(tabs) do
+    for i, t in ipairs(tabs) do
       if t.tab_id > max_id then
         max_id = t.tab_id
       end
+      tab_ids[t.tab_id] = i
     end
 
     -- Color palette for the backgrounds of each cell
@@ -51,7 +53,7 @@ M.setup = function(config, wezterm, color_scheme)
 
     -- Translate a cell into elements
     local function push(text, is_last)
-      local cell_no = math.fmod(tab.tab_id, #colors) + 1
+      local cell_no = math.fmod(tab_ids[tab.tab_id], #colors) + 1
       table.insert(elements, { Background = { Color = colors[cell_no + 1] } })
       table.insert(elements, { Foreground = { Color = colors[cell_no] } })
       table.insert(elements, { Text = SOLID_RIGHT_ARROW })
@@ -116,7 +118,7 @@ M.setup = function(config, wezterm, color_scheme)
     -- Color palette for the backgrounds of each cell
     local colors = color_scheme["ansi"]
     -- Foreground color for the text across the fade
-    local text_fg = color_scheme["foreground"]
+    local text_bg = color_scheme["background"]
 
     -- The elements to be formatted
     local elements = {}
@@ -127,7 +129,7 @@ M.setup = function(config, wezterm, color_scheme)
     local function push(text, is_last)
       local cell_no = num_cells
       local color_no = math.fmod(cell_no, #colors) + 1
-      table.insert(elements, { Foreground = { Color = text_fg } })
+      table.insert(elements, { Foreground = { Color = text_bg } })
       table.insert(elements, { Background = { Color = colors[color_no] } })
       table.insert(elements, { Text = " " .. text .. " " })
       if not is_last then
