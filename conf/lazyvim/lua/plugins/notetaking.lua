@@ -128,6 +128,7 @@ return {
         ["<leader>n"] = {
           name = "+neorg",
           w = { "<cmd>lua vim.cmd('Neorg workspace work')<cr>", "Workspace work" },
+          n = { "<cmd>lua vim.cmd('Neorg workspace notes')<cr>", "Workspace notes" },
           c = { "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>", "Date picker" },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
           M = {
