@@ -33,26 +33,27 @@ M.get_appearance = function(wezterm)
   return "Dark"
 end
 
-M.scheme_for_appearance = function(appearance, config)
+M.scheme_for_appearance = function(wezterm, config)
+    local appearance = M.get_appearance(wezterm)
+    local scheme_name = nil
     if appearance:find "Dark" then
       update_nvim_theme("dark")
-      config.colors = {
-        cursor_fg = "#232A2E"
-      }
-      return "Everforest Dark (Gogh)"
+      scheme_name = "Everforest Dark (Gogh)"
     else
       update_nvim_theme("light")
-      config.colors = {
-        cursor_fg = "#D3C6AA"
-      }
-      return "Everforest Light (Gogh)"
+      scheme_name = "Everforest Light (Gogh)"
     end
+    local scheme = wezterm.color.get_builtin_schemes()[scheme_name]
+    config.colors = {
+      cursor_fg = scheme["background"]
+    }
+    return scheme_name, scheme
   end
 
 M.setup = function(config, wezterm)
-  local scheme_name = M.scheme_for_appearance(M.get_appearance(wezterm), config)
+  local scheme_name, scheme = M.scheme_for_appearance(wezterm, config)
   config.color_scheme = scheme_name
-  M.scheme = wezterm.color.get_builtin_schemes()[scheme_name]
+  M.scheme = scheme
 
   config.inactive_pane_hsb = {
     saturation = 0.9,
