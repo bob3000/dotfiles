@@ -26,14 +26,15 @@ local linux_fonts = {
 M.setup = function(config, wezterm)
   if wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
     fonts = table.pack(table.unpack(macos_fonts), table.unpack(fonts))
+    config.font_size = 14.0
   elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
     fonts = table.pack(table.unpack(linux_fonts), table.unpack(fonts))
+    config.font_size = 12.0
   end
   config.font = wezterm.font_with_fallback(fonts)
   config.freetype_load_flags = "NO_HINTING"
   config.freetype_load_target = "Light"
   config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-  config.font_size = 14.0
   config.line_height = 0.9
   config.cell_width = 0.95
   config.underline_thickness = 2.0
