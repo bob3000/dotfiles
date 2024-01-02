@@ -113,6 +113,32 @@ M.setup = function(config, wezterm)
       { key = "B", mods = "NONE", action = act.CopyMode "MoveBackwardWord" },
       { key = "W", mods = "NONE", action = act.CopyMode "MoveForwardWord" },
       { key = "E", mods = "NONE", action = act.CopyMode "MoveForwardWordEnd" },
+      { key = "u", mods = "CTRL", action = act.Multiple {
+          act.CopyMode "ClearPattern",
+          act.CompleteSelection 'Clipboard',
+          act.ActivateCopyMode,
+        },
+      },
+      {
+        key = 'n',
+        mods = 'SHIFT',
+        action = act.Multiple {
+          act.CopyMode 'NextMatch',
+          act.ClearSelection,
+          act.CompleteSelection 'Clipboard',
+          act.CopyMode "ClearSelectionMode",
+        }
+      },
+      {
+        key = 'n',
+        mods = 'NONE',
+        action = act.Multiple {
+          act.CopyMode 'PriorMatch',
+          act.ClearSelection,
+          act.CompleteSelection 'Clipboard',
+          act.CopyMode "ClearSelectionMode",
+        }
+      },
     }
     for _, key in ipairs(copy_override) do
       table.insert(copy_mode, key)
@@ -121,8 +147,20 @@ M.setup = function(config, wezterm)
     -- override search mode keys
     search_mode = wezterm.gui.default_key_tables().search_mode
     local search_override = {
-      { key = "Enter", mods = "NONE", action = act.CopyMode "AcceptPattern" },
-      { key = "u", mods = "CTRL", action = act.CopyMode "ClearPattern" },
+      { key = "Enter", mods = "NONE", action = act.Multiple {
+        act.CopyMode "AcceptPattern",
+        act.ClearSelection,
+        act.ActivateCopyMode,
+        act.CompleteSelection 'Clipboard',
+        act.CopyMode "ClearSelectionMode",
+      }},
+      { key = "u", mods = "CTRL", action = act.Multiple {
+          act.CopyMode "ClearPattern",
+          act.ActivateCopyMode,
+          act.CompleteSelection 'Clipboard',
+          act.Search { CaseSensitiveString = "" },
+        },
+      },
     }
     for _, key in ipairs(search_override) do
       table.insert(search_mode, key)
