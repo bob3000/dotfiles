@@ -6,11 +6,13 @@ M.setup = function(config, wezterm)
   config.keys = {
     -- move fullscreen binding
     { key = "Enter", mods = "ALT", action = act.SendKey { key = "Enter", mods = "ALT" } },
-    { key = "Enter", mods = "CTRL", action = 'ToggleFullScreen' },
+    { key = "Enter", mods = "CTRL", action = "ToggleFullScreen" },
     -- tmux like key map
     { key = ":", mods = "LEADER|SHIFT", action = act.ActivateCommandPalette },
     { key = "b", mods = "LEADER|CTRL", action = act.ActivateLastTab },
-    { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+    { key = "[", mods = "LEADER", action = act.Multiple {
+      act.ActivateCopyMode,
+    } },
     { key = "]", mods = "LEADER", action = act.PasteFrom "Clipboard" },
     { key = "{", mods = "LEADER|SHIFT", action = act.RotatePanes "Clockwise" },
     { key = "}", mods = "LEADER|SHIFT", action = act.RotatePanes "CounterClockwise" },
@@ -110,35 +112,47 @@ M.setup = function(config, wezterm)
     copy_mode = wezterm.gui.default_key_tables().copy_mode
     local copy_override = {
       { key = "?", mods = "SHIFT", action = act.Search { CaseSensitiveString = "" } },
+      {
+        key = "y",
+        mods = "NONE",
+        action = act.Multiple {
+          wezterm.action.CopyTo "ClipboardAndPrimarySelection",
+          act.CopyMode "Close",
+          act.CopyMode "ClearPattern",
+        },
+      },
       { key = "B", mods = "NONE", action = act.CopyMode "MoveBackwardWord" },
       { key = "W", mods = "NONE", action = act.CopyMode "MoveForwardWord" },
       { key = "E", mods = "NONE", action = act.CopyMode "MoveForwardWordEnd" },
-      { key = "u", mods = "CTRL", action = act.Multiple {
+      {
+        key = "u",
+        mods = "CTRL",
+        action = act.Multiple {
           act.CopyMode "ClearPattern",
           act.ActivateCopyMode,
-          act.CompleteSelection 'Clipboard',
+          act.CompleteSelection "Clipboard",
           act.Search { CaseSensitiveString = "" },
         },
       },
       {
-        key = 'n',
-        mods = 'SHIFT',
+        key = "n",
+        mods = "SHIFT",
         action = act.Multiple {
-          act.CopyMode 'NextMatch',
+          act.CopyMode "NextMatch",
           act.ClearSelection,
-          act.CompleteSelection 'Clipboard',
+          act.CompleteSelection "Clipboard",
           act.CopyMode "ClearSelectionMode",
-        }
+        },
       },
       {
-        key = 'n',
-        mods = 'NONE',
+        key = "n",
+        mods = "NONE",
         action = act.Multiple {
-          act.CopyMode 'PriorMatch',
+          act.CopyMode "PriorMatch",
           act.ClearSelection,
-          act.CompleteSelection 'Clipboard',
+          act.CompleteSelection "Clipboard",
           act.CopyMode "ClearSelectionMode",
-        }
+        },
       },
     }
     for _, key in ipairs(copy_override) do
@@ -148,17 +162,24 @@ M.setup = function(config, wezterm)
     -- override search mode keys
     search_mode = wezterm.gui.default_key_tables().search_mode
     local search_override = {
-      { key = "Enter", mods = "NONE", action = act.Multiple {
-        act.CopyMode "AcceptPattern",
-        act.ClearSelection,
-        act.CompleteSelection 'Clipboard',
-        act.CopyMode "ClearSelectionMode",
-        act.ActivateCopyMode,
-      }},
-      { key = "u", mods = "CTRL", action = act.Multiple {
+      {
+        key = "Enter",
+        mods = "NONE",
+        action = act.Multiple {
+          act.CopyMode "AcceptPattern",
+          act.ClearSelection,
+          act.CompleteSelection "Clipboard",
+          act.CopyMode "ClearSelectionMode",
+          act.ActivateCopyMode,
+        },
+      },
+      {
+        key = "u",
+        mods = "CTRL",
+        action = act.Multiple {
           act.CopyMode "ClearPattern",
           act.ActivateCopyMode,
-          act.CompleteSelection 'Clipboard',
+          act.CompleteSelection "Clipboard",
           act.Search { CaseSensitiveString = "" },
         },
       },
