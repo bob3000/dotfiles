@@ -115,8 +115,9 @@ M.setup = function(config, wezterm)
       { key = "E", mods = "NONE", action = act.CopyMode "MoveForwardWordEnd" },
       { key = "u", mods = "CTRL", action = act.Multiple {
           act.CopyMode "ClearPattern",
-          act.CompleteSelection 'Clipboard',
           act.ActivateCopyMode,
+          act.CompleteSelection 'Clipboard',
+          act.Search { CaseSensitiveString = "" },
         },
       },
       {
@@ -150,9 +151,9 @@ M.setup = function(config, wezterm)
       { key = "Enter", mods = "NONE", action = act.Multiple {
         act.CopyMode "AcceptPattern",
         act.ClearSelection,
-        act.ActivateCopyMode,
         act.CompleteSelection 'Clipboard',
         act.CopyMode "ClearSelectionMode",
+        act.ActivateCopyMode,
       }},
       { key = "u", mods = "CTRL", action = act.Multiple {
           act.CopyMode "ClearPattern",
