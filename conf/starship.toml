@@ -1,4 +1,6 @@
-# ~/.config/stars the prompt to the right
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 right_format = """$time"""
 
 [time]
@@ -20,7 +22,7 @@ disabled = false
 disabled = false
 
 [shell]
-fish_indicator = '🐠'
+fish_indicator = '🐟'
 powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
@@ -29,7 +31,6 @@ disabled = false
 
 [status]
 symbol = '🔴 '
-# success_symbol = '🟢 '
 format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
 map_symbol = true
 pipestatus = true
