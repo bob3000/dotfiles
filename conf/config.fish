@@ -93,8 +93,6 @@ function toggle_theme
     osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
   end
 end
-bind -e \cm 'toggle_theme; commandline -f repaint'
-bind \cm 'toggle_theme; commandline -f repaint'
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -114,4 +112,5 @@ end
 
 # key bindings
 bind \cr _fzf_search_history
+bind \e\cm 'toggle_theme; commandline -f repaint'
 fzf_configure_bindings --variables=\e\cv
