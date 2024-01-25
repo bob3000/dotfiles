@@ -52,8 +52,6 @@ set --export FZF_CTRL_T_OPTS '--ansi --multi --prompt="File> " --preview "previe
 set --export FZF_ALT_C_COMMAND 'fd --color always --exclude "Library/*" -t d . $HOME'
 set --export FZF_ALT_C_OPTS '--ansi --multi --prompt="Directory> " --preview "eza --color always -la {}"'
 
-set -x NEOVIDE_MULTIGRID true
-
 # man colors
 set -g man_blink -o red
 set -g man_bold -o green
@@ -95,6 +93,8 @@ function toggle_theme
     osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
   end
 end
+bind -e \cm 'toggle_theme; commandline -f repaint'
+bind \cm 'toggle_theme; commandline -f repaint'
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
