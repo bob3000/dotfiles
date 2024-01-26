@@ -86,7 +86,7 @@ function toggle_theme
     kitten @ --to unix:$f kitten themes "$kitty_theme"
   end
   for f in $nvim_socket/nvim-*
-    nvim --server $f --remote-send ':set background='$appearance'<cr>'
+    nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 > /dev/null
   end
   if type -q osascript
     [ $appearance = "dark" ] && set -f dark_mode "true" || set -f dark_mode "false"
