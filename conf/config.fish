@@ -92,6 +92,9 @@ function toggle_theme
     [ $appearance = "dark" ] && set -f dark_mode "true" || set -f dark_mode "false"
     osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
   end
+  if type -q gsettings
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
+  end
 end
 
 if status is-interactive
