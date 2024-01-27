@@ -67,6 +67,7 @@
   # services.printing.enable = true;
 
   hardware = {
+    opengl.enable = true;
     pulseaudio.enable = false;
     bluetooth.enable = true;
     sane.enable = true;
