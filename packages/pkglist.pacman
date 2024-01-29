@@ -30,6 +30,7 @@ python-pip
 readline
 ripgrep
 starship
+stow
 tmux
 tree
 unzip

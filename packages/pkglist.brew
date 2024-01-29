@@ -27,6 +27,7 @@ python
 readline
 ripgrep
 starship
+stow
 tealdeer
 telnet
 tmux

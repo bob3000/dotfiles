@@ -210,6 +210,7 @@
     rustup
     signal-desktop
     starship
+    stow
     tcpdump
     telegram-desktop
     thunderbird
