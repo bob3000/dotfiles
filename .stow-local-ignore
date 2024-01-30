@@ -1,0 +1,8 @@
+\.git
+\.gitignore
+\.dockerignore
+packages/.+
+pkglist.*
+README.md
+Dockerfile
+nixos/.+
