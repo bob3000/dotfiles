@@ -15,5 +15,5 @@ stow -v -n bat cspell fish git k9s kitty lazygit lazyvim python starship tmux we
 ### Docker / Podman
 
 ```sh
-podman run -ti --rm --name dotfiles ghcr.io/bob3000/dotfiles-arch:latest
+docker run -ti --rm --name dotfiles ghcr.io/bob3000/dotfiles-arch:latest
 ```
