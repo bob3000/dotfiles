@@ -4,6 +4,7 @@ return {
     opts = {
       ensure_installed = {
         "fish",
+        "groovy",
         "make",
         "nix",
         "ruby",
