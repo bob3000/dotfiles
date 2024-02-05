@@ -20,6 +20,7 @@ vim.g.autoformat = false
 
 vim.opt.spell = true
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+vim.opt.colorcolumn = "79,120"
 
 local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
 vim.fn.serverstart(socket)
