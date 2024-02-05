@@ -20,6 +20,10 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
   {
+    "folke/flash.nvim",
+    enabled = false,
+  },
+  {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
     event = "VeryLazy",
