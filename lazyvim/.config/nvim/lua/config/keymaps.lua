@@ -2,6 +2,13 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- This file is automatically loaded by lazyvim.config.init
+local Util = require("lazyvim.util")
+
+-- DO NOT USE THIS IN YOU OWN CONFIG!!
+-- use `vim.keymap.set` instead
+local map = Util.safe_keymap_set
+
 local opts_no_prefix = {
   prefix = "",
   mode = "n", -- NORMAL mode
@@ -31,3 +38,7 @@ end, { desc = "Close buffer" })
 vim.keymap.set({ "x", "n", "s" }, "<C-c>", function()
   pcall(vim.api.nvim_win_close, 0, false)
 end, { desc = "Close window" })
+
+-- move buffers
+map("n", "<S-A-l>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move Buffer Right" })
+map("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move Buffer Left" })
