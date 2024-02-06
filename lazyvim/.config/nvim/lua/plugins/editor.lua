@@ -20,6 +20,20 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      close_if_last_window = true,
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file_path)
+            require("neo-tree.command").execute({ action = "close" })
+          end,
+        },
+      },
+    },
+  },
+  {
     "folke/flash.nvim",
     enabled = false,
   },
