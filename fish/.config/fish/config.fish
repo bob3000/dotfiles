@@ -11,6 +11,8 @@ function preview_files
         bat --style=numbers --color=always "$argv"
     end
 end
+
+set script_pwd (dirname (status --current-filename))
 set fzf_preview_file_cmd preview_files
 set fzf_diff_highlighter delta --paging=never --width=20
 set fzf_preview_dir_cmd eza --all --color=always --tree
@@ -69,26 +71,26 @@ alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
 if test -n $appearance
-  set -U appearance dark
+    set -U appearance dark
 end
 function toggle_theme
-  [ $appearance = "dark" ] && set -U appearance light || set -U appearance dark
-  set -f kitty_socket $HOME/.local/state
-  set -f kitty_theme "Everforest $appearance Soft"
-  set -f nvim_socket $HOME/.cache/nvim
-  for f in $kitty_socket/kitty-*
-    kitten @ --to unix:$f kitten themes "$kitty_theme"
-  end
-  for f in $nvim_socket/nvim-*
-    nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 > /dev/null
-  end
-  if type -q osascript
-    [ $appearance = "dark" ] && set -f dark_mode "true" || set -f dark_mode "false"
-    osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
-  end
-  if type -q gsettings
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
-  end
+    [ $appearance = dark ] && set -U appearance light || set -U appearance dark
+    set -f kitty_socket $HOME/.local/state
+    set -f kitty_theme "Everforest $appearance Soft"
+    set -f nvim_socket $HOME/.cache/nvim
+    for f in $kitty_socket/kitty-*
+        kitten @ --to unix:$f kitten themes "$kitty_theme"
+    end
+    for f in $nvim_socket/nvim-*
+        nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 >/dev/null
+    end
+    if type -q osascript
+        [ $appearance = dark ] && set -f dark_mode true || set -f dark_mode false
+        osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
+    end
+    if type -q gsettings
+        gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
+    end
 end
 
 if test -d /home/linuxbrew/.linuxbrew
@@ -127,4 +129,6 @@ if status is-interactive
     bind \e\cm 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings
     fzf_configure_bindings --variables=\e\cv
+    source $script_pwd/functions/fzf_default_bindings.fish
+    fzf_key_bindings
 end
