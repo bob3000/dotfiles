@@ -1,12 +1,6 @@
 set fish_greeting
 
 # fisher install decors/fish-colored-man
-# fisher install edc/bass
-# fisher install jomik/fish-gruvbox
-# fisher install jorgebucaran/autopair.fish
-# fisher install jorgebucaran/nvm.fish
-# fisher install jorgebucaran/replay.fish
-# fisher install 2m/fish-history-merge
 # fisher install PatrickF1/fzf.fish
 
 # fish fzf stttings
@@ -97,6 +91,24 @@ function toggle_theme
   end
 end
 
+if test -d /home/linuxbrew/.linuxbrew
+    # Homebrew is installed on Linux
+    set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+    set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
+    set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
+    set -gx PATH "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" $PATH
+    set -q MANPATH; or set MANPATH ''
+    set -gx MANPATH "/home/linuxbrew/.linuxbrew/share/man" $MANPATH
+    set -q INFOPATH; or set INFOPATH ''
+    set -gx INFOPATH "/home/linuxbrew/.linuxbrew/share/info" $INFOPATH
+
+    # Homebrew asked for this in order to `brew upgrade`
+    # set -gx HOMEBREW_GITHUB_API_TOKEN {api token goes here}
+else if test -d /opt/homebrew
+    # Homebrew is installed on MacOS
+    /opt/homebrew/bin/brew shellenv | source
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     function starship_transient_rprompt_func
@@ -107,13 +119,12 @@ if status is-interactive
     end
     starship init fish | source
     enable_transience
-    fzf_key_bindings
     fnm env --use-on-cd | source # fast node manager
     pyenv init - | source
-    # theme_gruvbox dark medium
-end
 
-# key bindings
-bind \cr _fzf_search_history
-bind \e\cm 'toggle_theme; commandline -f repaint'
-fzf_configure_bindings --variables=\e\cv
+    # key bindings
+    bind \cr _fzf_search_history
+    bind \e\cm 'toggle_theme; commandline -f repaint'
+    fzf_configure_bindings
+    fzf_configure_bindings --variables=\e\cv
+end
