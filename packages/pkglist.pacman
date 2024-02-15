@@ -2,11 +2,9 @@ bat
 cmake
 codespell
 coreutils
-deno
 eza
 fd
 fish
-fisher
 fzf
 gcc
 gettext
@@ -14,11 +12,8 @@ git
 git-delta
 gnupg
 go
-imagemagick
 jq
-lazygit
 libunistring
-lua51
 make
 neofetch
 neovim
@@ -29,7 +24,6 @@ python
 python-pip
 readline
 ripgrep
-starship
 stow
 tmux
 tree

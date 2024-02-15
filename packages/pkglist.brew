@@ -1,9 +1,8 @@
 bat
-black
+chafa
 cmake
 codespell
 coreutils
-eslint
 eza
 fd
 fish
@@ -13,8 +12,8 @@ gcc
 gettext
 git
 git-delta
-gnu-sed
 gnupg
+gnu-sed
 go
 grc
 jq
