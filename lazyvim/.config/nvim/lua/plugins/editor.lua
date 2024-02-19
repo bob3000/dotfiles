@@ -19,6 +19,13 @@ local logo = [[
 logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
+
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader><space>", "<cmd>BufferLinePick<CR>", desc = "Pick Buffer" },
+    },
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
