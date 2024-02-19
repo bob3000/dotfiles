@@ -110,6 +110,7 @@ if test -d /home/linuxbrew/.linuxbrew
 else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
+    set -gx PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 end
 
 if status is-interactive
