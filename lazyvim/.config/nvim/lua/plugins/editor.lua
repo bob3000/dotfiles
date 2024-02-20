@@ -19,7 +19,16 @@ local logo = [[
 logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
-
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        max_name_length = 18,
+        max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+        truncate_names = false, -- whether or not tab names should be truncated
+      },
+    },
+  },
   {
     "nvim-telescope/telescope.nvim",
     keys = {
