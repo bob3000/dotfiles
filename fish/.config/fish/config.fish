@@ -76,7 +76,7 @@ end
 function toggle_theme
     [ $appearance = dark ] && set -U appearance light || set -U appearance dark
     set -f kitty_socket $HOME/.local/state
-    set -f kitty_theme "Everforest $appearance Soft"
+    set -f kitty_theme "Everforest $appearance Hard"
     set -f nvim_socket $HOME/.cache/nvim
     for f in $kitty_socket/kitty-*
         kitten @ --to unix:$f kitten themes "$kitty_theme"
