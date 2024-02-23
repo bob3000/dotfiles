@@ -20,6 +20,18 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
   {
+    "stevearc/aerial.nvim",
+    opts = {
+      layout = {
+        max_width = { 50, 0.3 },
+        min_width = 20,
+        resize_to_content = true,
+      },
+      close_on_select = true,
+      show_guides = true,
+    }
+  },
+  {
     "akinsho/bufferline.nvim",
     opts = {
       options = {
