@@ -8,7 +8,7 @@ format = "$fill$all"
 symbol = ' '
 
 [git_branch]
-symbol = '🌱 '
+symbol = '🌵 '
 
 [character]
 success_symbol = '[➜](bold green)'
@@ -37,7 +37,7 @@ disabled = false
 
 [time]
 disabled = false
-format = ' 🕙 [$time]($style)'
+format = ' 🕙 [$time]($style) '
 time_format = '%T'
 utc_time_offset = '+0'
 
