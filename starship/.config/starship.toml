@@ -19,8 +19,8 @@ disabled = false
 format = '[$symbol]($style) '
 repeat = true
 symbol = '🖥️'
-repeat_offset = 0
-threshold = 0
+repeat_offset = 1
+threshold = 2
 
 [username]
 format = ' [$user]($style)'
