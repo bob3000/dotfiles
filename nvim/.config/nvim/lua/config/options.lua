@@ -21,6 +21,8 @@ vim.g.autoformat = false
 vim.opt.spell = true
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.colorcolumn = "79,120"
+vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
+vim.opt.list = true -- show some invisible characters
 
 local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
 vim.fn.serverstart(socket)
