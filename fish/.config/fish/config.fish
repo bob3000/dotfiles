@@ -25,6 +25,7 @@ else
     set EDITOR nvim
 end
 set --export OSTYPE (uname)
+set --export TTY /dev/(ps -p $fish_pid -o tty=)
 set --export LC_ALL en_US.UTF-8
 set --export LANG en_US.UTF-8
 set --export PAGER less
