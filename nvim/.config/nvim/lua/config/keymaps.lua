@@ -45,16 +45,3 @@ map("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move Buffer Left" }
 map("n", "<leader>fP", "<cmd>e " .. vim.fn.expand("$HOME") .. "/.local/share/nvim/project_nvim/project_history<CR>", { desc = "Edit project history" })
 map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
 map("v", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
-
--- compiler
--- Open compiler
-vim.api.nvim_set_keymap('n', '<M-e>', "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
-
--- Redo last selected option
-vim.api.nvim_set_keymap('n', '<S-M-e>',
-     "<cmd>CompilerStop<cr>" -- (Optional, to dispose all tasks before redo)
-  .. "<cmd>CompilerRedo<cr>",
- { noremap = true, silent = true })
-
--- Toggle compiler results
-vim.api.nvim_set_keymap('n', '<M-o>', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
