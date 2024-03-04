@@ -39,7 +39,8 @@ return {
   },
   {
     "3rd/image.nvim",
-    enabled = false, -- still too buggy, hopefully soon
+    enabled = true, -- it is somewhat buggy
+    lazy = true,
     build = "luarocks --local --lua-version 5.1 install magick",
     event = { "BufEnter *.norg" },
     config = function()
