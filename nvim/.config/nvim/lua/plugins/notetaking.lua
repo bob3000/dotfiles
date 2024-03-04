@@ -4,6 +4,9 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 return {
   {
     "benlubas/molten-nvim",
+    -- WARNING: this plugin must not be lazy loaded when installed or
+    -- `:UpdateRemotePlugins` will fail! After installation it can be lazy loaded
+    -- Install dependencies: pip install --user ipykernel ipython jupyter-client pillow
     lazy = true,
     version = "^1.0.0",     -- use version <2.0.0 to avoid breaking changes
     dependencies = { "3rd/image.nvim" },
