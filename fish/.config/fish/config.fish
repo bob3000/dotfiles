@@ -39,6 +39,7 @@ set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 set --export PATH "$PYENV_ROOT/bin:$PATH"
+command -q luarocks && eval "$(luarocks path --bin)"
 
 # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -112,8 +113,7 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     set -gx PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
-    command -q luarocks && eval "$(luarocks path --bin)"
-    set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-29_1/lib
+    set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-29_1/lib:$DYLD_LIBRARY_PATH
 end
 
 if status is-interactive
