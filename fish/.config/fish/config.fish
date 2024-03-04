@@ -112,6 +112,8 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     set -gx PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
+    command -q luarocks && eval "$(luarocks path --bin)"
+    set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-29_1/lib
 end
 
 if status is-interactive
