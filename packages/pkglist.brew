@@ -16,8 +16,10 @@ gnupg
 gnu-sed
 go
 grc
+imagemagick
 jq
 lazygit
+luarocks
 make
 neofetch
 neovim

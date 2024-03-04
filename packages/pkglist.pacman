@@ -12,8 +12,10 @@ git
 git-delta
 gnupg
 go
+imagemagick
 jq
 libunistring
+luarocks
 make
 neofetch
 neovim
