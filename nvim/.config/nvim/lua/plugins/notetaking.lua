@@ -1,3 +1,6 @@
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
+
 return {
   {
     "benlubas/molten-nvim",
@@ -44,9 +47,6 @@ return {
     build = "luarocks --local --lua-version 5.1 install magick",
     event = { "BufEnter *.norg" },
     config = function()
-      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
-      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
-
       require("image").setup({
         backend = "kitty",
         integrations = {
