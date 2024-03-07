@@ -13,6 +13,7 @@ return {
     opts = {
       ensure_installed = {
         "bash-debug-adapter",
+        "debugpy",
       },
     },
   },
