@@ -8,7 +8,7 @@ return {
     -- `:UpdateRemotePlugins` will fail! After installation it can be lazy loaded
     -- Install dependencies: pip install --user ipykernel ipython jupyter-client pillow
     lazy = true,
-    version = "^1.0.0",     -- use version <2.0.0 to avoid breaking changes
+    -- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     dependencies = { "3rd/image.nvim" },
     build = ":UpdateRemotePlugins",
     init = function()
@@ -16,15 +16,37 @@ return {
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_output_win_max_height = 20
     end,
+    keys = {
+      { "<localleader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin", mode = "n" } },
+      {
+        "<localleader>e",
+        ":MoltenEvaluateOperator<CR>",
+        { silent = true, desc = "run operator selection", mode = "n" },
+      },
+      { "<localleader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line", mode = "n" } },
+      { "<localleader>rr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell", mode = "n" } },
+      {
+        "<localleader>r",
+        ":<C-u>MoltenEvaluateVisual<CR>gv",
+        { silent = true, desc = "evaluate visual selection", mode = "v" },
+      },
+      { "<localleader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell", mode = "n" } },
+      { "<localleader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output", mode = "n" } },
+      {
+        "<localleader>os",
+        ":noautocmd MoltenEnterOutput<CR>",
+        { silent = true, desc = "show/enter output", mode = "n" },
+      },
+    },
   },
   {
     "folke/zen-mode.nvim",
     lazy = true,
     opts = {
       plugins = {
-        twilight = { enabled = true },  -- enable to start Twilight when zen mode opens
+        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
         gitsigns = { enabled = false }, -- disables git signs
-        tmux = { enabled = true },      -- disables the tmux statusline
+        tmux = { enabled = true }, -- disables the tmux statusline
         kitty = {
           enabled = true,
           font = "+4", -- font size increment
@@ -47,7 +69,7 @@ return {
     "3rd/image.nvim",
     enabled = true, -- it is somewhat buggy
     lazy = true,
-    version = "^1.0.0",     -- use version <2.0.0 to avoid breaking changes
+    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     build = "luarocks --local --lua-version 5.1 install magick",
     event = { "BufEnter *.norg" },
     config = function()
@@ -73,10 +95,10 @@ return {
         max_height = 12,
         max_width_window_percentage = math.huge,
         max_height_window_percentage = math.huge,
-        window_overlap_clear_enabled = true,                                      -- toggles images when windows are overlapped
+        window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
         window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-        editor_only_render_when_focused = false,                                  -- auto show/hide images when the editor gains/looses focus
-        tmux_show_only_in_active_window = false,                                  -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+        editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+        tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
         hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
       })
     end,
@@ -90,28 +112,28 @@ return {
     config = function()
       require("neorg").setup({
         load = {
-          ["core.defaults"] = {},        -- Loads default behaviour
+          ["core.defaults"] = {}, -- Loads default behaviour
           -- ["core.integrations.image"] = {}, -- draw images
-          ["core.summary"] = {},         -- create index files
+          ["core.summary"] = {}, -- create index files
           ["core.export.markdown"] = {}, -- markdown export
           ["core.completion"] = {
             config = {
               engine = "nvim-cmp",
             },
-          },                         -- completion engine
+          }, -- completion engine
           -- calendar requires nvim > 0.10.0
           ["core.ui.calendar"] = {}, -- calendar widget
           ["core.presenter"] = {
             config = {
               zen_mode = "zen-mode",
             },
-          },                                    -- presentation mode
+          }, -- presentation mode
           ["core.integrations.telescope"] = {}, -- telescope plugin
           ["core.concealer"] = {
             config = {
               icon_preset = "varied",
             },
-          },                  -- Adds pretty icons to your documents
+          }, -- Adds pretty icons to your documents
           ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
               workspaces = {
@@ -150,10 +172,10 @@ return {
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
           M = {
             "<cmd>"
-            .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
-            .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
-            .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
-            .. "<cr>",
+              .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
+              .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
+              .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
+              .. "<cr>",
             "Update Meta",
           },
           r = { "<cmd>lua vim.cmd('Neorg return')<cr>", "Journal tomorrow" },
