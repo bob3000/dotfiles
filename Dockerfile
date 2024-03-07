@@ -1,34 +1,26 @@
 FROM quay.io/archlinux/archlinux
 ARG IMG_USR=bob
 
-WORKDIR /home/${IMG_USR}/dotfiles
+WORKDIR /home/${IMG_USR}/.dotfiles
 COPY . .
-RUN ./install_pkg.sh
-RUN pacman -S --noconfirm zsh \
-  && useradd -m ${IMG_USR} -s /usr/bin/zsh \
-  && chown -R ${IMG_USR}:${IMG_USR} /home/${IMG_USR}
 RUN pacman -Sy \
   && pacman -S --noconfirm --needed - < packages/pkglist.pacman
+RUN useradd -m ${IMG_USR} && \
+  chown -R ${IMG_USR}:${IMG_USR} /home/${IMG_USR}
+RUN npm install -g neovim
+RUN curl -sLo /tmp/nvim.tar.gz https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz && \
+  tar --strip=1 -C /usr/local -xzf /tmp/nvim.tar.gz
+RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
+RUN locale-gen
 USER ${IMG_USR}
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-RUN curl -fsSL https://fnm.vercel.app/install | bash
-RUN curl -sSL https://install.python-poetry.org | python3 -
-RUN ./link_files.sh
+WORKDIR /home/${IMG_USR}/.dotfiles
+RUN stow -v bat fish git lazygit nvim python starship
 WORKDIR /home/${IMG_USR}
-RUN fish -c "fish_add_path -U -a /home/bob/.local/share/fnm \
-  && fisher install decors/fish-colored-man \
-  edc/bass \
-  jomik/fish-gruvbox \
-  jorgebucaran/autopair.fish \
-  jorgebucaran/replay.fish \
-  2m/fish-history-merge \
-  PatrickF1/fzf.fish"
-RUN nvim --headless -c 'quitall'
-RUN wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.spl http://ftp.vim.org/vim/runtime/spell/de.utf-8.spl \
-  && wget -O /home/${IMG_USR}/.local/share/nvim/site/spell/de.utf-8.sug http://ftp.vim.org/vim/runtime/spell/de.utf-8.sug
-RUN nvim --headless -c 'MasonInstallAll' -c 'sleep 30' -c 'quitall'
+RUN nvim --headless "+Lazy! sync" +qa
+# RUN nvim --headless "+Lazy load all" "+TSUpdateSync" +qa
 USER root
-RUN rm -rf /var/cache/* /home/${IMG_USR}/.cache/*
+RUN rm -rf /var/cache/* /home/${IMG_USR}/.cache/* /tmp/*
 USER ${IMG_USR}
 WORKDIR /home/${IMG_USR}/code
+RUN locale-gen
 ENTRYPOINT ["fish"]
