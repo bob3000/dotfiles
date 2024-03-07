@@ -124,10 +124,12 @@ if status is-interactive
     function starship_transient_prompt_func
         starship module character
     end
-    starship init fish | source
-    enable_transience
-    fnm env --use-on-cd | source # fast node manager
-    pyenv init - | source
+    if command -q starship
+        starship init fish | source
+        enable_transience
+    end
+    command -q fnm && fnm env --use-on-cd | source # fast node manager
+    command -q pyenv && pyenv init - | source
 
     # key bindings
     bind \cr _fzf_search_history
@@ -137,6 +139,6 @@ if status is-interactive
     source $script_pwd/functions/fzf_default_bindings.fish
     fzf_key_bindings
     if type -q aws_completer
-      complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+        complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
     end
 end
