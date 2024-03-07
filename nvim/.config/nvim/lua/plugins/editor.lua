@@ -20,6 +20,56 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
   {
+    "https://codeberg.org/esensar/nvim-dev-container",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      autocommands = {
+        -- can be set to true to automatically start containers when devcontainer.json is available
+        init = false,
+        -- can be set to true to automatically remove any started containers and any built images when exiting vim
+        clean = false,
+        -- can be set to true to automatically restart containers when devcontainer.json file is updated
+        update = false,
+      },
+      -- can be changed to increase or decrease logging from library
+      log_level = "info",
+      attach_mounts = {
+        neovim_config = {
+          -- enables mounting local config to /root/.config/nvim in container
+          enabled = false,
+          -- makes mount readonly in container
+          options = { "readonly" },
+        },
+        neovim_data = {
+          -- enables mounting local data to /root/.local/share/nvim in container
+          enabled = false,
+          -- no options by default
+          options = {},
+        },
+        -- Only useful if using neovim 0.8.0+
+        neovim_state = {
+          -- enables mounting local state to /root/.local/state/nvim in container
+          enabled = false,
+          -- no options by default
+          options = {},
+        },
+      },
+      -- This takes a string (usually either "podman" or "docker") representing container runtime - "devcontainer-cli" is also partially supported
+      -- That is the command that will be invoked for container operations
+      -- If it is nil, plugin will use whatever is available (trying "podman" first)
+      container_runtime = "docker",
+      -- Similar to container runtime, but will be used if main runtime does not support an action - useful for "devcontainer-cli"
+      backup_runtime = "podman",
+      -- This takes a string (usually either "podman-compose" or "docker-compose") representing compose command - "devcontainer-cli" is also partially supported
+      -- That is the command that will be invoked for compose operations
+      -- If it is nil, plugin will use whatever is available (trying "podman-compose" first)
+      compose_command = nil,
+      -- Similar to compose command, but will be used if main command does not support an action - useful for "devcontainer-cli"
+      backup_compose_command = nil,
+    },
+  },
+  {
     "stevearc/aerial.nvim",
     opts = {
       layout = {
@@ -29,7 +79,7 @@ return {
       },
       close_on_select = true,
       show_guides = true,
-    }
+    },
   },
   {
     "akinsho/bufferline.nvim",
