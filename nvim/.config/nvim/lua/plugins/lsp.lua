@@ -7,6 +7,7 @@ return {
         "bash-debug-adapter",
         "bash-language-server",
         "black",
+        "codelldb",
         "debugpy",
         "gofumpt",
         "goimports",
