@@ -15,6 +15,7 @@ go
 imagemagick
 ipython
 jq
+lazygit
 libunistring
 lua51
 luarocks
@@ -25,12 +26,14 @@ pkgconfig
 python
 python-ipykernel
 python-jupyter-client
+python-neovim
 python-pillow
 python-pip
 python-pipx
 python-pynvim
 readline
 ripgrep
+rust
 stow
 tmux
 tree
