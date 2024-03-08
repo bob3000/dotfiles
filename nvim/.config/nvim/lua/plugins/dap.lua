@@ -8,13 +8,4 @@ return {
       require("dap.ext.vscode").load_launchjs(nil, { codelldb = {'c', 'cpp'} })
     end
   },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "bash-debug-adapter",
-        "debugpy",
-      },
-    },
-  },
 }
