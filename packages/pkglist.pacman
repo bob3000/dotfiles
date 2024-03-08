@@ -16,10 +16,12 @@ imagemagick
 ipython
 jq
 libunistring
+lua51
 luarocks
 make
 netcat
 npm
+pkgconfig
 python
 python-ipykernel
 python-jupyter-client
