@@ -16,6 +16,9 @@ local root_marker = {
   "pyproject.toml",
 }
 
+-- is either 'Linux' or 'Darwin'
+os_name = vim.loop.os_uname().sysname
+
 vim.g.maplocalleader = ","
 
 vim.filetype.add({ extension = { ipynb = "markdown" } })
