@@ -95,6 +95,10 @@ function toggle_theme
     end
 end
 
+if ! command -q docker
+  alias docker podman
+end
+
 if test -d /home/linuxbrew/.linuxbrew
     # Homebrew is installed on Linux
     set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
