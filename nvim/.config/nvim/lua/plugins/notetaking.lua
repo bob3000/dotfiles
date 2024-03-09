@@ -160,7 +160,7 @@ return {
           silent = true,
           noremap = true,
         })
-      end)
+      end, function(_) end)
 
       -- global keybinds
       local neorg_keys = {
