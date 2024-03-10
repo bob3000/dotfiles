@@ -22,6 +22,8 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      close_if_last_window = true,
+      popup_border_style = "NC",
       filesystem = {
         window = {
           mappings = {
@@ -38,6 +40,14 @@ return {
             if os_name == "Darwin" then
               vim.fn.jobstart({ "xdg-open", "-g", path }, { detach = true })
             end
+          end,
+        },
+      },
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file_path)
+            require("neo-tree.command").execute({ action = "close" })
           end,
         },
       },
@@ -72,20 +82,6 @@ return {
     },
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      close_if_last_window = true,
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function(file_path)
-            require("neo-tree.command").execute({ action = "close" })
-          end,
-        },
-      },
-    },
-  },
-  {
     "folke/flash.nvim",
     enabled = false,
   },
@@ -98,6 +94,17 @@ return {
       local colors = require("helper.colors").get_colors()
       require("window-picker").setup({
         hint = "floating-big-letter",
+        filter_rules = {
+          include_current_win = false,
+          autoselect_one = true,
+          -- filter using buffer options
+          bo = {
+            -- if the file type is one of following, the window will be ignored
+            filetype = { "neo-tree", "neo-tree-popup", "notify" },
+            -- if the buffer type is one of following, the window will be ignored
+            buftype = { "terminal", "quickfix" },
+          },
+        },
         highlights = {
           statusline = {
             focused = {
