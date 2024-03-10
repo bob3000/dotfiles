@@ -3,43 +3,6 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 
 return {
   {
-    "benlubas/molten-nvim",
-    -- WARNING: this plugin must not be lazy loaded when installed or
-    -- `:UpdateRemotePlugins` will fail! After installation it can be lazy loaded
-    -- Install dependencies: pip install --user ipykernel ipython jupyter-client pillow
-    lazy = true,
-    -- version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-    dependencies = { "3rd/image.nvim" },
-    build = ":UpdateRemotePlugins",
-    init = function()
-      -- these are examples, not defaults. Please see the readme
-      vim.g.molten_image_provider = "image.nvim"
-      vim.g.molten_output_win_max_height = 20
-    end,
-    keys = {
-      { "<localleader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin", mode = "n" } },
-      {
-        "<localleader>e",
-        ":MoltenEvaluateOperator<CR>",
-        { silent = true, desc = "run operator selection", mode = "n" },
-      },
-      { "<localleader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line", mode = "n" } },
-      { "<localleader>rr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell", mode = "n" } },
-      {
-        "<localleader>r",
-        ":<C-u>MoltenEvaluateVisual<CR>gv",
-        { silent = true, desc = "evaluate visual selection", mode = "v" },
-      },
-      { "<localleader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell", mode = "n" } },
-      { "<localleader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output", mode = "n" } },
-      {
-        "<localleader>os",
-        ":noautocmd MoltenEnterOutput<CR>",
-        { silent = true, desc = "show/enter output", mode = "n" },
-      },
-    },
-  },
-  {
     "folke/zen-mode.nvim",
     lazy = true,
     opts = {
