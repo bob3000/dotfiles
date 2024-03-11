@@ -27,6 +27,7 @@ local mappings_no_prefix = {
   ["<M-r>"] = { "<cmd>DapToggleRepl<cr>", "Toggle Repl" },
   ["<M-b>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
   ["<M-u>"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
+  ["<S-M-o>"] = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "Debug Neovim" },
 }
 
 require("which-key").register(mappings_no_prefix, opts_no_prefix)
