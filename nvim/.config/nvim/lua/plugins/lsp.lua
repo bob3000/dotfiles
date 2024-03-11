@@ -5,6 +5,8 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "ansible-language-server",
         "ansible-lint",
+        "autotools-language-server",
+        "bash-debug-adapter",
         "bash-language-server",
         "black",
         "clangd",
@@ -16,6 +18,7 @@ return {
         "gofumpt",
         "goimports",
         "gopls",
+        "groovy-language-server",
         "hadolint",
         "js-debug-adapter",
         "json-lsp",
@@ -36,9 +39,23 @@ return {
       })
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed and #opts.ensure_installed > 0 then
-          vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+        if (not opts.ensure_installed or #opts.ensure_installed == 0) then
+          print("ERROR: ensure_installed is empty")
+          return
         end
+        local registry = require("mason-registry")
+        local installed_packages = {}
+        for _, pkg in ipairs(registry.get_installed_packages()) do
+          vim.list_extend(installed_packages, { pkg.name })
+        end
+        local to_install = {}
+        for _, pkg_name in ipairs(opts.ensure_installed) do
+          if (not vim.list_contains(installed_packages, pkg_name)) then
+            vim.list_extend(to_install, { pkg_name })
+            print(pkg_name)
+          end
+        end
+        -- vim.cmd("MasonInstall " .. table.concat(to_install, " "))
       end, {})
     end,
   },
