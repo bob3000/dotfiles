@@ -18,7 +18,6 @@ return {
         "gofumpt",
         "goimports",
         "gopls",
-        -- "groovy-language-server",
         "hadolint",
         "js-debug-adapter",
         "json-lsp",
