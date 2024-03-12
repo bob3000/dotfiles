@@ -18,7 +18,7 @@ return {
         "gofumpt",
         "goimports",
         "gopls",
-        "groovy-language-server",
+        -- "groovy-language-server",
         "hadolint",
         "js-debug-adapter",
         "json-lsp",
@@ -55,7 +55,7 @@ return {
             print(pkg_name)
           end
         end
-        -- vim.cmd("MasonInstall " .. table.concat(to_install, " "))
+        vim.cmd("MasonInstall " .. table.concat(to_install, " "))
       end, {})
     end,
   },
