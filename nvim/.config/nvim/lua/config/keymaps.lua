@@ -28,6 +28,8 @@ local mappings_no_prefix = {
   ["<M-b>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
   ["<M-u>"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
   ["<S-M-o>"] = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "Debug Neovim" },
+  ["<M-e>"] = { "<cmd>OverseerRun<cr>", "Overseer Run" },
+  ["<S-M-e>"] = { "<cmd>OverseerRestartLast<cr>", "Overseer Last Task" },
 }
 
 require("which-key").register(mappings_no_prefix, opts_no_prefix)
@@ -43,6 +45,11 @@ end, { desc = "Close window" })
 -- move buffers
 map("n", "<S-A-l>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move Buffer Right" })
 map("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move Buffer Left" })
-map("n", "<leader>fP", "<cmd>e " .. vim.fn.expand("$HOME") .. "/.local/share/nvim/project_nvim/project_history<CR>", { desc = "Edit project history" })
+map(
+  "n",
+  "<leader>fP",
+  "<cmd>e " .. vim.fn.expand("$HOME") .. "/.local/share/nvim/project_nvim/project_history<CR>",
+  { desc = "Edit project history" }
+)
 map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
 map("v", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
