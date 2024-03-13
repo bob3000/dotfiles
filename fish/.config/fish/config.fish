@@ -58,10 +58,12 @@ set -g man_underline -u 93a1a1
 
 # convenience
 alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
-alias l 'eza --icons'
-alias ll 'eza -l --icons'
-alias lt 'eza --tree'
-alias la 'eza -a --icons'
+alias l 'eza --icons --hyperlink'
+alias la 'eza -a --icons --hyperlink'
+alias ll 'eza -l --icons --mounts --hyperlink'
+alias lla 'eza -la --icons --mounts --hyperlink'
+alias lt 'eza --tree --hyperlink'
+alias lta 'eza -a --tree --hyperlink'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
 alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
