@@ -20,14 +20,14 @@ local opts_no_prefix = {
 
 local mappings_no_prefix = {
   ["<M-c>"] = { "<cmd>DapContinue<cr>", "Continue" },
-  ["<M-h>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
+  ["<S-M-o>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
   ["<M-t>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
-  ["<M-j>"] = { "<cmd>DapStepOver<cr>", "Step Over" },
-  ["<M-l>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
+  ["<M-o>"] = { "<cmd>DapStepOver<cr>", "Step Over" },
+  ["<M-i>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
   ["<M-r>"] = { "<cmd>DapToggleRepl<cr>", "Toggle Repl" },
   ["<M-b>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
   ["<M-u>"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
-  ["<S-M-o>"] = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "Debug Neovim" },
+  ["<S-M-m>"] = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "Debug Neovim" },
   ["<M-e>"] = { "<cmd>OverseerRun<cr>", "Overseer Run" },
   ["<S-M-e>"] = { "<cmd>OverseerRestartLast<cr>", "Overseer Last Task" },
 }
@@ -53,3 +53,5 @@ map(
 )
 map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
 map("v", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
+map("n", "dm", ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = "Delete mark" })
+map("n", "dm%", ":execute 'delmarks!'<CR>", { desc = "Delete all marks" })
