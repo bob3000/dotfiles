@@ -54,4 +54,4 @@ map(
 map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
 map("v", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
 map("n", "dm", ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = "Delete mark" })
-map("n", "dm%", ":execute 'delmarks!'<CR>", { desc = "Delete all marks" })
+map("n", "dm*", ":execute 'delmarks!'<CR>", { desc = "Delete all marks" })
