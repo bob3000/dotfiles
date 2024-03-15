@@ -12,6 +12,14 @@ function preview_files
     end
 end
 
+function git_switch_branch --description "Switch git branch"
+    set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
+    if test -n "$branch"
+      git checkout -q "$branch"
+    end
+    commandline --function repaint
+end
+
 set script_pwd (dirname (status --current-filename))
 set fzf_preview_file_cmd preview_files
 set fzf_diff_highlighter delta --paging=never --width=20
@@ -98,7 +106,7 @@ function toggle_theme
 end
 
 if ! command -q docker
-  alias docker podman
+    alias docker podman
 end
 
 if test -d /home/linuxbrew/.linuxbrew
@@ -139,6 +147,7 @@ if status is-interactive
 
     # key bindings
     bind \cr _fzf_search_history
+    bind \eb git_switch_branch
     bind \e\cm 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings
     fzf_configure_bindings --variables=\e\cv
