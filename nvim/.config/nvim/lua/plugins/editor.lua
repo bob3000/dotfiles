@@ -204,7 +204,7 @@ return {
     version = "*",
     event = "VeryLazy",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = { snippet_engine = "luasnip" },
+    opts = { snippet_engine = "nvim" },
     keys = {
       { "<leader>cg", "<cmd>Neogen<cr>", desc = "Generate Comment" },
     },
