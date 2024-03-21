@@ -25,7 +25,8 @@ vim.filetype.add({ extension = { ipynb = "markdown" } })
 
 vim.g.root_spec = { "lsp", root_marker, "cwd" }
 vim.g.autoformat = false
-vim.g.python3_host_prog = vim.fn.expand("$HOME") .. "/.pyenv/shims/python"
+-- vim.g.python3_host_prog = vim.fn.expand("$HOME") .. "/.pyenv/shims/python"
+vim.g.lazyvim_python_lsp = "basedpyright"
 
 vim.opt.spell = true
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
