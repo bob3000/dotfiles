@@ -147,7 +147,7 @@ if status is-interactive
 
     # key bindings
     bind \cr _fzf_search_history
-    bind \eb git_switch_branch
+    bind \e\cb git_switch_branch
     bind \e\cm 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings
     fzf_configure_bindings --variables=\e\cv
