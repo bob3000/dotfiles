@@ -67,9 +67,15 @@ return {
     end,
   },
   {
+    "vhyrro/luarocks.nvim",
+    lazy = false,
+    priority = 1000,
+    config = true,
+  },
+  {
     "nvim-neorg/neorg",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    build = ":Neorg sync-parsers",
+    lazy = true,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
     config = function()
