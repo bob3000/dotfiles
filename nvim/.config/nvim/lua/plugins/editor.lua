@@ -36,25 +36,6 @@ return {
     opts = {
       close_if_last_window = true,
       popup_border_style = "NC",
-      filesystem = {
-        window = {
-          mappings = {
-            ["o"] = "system_open",
-          },
-        },
-        commands = {
-          system_open = function(state)
-            local node = state.tree:get_node()
-            local path = node:get_id()
-            if os_name == "Linux" then
-              vim.fn.jobstart({ "xdg-open", path }, { detach = true })
-            end
-            if os_name == "Darwin" then
-              vim.fn.jobstart({ "xdg-open", "-g", path }, { detach = true })
-            end
-          end,
-        },
-      },
       event_handlers = {
         {
           event = "file_opened",
