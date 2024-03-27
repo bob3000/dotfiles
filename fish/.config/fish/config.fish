@@ -12,6 +12,22 @@ function preview_files
     end
 end
 
+function kube_switch_context --description "Switch Kubernetes context"
+    set -f context "$(kubectl config get-contexts -o name | fzf --prompt 'Context> ' --ansi | tr -d '[:space:]')"
+    if test -n "$context"
+      kubectl config use-context "$context"
+    end
+    commandline --function repaint
+end
+
+function aws_switch_profile --description "Switch AWS profile"
+    set -f profile "$(aws-vault list --profiles | fzf --prompt 'Profile> ' --ansi | tr -d '[:space:]')"
+    if test -n "$profile"
+      aws-vault exec --duration=12h "$profile"
+    end
+    commandline --function repaint
+end
+
 function git_switch_branch --description "Switch git branch"
     set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
     if test -n "$branch"
@@ -148,6 +164,8 @@ if status is-interactive
     # key bindings
     bind \cr _fzf_search_history
     bind \e\cb git_switch_branch
+    bind \e\ca aws_switch_profile
+    bind \e\ck kube_switch_context
     bind \e\cm 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings
     fzf_configure_bindings --variables=\e\cv
