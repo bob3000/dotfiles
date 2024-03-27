@@ -1,5 +1,5 @@
 cd ~/code
-layout tall
+layout splits
 title shell
 launch fish
 title shell
@@ -11,7 +11,7 @@ layout horizontal
 launch fish
 launch fish
 new_tab remote
-layout horizontal
+layout tall
 launch fish
 launch fish
 launch fish
