@@ -29,7 +29,7 @@ function aws_switch_profile --description "Switch AWS profile"
 end
 
 function git_switch_branch --description "Switch git branch"
-    set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
+    set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | sed 's!remotes/.*/!!' | sort | uniq | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
     if test -n "$branch"
       git checkout -q "$branch"
     end
