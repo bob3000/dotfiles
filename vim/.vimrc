@@ -1,3 +1,6 @@
+silent !mkdir -p $HOME/.vim/backups > /dev/null 2>&1
+silent !mkdir -p $HOME/.vim/undo > /dev/null 2>&1
+
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -6,7 +9,7 @@ endif
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/vim-lsp'
@@ -18,7 +21,12 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 call plug#end()
 
-colorscheme everforest
+try
+  colorscheme everforest
+catch /^Vim\%((\a\+)\)\=:E185/
+  " deal with it
+endtry
+
 syntax on
 filetype plugin indent on
 
@@ -26,7 +34,7 @@ set autoindent
 set autowriteall
 set background=dark
 set backspace=indent,eol,start
-set backupdir=~/.cache/vim/backups
+set backupdir=$HOME/.vim/backups
 set clipboard=unnamedplus
 set cursorline
 set directory=.,$TEMP " Stop the swp file warning
@@ -78,7 +86,7 @@ set termguicolors
 set textwidth=0
 set title
 set ttyfast
-set undodir=~/.cache/vim/undo
+set undodir=$HOME/.vim/undo
 set undofile
 set undolevels=1000
 set undoreload=10000
