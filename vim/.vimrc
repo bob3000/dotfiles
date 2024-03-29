@@ -1,13 +1,39 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin()
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'preservim/tagbar'
+Plug 'sainnhe/everforest'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+call plug#end()
+
+colorscheme everforest
 syntax on
 filetype plugin indent on
+
 set autoindent
 set autowriteall
 set background=dark
 set backspace=indent,eol,start
+set backupdir=~/.cache/vim/backups
 set clipboard=unnamedplus
 set cursorline
+set directory=.,$TEMP " Stop the swp file warning
 set encoding=utf-8
 set expandtab
+set exrc
+set foldmethod=indent
 set hidden
 set history=700
 set hlsearch
@@ -16,35 +42,57 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set modeline
 set mouse=a
+set nobackup
 set nocompatible
+set noerrorbells
+set nofoldenable
 set nojoinspaces
 set nolinebreak
+set nostartofline
+set noswapfile
+set nowb
 set nowrap
 set number
+set omnifunc=syntaxcomplete#Complete
 set relativenumber
 set ruler
+set secure
 set shiftround
 set shiftwidth=2
 set showcmd
+set showmatch
 set showmode
+set sidescroll=1
+set sidescrolloff=15
 set signcolumn=auto
 set smartcase
 set smartindent
 set spell
-set synmaxcol=2048
+set spelllang=en
+set splitbelow
+set splitright
+set synmaxcol=500
 set tabstop=2
 set t_Co=256
 set termguicolors
 set textwidth=0
+set title
 set ttyfast
+set undodir=~/.cache/vim/undo
+set undofile
+set undolevels=1000
+set undoreload=10000
 set updatetime=500
-set visualbell
+set wildignore+=*.swp,*.bak,*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,node_modules/*
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.swp,*.bak,*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wrapscan
 
 let mapleader = " "
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+let g:lightline = {
+      \ 'colorscheme': 'apprentice',
+      \ }
 
 " Visual mode pressing * or # searches for the current selection
 vnoremap <silent> * :call VisualSelection('f')<CR>
@@ -69,6 +117,8 @@ nnoremap k gk
 map <C-s> :w<cr>
 map <C-c> :bd<cr>
 map <C-q> :q<cr>
+map <C-_> :split<cr>
+map <C-/> :vsplit<cr>
 
 " Cursor motion
 set scrolloff=3
@@ -112,24 +162,18 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-call plug#begin()
-Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'preservim/tagbar'
-Plug 'sainnhe/everforest'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-call plug#end()
+" Resize splits when vim changes size (like with tmux opening/closing)
+augroup auto-resize
+  autocmd!
+  autocmd VimResized * wincmd =
+augroup END
 
-colorscheme everforest
+" Switch between normal and relative line numbers and cursorline
+" when switching modes
+augroup highlight-when-switching-modes
+  autocmd!
+  autocmd InsertEnter * setlocal number norelativenumber nocursorline
+  autocmd InsertLeave * setlocal relativenumber cursorline
+  autocmd WinEnter    * setlocal cursorline
+  autocmd WinLeave    * setlocal nocursorline
+augroup END
