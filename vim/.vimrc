@@ -24,7 +24,7 @@ call plug#end()
 try
   colorscheme everforest
 catch /^Vim\%((\a\+)\)\=:E185/
-  " deal with it
+  colorscheme habamax
 endtry
 
 syntax on
@@ -142,6 +142,13 @@ nmap <leader>fg :GFiles<cr>
 nmap <leader>cs :TagbarToggle<CR>
 nmap <leader>ct :!ctags -R .<CR>
 
+" terminal
+nmap <leader>gg :terminal lazygit<CR>
+nmap <leader>gt :terminal<CR>
+
+" execute command
+nmap <leader><Enter> !!bash<CR>
+
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -168,12 +175,6 @@ augroup lsp_install
   au!
   " call s:on_lsp_buffer_enabled only for languages that has the server registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-
-" Resize splits when vim changes size (like with tmux opening/closing)
-augroup auto-resize
-  autocmd!
-  autocmd VimResized * wincmd =
 augroup END
 
 " Switch between normal and relative line numbers and cursorline
