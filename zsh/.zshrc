@@ -65,3 +65,5 @@ fi
 if [[ "$OSTYPE" =~ ^linux ]]; then
     source ~/.zshrc.linux
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
