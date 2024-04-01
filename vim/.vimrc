@@ -1,5 +1,6 @@
-silent !mkdir -p $HOME/.vim/backups > /dev/null 2>&1
-silent !mkdir -p $HOME/.vim/undo > /dev/null 2>&1
+" Create once and then comment
+" silent !mkdir -p $HOME/.vim/backups > /dev/null 2>&1
+" silent !mkdir -p $HOME/.vim/undo > /dev/null 2>&1
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -11,12 +12,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/vim-lsp'
 Plug 'preservim/tagbar'
-Plug 'puremourning/vimspector'
 Plug 'sainnhe/everforest'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -43,6 +42,7 @@ set encoding=utf-8
 set expandtab
 set exrc
 set foldmethod=indent
+set guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 set hidden
 set history=700
 set hlsearch
@@ -99,6 +99,8 @@ set wrapscan
 
 let mapleader = " "
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+let g:everforest_transparent_background = 2
+hi Normal guibg=NONE ctermbg=NONE
 let g:lightline = {
       \ 'colorscheme': 'apprentice',
       \ }
@@ -149,34 +151,6 @@ nmap <leader>gt :terminal<CR>
 
 " execute command
 nmap <leader><Enter> !!bash<CR>
-
-function! s:on_lsp_buffer_enabled() abort
-  setlocal omnifunc=lsp#complete
-  setlocal signcolumn=yes
-  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> gs <plug>(lsp-document-symbol-search)
-  nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-  nmap <buffer> gr <plug>(lsp-references)
-  nmap <buffer> gi <plug>(lsp-implementation)
-  nmap <buffer> gt <plug>(lsp-type-definition)
-  nmap <buffer> <leader>rn <plug>(lsp-rename)
-  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-  nmap <buffer> K <plug>(lsp-hover)
-  nmap <buffer> <leader>cf <plug>(lsp-document-format)
-
-  let g:lsp_format_sync_timeout = 1000
-  autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-
-  " refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-  au!
-  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 
 " Switch between normal and relative line numbers and cursorline
 " when switching modes
