@@ -35,7 +35,7 @@ set autowriteall
 set background=dark
 set backspace=indent,eol,start
 set backupdir=$HOME/.vim/backups
-set clipboard=unnamedplus
+set clipboard=unnamed
 set cursorline
 set directory=.,$TEMP " Stop the swp file warning
 set encoding=utf-8
