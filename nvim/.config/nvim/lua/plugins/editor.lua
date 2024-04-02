@@ -163,6 +163,10 @@ return {
     event = "VeryLazy",
     opts = function(_, opts)
       table.insert(opts.sections.lualine_x, "overseer")
+      table.insert(
+        opts.sections.lualine_z,
+        "vim.tbl_contains({'v', 'V'}, vim.fn.mode()) and string.format('%d words', vim.fn.wordcount()['visual_words'])"
+      )
     end,
   },
   {
