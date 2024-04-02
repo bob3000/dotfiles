@@ -55,6 +55,7 @@ truncate_to_repo = true
 disabled = false
 
 [kubernetes]
+detect_folders = ['kubernetes', 'k8s', 'kube']
 disabled = false
 
 [shell]
