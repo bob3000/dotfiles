@@ -6,6 +6,7 @@ return {
     opts = function(_, opts)
       table.insert(opts.sources, { name = "emoji" })
       table.insert(opts.sources, { name = "neorg" })
+      table.insert(opts.sources, { name = "mkdnflow" })
     end,
   },
 }

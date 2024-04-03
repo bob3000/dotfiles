@@ -3,6 +3,34 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 
 return {
   {
+    "jakewvincent/mkdnflow.nvim",
+    opts = {
+      modules = {
+        yaml = true,
+        cmp = true,
+      },
+      links = {
+        conceal = true,
+        transform_implicit = true,
+      },
+      new_file_template = {
+        use_template = true,
+        placeholders = {
+          before = {
+            title = "link_title",
+            date = "os_date",
+          },
+          after = {},
+        },
+        template = "# {{ title }}",
+      },
+      mappings = {
+        MkdnFoldSection = false,
+        MkdnUnfoldSection = false,
+      },
+    },
+  },
+  {
     "folke/zen-mode.nvim",
     lazy = true,
     opts = {
