@@ -4,6 +4,7 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 return {
   {
     "jakewvincent/mkdnflow.nvim",
+    event = "VeryLazy",
     opts = {
       modules = {
         yaml = true,
