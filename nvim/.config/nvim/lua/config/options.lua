@@ -29,10 +29,13 @@ vim.g.autoformat = false
 vim.g.lazyvim_python_lsp = "basedpyright"
 
 vim.opt.spell = true
+vim.opt.spelloptions = "camel" -- consider camel case in spell checking
+vim.opt.spellcapcheck = "" -- don't check for capital letters after full stop
 vim.opt.guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
-vim.opt.colorcolumn = "79,120"
+vim.opt.colorcolumn = "80,120"
 vim.opt.listchars = "tab:»·,extends:…,precedes:<,extends:>,trail:·" -- define which invisible characters to show
 vim.opt.list = true -- show some invisible characters
+vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 
 local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
 vim.fn.serverstart(socket)
