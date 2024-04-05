@@ -167,10 +167,7 @@ if status is-interactive
     bind \e\ca aws_switch_profile
     bind \e\ck kube_switch_context
     bind \e\cm 'toggle_theme; commandline -f repaint'
-    fzf_configure_bindings
     fzf_configure_bindings --variables=\e\cv
-    source $script_pwd/functions/fzf_default_bindings.fish
-    fzf_key_bindings
     if type -q aws_completer
         complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
     end
