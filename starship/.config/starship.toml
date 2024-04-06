@@ -26,6 +26,22 @@ symbol = '🖥️'
 repeat_offset = 1
 threshold = 2
 
+[c]
+commands =[ [ "clang", "--version" ], [ "gcc", "--version" ], [ "cc", "--version" ] ]
+symbol = " "
+
+[python]
+symbol = " "
+
+[golang]
+symbol = "󰟓 "
+
+[rust]
+symbol = " "
+
+[zig]
+symbol = " "
+
 [username]
 format = ' [$user]($style)'
 # show_always = true
