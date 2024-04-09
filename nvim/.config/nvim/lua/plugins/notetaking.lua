@@ -59,7 +59,7 @@ return {
   },
   {
     "3rd/image.nvim",
-    enabled = true, -- it is somewhat buggy
+    enabled = false, -- it is somewhat buggy
     lazy = true,
     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     build = "luarocks --local --lua-version 5.1 install magick",
