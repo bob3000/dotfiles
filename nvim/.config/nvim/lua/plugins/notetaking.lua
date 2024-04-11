@@ -114,6 +114,27 @@ return {
           -- ["core.integrations.image"] = {}, -- draw images
           ["core.summary"] = {}, -- create index files
           ["core.export.markdown"] = {}, -- markdown export
+          ["core.esupports.metagen"] = {
+            config = {
+              undojoin_updates = true,
+            },
+          },
+          ["core.keybinds"] = {
+            config = {
+              hook = function(keybinds)
+                keybinds.map("norg", "n", "u", function()
+                  require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                  local k = vim.api.nvim_replace_termcodes("u<c-o>", true, false, true)
+                  vim.api.nvim_feedkeys(k, "n", false)
+                end)
+                keybinds.map("norg", "n", "<c-r>", function()
+                  require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                  local k = vim.api.nvim_replace_termcodes("<c-r><c-o>", true, false, true)
+                  vim.api.nvim_feedkeys(k, "n", false)
+                end)
+              end,
+            },
+          },
           ["core.completion"] = {
             config = {
               engine = "nvim-cmp",
@@ -168,6 +189,7 @@ return {
           n = { "<cmd>lua vim.cmd('Neorg workspace notes')<cr>", "Workspace notes" },
           c = { "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>", "Date picker" },
           j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
+          m = { "<cmd>lua vim.cmd('Neorg inject-metatdata')<cr>", "Metadata inject" },
           M = {
             "<cmd>"
               .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
@@ -182,6 +204,7 @@ return {
           i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
           u = { "<cmd>lua vim.cmd('Neorg journal toc update')<cr>", "Journal toc update" },
           H = { "<cmd>lua vim.cmd('Telescope neorg search_headings')<cr>", "Neorg headings" },
+          l = { "<cmd>lua vim.cmd('Neorg keybind all core.looking-glass.magnify-code-block')<cr>", "Looking glass" },
           L = { "<cmd>lua vim.cmd('Telescope neorg find_linkable')<cr>", "Neorg linkable" },
         },
       }
