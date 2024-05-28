@@ -34,10 +34,7 @@ local mappings_no_prefix = {
 
 require("which-key").register(mappings_no_prefix, opts_no_prefix)
 
-vim.keymap.set({ "x", "n", "s" }, "<C-c>", function()
-  require("mini.bufremove").delete(0, true)
-end, { desc = "Close buffer" })
-
+vim.keymap.set({ "x", "n", "s" }, "<C-c>", LazyVim.ui.bufremove, { desc = "Close buffer" })
 vim.keymap.set({ "x", "n", "s" }, "<C-q>", function()
   pcall(vim.api.nvim_win_close, 0, false)
 end, { desc = "Close window" })
