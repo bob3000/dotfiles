@@ -1,5 +1,11 @@
 return {
   {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup()
+    end,
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
@@ -38,7 +44,7 @@ return {
       })
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if (not opts.ensure_installed or #opts.ensure_installed == 0) then
+        if not opts.ensure_installed or #opts.ensure_installed == 0 then
           print("ERROR: ensure_installed is empty")
           return
         end
@@ -49,7 +55,7 @@ return {
         end
         local to_install = {}
         for _, pkg_name in ipairs(opts.ensure_installed) do
-          if (not vim.list_contains(installed_packages, pkg_name)) then
+          if not vim.list_contains(installed_packages, pkg_name) then
             vim.list_extend(to_install, { pkg_name })
             print(pkg_name)
           end
