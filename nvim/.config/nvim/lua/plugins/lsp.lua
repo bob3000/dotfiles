@@ -38,7 +38,7 @@ return {
         "stylua",
         "taplo",
         "terraform-ls",
-        "typescript-language-server",
+        -- "typescript-language-server", -- replaced by vtsls
         "yaml-language-server",
         "zls",
       })
