@@ -20,6 +20,9 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 
 return {
   {
+    "sindrets/diffview.nvim",
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
@@ -182,7 +185,7 @@ return {
       },
     },
     keys = {
-      { "<leader>cS", "<cmd>ASToggle<cr>", desc = "Toggle Auto Save" },
+      { "<leader>cW", "<cmd>ASToggle<cr>", desc = "Toggle Auto Save" },
     },
   },
   {
