@@ -1,11 +1,5 @@
 return {
   {
-    "smjonas/inc-rename.nvim",
-    config = function()
-      require("inc_rename").setup()
-    end,
-  },
-  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
