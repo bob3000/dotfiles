@@ -19,10 +19,3 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
     vim.opt.cursorcolumn = true
   end,
 })
-
--- FIXME: workaround for missing commentstring in lazyvim extra terraform
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "hcl", "terraform" },
-  desc = "terraform/hcl commentstring configuration",
-  command = "setlocal commentstring=#\\ %s",
-})
