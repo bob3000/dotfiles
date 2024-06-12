@@ -23,6 +23,15 @@ return {
     "sindrets/diffview.nvim",
   },
   {
+    "echasnovski/mini.animate",
+    opts = {
+      cursor = {
+        -- Whether to enable this animation
+        enable = false,
+      },
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
