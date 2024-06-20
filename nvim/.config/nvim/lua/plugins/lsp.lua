@@ -33,6 +33,7 @@ return {
         "taplo",
         "terraform-ls",
         -- "typescript-language-server", -- replaced by vtsls
+        "vtsls",
         "yaml-language-server",
         "zls",
       })
