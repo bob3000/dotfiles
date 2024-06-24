@@ -27,7 +27,7 @@ return {
         "marksman",
         "prettier",
         "ruff-lsp",
-        "rust-analyzer",
+        -- "rust-analyzer",
         "shfmt",
         "stylua",
         "taplo",
