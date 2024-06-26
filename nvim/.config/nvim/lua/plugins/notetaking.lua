@@ -104,9 +104,9 @@ return {
   {
     "nvim-neorg/neorg",
     version = "8.7.1", -- Use for stability; omit to use `main` branch for the latest features
-    lazy = true,
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
+    after = "nvim-treesitter",
     config = function()
       require("neorg").setup({
         load = {
