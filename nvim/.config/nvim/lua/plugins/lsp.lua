@@ -20,6 +20,7 @@ return {
         "goimports",
         "gopls",
         "hadolint",
+        "helm-ls",
         "js-debug-adapter",
         "json-lsp",
         "lua-language-server",
