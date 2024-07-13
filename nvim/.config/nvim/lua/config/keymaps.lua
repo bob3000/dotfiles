@@ -19,20 +19,19 @@ local opts_no_prefix = {
 }
 
 local mappings_no_prefix = {
-  ["<M-c>"] = { "<cmd>DapContinue<cr>", "Continue" },
-  ["<S-M-o>"] = { "<cmd>DapStepOut<cr>", "Step Out" },
-  ["<M-t>"] = { "<cmd>DapTerminate<cr>", "Terminate" },
-  ["<M-o>"] = { "<cmd>DapStepOver<cr>", "Step Over" },
-  ["<M-i>"] = { "<cmd>DapStepInto<cr>", "Step Into" },
-  ["<M-r>"] = { "<cmd>DapToggleRepl<cr>", "Toggle Repl" },
-  ["<M-b>"] = { "<cmd>DapToggleBreakpoint<cr>", "Toggle Breakpoint" },
-  ["<M-u>"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle DAP UI" },
-  ["<S-M-m>"] = { "<cmd>lua require'osv'.launch({port = 8086})<cr>", "Debug Neovim" },
-  ["<M-e>"] = { "<cmd>OverseerRun<cr>", "Overseer Run" },
-  ["<S-M-e>"] = { "<cmd>OverseerRestartLast<cr>", "Overseer Last Task" },
+  { "<M-b>", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint", nowait = true, remap = false },
+  { "<M-c>", "<cmd>DapContinue<cr>", desc = "Continue", nowait = true, remap = false },
+  { "<M-e>", "<cmd>OverseerRun<cr>", desc = "Overseer Run", nowait = true, remap = false },
+  { "<M-i>", "<cmd>DapStepInto<cr>", desc = "Step Into", nowait = true, remap = false },
+  { "<M-o>", "<cmd>DapStepOver<cr>", desc = "Step Over", nowait = true, remap = false },
+  { "<M-r>", "<cmd>DapToggleRepl<cr>", desc = "Toggle Repl", nowait = true, remap = false },
+  { "<M-t>", "<cmd>DapTerminate<cr>", desc = "Terminate", nowait = true, remap = false },
+  { "<M-u>", "<cmd>lua require'dapui'.toggle()<cr>", desc = "Toggle DAP UI", nowait = true, remap = false },
+  { "<S-M-e>", "<cmd>OverseerRestartLast<cr>", desc = "Overseer Last Task", nowait = true, remap = false },
+  { "<S-M-m>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", desc = "Debug Neovim", nowait = true, remap = false },
+  { "<S-M-o>", "<cmd>DapStepOut<cr>", desc = "Step Out", nowait = true, remap = false },
 }
-
-require("which-key").register(mappings_no_prefix, opts_no_prefix)
+require("which-key").add(mappings_no_prefix)
 
 vim.keymap.set({ "x", "n", "s" }, "<C-c>", LazyVim.ui.bufremove, { desc = "Close buffer" })
 vim.keymap.set({ "x", "n", "s" }, "<C-q>", function()

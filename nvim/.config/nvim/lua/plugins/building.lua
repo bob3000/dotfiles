@@ -18,20 +18,18 @@ return {
       end, {})
 
       local overseer_keys = {
-        ["<leader>o"] = {
-          name = "+overseer",
-          a = { "<cmd>OverseerTaskAction<cr>", "Overseer Action" },
-          b = { "<cmd>OverseerBuild<cr>", "Overseer Build" },
-          l = { "<cmd>OverseerLoadBundle!<cr>", "Overseer Load Bundle" },
-          i = { "<cmd>OverseerInfo<cr>", "Overseer Info" },
-          o = { "<cmd>OverseerRestartLast<cr>", "Overseer Last Task" },
-          q = { "<cmd>OverseerQuickAction<cr>", "Overseer Quick Action" },
-          r = { "<cmd>OverseerRun<cr>", "Overseer Run" },
-          s = { "<cmd>OverseerSaveBundle<cr>", "Overseer Save Bundle" },
-          t = { "<cmd>OverseerToggle!<cr>", "Overseer Toggle" },
-        },
+        { "<leader>o", group = "overseer" },
+        { "<leader>oa", "<cmd>OverseerTaskAction<cr>", desc = "Overseer Action" },
+        { "<leader>ob", "<cmd>OverseerBuild<cr>", desc = "Overseer Build" },
+        { "<leader>oi", "<cmd>OverseerInfo<cr>", desc = "Overseer Info" },
+        { "<leader>ol", "<cmd>OverseerLoadBundle!<cr>", desc = "Overseer Load Bundle" },
+        { "<leader>oo", "<cmd>OverseerRestartLast<cr>", desc = "Overseer Last Task" },
+        { "<leader>oq", "<cmd>OverseerQuickAction<cr>", desc = "Overseer Quick Action" },
+        { "<leader>or", "<cmd>OverseerRun<cr>", desc = "Overseer Run" },
+        { "<leader>os", "<cmd>OverseerSaveBundle<cr>", desc = "Overseer Save Bundle" },
+        { "<leader>ot", "<cmd>OverseerToggle!<cr>", desc = "Overseer Toggle" },
       }
-      require("which-key").register({ mode = { "n" }, overseer_keys })
+      require("which-key").add(overseer_keys)
     end,
     opts = {},
   },

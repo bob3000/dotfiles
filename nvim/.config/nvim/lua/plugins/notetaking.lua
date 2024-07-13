@@ -183,32 +183,39 @@ return {
 
       -- global keybinds
       local neorg_keys = {
-        ["<leader>n"] = {
-          name = "+neorg",
-          w = { "<cmd>lua vim.cmd('Neorg workspace work')<cr>", "Workspace work" },
-          n = { "<cmd>lua vim.cmd('Neorg workspace notes')<cr>", "Workspace notes" },
-          c = { "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>", "Date picker" },
-          j = { "<cmd>lua vim.cmd('Neorg journal today')<cr>", "Journal today" },
-          m = { "<cmd>lua vim.cmd('Neorg inject-metatdata')<cr>", "Metadata inject" },
-          M = {
-            "<cmd>"
-              .. "lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
+        {
+          { "<leader>n", group = "neorg" },
+          { "<leader>nH", "<cmd>lua vim.cmd('Telescope neorg search_headings')<cr>", desc = "Neorg headings" },
+          { "<leader>nL", "<cmd>lua vim.cmd('Telescope neorg find_linkable')<cr>", desc = "Neorg linkable" },
+          {
+            "<leader>nM",
+            "<cmd>lua vim.api.nvim_buf_set_text(0, 1, 7, 1, 17, { os.date('%Y-%m-%d') });"
               .. "vim.api.nvim_buf_set_text(0, 8, 9, 8, 33, { os.date('%Y-%m-%dT%H:%M:%S%z') });"
-              .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })"
-              .. "<cr>",
-            "Update Meta",
+              .. "vim.api.nvim_buf_set_text(0, 12, 2, 12, 12, { os.date('%Y-%m-%d') })<cr>",
+            desc = "Update Meta",
           },
-          r = { "<cmd>lua vim.cmd('Neorg return')<cr>", "Journal tomorrow" },
-          t = { "<cmd>lua vim.cmd('Neorg journal tomorrow')<cr>", "Journal tomorrow" },
-          y = { "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", "Journal yesterday" },
-          i = { "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", "Journal index" },
-          u = { "<cmd>lua vim.cmd('Neorg journal toc update')<cr>", "Journal toc update" },
-          H = { "<cmd>lua vim.cmd('Telescope neorg search_headings')<cr>", "Neorg headings" },
-          l = { "<cmd>lua vim.cmd('Neorg keybind all core.looking-glass.magnify-code-block')<cr>", "Looking glass" },
-          L = { "<cmd>lua vim.cmd('Telescope neorg find_linkable')<cr>", "Neorg linkable" },
+          {
+            "<leader>nc",
+            "<cmd>lua require('neorg').modules.get_module('core.ui.calendar').select_date({})<cr>",
+            desc = "Date picker",
+          },
+          { "<leader>ni", "<cmd>lua vim.cmd('Neorg journal toc open')<cr>", desc = "Journal index" },
+          { "<leader>nj", "<cmd>lua vim.cmd('Neorg journal today')<cr>", desc = "Journal today" },
+          {
+            "<leader>nl",
+            "<cmd>lua vim.cmd('Neorg keybind all core.looking-glass.magnify-code-block')<cr>",
+            desc = "Looking glass",
+          },
+          { "<leader>nm", "<cmd>lua vim.cmd('Neorg inject-metatdata')<cr>", desc = "Metadata inject" },
+          { "<leader>nn", "<cmd>lua vim.cmd('Neorg workspace notes')<cr>", desc = "Workspace notes" },
+          { "<leader>nr", "<cmd>lua vim.cmd('Neorg return')<cr>", desc = "Journal tomorrow" },
+          { "<leader>nt", "<cmd>lua vim.cmd('Neorg journal tomorrow')<cr>", desc = "Journal tomorrow" },
+          { "<leader>nu", "<cmd>lua vim.cmd('Neorg journal toc update')<cr>", desc = "Journal toc update" },
+          { "<leader>nw", "<cmd>lua vim.cmd('Neorg workspace work')<cr>", desc = "Workspace work" },
+          { "<leader>ny", "<cmd>lua vim.cmd('Neorg journal yesterday')<cr>", desc = "Journal yesterday" },
         },
       }
-      require("which-key").register({ mode = { "n" }, neorg_keys })
+      require("which-key").add(neorg_keys)
     end,
   },
 }
