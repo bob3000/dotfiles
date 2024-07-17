@@ -84,6 +84,7 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader><space>", "<cmd>BufferLinePick<CR>", desc = "Pick Buffer" },
+      { "<leader>gH", "<cmd>Telescope git_bcommits<CR>", desc = "History (currrent file)" },
     },
   },
   {
