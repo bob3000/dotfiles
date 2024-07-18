@@ -15,8 +15,15 @@ return {
   },
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "everforest"
-    },
+    opts = function()
+      if vim.g.neovide then
+        return {
+          colorscheme = "tokyonight",
+        }
+      end
+      return {
+        colorscheme = "everforest",
+      }
+    end,
   },
 }

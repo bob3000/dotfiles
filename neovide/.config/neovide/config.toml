@@ -1,0 +1,19 @@
+fork = true
+frame = "full"
+idle = true
+maximized = false
+# neovim-bin = "/usr/bin/nvim" # in reality found dynamically on $PATH if unset
+no-multigrid = true
+srgb = false
+tabs = true
+theme = "auto"
+title-hidden = true
+vsync = true
+wsl = false
+
+[font]
+normal = ["JetBrains Mono"]
+size = 14.0
+
+[font.features]
+"JetBrains Mono" = ["+ss01", "+ss02", "+calt"]
