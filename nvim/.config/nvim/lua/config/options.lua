@@ -40,5 +40,9 @@ vim.opt.listchars = { tab = "→┈", trail = "·", extends = "…", precedes = 
 vim.opt.list = true -- show some invisible characters
 vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 
+if vim.g.neovide then
+  vim.g.neovide_input_macos_option_key_is_meta = "both"
+end
+
 local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
 vim.fn.serverstart(socket)
