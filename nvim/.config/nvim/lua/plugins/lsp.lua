@@ -5,7 +5,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "ansible-language-server",
         "ansible-lint",
-        "autotools-language-server",
+        -- "autotools-language-server",
         "basedpyright",
         "bash-debug-adapter",
         "bash-language-server",
