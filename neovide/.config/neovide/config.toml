@@ -14,6 +14,8 @@ wsl = false
 [font]
 normal = ["JetBrains Mono"]
 size = 14.0
+hinting = "full"
+edging = "antialias"
 
 [font.features]
 "JetBrains Mono" = ["+ss01", "+ss02", "+calt"]
