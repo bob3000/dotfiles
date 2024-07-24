@@ -28,12 +28,11 @@ return {
         "marksman",
         "prettier",
         "ruff-lsp",
-        -- "rust-analyzer",
+        -- "rust-analyzer", -- installed by rustaceanvim
         "shfmt",
         "stylua",
         "taplo",
         "terraform-ls",
-        -- "typescript-language-server", -- replaced by vtsls
         "vtsls",
         "yaml-language-server",
         "zls",
