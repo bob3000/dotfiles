@@ -63,6 +63,7 @@ set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/nightly/nvim-macos-arm64/bin:$PATH"
 set --export PATH "$PYENV_ROOT/bin:$PATH"
+set --export PATH "/opt/homebrew/opt/libpq/bin:$PATH"
 command -q luarocks && eval "$(luarocks path --bin)"
 
 # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
