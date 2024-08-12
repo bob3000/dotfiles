@@ -14,11 +14,21 @@ return {
     end,
   },
   {
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      require("gruvbox").setup({
+        contrast = "soft", -- can be "hard", "soft" or empty string
+        dim_inactive = true,
+        transparent_mode = false,
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = function()
       if vim.g.neovide then
         return {
-          colorscheme = "tokyonight",
+          colorscheme = "gruvbox",
         }
       end
       return {
