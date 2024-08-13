@@ -220,4 +220,10 @@ return {
       disabled_keys = {},
     },
   },
+  {
+    "ahmedkhalf/project.nvim",
+    keys = {
+      { "<leader>P", "<cmd>AddProject<cr>", desc = "Project add" },
+    },
+  },
 }
