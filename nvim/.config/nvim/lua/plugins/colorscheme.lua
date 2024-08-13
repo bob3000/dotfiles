@@ -1,6 +1,7 @@
 return {
   {
     "neanias/everforest-nvim",
+    lazy = true,
     config = function()
       require("everforest").setup({
         background = "hard",
@@ -10,11 +11,13 @@ return {
         dim_inactive_windows = true,
         show_eob = false,
         transparent_background_level = 2,
+        dim_inactive_windows = true,
       })
     end,
   },
   {
     "ellisonleao/gruvbox.nvim",
+    lazy = true,
     config = function()
       require("gruvbox").setup({
         contrast = "soft", -- can be "hard", "soft" or empty string
