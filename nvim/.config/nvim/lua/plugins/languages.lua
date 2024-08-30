@@ -46,6 +46,7 @@ return {
         "rust",
         "scss",
         "sql",
+        "templ",
         "toml",
         "typescript",
         "vue",
