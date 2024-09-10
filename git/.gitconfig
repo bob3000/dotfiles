@@ -21,6 +21,7 @@
 [diff]
   colorMoved = default
   tool = nvimdiff
+  algorithm = minimal
 [difftool "nvimdiff"]
   cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
 [interactive]
