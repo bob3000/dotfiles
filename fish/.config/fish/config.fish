@@ -96,6 +96,8 @@ alias d "kitty +kitten diff"
 alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 
+type -q direnv && direnv hook fish | source
+
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 

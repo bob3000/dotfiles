@@ -18,6 +18,15 @@ symbol = '🌵 '
 success_symbol = '[➜](bold green)'
 error_symbol = '[✗](bold red)'
 
+[direnv]
+symbol = '📂'
+allowed_msg = '👍'
+not_allowed_msg = '👎'
+denied_msg = '✋'
+loaded_msg = '👌'
+unloaded_msg = '👋'
+disabled = false
+
 [shlvl]
 disabled = false
 format = '[$symbol]($style) '
