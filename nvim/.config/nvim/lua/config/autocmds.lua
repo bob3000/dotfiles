@@ -23,5 +23,8 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 -- treat jinja2 templates as html
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = { "*.j2" },
-  command = "set ft=html",
+  -- command = "set ft=html",
+  callback = function()
+    vim.bo.filetype = "html"
+  end,
 })
