@@ -3,6 +3,7 @@ chafa
 cmake
 codespell
 coreutils
+direnv
 eza
 fd
 fish
