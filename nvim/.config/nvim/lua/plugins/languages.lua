@@ -38,6 +38,7 @@ return {
         "make",
         "markdown",
         "markdown_inline",
+        "nginx",
         "nix",
         "norg",
         "python",
