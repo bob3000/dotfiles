@@ -19,3 +19,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
     vim.opt.cursorcolumn = true
   end,
 })
+
+-- treat jinja2 templates as html
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.j2" },
+  command = "set ft=html",
+})
