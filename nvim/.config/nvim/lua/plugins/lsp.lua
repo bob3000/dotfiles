@@ -11,8 +11,8 @@ return {
         "bash-language-server",
         "black",
         "css-lsp",
-        "clangd",
-        "codelldb",
+        -- "clangd",
+        -- "codelldb",
         "debugpy",
         "delve",
         "docker-compose-language-service",
@@ -39,7 +39,7 @@ return {
         "terraform-ls",
         "vtsls",
         "yaml-language-server",
-        "zls",
+        -- "zls",
       })
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()

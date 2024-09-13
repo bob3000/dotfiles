@@ -1,3 +1,6 @@
+-- remove to enable zig lang
+if (true) then return {} end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
