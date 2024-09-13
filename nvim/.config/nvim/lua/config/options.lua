@@ -8,7 +8,7 @@ local root_marker = {
   "Cargo.toml",
   "Gemfile",
   "go.mod",
-  "index.norg",
+  "index.md",
   "lua",
   "Makefile",
   "meson.build",

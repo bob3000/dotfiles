@@ -1,7 +1,24 @@
+local wk = require("which-key")
+local telescope = require("telescope.builtin")
+
 return {
   {
     "jakewvincent/mkdnflow.nvim",
     event = "LazyFile",
+    keys = function()
+      wk.add({
+        { "<leader>n", group = "Note taking", icon = "📓" },
+        { "<leader>ni", "<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>", desc = "Note index" },
+        {
+          "<leader>ns",
+          function()
+            vim.fn.chdir("~/Nextcloud/Synced/wiki")
+            telescope.live_grep()
+          end,
+          desc = "Search notes",
+        },
+      })
+    end,
     opts = {
       modules = {
         yaml = true,
@@ -20,7 +37,7 @@ return {
           },
           after = {},
         },
-        template = "# {{ title }}",
+        template = "# {{ title }} - {{ date }}\n",
       },
       mappings = {
         MkdnFoldSection = false,
