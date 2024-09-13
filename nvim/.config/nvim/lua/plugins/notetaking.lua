@@ -4,7 +4,7 @@ local telescope = require("telescope.builtin")
 return {
   {
     "jakewvincent/mkdnflow.nvim",
-    event = "LazyFile",
+    event = "VeryLazy",
     keys = function()
       wk.add({
         { "<leader>n", group = "Note taking", icon = "📓" },
