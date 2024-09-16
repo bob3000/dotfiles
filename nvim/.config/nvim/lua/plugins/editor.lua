@@ -165,7 +165,6 @@ return {
   },
   {
     "folke/noice.nvim",
-    enabled = false,
     -- remove when issue is fixed
     -- https://github.com/folke/noice.nvim/issues/921
     commit = "d9328ef903168b6f52385a751eb384ae7e906c6f",
