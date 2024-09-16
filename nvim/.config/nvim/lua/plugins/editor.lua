@@ -92,6 +92,10 @@ return {
     enabled = false,
   },
   {
+    "snevearc/dressing.nvim",
+    enabled = false,
+  },
+  {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
     event = "VeryLazy",
@@ -161,7 +165,7 @@ return {
   },
   {
     "folke/noice.nvim",
-    enabled = true,
+    enabled = false,
     -- remove when issue is fixed
     -- https://github.com/folke/noice.nvim/issues/921
     commit = "d9328ef903168b6f52385a751eb384ae7e906c6f",
