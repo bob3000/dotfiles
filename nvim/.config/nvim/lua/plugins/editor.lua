@@ -92,10 +92,6 @@ return {
     enabled = false,
   },
   {
-    "snevearc/dressing.nvim",
-    enabled = false,
-  },
-  {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
     event = "VeryLazy",
