@@ -40,8 +40,14 @@ return {
         template = "# {{ title }} - {{ date }}\n",
       },
       mappings = {
-        MkdnFoldSection = false,
-        MkdnUnfoldSection = false,
+        MkdnCreateLinkFromClipboard = {{'n', 'v'}, '<leader>np'}, -- see MkdnEnter
+        MkdnUpdateNumbering = {'n', '<leader>nn'},
+        MkdnTableNewRowBelow = {'n', '<leader>nr'},
+        MkdnTableNewRowAbove = {'n', '<leader>nR'},
+        MkdnTableNewColAfter = {'n', '<leader>nc'},
+        MkdnTableNewColBefore = {'n', '<leader>nC'},
+        MkdnFoldSection = {'n', '<leader>nf'},
+        MkdnUnfoldSection = {'n', '<leader>nF'}
       },
     },
   },
