@@ -4,6 +4,7 @@ go
 imagemagick
 lua51
 luarocks
+ncdu
 python-neovim
 python-pip
 python-pipx

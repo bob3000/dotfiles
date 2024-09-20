@@ -1,6 +1,4 @@
 compat-lua-devel
-luarocks
-ImageMagick
-ImageMagick-devel
+ncdu
 sqlite-devel
 tig

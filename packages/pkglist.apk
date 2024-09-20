@@ -15,6 +15,7 @@ jq
 lazygit
 libunistring
 make
+ncdu
 netcat-openbsd
 npm
 pkgconfig
