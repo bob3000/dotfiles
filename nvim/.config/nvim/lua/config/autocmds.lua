@@ -22,8 +22,16 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 
 -- treat templates as html
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = { "*.html.j2", "*.html.tmpl", },
+  pattern = { "*.html.j2", "*.html.tmpl" },
   callback = function()
     vim.bo.filetype = "html"
+  end,
+})
+
+-- treat direnv config as shell script
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { ".envrc" },
+  callback = function()
+    vim.bo.filetype = "sh"
   end,
 })
