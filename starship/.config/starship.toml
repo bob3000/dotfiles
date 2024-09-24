@@ -7,6 +7,10 @@ format = "$fill$all"
 [fill]
 symbol = ' '
 
+[aws]
+symbol = "☁️ "
+expiration_symbol = "❌"
+
 [env_var.TTY]
 default = ''
 format = '[$env_value]($style)'
