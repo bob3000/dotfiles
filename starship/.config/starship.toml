@@ -8,8 +8,9 @@ format = "$fill$all"
 symbol = ' '
 
 [aws]
-symbol = "☁️ "
-expiration_symbol = "❌"
+format = "on [$symbol $profile $region $duration ]($style)"
+symbol = "☁️󰸏"
+expiration_symbol = "🚫"
 
 [env_var.TTY]
 default = ''
