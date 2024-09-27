@@ -49,6 +49,12 @@ alias emoji="kitty +kitten unicode_input"
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
+# enable direnv
+type -p direnv > /dev/null && eval "$(direnv hook zsh)"
+
+# SDKman
+test -e ${HOME}/.sdkman/bin/sdkman-init.sh && source ~/.sdkman/bin/sdkman-init.sh
+
 # credentials
 test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
 
