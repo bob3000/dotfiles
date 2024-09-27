@@ -1,9 +1,6 @@
 # convenience
 alias xclip='xclip -selection clipboard'
 
-# specific
-alias dc='source dev.env && docker-compose -p gdn -f compose-dev.yml'
-
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh

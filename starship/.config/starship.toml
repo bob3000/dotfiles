@@ -19,6 +19,11 @@ format = '[$env_value]($style)'
 [git_branch]
 symbol = '🌵 '
 
+[git_status]
+format = '([\($all_status$ahead_behind\)]($style) )'
+conflicted = ''
+stashed = ''
+
 [character]
 success_symbol = '[➜](bold green)'
 error_symbol = '[✗](bold red)'
@@ -36,12 +41,12 @@ disabled = false
 disabled = false
 format = '[$symbol]($style) '
 repeat = true
-symbol = '🖥️'
+symbol = '󰍹'
 repeat_offset = 1
 threshold = 2
 
 [c]
-commands =[ [ "clang", "--version" ], [ "gcc", "--version" ], [ "cc", "--version" ] ]
+commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
 symbol = " "
 
 [python]
@@ -52,6 +57,9 @@ symbol = "󰟓 "
 
 [rust]
 symbol = " "
+
+[terraform]
+symbol = " "
 
 [zig]
 symbol = " "
@@ -90,6 +98,7 @@ disabled = false
 
 [shell]
 fish_indicator = '🐟'
+bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
