@@ -9,7 +9,7 @@ symbol = ' '
 
 [aws]
 format = "on [$symbol $profile $region $duration ]($style)"
-symbol = "☁️󰸏"
+symbol = "󰸏"
 expiration_symbol = "🚫"
 
 [env_var.TTY]
