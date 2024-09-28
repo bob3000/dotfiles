@@ -1,6 +1,2 @@
 # convenience
 alias xclip='xclip -selection clipboard'
-
-# fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
