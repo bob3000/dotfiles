@@ -36,7 +36,14 @@ vim.opt.colorcolumn = "80,120"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.showbreak = "↪"
-vim.opt.listchars = { tab = "→┈", trail = "·", extends = "…", precedes = "…", nbsp = "‿", conceal = "￮" } -- define which invisible characters to show
+vim.opt.listchars = { -- define which invisible characters to show
+  tab = "→┈",
+  trail = "·",
+  extends = "…",
+  precedes = "…",
+  nbsp = "‿",
+  conceal = "￮",
+}
 vim.opt.list = true -- show some invisible characters
 vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 
