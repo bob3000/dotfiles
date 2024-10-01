@@ -1,26 +1,26 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-right_format = """$username$hostname$env_var$time"""
+right_format = """$username$hostname$localip$env_var$time"""
 format = "$fill$all"
 
 [fill]
 symbol = ' '
 
 [aws]
-format = "on [$symbol $profile $region $duration ]($style)"
+format = "on [$symbol $profile $region ($duration )]($style)"
 symbol = "󰸏"
-expiration_symbol = "🚫"
+expiration_symbol = " "
 
 [env_var.TTY]
 default = ''
-format = '[$env_value]($style)'
+format = '[$env_value ]($style)'
 
 [git_branch]
 symbol = '🌵 '
 
 [git_status]
-format = '([\($all_status$ahead_behind\)]($style) )'
+format = '[ $all_status$ahead_behind ]($style)'
 conflicted = ''
 stashed = ''
 
@@ -39,7 +39,7 @@ disabled = false
 
 [shlvl]
 disabled = false
-format = '[$symbol]($style) '
+format = '[$symbol ]($style)'
 repeat = true
 symbol = '󰍹'
 repeat_offset = 1
@@ -48,6 +48,9 @@ threshold = 2
 [c]
 commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
 symbol = " "
+
+[docker_context]
+symbol = " "
 
 [python]
 symbol = " "
@@ -61,11 +64,14 @@ symbol = " "
 [terraform]
 symbol = " "
 
+[vagrant]
+symbol = "🧌 "
+
 [zig]
 symbol = " "
 
 [username]
-format = ' [$user]($style)'
+format = '[$user]($style)'
 # show_always = true
 
 [hostname]
@@ -74,14 +80,17 @@ format = '@[$hostname]($style) [$ssh_symbol]($style)'
 
 [localip]
 # ssh_only = false
-format = '@[$localipv4]($style) '
+format = '[\($localipv4\) ]($style)'
 disabled = false
 
 [time]
 disabled = false
-format = ' 🕙 [$time]($style) '
+format = '⏰️ [$time]($style)'
 time_format = '%T'
 utc_time_offset = '+0'
+
+[cmd_duration]
+format = "[⏱️($duration )]($style)"
 
 [directory]
 truncation_length = 8
@@ -93,11 +102,12 @@ truncate_to_repo = true
 disabled = false
 
 [kubernetes]
+symbol = "󰠳 "
 detect_folders = ['kubernetes', 'k8s', 'kube']
 disabled = false
 
 [shell]
-fish_indicator = '🐟'
+fish_indicator = '🐠'
 bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
@@ -107,7 +117,7 @@ disabled = false
 
 [status]
 symbol = ''
-format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
+format = '[$symbol$common_meaning$signal_name$maybe_int ]($style)'
 map_symbol = true
 pipestatus = true
 disabled = false
