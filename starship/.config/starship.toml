@@ -107,7 +107,7 @@ detect_folders = ['kubernetes', 'k8s', 'kube']
 disabled = false
 
 [shell]
-fish_indicator = '🐠'
+fish_indicator = '🐟'
 bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
