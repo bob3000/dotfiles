@@ -19,8 +19,6 @@ local root_marker = {
 -- is either 'Linux' or 'Darwin'
 os_name = vim.loop.os_uname().sysname
 
-vim.g.maplocalleader = ","
-
 vim.filetype.add({ extension = { ipynb = "markdown" } })
 
 vim.g.root_spec = { root_marker, "cwd" }
@@ -45,7 +43,6 @@ vim.opt.listchars = { -- define which invisible characters to show
   conceal = "￮",
 }
 vim.opt.list = true -- show some invisible characters
-vim.opt.fillchars = "eob: " -- show empty lines at the end of a buffer as ` ` {default `~`}
 
 if vim.g.neovide then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
