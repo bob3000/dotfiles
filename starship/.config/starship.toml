@@ -117,6 +117,7 @@ disabled = false
 
 [status]
 symbol = ''
+sigint_symbol = "🫵"
 format = '[$symbol$common_meaning$signal_name$maybe_int ]($style)'
 map_symbol = true
 pipestatus = true
