@@ -191,9 +191,6 @@ return {
     event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
     opts = {
       enabled = true,
-      execution_message = {
-        enabled = false,
-      },
     },
     keys = {
       { "<leader>cW", "<cmd>ASToggle<cr>", desc = "Toggle Auto Save" },
