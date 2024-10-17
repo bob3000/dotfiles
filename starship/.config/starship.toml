@@ -99,6 +99,8 @@ truncation_symbol = '…/'
 truncate_to_repo = true
 
 [sudo]
+format = "$symbol($style)"
+symbol = "🔓 "
 disabled = false
 
 [kubernetes]
