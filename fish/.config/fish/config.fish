@@ -15,7 +15,7 @@ end
 function kube_switch_context --description "Switch Kubernetes context"
     set -f context "$(kubectl config get-contexts -o name | fzf --prompt 'Context> ' --ansi | tr -d '[:space:]')"
     if test -n "$context"
-      kubectl config use-context "$context"
+        kubectl config use-context "$context"
     end
     commandline --function repaint
 end
@@ -23,7 +23,7 @@ end
 function aws_switch_profile --description "Switch AWS profile"
     set -f profile "$(aws-vault list --profiles | fzf --prompt 'Profile> ' --ansi | tr -d '[:space:]')"
     if test -n "$profile"
-      aws-vault exec --duration=12h "$profile"
+        aws-vault exec --duration=12h "$profile"
     end
     commandline --function repaint
 end
@@ -31,7 +31,7 @@ end
 function git_switch_branch --description "Switch git branch"
     set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | sed 's!remotes/[^/]*/!!g' | sort | uniq | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
     if test -n "$branch"
-      git checkout -q "$branch"
+        git checkout -q "$branch"
     end
     commandline --function repaint
 end
@@ -107,10 +107,19 @@ end
 function toggle_theme
     [ $appearance = dark ] && set -U appearance light || set -U appearance dark
     set -f kitty_socket $HOME/.local/state
-    set -f kitty_theme "Everforest $appearance Hard"
+    set -f kitty_theme "Gruvbox $appearance Hard"
     set -f nvim_socket $HOME/.cache/nvim
+    if [ "$appearance" = light ] # light theme
+        set -f kitty_theme "Gruvbox Light Hard"
+    else if [ "$appearance" = dark ] # dark theme
+        set -f kitty_theme "Gruvbox Dark Hard"
+    end
     for f in $kitty_socket/kitty-*
         kitten @ --to unix:$f kitten themes "$kitty_theme"
+
+        if type -q theme_gruvbox
+          kitten @ --to unix:$f --match all run fish -c "theme_gruvbox $appearance hard"
+        end
     end
     for f in $nvim_socket/nvim-*
         nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 >/dev/null
