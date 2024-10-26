@@ -18,6 +18,7 @@ format = '[$env_value ]($style)'
 
 [git_branch]
 symbol = '🌵 '
+format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
 format = '[ $all_status$ahead_behind ]($style)'
