@@ -90,7 +90,7 @@ time_format = '%T'
 utc_time_offset = '+0'
 
 [cmd_duration]
-format = "[⏱️($duration )]($style)"
+format = "[⏱️ ($duration )]($style)"
 
 [directory]
 truncation_length = 8
