@@ -11,7 +11,6 @@ return {
         dim_inactive_windows = true,
         show_eob = false,
         transparent_background_level = 2,
-        dim_inactive_windows = true,
       })
     end,
   },
@@ -20,9 +19,14 @@ return {
     lazy = true,
     config = function()
       require("gruvbox").setup({
-        contrast = "soft", -- can be "hard", "soft" or empty string
-        dim_inactive = true,
-        transparent_mode = false,
+        contrast = "hard", -- can be "hard", "soft" or empty
+        dim_inactive = false,
+        transparent_mode = true,
+        inverse = false,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
       })
     end,
   },
@@ -35,7 +39,7 @@ return {
         }
       end
       return {
-        colorscheme = "everforest",
+        colorscheme = "gruvbox",
       }
     end,
   },
