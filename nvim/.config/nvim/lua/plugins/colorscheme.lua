@@ -15,22 +15,6 @@ return {
     end,
   },
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-    config = function()
-      require("gruvbox").setup({
-        contrast = "hard", -- can be "hard", "soft" or empty
-        dim_inactive = false,
-        transparent_mode = true,
-        inverse = false,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-      })
-    end,
-  },
-  {
     "LazyVim/LazyVim",
     opts = function()
       if vim.g.neovide then
@@ -39,7 +23,7 @@ return {
         }
       end
       return {
-        colorscheme = "gruvbox",
+        colorscheme = "everforest",
       }
     end,
   },
