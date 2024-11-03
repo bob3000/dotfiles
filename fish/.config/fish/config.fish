@@ -66,8 +66,6 @@ set --export PATH "$PYENV_ROOT/bin:$PATH"
 set --export PATH "/opt/homebrew/opt/libpq/bin:$PATH"
 command -q luarocks && eval "$(luarocks path --bin)"
 
-# set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-
 set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*" --bind ctrl-k:preview-up,ctrl-j:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
 set --export FZF_DEFAULT_COMMAND 'fd --hidden --type f'
 set --export FZF_CTRL_T_COMMAND 'fd --color always --exclude "Library/*" . $HOME'
@@ -102,10 +100,10 @@ type -q direnv && direnv hook fish | source
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
 if test -n $appearance
-    set -U appearance dark
+    set -gx appearance "$(awk '/^## name:/{print tolower($4)}' $HOME/.config/kitty/current-theme.conf)"
 end
 function toggle_theme
-    [ $appearance = dark ] && set -U appearance light || set -U appearance dark
+    [ $appearance = dark ] && set -gx appearance light || set -gx appearance dark
     set -f kitty_socket $HOME/.local/state
     set -f kitty_theme "Gruvbox $appearance Hard"
     set -f nvim_socket $HOME/.cache/nvim
@@ -116,7 +114,6 @@ function toggle_theme
     end
     for f in $kitty_socket/kitty-*
         kitten @ --to unix:$f kitten themes "$kitty_theme"
-
         if type -q theme_gruvbox
           kitten @ --to unix:$f --match all run fish -c "theme_gruvbox $appearance hard"
         end
@@ -154,8 +151,7 @@ if test -d /home/linuxbrew/.linuxbrew
 else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
-    set -gx PATH "$HOME/.local/share/bob/nightly/nvim-macos-arm64/bin:$PATH"
-    set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-29_1/lib
+    # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 end
 
 if status is-interactive
