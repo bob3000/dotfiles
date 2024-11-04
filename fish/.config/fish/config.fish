@@ -108,7 +108,7 @@ function toggle_theme
     set -f kitty_theme "Gruvbox $appearance Hard"
     set -f nvim_socket $HOME/.cache/nvim
     if [ "$appearance" = light ] # light theme
-        set -f kitty_theme "Gruvbox Light Hard"
+        set -f kitty_theme "Leaf Light"
     else if [ "$appearance" = dark ] # dark theme
         set -f kitty_theme "Gruvbox Dark Hard"
     end
