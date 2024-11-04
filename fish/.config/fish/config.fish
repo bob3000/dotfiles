@@ -100,7 +100,7 @@ type -q direnv && direnv hook fish | source
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
 if test -n $appearance
-    set -gx appearance "$(awk '/^## name:/{print tolower($4)}' $HOME/.config/kitty/current-theme.conf)"
+    set -U appearance "$(awk '/^## name:/{print tolower($4)}' $HOME/.config/kitty/current-theme.conf)"
 end
 function toggle_theme
     [ $appearance = dark ] && set -gx appearance light || set -gx appearance dark
@@ -114,18 +114,15 @@ function toggle_theme
     end
     for f in $kitty_socket/kitty-*
         kitten @ --to unix:$f kitten themes "$kitty_theme"
-        if type -q theme_gruvbox
-          kitten @ --to unix:$f --match all run fish -c "theme_gruvbox $appearance hard"
-        end
     end
     for f in $nvim_socket/nvim-*
         nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 >/dev/null
     end
-    if type -q osascript
+    if [ "$OSTYPE" = "Darwin" ]
         [ $appearance = dark ] && set -f dark_mode true || set -f dark_mode false
         osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
     end
-    if type -q gsettings
+    if [ "$OSTYPE" = "Linux" ]
         gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
     end
 end
