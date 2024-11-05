@@ -8,7 +8,7 @@ function preview_files
     if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
         chafa --format kitty --animate=off --center on --clear --size "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" "$argv" 2>/dev/null
     else
-        bat --style=numbers --color=always "$argv"
+        printf "\\x1b_Ga=d,d=A\\x1b\\\\" && bat --style=numbers --color=always "$argv"
     end
 end
 
