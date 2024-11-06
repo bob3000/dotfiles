@@ -3,15 +3,6 @@ set fish_greeting
 # fisher install decors/fish-colored-man
 # fisher install PatrickF1/fzf.fish
 
-# fish fzf stttings
-function preview_files
-    if [ $(file --mime "$argv" | cut -d'=' -f2) = binary ]
-        chafa --format kitty --animate=off --center on --clear --size "$FZF_PREVIEW_COLUMNS"x"$FZF_PREVIEW_LINES" "$argv" 2>/dev/null
-    else
-        printf "\\x1b_Ga=d,d=A\\x1b\\\\" && bat --style=numbers --color=always "$argv"
-    end
-end
-
 function kube_switch_context --description "Switch Kubernetes context"
     set -f context "$(kubectl config get-contexts -o name | fzf --prompt 'Context> ' --ansi | tr -d '[:space:]')"
     if test -n "$context"
@@ -71,7 +62,7 @@ set --export FZF_DEFAULT_OPTS '--color "bg+:-1:underline,fg+:-1:underline,hl+:-1
 ' --bind ctrl-k:preview-up,ctrl-j:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
 set --export FZF_DEFAULT_COMMAND 'fd --hidden --type f'
 set --export FZF_CTRL_T_COMMAND 'fd --color always --exclude "Library/*" . $HOME'
-set --export FZF_CTRL_T_OPTS '--ansi --multi --prompt="File> " --preview "preview_files {}"'
+set --export FZF_CTRL_T_OPTS '--ansi --multi --prompt="File> " --preview "fzf-preview.sh {}"'
 set --export FZF_ALT_C_COMMAND 'fd --color always --exclude "Library/*" -t d . $HOME'
 set --export FZF_ALT_C_OPTS '--ansi --multi --prompt="Directory> " --preview "eza --color always -la {}"'
 
