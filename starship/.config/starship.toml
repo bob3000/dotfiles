@@ -1,7 +1,7 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-right_format = """$username$hostname$localip$env_var$time"""
+right_format = """$username$hostname$localip$env_var$cmd_duration$time"""
 format = "$fill$all"
 
 [fill]
@@ -14,7 +14,7 @@ expiration_symbol = " "
 
 [env_var.TTY]
 default = ''
-format = '[$env_value ]($style)'
+format = '[$env_value]($style)'
 
 [git_branch]
 symbol = '🌵 '
