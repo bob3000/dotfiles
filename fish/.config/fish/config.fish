@@ -28,7 +28,7 @@ function git_switch_branch --description "Switch git branch"
 end
 
 set script_pwd (dirname (status --current-filename))
-set fzf_preview_file_cmd preview_files
+set fzf_preview_file_cmd fzf-preview.sh
 set fzf_diff_highlighter delta --paging=never --width=20
 set fzf_preview_dir_cmd eza --all --color=always --tree
 
