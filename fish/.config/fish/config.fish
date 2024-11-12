@@ -111,11 +111,11 @@ function toggle_theme
     for f in $nvim_socket/nvim-*
         nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 >/dev/null
     end
-    if [ "$OSTYPE" = "Darwin" ]
+    if [ "$OSTYPE" = Darwin ]
         [ $appearance = dark ] && set -f dark_mode true || set -f dark_mode false
         osascript -e "tell application \"System Events\" to tell appearance preferences to set dark mode to $dark_mode"
     end
-    if [ "$OSTYPE" = "Linux" ]
+    if [ "$OSTYPE" = Linux ]
         gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
     end
 end
