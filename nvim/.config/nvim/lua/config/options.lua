@@ -44,6 +44,7 @@ vim.opt.listchars = { -- define which invisible characters to show
 }
 vim.opt.list = true -- show some invisible characters
 
+vim.g.enable_autocomplete = true
 if vim.g.neovide then
   vim.g.neovide_input_macos_option_key_is_meta = "both"
 end
