@@ -155,9 +155,14 @@ return {
     config = true,
   },
   {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = { config = { header = vim.split(logo, "\n") } },
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = logo,
+        },
+      },
+    },
   },
   {
     "folke/noice.nvim",
