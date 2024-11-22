@@ -27,6 +27,15 @@ function git_switch_branch --description "Switch git branch"
     commandline --function repaint
 end
 
+function aws-ssm --description "Connect to EC2 instance via SSM"
+    set instance_name $argv[1]
+    set instance_id $(aws ec2 describe-instances \
+      --filters "Name=instance-state-name,Values=running" "Name=tag:Name,Values=$instance_name" \
+      --query "Reservations[*].Instances[*].InstanceId" \
+      --output text)
+    aws ssm start-session --target $instance_id
+end
+
 set script_pwd (dirname (status --current-filename))
 set fzf_preview_file_cmd fzf-preview.sh
 set fzf_diff_highlighter delta --paging=never --width=20
