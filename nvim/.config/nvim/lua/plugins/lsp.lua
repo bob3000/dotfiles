@@ -30,6 +30,7 @@ return {
         "markdownlint",
         "marksman",
         "prettier",
+        "ruff",
         "ruff-lsp",
         -- "rust-analyzer", -- installed by rustaceanvim
         "shfmt",
