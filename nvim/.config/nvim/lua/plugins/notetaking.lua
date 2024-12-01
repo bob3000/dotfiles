@@ -6,10 +6,10 @@ return {
     event = "VeryLazy",
     keys = function()
       wk.add({
-        { "<leader>n", group = "Note taking", icon = "📓" },
-        { "<leader>ni", "<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>", desc = "Note index" },
+        { "<leader>N", group = "Note taking", icon = "📓" },
+        { "<leader>Ni", "<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>", desc = "Note index" },
         {
-          "<leader>ns",
+          "<leader>Ns",
           function()
             vim.fn.chdir("~/Nextcloud/Synced/wiki")
             require("fzf-lua").live_grep()
@@ -39,14 +39,14 @@ return {
         template = "# {{ title }} - {{ date }}\n",
       },
       mappings = {
-        MkdnCreateLinkFromClipboard = { { "n", "v" }, "<leader>np" }, -- see MkdnEnter
-        MkdnUpdateNumbering = { "n", "<leader>nn" },
-        MkdnTableNewRowBelow = { "n", "<leader>nr" },
-        MkdnTableNewRowAbove = { "n", "<leader>nR" },
-        MkdnTableNewColAfter = { "n", "<leader>nc" },
-        MkdnTableNewColBefore = { "n", "<leader>nC" },
-        MkdnFoldSection = { "n", "<leader>nf" },
-        MkdnUnfoldSection = { "n", "<leader>nF" },
+        MkdnCreateLinkFromClipboard = { { "n", "v" }, "<leader>Np" }, -- see MkdnEnter
+        MkdnUpdateNumbering = { "n", "<leader>Nn" },
+        MkdnTableNewRowBelow = { "n", "<leader>Nr" },
+        MkdnTableNewRowAbove = { "n", "<leader>NR" },
+        MkdnTableNewColAfter = { "n", "<leader>Nc" },
+        MkdnTableNewColBefore = { "n", "<leader>NC" },
+        MkdnFoldSection = { "n", "<leader>Nf" },
+        MkdnUnfoldSection = { "n", "<leader>NF" },
       },
     },
   },
