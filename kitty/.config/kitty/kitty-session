@@ -1,6 +1,6 @@
 cd ~/code
 layout splits
-title shell
+title local
 launch fish
 title shell
 launch fish
@@ -8,6 +8,7 @@ new_tab editor
 launch fish
 new_tab cloud
 layout horizontal
+launch fish
 launch fish
 launch fish
 new_tab remote
