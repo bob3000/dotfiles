@@ -27,13 +27,26 @@ function git_switch_branch --description "Switch git branch"
     commandline --function repaint
 end
 
-function aws-ssm --description "Connect to EC2 instance via SSM"
-    set instance_name $argv[1]
-    set instance_id $(aws ec2 describe-instances \
-      --filters "Name=instance-state-name,Values=running" "Name=tag:Name,Values=$instance_name" \
-      --query "Reservations[*].Instances[*].InstanceId" \
-      --output text)
-    aws ssm start-session --target $instance_id
+function aws-ec2-describe --description "Describe running EC2 instances"
+    aws ec2 describe-instances \
+        --filters 'Name=instance-state-name,Values=running' \
+        --query 'Reservations[].Instances[].[InstanceId, PrivateIpAddress, PublicIpAddress, Tags[?Key==`Name`].Value | [0]]' \
+        --output text | column -t
+end
+
+function aws_ec2_select --description "Get EC2 instance information"
+    set -f col $(aws-ec2-describe | fzf --prompt 'Instance> ' --ansi \
+    --bind 'alt-i:become(echo {1})' \
+    --bind 'alt-p:become(echo {2})' \
+    --bind 'alt-P:become(echo {3})' \
+    --bind 'alt-n:become(echo {4})')
+  printf "%s" $col
+end
+
+function aws_ec2_select_replace --description "replace the current command token"
+    set -f output (aws_ec2_select)
+    commandline --current-token --insert -- (string escape -- $output | string join ' ')
+    commandline --function repaint
 end
 
 set script_pwd (dirname (status --current-filename))
@@ -95,6 +108,7 @@ alias icat "kitty +kitten icat"
 alias d "kitty +kitten diff"
 alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
+alias aws-ssm "aws ssm start-session --target"
 
 type -q direnv && direnv hook fish | source
 
@@ -173,6 +187,7 @@ if status is-interactive
     bind \e\cb git_switch_branch
     bind \e\ca aws_switch_profile
     bind \e\ck kube_switch_context
+    bind \e\ce aws_ec2_select_replace
     bind \e\cm 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings --variables=\e\cv
     if type -q aws_completer
