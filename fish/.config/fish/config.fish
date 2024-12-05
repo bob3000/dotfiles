@@ -109,6 +109,7 @@ alias d "kitty +kitten diff"
 alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
+alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="sudo su -l $U" --target'
 
 type -q direnv && direnv hook fish | source
 
