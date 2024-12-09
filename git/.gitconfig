@@ -44,8 +44,6 @@
   tool = nvimdiff
 [mergetool "nvimdiff"]
   cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$BASE\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\"
-[include]
-  path = ~/.gitconfig.local
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
@@ -63,3 +61,9 @@
 	updateRefs = true
 [commit]
 	template = ~/.gitmessage
+[includeIf "gitdir:~/.dotfiles/"]
+  path = ~/.gitconfig.bob3000
+[includeIf "gitdir:~/code/"]
+  path = ~/.gitconfig.bob3000
+[includeIf "gitdir:~/savi/"]
+  path = ~/.gitconfig.savi
