@@ -122,17 +122,7 @@ if test -n $appearance
 end
 function toggle_theme
     [ $appearance = dark ] && set -gx appearance light || set -gx appearance dark
-    set -f kitty_socket $HOME/.local/state
-    set -f kitty_theme "Gruvbox $appearance Hard"
     set -f nvim_socket $HOME/.cache/nvim
-    if [ "$appearance" = light ] # light theme
-        set -f kitty_theme "Leaf Light"
-    else if [ "$appearance" = dark ] # dark theme
-        set -f kitty_theme "Gruvbox Dark Hard"
-    end
-    for f in $kitty_socket/kitty-*
-        kitten @ --to unix:$f kitten themes "$kitty_theme"
-    end
     for f in $nvim_socket/nvim-*
         nvim --server $f --remote-send ':set background='$appearance'<cr>' 2>&1 >/dev/null
     end
