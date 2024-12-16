@@ -23,15 +23,6 @@ return {
     "sindrets/diffview.nvim",
   },
   {
-    "echasnovski/mini.animate",
-    opts = {
-      cursor = {
-        -- Whether to enable this animation
-        enable = false,
-      },
-    },
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       filesystem = {
@@ -78,13 +69,6 @@ return {
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         truncate_names = false, -- whether or not tab names should be truncated
       },
-    },
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader><space>", "<cmd>BufferLinePick<CR>", desc = "Pick Buffer" },
-      { "<leader>gH", "<cmd>Telescope git_bcommits<CR>", desc = "History (currrent file)" },
     },
   },
   {
@@ -178,19 +162,6 @@ return {
     },
   },
   {
-    "folke/noice.nvim",
-    opts = {
-      messages = {
-        enabled = true, -- enables the Noice messages UI
-        view = "mini", -- default view for messages
-        view_error = "mini", -- view for errors
-        view_warn = "mini", -- view for warnings
-        view_history = "messages", -- view for :messages
-        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
-      },
-    },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = function(_, opts)
@@ -227,21 +198,21 @@ return {
       },
     },
   },
-  {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {
-      max_count = 10,
-      disable_mouse = false,
-      disabled_keys = {
-        ["<Up>"] = {},
-        ["<Down>"] = {},
-        ["<Left>"] = {},
-        ["<Right>"] = {},
-      },
-      restriction_mode = "block",
-    },
-  },
+  -- {
+  --   "m4xshen/hardtime.nvim",
+  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = {
+  --     max_count = 10,
+  --     disable_mouse = false,
+  --     disabled_keys = {
+  --       ["<Up>"] = {},
+  --       ["<Down>"] = {},
+  --       ["<Left>"] = {},
+  --       ["<Right>"] = {},
+  --     },
+  --     restriction_mode = "block",
+  --   },
+  -- },
   {
     "ahmedkhalf/project.nvim",
     keys = {
