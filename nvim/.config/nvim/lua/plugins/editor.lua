@@ -21,6 +21,7 @@ logo = string.rep("\n", 8) .. logo .. "\n\n"
 return {
   {
     "sindrets/diffview.nvim",
+    event = "VeryLazy",
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
