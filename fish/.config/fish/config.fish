@@ -117,9 +117,6 @@ type -q direnv && direnv hook fish | source
 # credentials
 test -e "$HOME/.credentials" && source "$HOME/.credentials"
 
-if test -n $appearance
-    set -U appearance "$(awk '/^## name:/{print tolower($4)}' $HOME/.config/kitty/current-theme.conf)"
-end
 function toggle_theme
     [ $appearance = dark ] && set -gx appearance light || set -gx appearance dark
     set -f nvim_socket $HOME/.cache/nvim
