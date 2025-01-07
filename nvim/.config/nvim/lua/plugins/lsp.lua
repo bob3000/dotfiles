@@ -1,5 +1,18 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        marksman = {
+          mason = false,
+        },
+        yamlls = {
+          mason = false,
+        },
+      },
+    },
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
@@ -28,7 +41,7 @@ return {
         "json-lsp",
         "lua-language-server",
         "markdownlint",
-        "marksman",
+        -- "marksman", -- doesn't terminate correctly / uses 100% CPU
         "prettier",
         "ruff",
         "ruff-lsp",
@@ -39,8 +52,8 @@ return {
         "templ",
         "terraform-ls",
         "vtsls",
-        "yaml-language-server",
-        -- "zls",
+        -- "yaml-language-server", -- slow and shows false errors
+        "zls",
       })
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
