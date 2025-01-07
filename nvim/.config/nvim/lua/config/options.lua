@@ -10,6 +10,7 @@ local root_marker = {
   "go.mod",
   "index.md",
   "lua",
+  "makefile",
   "Makefile",
   "meson.build",
   "package.json",
