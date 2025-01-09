@@ -106,7 +106,7 @@ disabled = false
 
 [kubernetes]
 symbol = "󰠳 "
-detect_folders = ['kubernetes', 'k8s', 'kube']
+detect_folders = ['clusters', 'kubernetes', 'k8s', 'kube']
 disabled = false
 
 [shell]
