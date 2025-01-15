@@ -97,7 +97,7 @@ return {
     config = function()
       local colors = require("helper.colors").get_colors()
       require("window-picker").setup({
-        hint = "floating-big-letter",
+        hint = "floating-letter",
         filter_rules = {
           include_current_win = false,
           autoselect_one = true,
