@@ -1,38 +1,5 @@
 return {
   {
-    "saghen/blink.cmp",
-    opts = {
-      completion = {
-        trigger = {
-          show_on_keyword = true,
-          show_on_trigger_character = true,
-          show_on_insert_on_trigger_character = true,
-          show_on_accept_on_trigger_character = true,
-        },
-      },
-      keymap = {
-        ["<C-space>"] = {
-          function(cmp)
-            cmp.show()
-          end,
-        },
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        marksman = {
-          mason = false,
-        },
-        yamlls = {
-          mason = false,
-        },
-      },
-    },
-  },
-  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
@@ -42,20 +9,20 @@ return {
         "basedpyright",
         "bash-debug-adapter",
         "bash-language-server",
-        "black",
-        "css-lsp",
-        -- "clangd",
-        -- "codelldb",
-        "debugpy",
+        -- "black",
+        -- "css-lsp",
+        "clangd",
+        "codelldb",
+        -- "debugpy",
         "delve",
-        "docker-compose-language-service",
-        "dockerfile-language-server",
+        -- "docker-compose-language-service",
+        -- "dockerfile-language-server",
         "gofumpt",
         "goimports",
         "gopls",
         "hadolint",
-        "html-lsp",
-        "htmx-lsp",
+        -- "html-lsp",
+        -- "htmx-lsp",
         "helm-ls",
         "js-debug-adapter",
         "json-lsp",
@@ -64,7 +31,7 @@ return {
         -- "marksman", -- doesn't terminate correctly / uses 100% CPU
         "prettier",
         "ruff",
-        "ruff-lsp",
+        -- "ruff-lsp",
         -- "rust-analyzer", -- installed by rustaceanvim
         "shfmt",
         "stylua",
