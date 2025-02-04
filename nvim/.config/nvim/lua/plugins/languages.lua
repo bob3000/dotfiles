@@ -51,7 +51,6 @@ return {
         "lua",
         "luadoc",
         "make",
-        "make",
         "markdown",
         "markdown_inline",
         "nginx",

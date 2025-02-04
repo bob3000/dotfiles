@@ -23,33 +23,28 @@ return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = {
-        bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
-        cwd_target = {
-          sidebar = "tab", -- sidebar is when position = left or right
-          current = "window", -- current is when position = current
-        },
-      },
-    },
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      close_if_last_window = true,
-      popup_border_style = "NC",
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function(file_path)
-            require("neo-tree.command").execute({ action = "close" })
-          end,
-        },
-      },
-    },
-  },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   opts = {
+  --     filesystem = {
+  --       bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+  --       cwd_target = {
+  --         sidebar = "tab", -- sidebar is when position = left or right
+  --         current = "window", -- current is when position = current
+  --       },
+  --     },
+  --     close_if_last_window = true,
+  --     popup_border_style = "NC",
+  --     event_handlers = {
+  --       {
+  --         event = "file_opened",
+  --         handler = function(file_path)
+  --           require("neo-tree.command").execute({ action = "close" })
+  --         end,
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "stevearc/aerial.nvim",
     opts = {
@@ -155,6 +150,9 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      explorer = {
+        auto_close = true,
+      },
       dashboard = {
         preset = {
           header = logo,

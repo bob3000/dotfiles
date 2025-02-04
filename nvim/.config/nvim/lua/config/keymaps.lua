@@ -44,7 +44,7 @@ map("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move Buffer Left" }
 map(
   "n",
   "<leader>fP",
-  "<cmd>e " .. vim.fn.expand("$HOME") .. "/.local/share/nvim/project_nvim/project_history<CR>",
+  "<cmd>e " .. vim.fn.stdpath("data") .. "/project_nvim/project_history<CR>",
   { desc = "Edit project history" }
 )
 map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
