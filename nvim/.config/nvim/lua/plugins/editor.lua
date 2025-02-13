@@ -23,28 +23,6 @@ return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
   },
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   opts = {
-  --     filesystem = {
-  --       bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
-  --       cwd_target = {
-  --         sidebar = "tab", -- sidebar is when position = left or right
-  --         current = "window", -- current is when position = current
-  --       },
-  --     },
-  --     close_if_last_window = true,
-  --     popup_border_style = "NC",
-  --     event_handlers = {
-  --       {
-  --         event = "file_opened",
-  --         handler = function(file_path)
-  --           require("neo-tree.command").execute({ action = "close" })
-  --         end,
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "stevearc/aerial.nvim",
     opts = {
@@ -85,61 +63,6 @@ return {
     },
   },
   {
-    "s1n7ax/nvim-window-picker",
-    name = "window-picker",
-    event = "VeryLazy",
-    version = "*",
-    config = function()
-      local colors = require("helper.colors").get_colors()
-      require("window-picker").setup({
-        hint = "floating-letter",
-        filter_rules = {
-          include_current_win = false,
-          autoselect_one = true,
-          -- filter using buffer options
-          bo = {
-            -- if the file type is one of following, the window will be ignored
-            filetype = { "neo-tree", "neo-tree-popup", "notify", "OverseerList" },
-            -- if the buffer type is one of following, the window will be ignored
-            buftype = { "terminal", "quickfix" },
-          },
-        },
-        highlights = {
-          statusline = {
-            focused = {
-              fg = colors.fg,
-              bg = colors.bg5,
-              bold = true,
-            },
-            unfocused = {
-              fg = colors.fg,
-              bg = colors.bg5,
-              bold = true,
-            },
-          },
-          winbar = {
-            focused = {
-              fg = colors.fg,
-              bg = colors.bg5,
-              bold = true,
-            },
-            unfocused = {
-              fg = colors.fg,
-              bg = colors.bg5,
-              bold = true,
-            },
-          },
-        },
-      })
-    end,
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    enabled = false,
-    event = { "VeryLazy" },
-    config = true,
-  },
-  {
     "mikesmithgh/kitty-scrollback.nvim",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     lazy = true,
@@ -149,9 +72,15 @@ return {
   },
   {
     "folke/snacks.nvim",
+    ---@type snacks.Config
     opts = {
-      explorer = {
-        auto_close = true,
+      explorer = {},
+      picker = {
+        sources = {
+          explorer = {
+            auto_close = true,
+          },
+        },
       },
       dashboard = {
         preset = {
