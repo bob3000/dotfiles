@@ -3,7 +3,7 @@ local wk = require("which-key")
 return {
   {
     "jakewvincent/mkdnflow.nvim",
-    event = "VeryLazy",
+    ft = "markdown",
     keys = function()
       wk.add({
         { "<leader>N", group = "Note taking", icon = "📓" },
