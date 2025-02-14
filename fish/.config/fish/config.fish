@@ -173,6 +173,7 @@ if status is-interactive
 
     # key bindings
     bind \cr _fzf_search_history
+    bind \e\cg _fzf_grep_current_dir
     bind \e\cb git_switch_branch
     bind \e\ca aws_switch_profile
     bind \e\ck kube_switch_context
