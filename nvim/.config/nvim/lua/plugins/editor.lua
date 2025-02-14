@@ -75,6 +75,13 @@ return {
     ---@type snacks.Config
     opts = {
       explorer = {},
+      image = {
+        markdown = {
+          enabled = true,
+          max_width = 80,
+          max_height = 40,
+        },
+      },
       picker = {
         sources = {
           explorer = {
