@@ -76,6 +76,16 @@ return {
     opts = {
       explorer = {},
       image = {
+        doc = {
+          enabled = true,
+          -- takes precedence over `opts.float` on supported terminals
+          inline = false,
+          -- render the image in a floating window
+          -- only used if `opts.inline` is disabled
+          float = true,
+          max_width = 80,
+          max_height = 40,
+        },
         markdown = {
           enabled = true,
           max_width = 80,
