@@ -5,7 +5,7 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("everforest").setup({
-        background = "soft",
+        background = "hard",
         italics = true,
         sign_column_background = "grey",
         ui_contrast = "high",
