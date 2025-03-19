@@ -18,6 +18,16 @@ local opts_no_prefix = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+vim.api.nvim_create_user_command("OverseerRestartLast", function()
+  local overseer = require("overseer")
+  local tasks = overseer.list_tasks({ recent_first = true })
+  if vim.tbl_isempty(tasks) then
+    vim.notify("No tasks found", vim.log.levels.WARN)
+  else
+    overseer.run_action(tasks[1], "restart")
+  end
+end, {})
+
 local mappings_no_prefix = {
   { "<M-b>", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint", nowait = true, remap = false },
   { "<M-c>", "<cmd>DapContinue<cr>", desc = "Continue", nowait = true, remap = false },
