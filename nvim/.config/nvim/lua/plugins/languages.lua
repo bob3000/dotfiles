@@ -12,6 +12,36 @@ return {
   --   end,
   -- },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-jest",
+    },
+    opts = {
+      adapters = {
+        ["neotest-vitest"] = {
+          vitestCommand = "npm test --",
+          -- vitestCommand = "node_modules/vitest/vitest.mjs",
+          -- vitestConfigFile = "vitest.config.ts",
+          env = { CI = true },
+          cwd = function()
+            return vim.fn.getcwd()
+          end,
+        },
+        ["neotest-jest"] = {
+          jestCommand = "npm test --",
+          -- jestCommand = "pnpm test --",
+          -- jestCommand = "yarn test",
+          -- jestConfigFile = 'custom.jest.config.ts',
+          env = { CI = true },
+          cwd = function()
+            return vim.fn.getcwd()
+          end,
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
