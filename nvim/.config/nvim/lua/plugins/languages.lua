@@ -20,8 +20,8 @@ return {
     opts = {
       adapters = {
         ["neotest-vitest"] = {
-          vitestCommand = "npm test --",
-          -- vitestCommand = "node_modules/vitest/vitest.mjs",
+          -- vitestCommand = "npm test --",
+          vitestCommand = "node_modules/vitest/vitest.mjs run --inspect=9229 --no-file-parallelism --test-timeout=0",
           -- vitestConfigFile = "vitest.config.ts",
           env = { CI = true },
           cwd = function()
