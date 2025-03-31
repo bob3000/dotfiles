@@ -69,6 +69,7 @@ set --export LANG en_US.UTF-8
 set --export PAGER less
 set --export BROWSER brave
 set --export TERMINAL kitty
+set --export MANPAGER 'nvim +Man!'
 set --export GOPATH $HOME/.go
 set --export PATH "$GOPATH/bin:$PATH"
 set --export PATH "/usr/local/bin:$PATH"
@@ -172,13 +173,13 @@ if status is-interactive
     command -q pyenv && pyenv init - | source
 
     # key bindings
-    bind \cr _fzf_search_history
-    bind \e\cg _fzf_grep_current_dir
-    bind \e\cb git_switch_branch
-    bind \e\ca aws_switch_profile
-    bind \e\ck kube_switch_context
-    bind \e\ce aws_ec2_select_replace
-    bind \e\cm 'toggle_theme; commandline -f repaint'
+    bind ctrl-r _fzf_search_history
+    bind ctrl-alt-g _fzf_grep_current_dir
+    bind ctrl-alt-b git_switch_branch
+    bind ctrl-alt-a aws_switch_profile
+    bind ctrl-alt-k kube_switch_context
+    bind ctrl-alt-e aws_ec2_select_replace
+    bind ctrl-alt-m 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings --variables=\e\cv
     if type -q aws_completer
         complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
