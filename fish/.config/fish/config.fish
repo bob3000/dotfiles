@@ -78,7 +78,8 @@ set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/nightly/nvim-macos-arm64/bin:$PATH"
 set --export PATH "$PYENV_ROOT/bin:$PATH"
-set --export PATH "/opt/homebrew/opt/libpq/bin:$PATH"
+set --export PATH "$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
+set --export PATH "$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 command -q luarocks && eval "$(luarocks path --bin)"
 
 set --export FZF_DEFAULT_OPTS '--color "bg+:-1:underline,fg+:-1:underline,hl+:-1:underline"'\
