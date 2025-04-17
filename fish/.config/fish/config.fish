@@ -62,6 +62,7 @@ if set -q $SSH_CONNECTION
 else
     set EDITOR nvim
 end
+set --export GPG_TTY $(tty)
 set --export OSTYPE (uname)
 set --export TTY /dev/(ps -p $fish_pid -o tty=)
 set --export LC_ALL en_US.UTF-8
