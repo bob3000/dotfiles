@@ -23,6 +23,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -94,7 +95,12 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
+        -- 'chrome-debug-adapter',
+        'codelldb',
+        'debugpy',
         'delve',
+        'firefox-debug-adapter',
+        'js-debug-adapter',
       },
     }
 
@@ -121,20 +127,118 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    local mason_path = vim.fn.stdpath 'data' .. '/mason'
+
+    -- Install python specific config
+    require('dap-python').setup '.venv/bin/python'
+    dap.configurations.python = {
+      {
+        -- The first three options are required by nvim-dap
+        type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+        request = 'launch',
+        name = 'Launch file',
+
+        -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+        program = '${file}', -- This configuration will launch the current file if used.
+        pythonPath = function()
+          -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+          -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+          -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+          local cwd = vim.fn.getcwd()
+          if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+            return cwd .. '/venv/bin/python'
+          elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+            return cwd .. '/.venv/bin/python'
+          else
+            return mason_path .. '/packages/debugpy/venv/bin/python'
+          end
+        end,
+      },
+    }
+
+    -- C/Rust specific config
+    dap.adapters.codelldb = {
+      type = 'executable',
+      command = mason_path .. '/bin/codelldb',
+      detached = vim.fn.has 'win32' == 0,
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = 'Launch file',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
+    dap.configurations.rust = dap.configurations.cpp
+
+    -- NodeJS specific config
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        args = { mason_path .. '/bin/js-debug-adapter', '${port}' },
+      },
+    }
+
+    -- Firefox specific config
+    dap.adapters.firefox = {
+      type = 'executable',
+      command = 'node',
+      args = { mason_path .. '/bin/firefox-debug-adapter' },
+    }
+
+    local firefox_bin = '/usr/bin/firefox'
+    if vim.fn.has 'macunix' == 1 then
+      firefox_bin = '/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox'
+    end
+
+    dap.configurations.javascript = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+      },
+      {
+        name = 'Debug with Firefox',
+        type = 'firefox',
+        request = 'launch',
+        reAttach = true,
+        url = 'http://localhost:3000',
+        webRoot = '${workspaceFolder}',
+        firefoxExecutable = firefox_bin,
+      },
+    }
+
+    dap.configurations.javascriptreact = dap.configurations.javascript
+    dap.configurations.typescript = dap.configurations.javascript
+    dap.configurations.typescriptreact = dap.configurations.javascript
 
     -- Install golang specific config
     require('dap-go').setup {
