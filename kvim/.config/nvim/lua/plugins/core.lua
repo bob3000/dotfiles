@@ -562,4 +562,11 @@ return {
       { '<leader>cW', '<cmd>ASToggle<cr>', desc = 'Toggle Auto Save' },
     },
   },
+  {
+    'akinsho/bufferline.nvim',
+    event = 'VeryLazy',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {},
+  },
 }
