@@ -1,3 +1,5 @@
+local wk = require 'which-key'
+
 return {
   {
     'stevearc/oil.nvim',
@@ -10,7 +12,9 @@ return {
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
     keymaps = {
-      vim.keymap.set('n', '<leader>o', '<CMD>Oil --float<CR>', { desc = '[O]il open parent directory' }),
+      wk.add {
+        { '<leader>O', '<CMD>Oil --float<CR>', desc = 'Oil', icon = '🧴' },
+      },
     },
   },
 }

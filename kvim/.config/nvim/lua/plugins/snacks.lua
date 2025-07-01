@@ -1,3 +1,21 @@
+local logo = [[
+         .:           ..           
+       .----.         :==.         
+     .-------:        :====:       
+    ::-===-----       :======      
+    :---==------.     :+++++=      
+    :-----=------:    :++++++      
+    ------::-------   :++++++      
+    ------. :-------. :++++++      
+    ------:  .-======::++++++      
+    ------:    -=======++++++      
+    -=====:     :======++++++      
+    -=====:      .=====++++++      
+     :====:        -===++++=.      
+       :==:         :==++=.        
+         -:          .==.          
+]]
+
 return {
   {
     'folke/snacks.nvim',
@@ -6,15 +24,12 @@ return {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      explorer = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
       notifier = {
         enabled = true,
         timeout = 3000,
       },
-      picker = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
@@ -23,6 +38,52 @@ return {
       styles = {
         notification = {
           -- wo = { wrap = true } -- Wrap notifications
+        },
+      },
+
+      explorer = {},
+      image = {
+        doc = {
+          enabled = true,
+          -- takes precedence over `opts.float` on supported terminals
+          inline = false,
+          -- render the image in a floating window
+          -- only used if `opts.inline` is disabled
+          float = true,
+          max_width = 80,
+          max_height = 40,
+        },
+        markdown = {
+          enabled = true,
+          max_width = 80,
+          max_height = 40,
+        },
+      },
+      picker = {
+        enabled = true,
+        sources = {
+          explorer = {
+            auto_close = true,
+          },
+        },
+      },
+      dashboard = {
+        enabled = true,
+        preset = {
+          header = logo,
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
         },
       },
     },
