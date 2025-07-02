@@ -56,6 +56,13 @@ return {
       desc = 'Debug: Step Out',
     },
     {
+      '<F4>',
+      function()
+        require('dap').terminate()
+      end,
+      desc = 'Debug: Terminate',
+    },
+    {
       '<leader>b',
       function()
         require('dap').toggle_breakpoint()
@@ -69,7 +76,13 @@ return {
       end,
       desc = 'Debug: Set Breakpoint',
     },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+    {
+      '<F6>',
+      function()
+        require('dap').run_last()
+      end,
+      desc = 'Debug: Rerun last.',
+    },
     {
       '<F7>',
       function()
@@ -146,7 +159,7 @@ return {
     local mason_path = vim.fn.stdpath 'data' .. '/mason'
 
     -- Install python specific config
-    require('dap-python').setup '.venv/bin/python'
+    require('dap-python').setup(mason_path .. '/packages/debugpy/venv/bin/python')
     dap.configurations.python = {
       {
         -- The first three options are required by nvim-dap
@@ -202,7 +215,7 @@ return {
       port = '${port}',
       executable = {
         command = 'node',
-        args = { mason_path .. '/bin/js-debug-adapter', '${port}' },
+        args = { mason_path .. '/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
       },
     }
 
@@ -210,7 +223,7 @@ return {
     dap.adapters.firefox = {
       type = 'executable',
       command = 'node',
-      args = { mason_path .. '/bin/firefox-debug-adapter' },
+      args = { mason_path .. '/packages/vscode-firefox-debug/dist/adapter.bundle.js' },
     }
 
     local firefox_bin = '/usr/bin/firefox'
@@ -248,6 +261,11 @@ return {
       name = 'bashdb',
     }
 
+    local bash_bin = '/bin/bash'
+    if vim.fn.has 'macunix' == 1 then
+      bash_bin = '/opt/homebrew/bin/bash'
+    end
+
     dap.configurations.sh = {
       {
         type = 'bashdb',
@@ -261,7 +279,7 @@ return {
         program = '${file}',
         cwd = '${workspaceFolder}',
         pathCat = 'cat',
-        pathBash = '/bin/bash',
+        pathBash = bash_bin,
         pathMkfifo = 'mkfifo',
         pathPkill = 'pkill',
         args = {},
