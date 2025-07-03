@@ -90,6 +90,13 @@ return {
       end,
       desc = 'Debug: See last session result.',
     },
+    {
+      '<leader>td',
+      function()
+        require('neotest').run.run { strategy = 'dap' }
+      end,
+      desc = 'Debug Nearest',
+    },
   },
   config = function()
     local dap = require 'dap'
