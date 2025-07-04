@@ -134,10 +134,10 @@ return {
       local servers = {
         clangd = {},
         gopls = {},
-        pyright = {},
+        basedpyright = {},
         ruff = {},
         rust_analyzer = {},
-        ts_ls = {},
+        vtsls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -169,6 +169,7 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'basedpyright',
         'bash-debug-adapter',
         -- 'chrome-debug-adapter',
         'clangd',
@@ -190,6 +191,7 @@ return {
         'taplo',
         'terraform-ls',
         'tflint',
+        'vtsls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
