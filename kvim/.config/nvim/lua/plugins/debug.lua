@@ -228,7 +228,7 @@ return {
     dap.adapters.firefox = {
       type = 'executable',
       command = 'node',
-      args = { mason_path .. '/packages/vscode-firefox-debug/dist/adapter.bundle.js' },
+      args = { mason_path .. '/packages/firefox-debug-adapter/dist/adapter.bundle.js' },
     }
 
     local firefox_bin = '/usr/bin/firefox'
