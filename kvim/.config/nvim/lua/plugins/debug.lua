@@ -224,6 +224,17 @@ return {
       },
     }
 
+    -- Chrom specific config
+    dap.adapters['pwa-chrome'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        args = { mason_path .. '/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+      },
+    }
+
     -- Firefox specific config
     dap.adapters.firefox = {
       type = 'executable',
@@ -243,6 +254,14 @@ return {
         name = 'Launch file',
         program = '${file}',
         cwd = '${workspaceFolder}',
+      },
+      {
+        name = 'Debug with Chrome',
+        type = 'pwa-chrome',
+        request = 'launch',
+        reAttach = true,
+        url = 'http://localhost:3000',
+        webRoot = '${workspaceFolder}',
       },
       {
         name = 'Debug with Firefox',
