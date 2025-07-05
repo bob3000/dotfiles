@@ -61,7 +61,16 @@ return {
         notify_on_error = false,
         format_on_save = false,
         formatters_by_ft = {
+          css = { 'prettier' },
+          graphql = { 'prettier' },
+          handlebars = { 'prettier' },
+          html = { 'prettier' },
+          json = { 'prettier' },
+          jsonc = { 'prettier' },
           lua = { 'stylua' },
+          scss = { 'prettier' },
+          yaml = { 'prettier' },
+
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
