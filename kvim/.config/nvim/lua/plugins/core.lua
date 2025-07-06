@@ -21,6 +21,15 @@ return {
     { -- Useful plugin to show you pending keybinds.
       'folke/which-key.nvim',
       event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+      keys = {
+        -- code
+        { '<leader>cw', '<cmd>%s/ \\+$//<CR>', mode = '', desc = 'Remove trailing whitespace' },
+        { '<leader>co', ":'<,'>sort<CR>", mode = '', desc = 'Order lines' },
+
+        -- marks
+        { 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", mode = '', desc = 'Delete mark' },
+        { 'dm*', ":execute 'delmarks!'<CR>", mode = '', desc = 'Delete all marks' },
+      },
       opts = {
         -- delay between pressing a key and opening which-key (milliseconds)
         -- this setting is independent of vim.o.timeoutlen
@@ -158,7 +167,7 @@ return {
         },
 
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'lazydev' },
+          default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
           providers = {
             lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
           },
@@ -173,7 +182,7 @@ return {
         -- the rust implementation via `'prefer_rust_with_warning'`
         --
         -- See :h blink-cmp-config-fuzzy for more information
-        fuzzy = { implementation = 'lua' },
+        fuzzy = { implementation = 'prefer_rust_with_warning' },
 
         -- Shows a signature help window while you type arguments for a function
         signature = { enabled = true },
