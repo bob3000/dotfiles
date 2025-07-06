@@ -34,6 +34,7 @@ return {
         spec = {
           { '<leader>s', group = '[S]earch', icon = '🔎' },
           { '<leader>c', group = '[C]ode', icon = '📄' },
+          { '<leader>d', group = '[D]ebug', icon = '🪲' },
           { '<leader>f', group = '[F]find', icon = '🧭' },
           { '<leader>g', group = '[G]it', icon = '📑' },
           { '<leader>u', group = '[U]i', icon = '🎛️' },

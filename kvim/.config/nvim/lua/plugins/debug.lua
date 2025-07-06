@@ -95,6 +95,34 @@ return {
       end,
       desc = 'Debug Nearest',
     },
+    {
+      '<leader>dc',
+      function()
+        require('dap').clear_breakpoints()
+      end,
+      desc = 'Clear Breakpoints',
+    },
+    {
+      '<leader>dr',
+      function()
+        require('dap').repl.toggle()
+      end,
+      desc = 'Toggle REPL',
+    },
+    {
+      '<leader>dl',
+      function()
+        require('dap').list_breakpoints()
+      end,
+      desc = 'List breakpoints',
+    },
+    {
+      '<leader>db',
+      function()
+        require('dap').step_back()
+      end,
+      desc = 'Step back',
+    },
   },
   config = function()
     local dap = require 'dap'
@@ -109,12 +137,9 @@ return {
       -- see mason-nvim-dap README for more information
       handlers = {},
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'bash-debug-adapter',
-        -- 'chrome-debug-adapter',
         'codelldb',
         'debugpy',
         'delve',
@@ -224,7 +249,7 @@ return {
       },
     }
 
-    -- Chrom specific config
+    -- Chrome specific config
     dap.adapters['pwa-chrome'] = {
       type = 'server',
       host = 'localhost',
