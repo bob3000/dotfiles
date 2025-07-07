@@ -133,8 +133,14 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        bashls = {},
         clangd = {},
-        eslint = {},
+        eslint = {
+          settings = {
+            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+            workingDirectory = { mode = 'auto' },
+          },
+        },
         gopls = {},
         basedpyright = {},
         jsonls = {
@@ -162,6 +168,7 @@ return {
             },
           },
         },
+        sqruff = {},
         vtsls = {},
         lua_ls = {
           -- cmd = { ... },
@@ -246,6 +253,7 @@ return {
         'js-debug-adapter',
         'markdownlint',
         'prettier',
+        'shellcheck',
         'shfmt',
         'stylua',
         'taplo',
