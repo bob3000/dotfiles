@@ -143,6 +143,8 @@ return {
         },
         gopls = {},
         basedpyright = {},
+        dockerls = {},
+        docker_compose_language_service = {},
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
@@ -246,11 +248,13 @@ return {
         'codelldb',
         'debugpy',
         'delve',
+        'eslint_d',
         'firefox-debug-adapter',
         'gofumpt',
         'goimports',
-        'hadolint',
+        -- 'hadolint', -- mason version seems to be broken
         'js-debug-adapter',
+        'jsonlint',
         'markdownlint',
         'prettier',
         'shellcheck',
