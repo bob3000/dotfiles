@@ -137,9 +137,16 @@ return {
         gopls = {},
         basedpyright = {},
         jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require('schemastore').json.schemas())
+          end,
           settings = {
             json = {
-              schemas = require('schemastore').json.schemas(),
+              format = {
+                enable = true,
+              },
               validate = { enable = true },
             },
           },
@@ -165,19 +172,43 @@ return {
           },
         },
         yamlls = {
-          settings = {
-            yaml = {
-              schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = '',
+          -- make sure mason installs the server
+          servers = {
+            yamlls = {
+              -- Have to add this for yamlls to understand that we support line folding
+              capabilities = {
+                textDocument = {
+                  foldingRange = {
+                    dynamicRegistration = false,
+                    lineFoldingOnly = true,
+                  },
+                },
               },
-              schemas = require('schemastore').yaml.schemas(),
+              -- lazy-load schemastore when needed
+              on_new_config = function(new_config)
+                new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', new_config.settings.yaml.schemas or {}, require('schemastore').yaml.schemas())
+              end,
+              settings = {
+                redhat = { telemetry = { enabled = false } },
+                yaml = {
+                  keyOrdering = false,
+                  format = {
+                    enable = true,
+                  },
+                  validate = true,
+                  schemaStore = {
+                    -- Must disable built-in schemaStore support to use
+                    -- schemas from SchemaStore.nvim plugin
+                    enable = false,
+                    -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                    url = '',
+                  },
+                },
+              },
             },
           },
         },
+        taplo = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -195,31 +226,21 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'basedpyright',
         'bash-debug-adapter',
-        -- 'chrome-debug-adapter',
-        'clangd',
         'codelldb',
         'debugpy',
         'delve',
         'firefox-debug-adapter',
         'gofumpt',
         'goimports',
-        'gopls',
         'hadolint',
-        'json-lsp',
         'js-debug-adapter',
         'markdownlint',
         'prettier',
-        'ruff',
-        'rust-analyzer',
         'shfmt',
         'stylua',
         'taplo',
-        'terraform-ls',
         'tflint',
-        'vtsls',
-        'yamlls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -230,6 +251,7 @@ return {
 
       for server_name, settings in pairs(servers) do
         vim.lsp.enable(server_name)
+        settings.capabilities = vim.tbl_deep_extend('force', {}, capabilities, settings.capabilities or {})
         vim.lsp.config(server_name, settings)
       end
     end,

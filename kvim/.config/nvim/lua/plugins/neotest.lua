@@ -13,7 +13,6 @@ return {
       'rouge8/neotest-rust',
     },
     keys = {
-      { '<leader>t', '', desc = '+test' },
       {
         '<leader>tt',
         function()
