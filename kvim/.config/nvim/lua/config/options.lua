@@ -9,8 +9,6 @@ vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -94,3 +92,5 @@ vim.opt.virtualedit = 'block' -- Allow cursor to move where there is no text in 
 vim.opt.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.wrap = false -- Disable line wrap
+vim.wo.foldmethod = 'expr' -- use an expression to create folds
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter to create fold expression
