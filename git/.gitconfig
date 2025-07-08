@@ -62,9 +62,9 @@
 [commit]
 	template = ~/.gitmessage
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/.gitconfig.bob3000
 [includeIf "gitdir:~/code/"]
