@@ -80,6 +80,9 @@ return {
     config = function()
       local neotest_golang_opts = {}
       require('neotest').setup {
+        consumers = {
+          overseer = require 'neotest.consumers.overseer',
+        },
         adapters = {
           require 'neotest-golang'(neotest_golang_opts),
           require 'neotest-python',

@@ -128,6 +128,8 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    require('overseer').enable_dap()
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
