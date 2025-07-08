@@ -41,15 +41,15 @@ return {
 
         -- Document existing key chains
         spec = {
-          { '<leader>s', group = '[S]earch', icon = '🔎' },
-          { '<leader>c', group = '[C]ode', icon = '📄' },
-          { '<leader>d', group = '[D]ebug', icon = '🪲' },
-          { '<leader>f', group = '[F]find', icon = '🧭' },
-          { '<leader>g', group = '[G]it', icon = '📑' },
-          { '<leader>u', group = '[U]i', icon = '🎛️' },
-          { '<leader>t', group = '[T]est', icon = '✅' },
-          { '<leader>x', group = '[I]rouble', icon = '❌' },
-          { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+          { '<leader>s', group = 'Search', icon = '🔎' },
+          { '<leader>c', group = 'Code', icon = '📄' },
+          { '<leader>d', group = 'Debug', icon = '🪲' },
+          { '<leader>f', group = 'Ffind', icon = '🧭' },
+          { '<leader>g', group = 'Git', icon = '📑' },
+          { '<leader>u', group = 'Ui', icon = '🎛️' },
+          { '<leader>t', group = 'Test', icon = '✅' },
+          { '<leader>x', group = 'Trouble', icon = '❌' },
+          { '<leader>h', group = 'Git Hunk', icon = '🆕', mode = { 'n', 'v' } },
         },
       },
     },
@@ -64,7 +64,7 @@ return {
             require('conform').format { async = true, lsp_format = 'fallback' }
           end,
           mode = '',
-          desc = '[F]ormat buffer',
+          desc = 'Format buffer',
         },
       },
       opts = {
@@ -78,6 +78,7 @@ return {
           json = { 'prettier' },
           jsonc = { 'prettier' },
           lua = { 'stylua' },
+          markdown = { 'prettier' },
           scss = { 'prettier' },
           yaml = { 'prettier' },
 
@@ -331,5 +332,10 @@ return {
     config = function()
       require('nvim-surround').setup {}
     end,
+  },
+  {
+    'sindrets/diffview.nvim',
+    event = 'VeryLazy',
+    opts = {},
   },
 }

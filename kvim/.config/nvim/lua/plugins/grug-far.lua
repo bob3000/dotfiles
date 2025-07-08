@@ -7,7 +7,7 @@ return {
         '<leader>fR',
         '<cmd>GrugFar<cr>',
         mode = '',
-        desc = 'Search and [R]eplace',
+        desc = 'Search and Replace',
       },
     },
   },

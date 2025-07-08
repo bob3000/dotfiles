@@ -17,7 +17,7 @@ return {
       {
         '<leader>ca',
         '<cmd>AerialToggle!<cr>',
-        desc = '[A]erial',
+        desc = 'Aerial',
       },
     },
   },
