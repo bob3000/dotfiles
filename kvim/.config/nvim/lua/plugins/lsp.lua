@@ -145,6 +145,7 @@ return {
         basedpyright = {},
         dockerls = {},
         docker_compose_language_service = {},
+        helm_ls = {},
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
