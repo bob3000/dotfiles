@@ -36,6 +36,7 @@ vim.opt.fillchars = {
   eob = ' ',
 }
 
+vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.colorcolumn = '80,120'
@@ -59,6 +60,7 @@ vim.opt.linebreak = true -- Wrap lines at convenient points
 vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.number = true -- Print line number
+vim.opt.path:append '**' -- include subdirectories in search
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers

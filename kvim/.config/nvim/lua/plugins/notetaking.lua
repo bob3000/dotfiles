@@ -1,23 +1,19 @@
-local wk = require 'which-key'
-
 return {
   {
     'jakewvincent/mkdnflow.nvim',
     ft = 'markdown',
-    keys = function()
-      wk.add {
-        { '<leader>N', group = 'Note taking', icon = '📓' },
-        { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>', desc = 'Note index' },
-        {
-          '<leader>Ns',
-          function()
-            vim.fn.chdir '~/Nextcloud/Synced/wiki'
-            require('fzf-lua').live_grep()
-          end,
-          desc = 'Search notes',
-        },
-      }
-    end,
+    keys = {
+      { '<leader>N', group = 'Note taking', icon = '󰺿' },
+      { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>', desc = 'Note index' },
+      {
+        '<leader>Ns',
+        function()
+          vim.fn.chdir '~/Nextcloud/Synced/wiki'
+          require('fzf-lua').live_grep()
+        end,
+        desc = 'Search notes',
+      },
+    },
     opts = {
       modules = {
         yaml = true,

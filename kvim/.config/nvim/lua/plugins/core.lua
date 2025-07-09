@@ -28,15 +28,17 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = 'Search', icon = '🔎' },
-        { '<leader>c', group = 'Code', icon = '📄' },
-        { '<leader>d', group = 'Debug', icon = '🪲' },
-        { '<leader>f', group = 'Ffind', icon = '🧭' },
-        { '<leader>g', group = 'Git', icon = '📑' },
-        { '<leader>u', group = 'Ui', icon = '🎛️' },
-        { '<leader>t', group = 'Test', icon = '✅' },
-        { '<leader>x', group = 'Trouble', icon = '❌' },
-        { '<leader>h', group = 'Git Hunk', icon = '🆕', mode = { 'n', 'v' } },
+        { '<leader>s', group = 'Search', icon = '󰍉' },
+        { '<leader>c', group = 'Code', icon = '' },
+        { '<leader>d', group = 'Debug', icon = '' },
+        { '<leader>f', group = 'Find', icon = '󰈞' },
+        { '<leader>g', group = 'Git', icon = '' },
+        { '<leader>u', group = 'Ui', icon = '' },
+        { '<leader>t', group = 'Test', icon = '▶' },
+        { '<leader>x', group = 'Trouble', icon = '' },
+        { '<leader>h', group = 'Git Hunk', icon = '', mode = { 'n', 'v' } },
+        { '<leader>o', group = 'Overseer', icon = '' },
+        { '<leader>q', group = 'Session', icon = '' },
       },
     },
   },
@@ -80,7 +82,6 @@ return {
   { -- Autocompletion
     'saghen/blink.cmp',
     build = 'cargo build --release', -- for delimiters
-    event = 'VimEnter',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -231,5 +232,16 @@ return {
     config = function()
       require('nvim-surround').setup {}
     end,
+  },
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre', -- this will only start session saving when an actual file was opened
+    opts = {},
+    keys = {
+      { '<leader>qs', '', desc = 'Session load current' },
+      { '<leader>qS', '', desc = 'Session select' },
+      { '<leader>ql', '', desc = 'Session load last' },
+      { '<leader>qd', '', desc = 'Session no save' },
+    },
   },
 }

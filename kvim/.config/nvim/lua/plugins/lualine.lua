@@ -1,8 +1,19 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
+      options = {
+        disabled_filetypes = {
+          statusline = {
+            'snacks_dashboard',
+          },
+          winbar = {
+            'snacks_dashboard',
+          },
+        },
+      },
       sections = {
         lualine_c = { 'filename', 'aerial' },
         lualine_x = { 'encoding', 'fileformat', 'filetype', 'overseer' },
