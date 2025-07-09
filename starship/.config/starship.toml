@@ -106,7 +106,8 @@ disabled = false
 
 [kubernetes]
 symbol = "󰠳 "
-detect_folders = ['clusters', 'kubernetes', 'k8s', 'kube']
+detect_folders = ['charts', 'clusters', 'kubernetes', 'k8s', 'kube']
+detect_files = ['Chart.yaml']
 disabled = false
 
 [shell]
