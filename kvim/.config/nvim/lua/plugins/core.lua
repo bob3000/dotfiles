@@ -28,17 +28,18 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = 'Search', icon = '󰍉' },
+        { '<leader>b', group = 'Buffers', icon = '' },
         { '<leader>c', group = 'Code', icon = '' },
         { '<leader>d', group = 'Debug', icon = '' },
         { '<leader>f', group = 'Find', icon = '󰈞' },
         { '<leader>g', group = 'Git', icon = '' },
-        { '<leader>u', group = 'Ui', icon = '' },
-        { '<leader>t', group = 'Test', icon = '▶' },
-        { '<leader>x', group = 'Trouble', icon = '' },
         { '<leader>h', group = 'Git Hunk', icon = '', mode = { 'n', 'v' } },
         { '<leader>o', group = 'Overseer', icon = '' },
         { '<leader>q', group = 'Session', icon = '' },
+        { '<leader>s', group = 'Search', icon = '󰍉' },
+        { '<leader>t', group = 'Test', icon = '▶' },
+        { '<leader>u', group = 'Ui', icon = '' },
+        { '<leader>x', group = 'Trouble', icon = '' },
       },
     },
   },
@@ -201,13 +202,6 @@ return {
     keys = {
       { '<leader>cW', '<cmd>ASToggle<cr>', desc = 'Toggle Auto Save' },
     },
-  },
-  {
-    'akinsho/bufferline.nvim',
-    event = 'VeryLazy',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {},
   },
   {
     'windwp/nvim-ts-autotag',
