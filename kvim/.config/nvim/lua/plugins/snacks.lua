@@ -418,7 +418,7 @@ return {
         desc = 'Goto Declaration',
       },
       {
-        'gr',
+        'grr',
         function()
           Snacks.picker.lsp_references()
         end,
@@ -426,18 +426,18 @@ return {
         desc = 'References',
       },
       {
-        'gI',
+        'gri',
         function()
           Snacks.picker.lsp_implementations()
         end,
         desc = 'Goto Implementation',
       },
       {
-        'gy',
+        'grt',
         function()
           Snacks.picker.lsp_type_definitions()
         end,
-        desc = 'Goto T[y]pe Definition',
+        desc = 'Goto Type Definition',
       },
       {
         '<leader>ss',
