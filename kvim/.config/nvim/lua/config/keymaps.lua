@@ -30,7 +30,7 @@ vim.keymap.set('n', '<S-A-h>', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move Buf
 vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
   Snacks.bufdelete()
 end, { desc = 'Close buffer' })
-vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- better indenting
 vim.keymap.set('v', '<', '<gv')

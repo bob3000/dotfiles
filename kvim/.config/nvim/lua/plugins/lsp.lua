@@ -27,16 +27,19 @@ return {
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
     },
-    keys = {
-      { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
-      { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
-      -- { 'grr', vim.lsp.buf.references, desc = 'References' },
-      -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
-      -- { 'grt', vim.lsp.buf.type_definition, desc = 'Type Definition' },
-      { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
-      { '<A-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
-    },
     config = function()
+      local wk = require 'which-key'
+      wk.add {
+        { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
+        { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
+        -- keybindings implemented by snacks
+        -- { 'grr', vim.lsp.buf.references, desc = 'References' }
+        -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
+        -- { 'grt', vim.lsp.buf.type_definition, desc = 'Type Definition' },
+        { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
+        { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
+      }
+
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
