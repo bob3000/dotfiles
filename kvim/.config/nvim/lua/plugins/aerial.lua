@@ -1,3 +1,4 @@
+local icons = require('config.icons')
 return {
   {
     'stevearc/aerial.nvim',

@@ -1,3 +1,4 @@
+local icons = require 'config.icons'
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -17,6 +18,28 @@ return {
         },
       },
       sections = {
+        lualine_b = {
+          'branch',
+          {
+            'diff',
+            symbols = {
+              added = icons.git.added,
+              modified = icons.git.modified,
+              removed = icons.git.removed,
+            },
+            source = function()
+              local gitsigns = vim.b.gitsigns_status_dict
+              if gitsigns then
+                return {
+                  added = gitsigns.added,
+                  modified = gitsigns.changed,
+                  removed = gitsigns.removed,
+                }
+              end
+            end,
+          },
+          'diagnostics',
+        },
         lualine_c = { 'filename', 'aerial' },
         lualine_x = {
           'encoding',
@@ -42,7 +65,7 @@ return {
               if vim.tbl_contains({ 'v', 'V' }, vim.fn.mode()) then
                 return string.format('%d words', vim.fn.wordcount()['visual_words'])
               end
-              return ""
+              return ''
             end,
           },
           'lsp_status',

@@ -1,3 +1,4 @@
+local icons = require 'config.icons'
 return {
   -- LSP Plugins
   {
@@ -82,10 +83,10 @@ return {
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
         } or {},
         virtual_text = {
@@ -147,7 +148,7 @@ return {
             },
           },
         },
-        ruff = { },
+        ruff = {},
         rust_analyzer = {
           {
             completion = {
@@ -158,6 +159,8 @@ return {
           },
         },
         sqruff = {},
+        terraformls = {},
+        tflint = {},
         vtsls = {},
         lua_ls = {
           -- cmd = { ... },
@@ -253,7 +256,6 @@ return {
         'shfmt',
         'stylua',
         'taplo',
-        'tflint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
