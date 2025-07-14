@@ -1,4 +1,4 @@
-local icons = require('config.icons')
+local icons = require 'config.icons'
 return {
   {
     'stevearc/aerial.nvim',
@@ -13,10 +13,27 @@ return {
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
+      attach_mode = 'global',
+      backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+      show_guides = true,
+      layout = {
+        resize_to_content = false,
+        win_opts = {
+          winhl = 'Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB',
+          signcolumn = 'yes',
+          statuscolumn = ' ',
+        },
+      },
+      guides = {
+        mid_item = '├╴',
+        last_item = '└╴',
+        nested_top = '│ ',
+        whitespace = '  ',
+      },
     },
     keys = {
       {
-        '<leader>ca',
+        '<leader>cs',
         '<cmd>AerialToggle!<cr>',
         desc = 'Aerial',
       },

@@ -16,6 +16,17 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = false,
+      formatters = {
+        ['markdown-toc'] = {
+          condition = function(_, ctx)
+            for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
+              if line:find '<!%-%- toc %-%->' then
+                return true
+              end
+            end
+          end,
+        },
+      },
       formatters_by_ft = {
         css = { 'prettier' },
         graphql = { 'prettier' },
@@ -24,7 +35,7 @@ return {
         json = { 'prettier' },
         jsonc = { 'prettier' },
         lua = { 'stylua' },
-        markdown = { 'prettier' },
+        markdown = { 'prettier', 'markdown-toc' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         scss = { 'prettier' },
         yaml = { 'prettier' },

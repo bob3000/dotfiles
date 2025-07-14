@@ -251,6 +251,7 @@ return {
         'js-debug-adapter',
         'jsonlint',
         'markdownlint',
+        'markdown-toc',
         'prettier',
         'shellcheck',
         'shfmt',
