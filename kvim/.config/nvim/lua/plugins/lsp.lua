@@ -160,7 +160,12 @@ return {
         },
         sqruff = {},
         terraformls = {},
-        tflint = {},
+        tflint = {
+          filetypes = {
+            'terraform',
+            'terraform-vars',
+          },
+        },
         vtsls = {},
         lua_ls = {
           -- cmd = { ... },
