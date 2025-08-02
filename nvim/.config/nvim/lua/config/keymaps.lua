@@ -1,76 +1,66 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
 
--- This file is automatically loaded by lazyvim.config.init
-local Util = require("lazyvim.util")
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- DO NOT USE THIS IN YOU OWN CONFIG!!
--- use `vim.keymap.set` instead
-local map = Util.safe_keymap_set
+-- better up/down
+vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 
-local opts_no_prefix = {
-  prefix = "",
-  mode = "n", -- NORMAL mode
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.api.nvim_create_user_command("OverseerRestartLast", function()
-  local overseer = require("overseer")
-  local tasks = overseer.list_tasks({ recent_first = true })
-  if vim.tbl_isempty(tasks) then
-    vim.notify("No tasks found", vim.log.levels.WARN)
-  else
-    overseer.run_action(tasks[1], "restart")
-  end
-end, {})
+-- buffers
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<S-A-l>', '<cmd>BufferLineMoveNext<cr>', { desc = 'Move Buffer Right' })
+vim.keymap.set('n', '<S-A-h>', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move Buffer Left' })
+vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
+  Snacks.bufdelete()
+end, { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
-local mappings_no_prefix = {
-  { "<M-b>", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle Breakpoint", nowait = true, remap = false },
-  { "<M-c>", "<cmd>DapContinue<cr>", desc = "Continue", nowait = true, remap = false },
-  { "<M-e>", "<cmd>OverseerRun<cr>", desc = "Overseer Run", nowait = true, remap = false },
-  { "<M-i>", "<cmd>DapStepInto<cr>", desc = "Step Into", nowait = true, remap = false },
-  { "<M-o>", "<cmd>DapStepOver<cr>", desc = "Step Over", nowait = true, remap = false },
-  { "<M-r>", "<cmd>DapToggleRepl<cr>", desc = "Toggle Repl", nowait = true, remap = false },
-  { "<M-t>", "<cmd>DapTerminate<cr>", desc = "Terminate", nowait = true, remap = false },
-  { "<M-u>", "<cmd>lua require'dapui'.toggle()<cr>", desc = "Toggle DAP UI", nowait = true, remap = false },
-  { "<S-M-e>", "<cmd>OverseerRestartLast<cr>", desc = "Overseer Last Task", nowait = true, remap = false },
-  { "<S-M-m>", "<cmd>lua require'osv'.launch({port = 8086})<cr>", desc = "Debug Neovim", nowait = true, remap = false },
-  { "<S-M-o>", "<cmd>DapStepOut<cr>", desc = "Step Out", nowait = true, remap = false },
-}
-require("which-key").add(mappings_no_prefix)
+-- better indenting
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
-vim.keymap.set({ "x", "n", "s" }, "<C-c>", function() Snacks.bufdelete() end, { desc = "Close buffer" })
-vim.keymap.set({ "x", "n", "s" }, "<C-q>", function()
+-- Terminal Mappings
+vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
+vim.keymap.set('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
+
+-- Add undo break-points
+vim.keymap.set('i', ',', ',<c-g>u')
+vim.keymap.set('i', '.', '.<c-g>u')
+vim.keymap.set('i', ';', ';<c-g>u')
+
+-- commenting
+vim.keymap.set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+vim.keymap.set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
+
+-- windows
+vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', remap = true })
+vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', remap = true })
+vim.keymap.set({ 'x', 'n', 's' }, '<C-q>', function()
   pcall(vim.api.nvim_win_close, 0, false)
-end, { desc = "Close window" })
+end, { desc = 'Close window' })
 
--- move buffers
-map("n", "<S-A-l>", "<cmd>BufferLineMoveNext<CR>", { desc = "Move Buffer Right" })
-map("n", "<S-A-h>", "<cmd>BufferLineMovePrev<CR>", { desc = "Move Buffer Left" })
-map(
-  "n",
-  "<leader>fP",
-  "<cmd>e " .. vim.fn.stdpath("data") .. "/project_nvim/project_history<CR>",
-  { desc = "Edit project history" }
-)
-map("n", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
-map("v", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
-map("n", "dm", ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = "Delete mark" })
-map("n", "dm*", ":execute 'delmarks!'<CR>", { desc = "Delete all marks" })
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
-if vim.g.neovide then
-  vim.g.neovide_scale_factor = 1.0
-  local change_scale_factor = function(delta)
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
-  end
-  vim.keymap.set("n", "<C-=>", function()
-    change_scale_factor(1.1)
-  end)
-  vim.keymap.set("n", "<C-->", function()
-    change_scale_factor(1 / 1.1)
-  end)
-end
+-- insert newline without ending up in insert mode
+vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline below' })
