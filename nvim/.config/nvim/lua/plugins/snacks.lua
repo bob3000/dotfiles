@@ -1,3 +1,4 @@
+vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 local logo = [[
          .:           ..           
        .----.         :==.         
