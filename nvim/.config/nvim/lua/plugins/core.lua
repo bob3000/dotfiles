@@ -2,10 +2,6 @@
 --
 return {
   {
-    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-    opts = {},
-  },
-  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     keys = {
@@ -39,7 +35,6 @@ return {
         { '<leader>s', group = 'Search', icon = '󰍉' },
         { '<leader>t', group = 'Test', icon = '▶' },
         { '<leader>u', group = 'Ui', icon = '' },
-        { '<leader>x', group = 'Trouble', icon = '' },
       },
     },
   },
@@ -82,7 +77,6 @@ return {
     'folke/ts-comments.nvim',
     opts = {},
     event = 'VeryLazy',
-    enabled = vim.fn.has 'nvim-0.10.0' == 1,
   },
   {
     'kylechui/nvim-surround',

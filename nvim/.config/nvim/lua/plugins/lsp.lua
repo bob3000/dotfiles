@@ -182,6 +182,7 @@ return {
               diagnostics = {
                 globals = {
                   'Snacks',
+                  'FzfLua',
                 },
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings

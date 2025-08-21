@@ -40,7 +40,7 @@ return {
           },
           'diagnostics',
         },
-        lualine_c = { 'filename', 'aerial' },
+        lualine_c = { 'filename' },
         lualine_x = {
           'encoding',
           'fileformat',
@@ -52,9 +52,6 @@ return {
             end,
             cond = function()
               return package.loaded['dap'] and require('dap').status() ~= ''
-            end,
-            color = function()
-              return { fg = Snacks.util.color 'Debug' }
             end,
           },
         },

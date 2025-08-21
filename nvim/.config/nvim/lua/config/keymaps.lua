@@ -25,11 +25,7 @@ vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<S-A-l>', '<cmd>BufferLineMoveNext<cr>', { desc = 'Move Buffer Right' })
-vim.keymap.set('n', '<S-A-h>', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move Buffer Left' })
-vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
-  Snacks.bufdelete()
-end, { desc = 'Close buffer' })
+vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- better indenting
@@ -64,3 +60,6 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increa
 
 -- insert newline without ending up in insert mode
 vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline below' })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', 'gl', vim.diagnostic.setloclist, { desc = 'Diagnostic Quickfix list' })
