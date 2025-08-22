@@ -63,3 +63,6 @@ vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline belo
 
 -- Diagnostic keymaps
 vim.keymap.set('n', 'gl', vim.diagnostic.setloclist, { desc = 'Diagnostic Quickfix list' })
+
+vim.keymap.set('n', '<C-p>', ':find ', { desc = 'find files' })
+vim.keymap.set('n', '<C-s>', ':vimgrep /', { desc = 'find files' })

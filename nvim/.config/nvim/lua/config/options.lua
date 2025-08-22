@@ -94,4 +94,34 @@ vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.wrap = false -- Disable line wrap
 vim.wo.foldmethod = 'expr' -- use an expression to create folds
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter to create fold expression
-vim.cmd.colorscheme 'default'
+vim.cmd.colorscheme 'retrobox'
+
+---Show attached LSP clients in `[name1, name2]` format.
+---Long server names will be modified. For example, `lua-language-server` will be shorten to `lua-ls`
+---Returns an empty string if there aren't any attached LSP clients.
+---@return string
+local function lsp_status()
+    local attached_clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #attached_clients == 0 then
+        return ""
+    end
+    local names = vim.iter(attached_clients)
+        :map(function(client)
+            local name = client.name:gsub("language.server", "ls")
+            return name
+        end)
+        :totable()
+    return "[" .. table.concat(names, ", ") .. "]"
+end
+function _G.statusline()
+    return table.concat({
+        "%f",
+        "%h%w%m%r",
+        "%=",
+        lsp_status(),
+        " %-14(%l,%c%V%)",
+        "%P",
+    }, " ")
+end
+
+vim.o.statusline = "%{%v:lua._G.statusline()%}"
