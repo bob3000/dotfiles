@@ -4,6 +4,23 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
+      lint.linters.luacheck = {
+        name = "luacheck",
+        cmd = "luacheck",
+        stdin = true,
+        args = {
+          "--globals",
+          "vim",
+          "lvim",
+          "reload",
+          "--",
+        },
+        stream = "stdout",
+        ignore_exitcode = true,
+        parser = require("lint.parser").from_errorformat("%f:%l:%c: %m", {
+          source = "luacheck",
+        }),
+      }
       lint.linters_by_ft = {
         dockerfile = { 'hadolint' },
         -- javascript = { 'eslint_d' },
