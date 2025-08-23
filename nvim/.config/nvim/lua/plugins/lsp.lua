@@ -31,14 +31,14 @@ return {
     config = function()
       local wk = require 'which-key'
       wk.add {
-        { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
-        { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
+        { 'grn',   vim.lsp.buf.rename,          desc = 'Rename' },
+        { 'gra',   vim.lsp.buf.code_action,     desc = 'Code Actions' },
         -- keybindings implemented by snacks
         -- { 'grr', vim.lsp.buf.references, desc = 'References' }
         -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
         -- { 'grt', vim.lsp.buf.type_definition, desc = 'Type Definition' },
-        { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
-        { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
+        { 'gO',    vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
+        { '<C-s>', vim.lsp.buf.signature_help,  desc = 'Signature help', mode = { 'n', 'i' } },
       }
 
       --  This function gets run when an LSP attaches to a particular buffer.
@@ -206,7 +206,8 @@ return {
               },
               -- lazy-load schemastore when needed
               on_new_config = function(new_config)
-                new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', new_config.settings.yaml.schemas or {}, require('schemastore').yaml.schemas())
+                new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', new_config.settings.yaml.schemas or {},
+                  require('schemastore').yaml.schemas())
               end,
               settings = {
                 redhat = { telemetry = { enabled = false } },
@@ -279,7 +280,7 @@ return {
       end
     end,
   },
-  { -- Autocompletion
+  {                                  -- Autocompletion
     'saghen/blink.cmp',
     build = 'cargo build --release', -- for delimiters
     version = '1.*',
@@ -352,7 +353,22 @@ return {
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = true,
+          }
+        },
+        menu = {
+          auto_show = true,
+        },
+        ghost_text = {
+          show_with_menu = true,
+          show_without_menu = true,
+          show_with_selection = true,
+          show_without_selection = true,
+        }
       },
 
       sources = {
