@@ -1,6 +1,43 @@
--- [[ Configure and install plugins ]]
+-- [[Configure and install plugins ]]
 --
 return {
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    keys = {
+      -- code
+      { '<leader>cw', '<cmd>%s/ \\+$//<CR>',                         mode = '', desc = 'Remove trailing whitespace' },
+      { '<leader>co', ":'<,'>sort<CR>",                              mode = '', desc = 'Order lines' },
+
+      -- marks
+      { 'dm',         ":execute 'delmarks '.nr2char(getchar())<CR>", mode = '', desc = 'Delete mark' },
+      { 'dm*',        ":execute 'delmarks!'<CR>",                    mode = '', desc = 'Delete all marks' },
+    },
+    opts = {
+      -- delay between pressing a key and opening which-key (milliseconds)
+      -- this setting is independent of vim.o.timeoutlen
+      delay = 200,
+      icons = {
+        -- set icon mappings to true if you have a Nerd Font
+        mappings = vim.g.have_nerd_font,
+      },
+
+      -- Document existing key chains
+      spec = {
+        { '<leader>b', group = 'Buffers', icon = '' },
+        { '<leader>c', group = 'Code', icon = '' },
+        { '<leader>d', group = 'Debug', icon = '' },
+        { '<leader>f', group = 'Find', icon = '󰈞' },
+        { '<leader>g', group = 'Git', icon = '' },
+        { '<leader>h', group = 'Git Hunk', icon = '', mode = { 'n', 'v' } },
+        { '<leader>o', group = 'Overseer', icon = '' },
+        { '<leader>q', group = 'Session', icon = '' },
+        { '<leader>s', group = 'Search', icon = '󰍉' },
+        { '<leader>t', group = 'Test', icon = '▶' },
+        { '<leader>u', group = 'Ui', icon = '' },
+      },
+    },
+  },
   {
     'mikesmithgh/kitty-scrollback.nvim',
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
