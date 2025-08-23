@@ -45,11 +45,6 @@ return {
   },
   -- Highlight todo, notes, etc in comments
   {
-    'folke/todo-comments.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
-  {
     'mikesmithgh/kitty-scrollback.nvim',
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
     lazy = true,
@@ -80,9 +75,12 @@ return {
   },
   {
     'folke/ts-comments.nvim',
-    opts = {},
+    opts = {
+      lang = {
+        helm = { "{{/* %s */}}", }
+      }
+    },
     event = 'VeryLazy',
-    enabled = vim.fn.has 'nvim-0.10.0' == 1,
   },
   {
     'kylechui/nvim-surround',
