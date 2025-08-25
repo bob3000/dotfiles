@@ -44,7 +44,6 @@ local statusline = {
   '%=',
   '%{&filetype} ',
   ' %2p%% ',
-  '%{%v:lua._statusline_component("position")%}'
 }
 
 vim.opt.autoread = true -- Refresh buffer contents on external change
@@ -81,14 +80,14 @@ vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append { W = true, I = true, c = true, C = true } -- avoid certain messages
 vim.opt.showbreak = '↪' -- text warp symbol
-vim.opt.showmode = vim.tbl_contains(vim.v.argv, '--noplugin') -- Dont show mode if have plugins installed
+vim.opt.showmode = vim.tbl_contains(vim.v.argv, '--noplugin') -- Don't show mode if have plugins installed
 vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.spell = true
+vim.opt.spell = true -- enable spell checking
 vim.opt.spellcapcheck = '' -- don't check for capital letters after full stop
-vim.opt.spelllang = { 'en' }
+vim.opt.spelllang = { 'en' } -- spell checking in English
 vim.opt.spelloptions = 'camel' -- consider camel case in spell checking
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitkeep = 'screen'
