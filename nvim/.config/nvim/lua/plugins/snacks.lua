@@ -1,4 +1,12 @@
 vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+vim.api.nvim_create_autocmd("User", {
+  pattern = "OilActionsPost",
+  callback = function(event)
+      if event.data.actions.type == "move" then
+          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+      end
+  end,
+})
 local logo = [[
          .:           ..           
        .----.         :==.         
@@ -41,8 +49,6 @@ return {
           -- wo = { wrap = true } -- Wrap notifications
         },
       },
-
-      explorer = {},
       image = {
         doc = {
           enabled = true,
@@ -65,6 +71,7 @@ return {
         sources = {
           explorer = {
             auto_close = true,
+            replace_netrw = false,
           },
         },
       },

@@ -36,7 +36,6 @@ vim.opt.fillchars = { -- define status separators
   eob = ' ',
 }
 
-
 local statusline = {
   '%t',
   '%r',
