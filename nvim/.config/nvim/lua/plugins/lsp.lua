@@ -361,7 +361,8 @@ return {
           }
         },
         menu = {
-          auto_show = true,
+          enabled = true,
+          auto_show = false,
         },
         ghost_text = {
           show_with_menu = true,
