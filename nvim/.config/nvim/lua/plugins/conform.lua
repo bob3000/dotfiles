@@ -35,6 +35,7 @@ return {
         html = { 'prettier' },
         json = { 'prettier' },
         jsonc = { 'prettier' },
+        lua = { "stylua" },
         markdown = { 'prettier', 'markdown-toc' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         scss = { 'prettier' },

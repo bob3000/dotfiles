@@ -23,6 +23,7 @@ return {
         'go',
         'gomod',
         'gosum',
+        'gowork',
         'groovy',
         'hcl',
         'helm',

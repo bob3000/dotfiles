@@ -59,6 +59,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'dbout',
     'gitsigns-blame',
     'grug-far',
+    'guihua',
     'help',
     'lspinfo',
     'neotest-output-panel',
