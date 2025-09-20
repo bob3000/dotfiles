@@ -99,4 +99,42 @@ return {
       }
     end,
   },
+  {
+    'andythigpen/nvim-coverage',
+    version = '*',
+    keys = {
+      {
+        '<leader>tc',
+        (function() -- the included toggle command doesn't load before showing
+          local cov_enabled = false
+          return function()
+            local cov = require 'coverage'
+            if not cov_enabled then
+              cov.load(true)
+            else
+              cov.clear()
+            end
+            cov_enabled = not cov_enabled
+          end
+        end)(),
+        desc = 'Coverage Toggle',
+      },
+      {
+        '<leader>tC',
+        function()
+          local cov = require 'coverage'
+          cov.summary()
+        end,
+        desc = 'Coverage Summary',
+      },
+    },
+    config = function()
+      require('coverage').setup {
+        auto_reload = true,
+        load_coverage_cb = function(ftype)
+          vim.notify('Loaded ' .. ftype .. ' coverage')
+        end,
+      }
+    end,
+  },
 }
