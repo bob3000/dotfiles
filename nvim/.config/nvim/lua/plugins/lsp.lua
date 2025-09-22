@@ -355,7 +355,7 @@ return {
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500
+          auto_show_delay_ms = 1000
         },
         list = {
           selection = {
