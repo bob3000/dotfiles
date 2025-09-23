@@ -31,14 +31,14 @@ return {
     config = function()
       local wk = require 'which-key'
       wk.add {
-        { 'grn',   vim.lsp.buf.rename,          desc = 'Rename' },
-        { 'gra',   vim.lsp.buf.code_action,     desc = 'Code Actions' },
+        { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
+        { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
         -- keybindings implemented by snacks
         -- { 'grr', vim.lsp.buf.references, desc = 'References' }
         -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
         -- { 'grt', vim.lsp.buf.type_definition, desc = 'Type Definition' },
-        { 'gO',    vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
-        { '<C-s>', vim.lsp.buf.signature_help,  desc = 'Signature help', mode = { 'n', 'i' } },
+        { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
+        { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
       }
 
       --  This function gets run when an LSP attaches to a particular buffer.
@@ -206,8 +206,7 @@ return {
               },
               -- lazy-load schemastore when needed
               on_new_config = function(new_config)
-                new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', new_config.settings.yaml.schemas or {},
-                  require('schemastore').yaml.schemas())
+                new_config.settings.yaml.schemas = vim.tbl_deep_extend('force', new_config.settings.yaml.schemas or {}, require('schemastore').yaml.schemas())
               end,
               settings = {
                 redhat = { telemetry = { enabled = false } },
@@ -280,9 +279,9 @@ return {
       end
     end,
   },
-  {                                  -- Autocompletion
+  { -- Autocompletion
     'saghen/blink.cmp',
-    build = 'cargo build --release', -- for delimiters
+    build = 'cargo build --release',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -361,7 +360,7 @@ return {
           selection = {
             preselect = true,
             auto_insert = true,
-          }
+          },
         },
         menu = {
           enabled = true,
@@ -373,7 +372,7 @@ return {
           show_without_menu = true,
           show_with_selection = true,
           show_without_selection = true,
-        }
+        },
       },
 
       sources = {
@@ -393,7 +392,13 @@ return {
       --
       -- See :h blink-cmp-config-fuzzy for more information
       fuzzy = { implementation = 'prefer_rust_with_warning' },
-
+      -- fuzzy = { implementation = 'lua' },
+      prebuilt_binaries = {
+        -- Whether or not to automatically download a prebuilt binary from github. If this is set to `false`,
+        -- you will need to manually build the fuzzy binary dependencies by running `cargo build --release`
+        -- Disabled by default when `fuzzy.implementation = 'lua'`
+        download = false,
+      },
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
