@@ -7,10 +7,16 @@ return {
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
-      { 'fredrikaverpil/neotest-golang', version = '*' },
       'nvim-neotest/neotest-python',
       'nvim-neotest/neotest-jest',
       'rouge8/neotest-rust',
+      {
+        'fredrikaverpil/neotest-golang',
+        version = '1.*', -- Optional, but recommended
+        build = function()
+          vim.system({ 'go', 'install', 'gotest.tools/gotestsum@latest' }):wait() -- Optional, but recommended
+        end,
+      },
     },
     keys = {
       {
@@ -78,11 +84,15 @@ return {
       },
     },
     config = function()
-      local neotest_golang_opts = {}
+      local neotest_golang_opts = {
+        runner = 'gotestsum', -- Optional, but recommended
+        -- runner = 'go',
+      }
       require('neotest').setup {
         consumers = {
           overseer = require 'neotest.consumers.overseer',
         },
+        -- log_level = 3,
         adapters = {
           require 'neotest-golang'(neotest_golang_opts),
           require 'neotest-python',
