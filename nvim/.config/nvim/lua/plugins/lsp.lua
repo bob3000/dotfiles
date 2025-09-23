@@ -391,14 +391,14 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'prefer_rust_with_warning' },
-      -- fuzzy = { implementation = 'lua' },
-      prebuilt_binaries = {
-        -- Whether or not to automatically download a prebuilt binary from github. If this is set to `false`,
-        -- you will need to manually build the fuzzy binary dependencies by running `cargo build --release`
-        -- Disabled by default when `fuzzy.implementation = 'lua'`
-        download = false,
-      },
+      fuzzy = { implementation = 'lua' },
+      -- fuzzy = { implementation = 'prefer_rust_with_warning' },
+      -- prebuilt_binaries = {
+      --   -- Whether or not to automatically download a prebuilt binary from github. If this is set to `false`,
+      --   -- you will need to manually build the fuzzy binary dependencies by running `cargo build --release`
+      --   -- Disabled by default when `fuzzy.implementation = 'lua'`
+      --   download = false,
+      -- },
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
