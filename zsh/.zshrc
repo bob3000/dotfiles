@@ -2,6 +2,14 @@
 fpath+=~/.zfunc
 #compinit
 
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    source ~/.zshrc.mac
+fi
+
+if [[ "$OSTYPE" =~ ^linux ]]; then
+    source ~/.zshrc.linux
+fi
+
 export WORDCHARS='*?_-~=&;!#$%^(){}<>'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#AAAAAA,underline"
 
@@ -55,21 +63,12 @@ type -p direnv > /dev/null && eval "$(direnv hook zsh)"
 # SDKman
 test -e ${HOME}/.sdkman/bin/sdkman-init.sh && source ~/.sdkman/bin/sdkman-init.sh
 
-# credentials
-test -e "${HOME}/.credentials" && source "${HOME}/.credentials"
-
 # prompt
 eval "$(starship init zsh)"
 
+
+# Set up fzf key bindings and fuzzy completion
+/usr/bin/which -s fzf && source <(fzf --zsh)
+
 # temporary stuff
 test -d "${HOME}/.zshrc.local.d" && source $HOME/.zshrc.local.d/*
-
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-    source ~/.zshrc.mac
-fi
-
-if [[ "$OSTYPE" =~ ^linux ]]; then
-    source ~/.zshrc.linux
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
