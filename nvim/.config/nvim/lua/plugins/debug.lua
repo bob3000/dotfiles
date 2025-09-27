@@ -2,14 +2,16 @@ return {
   'mfussenegger/nvim-dap',
   dependencies = {
     -- Creates a beautiful debugger UI
-    'rcarriga/nvim-dap-ui',
+    {
+      'igorlfs/nvim-dap-view',
+      ---@module 'dap-view'
+      ---@type dapview.Config
+      opts = {},
+    },
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
     },
-
-    -- Required dependency for nvim-dap-ui
-    'nvim-neotest/nvim-nio',
 
     -- Installs the debug adapters for you
     'mason-org/mason.nvim',
@@ -91,7 +93,7 @@ return {
     {
       '<F7>',
       function()
-        require('dapui').toggle()
+        require('dap-view').toggle()
       end,
       desc = 'Debug: See last session result.',
     },
@@ -133,7 +135,7 @@ return {
   },
   config = function()
     local dap = require 'dap'
-    local dapui = require 'dapui'
+    local dapview = require 'dap-view'
 
     require('overseer').enable_dap()
 
@@ -141,28 +143,6 @@ return {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
       automatic_installation = true,
-    }
-
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
-      },
     }
 
     -- Change breakpoint icons
@@ -177,9 +157,9 @@ return {
       vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     end
 
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.after.event_initialized['dapui_config'] = dapview.open
+    dap.listeners.before.event_terminated['dapui_config'] = dapview.close
+    dap.listeners.before.event_exited['dapui_config'] = dapview.close
 
     local mason_path = vim.fn.stdpath 'data' .. '/mason'
 
