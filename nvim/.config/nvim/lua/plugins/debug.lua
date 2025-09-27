@@ -66,9 +66,20 @@ return {
     {
       '<leader>dB',
       function()
-        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+        ---@type string|nil
+        local condition = vim.fn.input 'Breakpoint condition (optional): '
+        ---@type string|nil
+        local hit_condition = vim.fn.input 'Hit count (optional): '
+
+        if condition == '' then
+          condition = nil
+        end
+        if hit_condition == '' then
+          hit_condition = nil
+        end
+        require('dap').toggle_breakpoint(condition, hit_condition)
       end,
-      desc = 'Debug: Set Breakpoint',
+      desc = 'Debug: Set conditional Breakpoint',
     },
     {
       '<F6>',
@@ -217,6 +228,19 @@ return {
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
+      },
+      {
+        name = 'Select and attach to process',
+        type = 'codelldb',
+        request = 'attach',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        pid = function()
+          local name = vim.fn.input 'Executable name (filter): '
+          return require('dap.utils').pick_process { filter = name }
+        end,
+        cwd = '${workspaceFolder}',
       },
     }
     dap.configurations.c = dap.configurations.cpp
