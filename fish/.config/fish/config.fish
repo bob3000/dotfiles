@@ -74,6 +74,7 @@ set --export MANPAGER 'nvim +Man!'
 set --export GOPATH $HOME/.go
 set --export PATH "$GOPATH/bin:$PATH"
 set --export PATH "/usr/local/bin:$PATH"
+set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 set --export PATH "$HOME/.cargo/bin:$PATH"
 set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
@@ -102,6 +103,7 @@ set -g man_underline -u 93a1a1
 
 # convenience
 alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
+alias npvim 'nvim --noplugin'
 alias l 'eza --icons --hyperlink'
 alias la 'eza -a --icons --hyperlink'
 alias ll 'eza -l --icons --mounts --hyperlink'
