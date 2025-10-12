@@ -33,6 +33,7 @@ return {
       wk.add {
         { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
         { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
+        { 'grh', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch header source' },
         -- keybindings implemented by snacks
         -- { 'grr', vim.lsp.buf.references, desc = 'References' }
         -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
