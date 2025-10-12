@@ -161,6 +161,8 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    set -gx CPLUS_INCLUDE_PATH "/opt/homebrew/include"
+    set -gx C_INCLUDE_PATH "/opt/homebrew/include"
 end
 
 if status is-interactive
