@@ -149,6 +149,7 @@ return {
             },
           },
         },
+        neocmake = {},
         ruff = {},
         rust_analyzer = {
           {
@@ -248,6 +249,8 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'bash-debug-adapter',
+        'cmakelang',
+        'cmakelint',
         'codelldb',
         'debugpy',
         'delve',
@@ -355,7 +358,7 @@ return {
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 1000
+          auto_show_delay_ms = 1000,
         },
         list = {
           selection = {

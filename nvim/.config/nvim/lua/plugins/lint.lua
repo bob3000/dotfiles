@@ -5,6 +5,7 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
+        cmake = { 'cmakelint' },
         dockerfile = { 'hadolint' },
         -- javascript = { 'eslint_d' },
         -- javascriptreact = { 'eslint_d' },
