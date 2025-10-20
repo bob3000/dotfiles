@@ -84,6 +84,7 @@ set --export PATH "$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/postgresql@*/bin:$PATH"
+set --export PATH "$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 command -q luarocks && eval "$(luarocks path --bin)"
 
 set --export FZF_DEFAULT_OPTS '--color "bg+:-1:underline,fg+:-1:underline,hl+:-1:underline"'\
@@ -118,6 +119,7 @@ alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
 alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="sudo su -l $U" --target'
+alias nvim 'VIMRUNTIME=/Users/bob/code/neovim/runtime /Users/bob/code/neovim/build/bin/nvim'
 
 type -q direnv && direnv hook fish | source
 
