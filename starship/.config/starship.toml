@@ -11,6 +11,14 @@ symbol = ' '
 format = "on [$symbol $profile $region ($duration )]($style)"
 symbol = "󰸏"
 expiration_symbol = " "
+disabled = false
+
+[azure]
+symbol = ' '
+disabled = true
+
+[cpp]
+disabled = false
 
 [env_var.TTY]
 default = ''
@@ -24,6 +32,11 @@ format = "[$symbol$branch(:$remote_branch)]($style) "
 format = '[ $all_status$ahead_behind ]($style)'
 conflicted = ''
 stashed = ''
+
+[gcloud]
+symbol = '️ '
+# detect_env_vars = ["GCLOUD"]
+disabled = false
 
 [character]
 success_symbol = '[➜](bold green)'
