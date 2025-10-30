@@ -28,6 +28,7 @@ local logo = [[
 return {
   {
     'folke/snacks.nvim',
+    version = "*",
     priority = 1000,
     lazy = false,
     ---@type snacks.Config
