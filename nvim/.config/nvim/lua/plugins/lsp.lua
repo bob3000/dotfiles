@@ -268,6 +268,7 @@ return {
         'shfmt',
         'stylua',
         'taplo',
+        'vale',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
