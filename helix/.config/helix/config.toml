@@ -1,0 +1,42 @@
+theme = "everforest_dark"
+
+[editor]
+scrolloff = 8
+line-number = "relative"
+bufferline = "multiple"
+cursorline = true
+cursorcolumn = true
+auto-format = false
+popup-border = "all"
+end-of-line-diagnostics = "hint"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.indent-guides]
+render = true
+
+[editor.lsp]
+display-progress-messages = true
+display-inlay-hints = true
+
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 3000
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "all"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "warning"
