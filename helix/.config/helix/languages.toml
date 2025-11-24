@@ -1,0 +1,3 @@
+[[language]]
+name = "hcl"
+formatter = { command = "terraform", "args" = ["fmt"] }
