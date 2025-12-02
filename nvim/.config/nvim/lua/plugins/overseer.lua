@@ -11,6 +11,7 @@ end, {})
 return {
   {
     'stevearc/overseer.nvim',
+    version = "*",
     cmd = {
       'OverseerOpen',
       'OverseerClose',

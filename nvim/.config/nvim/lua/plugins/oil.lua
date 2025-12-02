@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("User", {
 return {
   {
     'stevearc/oil.nvim',
+    version = "*",
     ---@module 'oil'
     ---@type oil.SetupOpts
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
