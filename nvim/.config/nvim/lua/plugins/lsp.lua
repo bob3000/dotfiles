@@ -123,17 +123,12 @@ return {
       local servers = {
         bashls = {},
         clangd = {},
-        eslint = {
-          settings = {
-            -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-            workingDirectory = { mode = 'auto' },
-          },
-        },
         gopls = {},
         basedpyright = {},
         dockerls = {},
         docker_compose_language_service = {},
         helm_ls = {},
+        biome = {},
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
@@ -249,26 +244,23 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'bash-debug-adapter',
+        'biome',
         'cmakelang',
         'cmakelint',
         'codelldb',
         'debugpy',
         'delve',
-        'eslint_d',
-        'firefox-debug-adapter',
+        -- 'firefox-debug-adapter',
         'gofumpt',
         'goimports',
-        -- 'hadolint', -- mason version seems to be broken
-        'js-debug-adapter',
-        'jsonlint',
+        'hadolint', -- mason version seems to be broken
+        -- 'js-debug-adapter',
         'markdownlint',
         'markdown-toc',
-        'prettier',
         'shellcheck',
         'shfmt',
         'stylua',
         'taplo',
-        'vale',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
