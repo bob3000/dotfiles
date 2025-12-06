@@ -165,6 +165,9 @@ else if test -d /opt/homebrew
     # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
     set -gx CPLUS_INCLUDE_PATH "/opt/homebrew/include"
     set -gx C_INCLUDE_PATH "/opt/homebrew/include"
+    set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
+    set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
+    set -gx SDKROOT "$(xcrun --show-sdk-path)"
 end
 
 if status is-interactive
