@@ -257,6 +257,7 @@ return {
         -- 'js-debug-adapter',
         'markdownlint',
         'markdown-toc',
+        'prettier',
         'shellcheck',
         'shfmt',
         'stylua',

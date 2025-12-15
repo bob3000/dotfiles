@@ -33,7 +33,7 @@ return {
         fish = { 'fish_indent' },
         graphql = { 'biome' },
         handlebars = { 'biome' },
-        html = { 'biome' },
+        html = { 'prettier' },
         json = { 'biome' },
         jsonc = { 'biome' },
         lua = { "stylua" },
