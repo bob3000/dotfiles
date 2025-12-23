@@ -1,80 +1,163 @@
+---@module "lazy"
+---@type LazySpec
 return {
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'cmake',
-        'comment',
-        'cpp',
-        'css',
-        'diff',
-        'dockerfile',
-        'doxygen',
-        'editorconfig',
-        'fish',
-        'git_config',
-        'gitcommit',
-        'gitignore',
-        'go',
-        'gomod',
-        'gosum',
-        'gowork',
-        'groovy',
-        'hcl',
-        'helm',
-        'html',
-        'ini',
-        'javascript',
-        'jsdoc',
-        'json',
-        'json5',
-        'latex',
-        'lua',
-        'luadoc',
-        'make',
-        'markdown',
-        'markdown_inline',
-        'nginx',
-        'python',
-        'query',
-        'regex',
-        'ruby',
-        'rust',
-        'scss',
-        'sql',
-        'ssh_config',
-        'terraform',
-        'toml',
-        'tsx',
-        'typescript',
-        'vim',
-        'vimdoc',
-        'vue',
-        'xml',
-        'yaml',
-        'zig',
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      opts = {
+        max_lines = 4,
+        multiline_threshold = 2,
       },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
     },
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  lazy = false,
+  branch = 'main',
+  build = ':TSUpdate',
+  config = function()
+    local ts = require 'nvim-treesitter'
+
+    -- Track buffers currently waiting for parser installation
+    local pending_buffers = {}
+
+    -- Helper to start treesitter with retry for async parser installation
+    local function start_with_retry(buf, lang, attempts)
+      attempts = attempts or 10
+
+      -- Use "buffer:language" as key to handle buffer number reuse
+      local pending_key = buf .. ':' .. lang
+
+      if not vim.api.nvim_buf_is_valid(buf) then
+        pending_buffers[pending_key] = nil -- Cleanup
+        return
+      end
+
+      -- Prevent duplicate retry loops for the same buffer+language
+      if pending_buffers[pending_key] then
+        return
+      end
+
+      local ok = pcall(vim.treesitter.start, buf, lang)
+      if ok and vim.api.nvim_buf_is_valid(buf) then
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        pending_buffers[pending_key] = nil -- Success - clear tracking
+      elseif attempts > 0 then
+        pending_buffers[pending_key] = true -- Mark as pending
+        vim.defer_fn(function()
+          -- Don't clear pending_key here - let recursive call handle it
+          start_with_retry(buf, lang, attempts - 1)
+        end, 500)
+      else
+        pending_buffers[pending_key] = nil -- Max retries reached - clear tracking
+      end
+    end
+
+    -- Install core parsers after lazy.nvim finishes loading all plugins
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'LazyDone',
+      once = true,
+      callback = function()
+        ts.install({
+          'bash',
+          'c',
+          'cmake',
+          'comment',
+          'cpp',
+          'css',
+          'diff',
+          'dockerfile',
+          'doxygen',
+          'editorconfig',
+          'fish',
+          'git_config',
+          'gitcommit',
+          'gitignore',
+          'go',
+          'gomod',
+          'gosum',
+          'gowork',
+          'groovy',
+          'hcl',
+          'helm',
+          'html',
+          'ini',
+          'javascript',
+          'jsdoc',
+          'json',
+          'json5',
+          'latex',
+          'lua',
+          'luadoc',
+          'make',
+          'markdown',
+          'markdown_inline',
+          'nginx',
+          'proto',
+          'python',
+          'query',
+          'regex',
+          'ruby',
+          'rust',
+          'scss',
+          'sql',
+          'ssh_config',
+          'terraform',
+          'toml',
+          'tsx',
+          'typescript',
+          'vim',
+          'vimdoc',
+          'vue',
+          'xml',
+          'yaml',
+          'zig',
+        }, {
+          max_jobs = 8,
+        })
+      end,
+    })
+
+    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+
+    local ignore_filetypes = {
+      'checkhealth',
+      'lazy',
+      'mason',
+      'snacks_dashboard',
+      'snacks_notif',
+      'snacks_win',
+    }
+
+    -- Auto-install parsers and enable highlighting on FileType
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      desc = 'Enable treesitter highlighting and indentation',
+      callback = function(event)
+        if vim.tbl_contains(ignore_filetypes, event.match) then
+          return
+        end
+
+        local lang = vim.treesitter.language.get_lang(event.match) or event.match
+        local buf = event.buf
+
+        -- Try to start treesitter, with retry if parser is being installed
+        start_with_retry(buf, lang)
+
+        -- Auto-install missing parsers (nvim-treesitter handles async internally)
+        ts.install { lang }
+      end,
+    })
+
+    -- Clean up pending retries when buffer is deleted
+    vim.api.nvim_create_autocmd('BufDelete', {
+      group = group,
+      callback = function(event)
+        for key in pairs(pending_buffers) do
+          if key:match('^' .. event.buf .. ':') then
+            pending_buffers[key] = nil
+          end
+        end
+      end,
+    })
+  end,
 }
