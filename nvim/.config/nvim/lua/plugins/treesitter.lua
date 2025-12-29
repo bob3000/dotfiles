@@ -85,6 +85,7 @@ return {
           'jsdoc',
           'json',
           'json5',
+          'kitty',
           'latex',
           'lua',
           'luadoc',
