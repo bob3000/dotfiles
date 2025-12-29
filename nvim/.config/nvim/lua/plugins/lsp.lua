@@ -250,11 +250,11 @@ return {
         'codelldb',
         'debugpy',
         'delve',
-        -- 'firefox-debug-adapter',
+        'firefox-debug-adapter',
         'gofumpt',
         'goimports',
         'hadolint', -- mason version seems to be broken
-        -- 'js-debug-adapter',
+        'js-debug-adapter',
         'markdownlint',
         'markdown-toc',
         'prettier',
