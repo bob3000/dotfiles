@@ -121,17 +121,20 @@ return {
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
     local ignore_filetypes = {
+      'blink-cmp-documentation',
       'blink-cmp-menu',
+      'blink-cmp-signature',
       'checkhealth',
       'lazy',
       'mason',
+      'OverseerList',
       'snacks_dashboard',
-      'snacks_notif',
-      'snacks_win',
-      'snacks_picker_list',
-      'snacks_picker_input',
-      'snacks_picker_preview',
       'snacks_layout_box',
+      'snacks_notif',
+      'snacks_picker_input',
+      'snacks_picker_list',
+      'snacks_picker_preview',
+      'snacks_win',
     }
 
     -- Auto-install parsers and enable highlighting on FileType
