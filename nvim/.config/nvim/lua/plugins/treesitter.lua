@@ -127,6 +127,7 @@ return {
       'checkhealth',
       'lazy',
       'mason',
+      'oil',
       'OverseerList',
       'snacks_dashboard',
       'snacks_layout_box',
