@@ -103,7 +103,6 @@ set -g man_standout -b black 93a1a1
 set -g man_underline -u 93a1a1
 
 # convenience
-alias wiki 'cd ~/Nextcloud/Synced/wiki/ && tmux new-session -A -s wiki "nvim index.md"'
 alias npvim 'nvim --noplugin'
 alias l 'eza --icons --hyperlink'
 alias la 'eza -a --icons --hyperlink'
