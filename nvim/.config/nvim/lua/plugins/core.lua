@@ -1,47 +1,51 @@
--- [[ Configure and install plugins ]]
---
 return {
   {
-    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-    opts = {},
-  },
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    keys = {
-      -- code
-      { '<leader>cw', '<cmd>%s/ \\+$//<CR>', mode = '', desc = 'Remove trailing whitespace' },
-      { '<leader>co', ":'<,'>sort<CR>", mode = '', desc = 'Order lines' },
+    'nvim-mini/mini.clue',
+    version = false,
+    opts = function()
+      local miniclue = require 'mini.clue'
+      return {
+        triggers = {
+          -- Leader triggers
+          { mode = { 'n', 'x' }, keys = '<Leader>' },
 
-      -- marks
-      { 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", mode = '', desc = 'Delete mark' },
-      { 'dm*', ":execute 'delmarks!'<CR>", mode = '', desc = 'Delete all marks' },
-    },
-    opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.o.timeoutlen
-      delay = 200,
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-      },
+          -- `[` and `]` keys
+          { mode = 'n', keys = '[' },
+          { mode = 'n', keys = ']' },
 
-      -- Document existing key chains
-      spec = {
-        { '<leader>b', group = 'Buffers', icon = '' },
-        { '<leader>c', group = 'Code', icon = '' },
-        { '<leader>d', group = 'Debug', icon = '' },
-        { '<leader>f', group = 'Find', icon = '󰈞' },
-        { '<leader>g', group = 'Git', icon = '' },
-        { '<leader>h', group = 'Git Hunk', icon = '', mode = { 'n', 'v' } },
-        { '<leader>o', group = 'Overseer', icon = '' },
-        { '<leader>q', group = 'Session', icon = '' },
-        { '<leader>s', group = 'Search', icon = '󰍉' },
-        { '<leader>t', group = 'Test', icon = '▶' },
-        { '<leader>u', group = 'Ui', icon = '' },
-        { '<leader>x', group = 'Trouble', icon = '' },
-      },
-    },
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = { 'n', 'x' }, keys = 'g' },
+
+          -- Marks
+          { mode = { 'n', 'x' }, keys = "'" },
+          { mode = { 'n', 'x' }, keys = '`' },
+
+          -- Registers
+          { mode = { 'n', 'x' }, keys = '"' },
+          { mode = { 'i', 'c' }, keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = { 'n', 'x' }, keys = 'z' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.square_brackets(),
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+        },
+      }
+    end,
   },
   -- Highlight todo, notes, etc in comments
   {
@@ -68,35 +72,10 @@ return {
     version = '*',
     opts = {},
   },
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    opts = {},
-  },
-  {
-    'folke/ts-comments.nvim',
-    opts = {
-      lang = {
-        helm = { "{{/* %s */}}", }
-      }
-    },
-    event = 'VeryLazy',
-  },
-  {
-    'kylechui/nvim-surround',
-    version = '^3.0.0', -- Use for stability; omit to use `main` branch for the latest features
-    event = 'VeryLazy',
-    opts = {},
-  },
-  {
-    'folke/persistence.nvim',
-    event = 'BufReadPre', -- this will only start session saving when an actual file was opened
-    opts = {},
-    keys = {
-      { '<leader>qs', '', desc = 'Session load current' },
-      { '<leader>qS', '', desc = 'Session select' },
-      { '<leader>ql', '', desc = 'Session load last' },
-      { '<leader>qd', '', desc = 'Session no save' },
-    },
-  },
+  { 'nvim-mini/mini.pairs', version = false, opts = {} },
+  { 'nvim-mini/mini.surround', version = false, opts = {} },
+  { 'nvim-mini/mini.animate', version = false, opts = {} },
+  { 'nvim-mini/mini.notify', version = false, opts = {} },
+  { 'nvim-mini/mini.starter', version = false, opts = {} },
+  { 'nvim-mini/mini.sessions', version = false, opts = {} },
 }
