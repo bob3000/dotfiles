@@ -53,9 +53,9 @@ return {
             cond = function()
               return package.loaded['dap'] and require('dap').status() ~= ''
             end,
-            color = function()
-              return { fg = Snacks.util.color 'Debug' }
-            end,
+            -- color = function()
+            --   return { fg = Snacks.util.color 'Debug' }
+            -- end,
           },
         },
         lualine_z = {
