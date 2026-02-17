@@ -25,13 +25,6 @@ return {
       },
       new_file_template = {
         use_template = true,
-        placeholders = {
-          before = {
-            title = 'link_title',
-            date = 'os_date',
-          },
-          after = {},
-        },
         template = '# {{ title }} - {{ date }}\n',
       },
       mappings = {
