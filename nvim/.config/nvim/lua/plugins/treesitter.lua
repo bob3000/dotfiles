@@ -133,6 +133,7 @@ return {
       'mininotify',
       'NvimTree',
       'oil',
+      'oil_preview',
       'OverseerList',
       'qf',
       'snacks_dashboard',

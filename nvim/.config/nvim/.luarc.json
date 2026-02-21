@@ -1,0 +1,11 @@
+{
+	"diagnostics.globals": [
+		"FzfLua",
+		"MiniBufremove",
+		"MiniNotify",
+		"Snacks",
+		"toggle_coverage",
+		"vim"
+	]
+}
+

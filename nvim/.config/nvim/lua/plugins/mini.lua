@@ -83,7 +83,6 @@ return {
     version = false,
     opts = {},
     keys = {
-
       {
         '<leader>n',
         function()
@@ -103,9 +102,12 @@ return {
         header = logo,
         footer = '',
         items = {
-          -- { action = ':Lazy', name = 'Lazy', section = '' },
-          -- { action = ':Mason', name = 'Mason', section = '' },
-          starter.sections.builtin_actions(),
+          { action = ':Oil', name = 'Explore', section = '' },
+          { action = ':FzfLua files', name = 'Find', section = '' },
+          { action = ':FzfLua live_grep', name = 'Grep', section = '' },
+          { action = ':Lazy', name = 'Lazy', section = '' },
+          { action = ':Mason', name = 'Mason', section = '' },
+          { action = ':quit', name = 'Quit', section = '' },
           -- Use this if you set up 'mini.sessions'
           starter.sections.sessions(5, true),
         },
