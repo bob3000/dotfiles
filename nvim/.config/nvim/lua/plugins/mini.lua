@@ -105,6 +105,7 @@ return {
         items = {
           -- { action = ':Lazy', name = 'Lazy', section = '' },
           -- { action = ':Mason', name = 'Mason', section = '' },
+          starter.sections.builtin_actions(),
           -- Use this if you set up 'mini.sessions'
           starter.sections.sessions(5, true),
         },
