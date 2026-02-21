@@ -74,7 +74,6 @@ set --export MANPAGER 'nvim +Man!'
 set --export GOPATH $HOME/.go
 set --export PATH "$GOPATH/bin:$PATH"
 set --export PATH "/usr/local/bin:$PATH"
-set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 set --export PATH "$HOME/.cargo/bin:$PATH"
 set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
@@ -166,6 +165,7 @@ else if test -d /opt/homebrew
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
     set -gx SDKROOT "$(xcrun --show-sdk-path)"
+    set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 end
 
 if status is-interactive
