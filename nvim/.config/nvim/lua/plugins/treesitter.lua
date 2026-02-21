@@ -128,6 +128,7 @@ return {
       'checkhealth',
       'fzf',
       'lazy',
+      'mininotify-history',
       'mason',
       'mininotify',
       'NvimTree',

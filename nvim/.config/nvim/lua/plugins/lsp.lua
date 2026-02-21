@@ -165,8 +165,10 @@ return {
               },
               diagnostics = {
                 globals = {
-                  'Snacks',
                   'FzfLua',
+                  'MiniBufremove',
+                  'MiniNotify',
+                  'Snacks',
                   'vim',
                 },
               },

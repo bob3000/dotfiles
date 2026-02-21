@@ -42,10 +42,11 @@ return {
       { '<leader>fc', '<cmd>FzfLua highlights<cr>', desc = 'Highlights' },
       { '<leader>fd', '<cmd>FzfLua lsp_document_diagnostics<cr>', desc = 'Document diagnostics' },
       { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+      { '<leader>fk', '<cmd>FzfLua keymaps<cr>', desc = 'Find keymaps' },
       { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
       { '<leader>/', '<cmd>FzfLua grep_visual<cr>', desc = 'Grep', mode = 'x' },
       { '<leader>fh', '<cmd>FzfLua help_tags<cr>', desc = 'Help' },
-      { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recently opened files' },
+      { '<leader><leader>', '<cmd>FzfLua oldfiles<cr>', desc = 'Recently opened files' },
       { '<leader>f<', '<cmd>FzfLua resume<cr>', desc = 'Resume last fzf command' },
       { 'z=', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
       {

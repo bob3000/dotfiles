@@ -5,6 +5,9 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- show diagnostics
+vim.keymap.set("n", "<leader>D", vim.diagnostic.setqflist, { desc = "Add buffer diagnostics to quickfix list"})
+
 -- better up/down
 vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
@@ -28,7 +31,7 @@ vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<S-A-l>', '<cmd>BufferLineMoveNext<cr>', { desc = 'Move Buffer Right' })
 vim.keymap.set('n', '<S-A-h>', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move Buffer Left' })
 vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
-  Snacks.bufdelete()
+  MiniBufremove.delete()
 end, { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 

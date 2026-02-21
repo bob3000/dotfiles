@@ -28,14 +28,14 @@ return {
     },
     keys = {
       {
-        '<leader>xq',
+        '<leader>q',
         function()
           require('quicker').toggle()
         end,
         desc = 'Quickfix List (Quicker)',
       },
       {
-        '<leader>xl',
+        '<leader>l',
         function()
           require('quicker').toggle { loclist = true }
         end,
