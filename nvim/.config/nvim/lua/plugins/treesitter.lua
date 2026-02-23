@@ -138,6 +138,7 @@ return {
       'snacks_picker_input',
       'snacks_picker_list',
       'snacks_picker_preview',
+      'snacks_terminal',
       'snacks_win',
     }
 
