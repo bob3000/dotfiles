@@ -105,4 +105,5 @@ vim.opt.winborder = "rounded" -- rounded floating window borders
 vim.opt.wrap = false -- Disable line wrap
 vim.wo.foldmethod = 'expr' -- use an expression to create folds
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter to create fold expression
+vim.lsp.log.set_level(vim.log.levels.OFF) -- disable lsp logs
 vim.cmd.colorscheme 'retrobox' -- set colorscheme
