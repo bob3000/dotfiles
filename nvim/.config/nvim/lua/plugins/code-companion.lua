@@ -1,9 +1,10 @@
 -- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])
+vim.cmd [[cab cc CodeCompanion]]
 return {
   {
     'olimorris/codecompanion.nvim',
     lazy = false,
+    version = '*',
     depedendencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -32,20 +33,16 @@ return {
       strategies = {
         chat = {
           adapter = 'ollama',
-          model = "codemate-ai/mini-coder:latest",
         },
         inline = {
           adapter = 'ollama',
-          model = "codemate-ai/mini-coder:latest",
         },
         cmd = {
           adapter = 'ollama',
-          model = "codemate-ai/mini-coder:latest",
         },
         background = {
           adapter = 'ollama',
-          model = "codemate-ai/mini-coder:latest",
-        }
+        },
       },
     },
   },
