@@ -253,7 +253,7 @@ return {
         'firefox-debug-adapter',
         'gofumpt',
         'goimports',
-        'hadolint', -- mason version seems to be broken
+        'hadolint',
         'js-debug-adapter',
         'markdownlint',
         'markdown-toc',

@@ -125,6 +125,7 @@ return {
       'blink-cmp-menu',
       'blink-cmp-signature',
       'checkhealth',
+      'gitsigns-blame',
       'lazy',
       'mason',
       'oil',
