@@ -4,12 +4,11 @@ return {
     ft = 'markdown',
     keys = {
       { '<leader>N', group = 'Note taking', icon = '󰺿' },
-      { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>', desc = 'Note index' },
+      { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/2026-01-05_2026.md<CR>', desc = 'Note' },
       {
         '<leader>Ns',
         function()
-          vim.fn.chdir '~/Nextcloud/Synced/wiki'
-          require('fzf-lua').live_grep()
+          Snacks.picker.files { dirs = { '~/Nextcloud/Synced/wiki' } }
         end,
         desc = 'Search notes',
       },

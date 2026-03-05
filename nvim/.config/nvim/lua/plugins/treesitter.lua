@@ -141,6 +141,7 @@ return {
       'snacks_picker_preview',
       'snacks_terminal',
       'snacks_win',
+      'text',
     }
 
     -- Auto-install parsers and enable highlighting on FileType

@@ -535,13 +535,6 @@ return {
         desc = 'Dismiss All Notifications',
       },
       {
-        '<c-/>',
-        function()
-          Snacks.terminal()
-        end,
-        desc = 'Toggle Terminal',
-      },
-      {
         '<c-_>',
         function()
           Snacks.terminal()
