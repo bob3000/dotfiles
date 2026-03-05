@@ -166,6 +166,7 @@ else if test -d /opt/homebrew
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
     set -gx SDKROOT "$(xcrun --show-sdk-path)"
+    set -gx XDG_CONFIG_HOME $HOME/.config
 end
 
 if status is-interactive
