@@ -37,6 +37,7 @@ return {
       indent = {
         enabled = true,
         indent = {
+          enabled = false,
           only_scope = true,
           only_current = true,
         },
@@ -45,8 +46,13 @@ return {
           only_current = true,
         },
         chunk = {
-          enabled = false,
+          enabled = true,
           only_current = true,
+          char = {
+            corner_top = '╭',
+            corner_bottom = '╰',
+            arrow = '→',
+          },
         },
       },
       input = { enabled = true },
