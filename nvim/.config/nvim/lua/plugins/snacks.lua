@@ -1,10 +1,10 @@
 vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
-vim.api.nvim_create_autocmd("User", {
-  pattern = "OilActionsPost",
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'OilActionsPost',
   callback = function(event)
-      if event.data.actions.type == "move" then
-          Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
-      end
+    if event.data.actions.type == 'move' then
+      Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+    end
   end,
 })
 local logo = [[
@@ -28,13 +28,27 @@ local logo = [[
 return {
   {
     'folke/snacks.nvim',
-    version = "*",
+    version = '*',
     priority = 1000,
     lazy = false,
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      indent = { enabled = true },
+      indent = {
+        enabled = true,
+        indent = {
+          only_scope = true,
+          only_current = true,
+        },
+        scope = {
+          enabled = true,
+          only_current = true,
+        },
+        chunk = {
+          enabled = false,
+          only_current = true,
+        },
+      },
       input = { enabled = true },
       notifier = {
         enabled = true,
@@ -535,11 +549,11 @@ return {
         desc = 'Dismiss All Notifications',
       },
       {
-        '<c-_>',
+        '<c-/>',
         function()
           Snacks.terminal()
         end,
-        desc = 'which_key_ignore',
+        desc = 'Toggle Terminal',
       },
       {
         ']]',
