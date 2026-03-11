@@ -17,16 +17,6 @@ return {
       backends = { 'lsp', 'treesitter', 'markdown', 'man' },
       close_on_select = true,
       show_guides = true,
-      layout = {
-        max_width = { 50, 0.3 },
-        min_width = 20,
-        resize_to_content = true,
-        win_opts = {
-          winhl = 'Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB',
-          signcolumn = 'yes',
-          statuscolumn = ' ',
-        },
-      },
       guides = {
         mid_item = '├╴',
         last_item = '└╴',

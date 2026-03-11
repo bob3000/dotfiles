@@ -6,7 +6,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        theme = 'ayu',
+        theme = 'auto',
         globalstatus = vim.o.laststatus == 3,
         disabled_filetypes = {
           statusline = {

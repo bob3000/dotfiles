@@ -1,3 +1,5 @@
+[include]
+    path = ~/.config/delta/themes.gitconfig
 [alias]
   diff = diff --word-diff
   mdiff = diff --diff-filter=CMRTUXB
@@ -29,7 +31,8 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true
-  syntax-theme = ansi
+  ; syntax-theme = ansi
+  features = catppuccin-mocha
 [color]
   diff = auto
   status = auto

@@ -143,6 +143,7 @@ return {
       'snacks_win',
       'text',
       'tf',
+      'trouble',
     }
 
     -- Auto-install parsers and enable highlighting on FileType
