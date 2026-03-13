@@ -93,6 +93,7 @@ return {
           'markdown',
           'markdown_inline',
           'nginx',
+          'powershell',
           'proto',
           'python',
           'query',

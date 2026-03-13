@@ -4,7 +4,8 @@ return {
     ft = 'markdown',
     keys = {
       { '<leader>N', group = 'Note taking', icon = '󰺿' },
-      { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/2026-01-05_2026.md<CR>', desc = 'Note' },
+      { '<leader>Ni', '<cmd>e ~/Nextcloud/Synced/wiki/index.md<CR>', desc = 'Notes index' },
+      { '<leader>Nl', '<cmd>e ~/Nextcloud/Synced/wiki/2026-01-05_2026.md<CR>', desc = 'Notes' },
       {
         '<leader>Ns',
         function()
