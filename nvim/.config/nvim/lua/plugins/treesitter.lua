@@ -113,6 +113,7 @@ return {
           'xml',
           'yaml',
           'zig',
+          'zsh',
         }, {
           max_jobs = 8,
         })
@@ -126,6 +127,7 @@ return {
       'blink-cmp-menu',
       'blink-cmp-signature',
       'checkhealth',
+      'conf',
       'gitsigns-blame',
       'lazy',
       'mason',
