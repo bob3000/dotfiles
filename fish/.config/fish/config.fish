@@ -126,8 +126,11 @@ alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --docume
 
 type -q direnv && direnv hook fish | source
 
-# credentials
-test -e "$HOME/.credentials" && source "$HOME/.credentials"
+if [ "$OSTYPE" = Darwin ]
+    set -gx appearance $([ $(osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode') = 'true' ] && echo dark || echo light)
+else
+    set -gx appearance dark
+end
 
 function toggle_theme
     [ $appearance = dark ] && set -gx appearance light || set -gx appearance dark

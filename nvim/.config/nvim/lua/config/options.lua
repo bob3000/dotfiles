@@ -45,6 +45,8 @@ local statusline = {
   ' %2p%% ',
 }
 
+local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
+vim.fn.serverstart(socket)
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent

@@ -31,8 +31,8 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true
-  ; syntax-theme = ansi
-  features = catppuccin-mocha
+  syntax-theme = ansi
+  ; features = catppuccin-mocha
 [color]
   diff = auto
   status = auto
