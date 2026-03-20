@@ -130,6 +130,7 @@ return {
       'conf',
       'gitsigns-blame',
       'lazy',
+      'lazy_backdrop',
       'mason',
       'oil',
       'OverseerList',
