@@ -118,7 +118,7 @@ style = "bold lavender"
 [sudo]
 format = "$symbol($style)"
 symbol = "🔓 "
-disabled = false
+disabled = true # takes too much time to execute
 
 [kubernetes]
 symbol = "󰠳 "
