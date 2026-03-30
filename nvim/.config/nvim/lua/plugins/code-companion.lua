@@ -42,7 +42,7 @@ return {
         desc = 'CodeCompanionActions',
       },
     },
-    config = {
+    opts = {
       interactions = {
         chat = {
           opts = {
