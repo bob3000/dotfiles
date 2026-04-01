@@ -17,7 +17,7 @@ return {
     opts = {
       modules = {
         yaml = true,
-        cmp = false,
+        completion = false,
       },
       links = {
         conceal = true,

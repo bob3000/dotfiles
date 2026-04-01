@@ -123,17 +123,21 @@ return {
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
     local ignore_filetypes = {
+      'bigfile',
       'blink-cmp-documentation',
       'blink-cmp-menu',
       'blink-cmp-signature',
       'checkhealth',
       'conf',
+      'dap-view',
+      'dap-repl',
       'gitsigns-blame',
       'lazy',
       'lazy_backdrop',
       'mason',
       'oil',
       'OverseerList',
+      'OverseerOutput',
       'qf',
       'snacks_dashboard',
       'snacks_input',
