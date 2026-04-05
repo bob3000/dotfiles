@@ -1,0 +1,17 @@
+services:
+  coding:
+    build: .
+    image: nvim
+    command: nvim --headless --listen /tmp/nvim/coding.pipe
+    # command: sleep 3000
+    environment:
+      TERM: ${TERM}
+    user: 1000:1000
+    userns_mode: keep-id
+    volumes:
+      - $HOME/code:$HOME/code:z,U,rw
+      - $HOME/.local/share/nvim:$HOME/.local/share/nvim:z,U,ro
+      - $HOME/.local/state/nvim:$HOME/.local/state/nvim:z,U,rw
+      - $HOME/.cache/nvim:$HOME/.cache/nvim:z,U,rw
+      - $HOME/.config/nvim:$HOME/.config/nvim:z,U,ro
+      - $PWD/coding:/tmp/nvim:z,U
