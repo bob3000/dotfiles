@@ -100,10 +100,10 @@ return {
           },
         } or {},
         underline = { severity = vim.diagnostic.severity.ERROR },
-        virtual_lines = {
-          current_line = true,
-          format = diagnostic_format,
-        },
+        -- virtual_lines = {
+        --   current_line = true,
+        --   format = diagnostic_format,
+        -- },
         -- virtual_text = {
         --   source = 'if_many',
         --   spacing = 2,
