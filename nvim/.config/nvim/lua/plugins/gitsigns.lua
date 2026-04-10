@@ -54,10 +54,5 @@ return {
         map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = 'toggle git show deleted' })
       end,
     },
-  },
-  {
-    'sindrets/diffview.nvim',
-    event = 'VeryLazy',
-    opts = {},
-  },
+  }
 }

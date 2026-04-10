@@ -1,4 +1,14 @@
 local icons = require 'config.icons'
+local diagnostic_format = function(diagnostic)
+  local diagnostic_message = {
+    [vim.diagnostic.severity.ERROR] = diagnostic.message,
+    [vim.diagnostic.severity.WARN] = diagnostic.message,
+    [vim.diagnostic.severity.INFO] = diagnostic.message,
+    [vim.diagnostic.severity.HINT] = diagnostic.message,
+  }
+  return diagnostic_message[diagnostic.severity]
+end
+
 return {
   -- LSP Plugins
   {
@@ -81,7 +91,6 @@ return {
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
-        underline = { severity = vim.diagnostic.severity.ERROR },
         signs = vim.g.have_nerd_font and {
           text = {
             [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
@@ -90,19 +99,16 @@ return {
             [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
         } or {},
-        virtual_text = {
-          source = 'if_many',
-          spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
-        },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        -- virtual_lines = {
+        --   current_line = true,
+        --   format = diagnostic_format,
+        -- },
+        -- virtual_text = {
+        --   source = 'if_many',
+        --   spacing = 2,
+        --   format = diagnostic_format,
+        -- },
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -392,8 +398,7 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
-      -- fuzzy = { implementation = 'prefer_rust_with_warning' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
       -- prebuilt_binaries = {
       --   -- Whether or not to automatically download a prebuilt binary from github. If this is set to `false`,
       --   -- you will need to manually build the fuzzy binary dependencies by running `cargo build --release`

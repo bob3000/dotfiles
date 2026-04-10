@@ -68,3 +68,6 @@ vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline belo
 vim.keymap.set('n', '<leader>dd', '"_dd', { desc = 'Delete line without yanking' })
 -- delete till end of the line line without yanking
 vim.keymap.set('n', '<leader><S-d>', '"_D', { desc = 'Delete till end of line without yanking' })
+-- Undotree
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader><S-u>", function() require("undotree").open() end, { desc = 'Undotree'})

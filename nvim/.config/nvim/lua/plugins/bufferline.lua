@@ -4,17 +4,21 @@ return {
     event = 'VeryLazy',
     version = '*',
     dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {
-      options = {
-        diagnostics = 'nvim_lsp',
-        always_show_bufferline = false,
-        offsets = {
-          {
-            filetype = 'snacks_layout_box',
+    config = function()
+      require('bufferline').setup {
+        highlights = require('catppuccin.special.bufferline').get_theme(),
+        options = {
+          diagnostics = 'nvim_lsp',
+          always_show_bufferline = false,
+          separator_style = 'slant',
+          offsets = {
+            {
+              filetype = 'snacks_layout_box',
+            },
           },
         },
-      },
-    },
+      }
+    end,
     keys = {
       { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
       { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
