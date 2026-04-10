@@ -128,7 +128,7 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         bashls = {},
-        clangd = {},
+        -- clangd = {},
         gopls = {},
         basedpyright = {},
         dockerls = {},
@@ -150,17 +150,17 @@ return {
             },
           },
         },
-        neocmake = {},
+        -- neocmake = {},
         ruff = {},
-        rust_analyzer = {
-          {
-            completion = {
-              capable = {
-                snippets = 'add_parenthesis',
-              },
-            },
-          },
-        },
+        -- rust_analyzer = {
+        --   {
+        --     completion = {
+        --       capable = {
+        --         snippets = 'add_parenthesis',
+        --       },
+        --     },
+        --   },
+        -- },
         sqruff = {},
         terraformls = {},
         tflint = {
@@ -249,11 +249,11 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'bash-debug-adapter',
+        -- 'bash-debug-adapter',
         'biome',
-        'cmakelang',
-        'cmakelint',
-        'codelldb',
+        -- 'cmakelang',
+        -- 'cmakelint',
+        -- 'codelldb',
         'debugpy',
         'delve',
         'firefox-debug-adapter',
@@ -267,7 +267,6 @@ return {
         'shellcheck',
         'shfmt',
         'stylua',
-        'taplo',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
