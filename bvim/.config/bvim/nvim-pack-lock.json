@@ -34,6 +34,11 @@
       "rev": "4b03656c09c1561f89b6aa0665c15d292ba9499d",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
+    "markdown-preview.nvim": {
+      "rev": "9becceee5740b7db6914da87358a183ad11b2049",
+      "src": "https://github.com/iamcco/markdown-preview.nvim",
+      "version": ">=0.0.0"
+    },
     "mason-lspconfig.nvim": {
       "rev": "63a3c6a80538de1003373a619e29aeda27809ad3",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim",
@@ -51,6 +56,11 @@
     "mason.nvim": {
       "rev": "b03fb0f20bc1d43daf558cda981a2be22e73ac42",
       "src": "https://github.com/mason-org/mason.nvim",
+      "version": ">=0.0.0"
+    },
+    "mkdnflow.nvim": {
+      "rev": "5f754af97969c605741da9a1a8ea2ecf96676c33",
+      "src": "https://github.com/jakewvincent/mkdnflow.nvim",
       "version": ">=0.0.0"
     },
     "neogen": {
@@ -145,9 +155,24 @@
       "src": "https://github.com/stevearc/oil.nvim",
       "version": ">=0.0.0"
     },
+    "overseer.nvim": {
+      "rev": "95b1099c043e4231a1204abd9a394d379e69f029",
+      "src": "https://github.com/stevearc/overseer.nvim",
+      "version": ">=0.0.0"
+    },
     "plenary.nvim": {
       "rev": "50012918b2fc8357b87cff2a7f7f0446e47da174",
       "src": "https://github.com/nvim-lua/plenary.nvim",
+      "version": ">=0.0.0"
+    },
+    "quicker.nvim": {
+      "rev": "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
+      "src": "https://github.com/stevearc/quicker.nvim",
+      "version": ">=0.0.0"
+    },
+    "render-markdown.nvim": {
+      "rev": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim",
       "version": ">=0.0.0"
     },
     "schemastore.nvim": {
