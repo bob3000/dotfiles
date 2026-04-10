@@ -99,11 +99,11 @@ return {
             [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
         } or {},
-        -- underline = { severity = vim.diagnostic.severity.ERROR },
-        -- virtual_lines = {
-        --   current_line = true,
-        --   format = diagnostic_format,
-        -- },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        virtual_lines = {
+          current_line = true,
+          format = diagnostic_format,
+        },
         -- virtual_text = {
         --   source = 'if_many',
         --   spacing = 2,
@@ -398,8 +398,7 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
-      -- fuzzy = { implementation = 'prefer_rust_with_warning' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
       -- prebuilt_binaries = {
       --   -- Whether or not to automatically download a prebuilt binary from github. If this is set to `false`,
       --   -- you will need to manually build the fuzzy binary dependencies by running `cargo build --release`
