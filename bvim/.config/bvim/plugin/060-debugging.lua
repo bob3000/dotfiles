@@ -1,5 +1,5 @@
 vim.pack.add({
-  { src = "https://github.com/mfussenegger/nvim-dap", version = vim.version.range("*") },
+  { src = "https://github.com/mfussenegger/nvim-dap", version = "master" },
   { src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("*") },
   { src = "https://github.com/theHamsta/nvim-dap-virtual-text", version = "master" },
   { src = "https://github.com/mason-org/mason.nvim", version = "master" },
@@ -9,7 +9,6 @@ vim.pack.add({
 })
 
 local dap = require("dap")
-local dapview = require("dap-view")
 
 require("overseer").enable_dap()
 
@@ -42,10 +41,6 @@ for type, icon in pairs(breakpoint_icons) do
   local hl = (type == "Stopped") and "DapStop" or "DapBreak"
   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
 end
-
-dap.listeners.after.event_initialized["dapui_config"] = dapview.open
-dap.listeners.before.event_terminated["dapui_config"] = dapview.close
-dap.listeners.before.event_exited["dapui_config"] = dapview.close
 
 local mason_path = vim.fn.stdpath("data") .. "/mason"
 
@@ -195,6 +190,12 @@ require("dap-go").setup({
     detached = vim.fn.has("win32") == 0,
   },
 })
+
+local dapview = require("dap-view")
+dapview.setup({})
+dap.listeners.after.event_initialized["dapui_config"] = dapview.open
+dap.listeners.before.event_terminated["dapui_config"] = dapview.close
+dap.listeners.before.event_exited["dapui_config"] = dapview.close
 
 vim.keymap.set("n", "<F1>", function()
   require("dap").step_into()
