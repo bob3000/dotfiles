@@ -10,12 +10,13 @@ RUN dnf install -y \
   git \
   netcat \
   ripgrep \
+  stow \
   tree-sitter-cli \
   && dnf clean all
 
 RUN PLATFORM=$( \
   if [ "$TARGETPLATFORM" = "linux/amd64" ]; then echo "linux-x86_64"; \
-  elif [ "$TARGETPLATFORM" = "darwin/arm64" ]; then echo "macos-arm64"; \
+  elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then echo "linux-arm64"; \
   fi \
   ) && \
   echo "PLATFORM=$PLATFORM" >> /etc/environment
@@ -23,10 +24,13 @@ RUN PLATFORM=$( \
 RUN source /etc/environment && \
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-${PLATFORM}.tar.gz && \
   tar --strip-components=1 -C /usr/local -xzf nvim-${PLATFORM}.tar.gz && \
-  rm nvim-linux-x86_64.tar.gz
+  rm nvim-${PLATFORM}.tar.gz
 
 RUN useradd --uid ${UID} -m ${IMG_USR}
 USER ${IMG_USR}:${IMG_USR}
+WORKDIR /home/${IMG_USR}/.dotfiles
+COPY . .
+
 WORKDIR /home/${IMG_USR}/code
 
-CMD ["sh"]
+CMD ["bash"]
