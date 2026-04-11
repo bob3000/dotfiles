@@ -62,6 +62,13 @@ if set -q $SSH_CONNECTION
 else
     set EDITOR nvim
 end
+# XDG base directories.
+set --export XDG_CACHE_HOME "$HOME/.cache"
+set --export XDG_CONFIG_HOME "$HOME/.config"
+set --export XDG_DATA_HOME "$HOME/.local/share"
+set --export XDG_PICTURES_DIR "$HOME/Pictures"
+set --export XDG_STATE_HOME "$HOME/.local/state"
+
 set --export GPG_TTY $(tty)
 set --export OSTYPE (uname)
 set --export TTY /dev/(ps -p $fish_pid -o tty=)
@@ -169,7 +176,6 @@ else if test -d /opt/homebrew
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
     set -gx SDKROOT "$(xcrun --show-sdk-path)"
-    set -gx XDG_CONFIG_HOME $HOME/.config
 end
 
 if status is-interactive
