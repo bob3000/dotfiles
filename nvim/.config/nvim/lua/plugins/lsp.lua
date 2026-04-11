@@ -104,11 +104,11 @@ return {
         --   current_line = true,
         --   format = diagnostic_format,
         -- },
-        -- virtual_text = {
-        --   source = 'if_many',
-        --   spacing = 2,
-        --   format = diagnostic_format,
-        -- },
+        virtual_text = {
+          source = 'if_many',
+          spacing = 2,
+          format = diagnostic_format,
+        },
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
