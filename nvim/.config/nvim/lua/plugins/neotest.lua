@@ -9,7 +9,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-python',
       'nvim-neotest/neotest-jest',
-      'rouge8/neotest-rust',
+      -- 'rouge8/neotest-rust',
       {
         'fredrikaverpil/neotest-golang',
         version = '1.*', -- Optional, but recommended
@@ -96,7 +96,7 @@ return {
         adapters = {
           require 'neotest-golang'(neotest_golang_opts),
           require 'neotest-python',
-          require 'neotest-rust',
+          -- require 'neotest-rust',
           require 'neotest-jest' {
             jestCommand = 'npm test --',
             jestConfigFile = 'custom.jest.config.ts',
