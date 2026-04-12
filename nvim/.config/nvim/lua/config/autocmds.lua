@@ -66,6 +66,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'neotest-output',
     'neotest-summary',
     'notify',
+    'nvim-undotree',
     'oil',
     'PlenaryTestPopup',
     'qf',

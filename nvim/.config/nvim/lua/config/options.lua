@@ -110,4 +110,8 @@ vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter to create 
 vim.lsp.log.set_level(vim.log.levels.OFF) -- disable lsp logs
 vim.cmd.colorscheme 'retrobox' -- set colorscheme
 
-require('vim._core.ui2').enable({})
+-- Disable health checks for these providers.
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
