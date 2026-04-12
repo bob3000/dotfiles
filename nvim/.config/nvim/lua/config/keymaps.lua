@@ -2,8 +2,15 @@
 --  See `:help vim.keymap.set()`
 
 -- Clear highlights on search when pressing <Esc> in normal mode
+-- Stop luasnip from making the cursor jump
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
+  if require('luasnip').expand_or_jumpable() then
+    require('luasnip').unlink_current()
+  end
+  vim.cmd 'noh'
+  return '<esc>'
+end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 
 -- better up/down
 vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
@@ -25,8 +32,6 @@ vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<S-A-l>', '<cmd>BufferLineMoveNext<cr>', { desc = 'Move Buffer Right' })
-vim.keymap.set('n', '<S-A-h>', '<cmd>BufferLineMovePrev<cr>', { desc = 'Move Buffer Left' })
 vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
   Snacks.bufdelete()
 end, { desc = 'Close buffer' })
@@ -64,10 +69,14 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increa
 
 -- insert newline without ending up in insert mode
 vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline below' })
+
 -- delete line without yanking
 vim.keymap.set('n', '<leader>dd', '"_dd', { desc = 'Delete line without yanking' })
+
 -- delete till end of the line line without yanking
 vim.keymap.set('n', '<leader><S-d>', '"_D', { desc = 'Delete till end of line without yanking' })
+
 -- Undotree
-vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader><S-u>", function() require("undotree").open() end, { desc = 'Undotree'})
+vim.keymap.set('n', '<leader><S-u>', function()
+  require('undotree').open()
+end, { desc = 'Undotree' })
