@@ -23,13 +23,39 @@ vim.g.maplocalleader = '\\'
 
 -- Setup lazy.nvim
 require('lazy').setup {
+  ui = { border = 'rounded' },
   spec = {
     -- import your plugins
     { import = 'plugins' },
   },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { 'habamax' } },
   -- automatically check for plugin updates
   checker = { enabled = false },
+  install = {
+    -- Do not automatically install on startup.
+    missing = false,
+  },
+  -- Don't bother me when tweaking plugins.
+  change_detection = { notify = false },
+  -- None of my plugins use luarocks so disable this.
+  rocks = {
+    enabled = false,
+  },
+  performance = {
+    rtp = {
+      -- Stuff I don't use.
+      disabled_plugins = {
+        'gzip',
+        'netrwPlugin',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
 }
+
+vim.cmd.packadd 'nvim.undotree'
+vim.cmd.packadd 'cfilter'
+require('vim._core.ui2').enable {}
