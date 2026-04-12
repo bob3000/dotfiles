@@ -10,7 +10,7 @@ return {
       { '<leader>co', ":'<,'>sort<CR>", mode = '', desc = 'Order lines' },
 
       -- marks
-      { 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", mode = '', desc = 'Delete mark' },
+      { 'dm', ":execute 'delmarks .nr2char(getchar())'<CR>", mode = '', desc = 'Delete mark' },
       { 'dm*', ":execute 'delmarks!'<CR>", mode = '', desc = 'Delete all marks' },
     },
     opts = {
