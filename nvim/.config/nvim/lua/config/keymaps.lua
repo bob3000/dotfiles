@@ -35,7 +35,11 @@ vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', function()
   Snacks.bufdelete()
 end, { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
+vim.keymap.set('n', '<leader>W', '<cmd>w<cr><esc>', { desc = 'Save File' })
+vim.keymap.set('n', '<leader>w', function()
+  require('conform').format { async = true, lsp_format = 'fallback' }
+  return '<esc>:w<cr>'
+end, { desc = 'Save File (without formatting)', expr = true })
 
 -- better indenting
 vim.keymap.set('v', '<', '<gv')
