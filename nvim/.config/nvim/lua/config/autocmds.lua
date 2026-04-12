@@ -56,6 +56,8 @@ vim.api.nvim_create_autocmd('FileType', {
   group = augroup 'close_with_q',
   pattern = {
     'checkhealth',
+    'DiffviewFiles',
+    'DiffviewFileHistory',
     'dbout',
     'gitsigns-blame',
     'grug-far',

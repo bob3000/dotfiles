@@ -10,4 +10,14 @@ return {
     modified = ' ',
     removed = ' ',
   },
+  arrows = {
+    right = ' ',
+    left = ' ',
+    up = ' ',
+    down = ' ',
+  },
+  folder = {
+    open = '󰝰 ',
+    closed = '󰉋 ',
+  }
 }
