@@ -4,8 +4,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+-- toggle inlay hints when switching between normal / insert mode
+vim.g.auto_inlay_hints = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -45,7 +45,7 @@ local statusline = {
   ' %2p%% ',
 }
 
-local socket = os.getenv("HOME") .. "/.cache/nvim/nvim-" .. os.time() .. ".pipe"
+local socket = os.getenv 'HOME' .. '/.cache/nvim/nvim-' .. os.time() .. '.pipe'
 vim.fn.serverstart(socket)
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
@@ -103,7 +103,7 @@ vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
 vim.opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = 'longest:full,full' -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
-vim.opt.winborder = "rounded" -- rounded floating window borders
+vim.opt.winborder = 'rounded' -- rounded floating window borders
 vim.opt.wrap = false -- Disable line wrap
 vim.wo.foldmethod = 'expr' -- use an expression to create folds
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- use treesitter to create fold expression

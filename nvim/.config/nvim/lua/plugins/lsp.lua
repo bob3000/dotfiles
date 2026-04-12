@@ -39,7 +39,21 @@ return {
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
     },
-    config = function()
+    --  This function gets run when an LSP attaches to a particular buffer.
+    --    That is to say, every time a new file is opened that is associated with
+    --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
+    config = function(ev)
+      -- install tools
+      local ensure_installed = tools.servers
+      vim.list_extend(ensure_installed, tools.tools)
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+      require('mason-lspconfig').setup {
+        ensure_installed = {}, -- explicitly set to an empty table (installs populated via mason-tool-installer)
+        automatic_installation = false,
+      }
+
+      -- set up keymaps
       local wk = require 'which-key'
       wk.add {
         { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
@@ -53,25 +67,22 @@ return {
         { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
       }
 
-      --  This function gets run when an LSP attaches to a particular buffer.
-      --    That is to say, every time a new file is opened that is associated with
-      --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-      --    function will be executed to configure the current buffer
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
         callback = function(event)
+          local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+          local bufnr = event.buf
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('user-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf,
+              buffer = bufnr,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
+              buffer = bufnr,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
@@ -84,6 +95,42 @@ return {
               end,
             })
           end
+
+          -- toggle inlay hints automatically
+          if client:supports_method 'textDocument/inlayHint' then
+            local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
+
+            if vim.g.auto_inlay_hints then
+              -- Initial inlay hint display.
+              -- Idk why but without the delay inlay hints aren't displayed at the very start.
+              vim.defer_fn(function()
+                local mode = vim.api.nvim_get_mode().mode
+                vim.lsp.inlay_hint.enable(mode == 'n' or mode == 'v', { bufnr = bufnr })
+              end, 500)
+            end
+
+            vim.api.nvim_create_autocmd('InsertEnter', {
+              group = inlay_hints_group,
+              desc = 'Enable inlay hints',
+              buffer = bufnr,
+              callback = function()
+                if vim.g.auto_inlay_hints then
+                  vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+                end
+              end,
+            })
+
+            vim.api.nvim_create_autocmd('InsertLeave', {
+              group = inlay_hints_group,
+              desc = 'Disable inlay hints',
+              buffer = bufnr,
+              callback = function()
+                if vim.g.auto_inlay_hints then
+                  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                end
+              end,
+            })
+          end
         end,
       })
 
@@ -92,14 +139,14 @@ return {
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
-        signs = vim.g.have_nerd_font and {
+        signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
             [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
             [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
             [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
-        } or {},
+        },
         underline = { severity = vim.diagnostic.severity.ERROR },
         -- virtual_lines = {
         --   current_line = true,
@@ -112,25 +159,22 @@ return {
         },
       }
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      local ensure_installed = vim.tbl_keys(tools.servers)
-      vim.list_extend(ensure_installed, tools.tools)
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- Set up LSP servers.
+      vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+        once = true,
+        callback = function()
+          -- LSP servers and clients are able to communicate to each other what features they support.
+          --  By default, Neovim doesn't support everything that is in the LSP specification.
+          --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
+          --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
+          local capabilities = require('blink.cmp').get_lsp_capabilities(nil, true)
+          vim.lsp.config('*', { capabilities = capabilities })
 
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (installs populated via mason-tool-installer)
-        automatic_installation = false,
-      }
-
-      for server_name, settings in pairs(tools.servers) do
-        vim.lsp.enable(server_name)
-        settings.capabilities = vim.tbl_deep_extend('force', {}, capabilities, settings.capabilities or {})
-        vim.lsp.config(server_name, settings)
-      end
+          for _, server_name in pairs(tools.servers) do
+            vim.lsp.enable(server_name)
+          end
+        end,
+      })
     end,
   },
   { -- Autocompletion
