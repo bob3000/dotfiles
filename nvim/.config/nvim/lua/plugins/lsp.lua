@@ -58,11 +58,11 @@ return {
       wk.add {
         { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
         { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
-        { 'grh', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch header source' },
         -- keybindings implemented by snacks
         -- { 'grr', vim.lsp.buf.references, desc = 'References' }
         -- { 'gri', vim.lsp.buf.implementation, desc = 'Implementation' },
         -- { 'grt', vim.lsp.buf.type_definition, desc = 'Type Definition' },
+        { 'grx', vim.lsp.codelens.run, desc = 'Code Lens' },
         { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
         { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
       }
@@ -94,6 +94,28 @@ return {
                 vim.api.nvim_clear_autocmds { group = 'user-lsp-highlight', buffer = event2.buf }
               end,
             })
+          end
+
+          -- switch to header file
+          if client.name == 'clangd' then
+            wk.add {
+              { 'grh', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch header source' },
+            }
+          end
+
+          -- enable linked editing if available
+          if client:supports_method 'textDocument/linkedEditingRange' then
+            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+          end
+
+          -- enable inline completion if available
+          if client:supports_method 'textDocument/inlineCompletion' then
+            vim.lsp.inline_completion.enable(true, { client_id = client.id })
+          end
+
+          -- enable codelens if available
+          if client:supports_method 'textDocument/codeLens' then
+            vim.lsp.codelens.enable(true, { client_id = client.id })
           end
 
           -- toggle inlay hints automatically
