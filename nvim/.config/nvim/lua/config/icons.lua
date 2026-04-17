@@ -19,5 +19,8 @@ return {
   folder = {
     open = '󰝰 ',
     closed = '󰉋 ',
+  },
+  misc = {
+    search = ' '
   }
 }

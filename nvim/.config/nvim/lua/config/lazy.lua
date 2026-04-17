@@ -31,8 +31,8 @@ require('lazy').setup {
   -- automatically check for plugin updates
   checker = { enabled = false },
   install = {
-    -- Do not automatically install on startup.
-    missing = false,
+    -- automatically install on startup.
+    missing = true,
   },
   -- Don't bother me when tweaking plugins.
   change_detection = { notify = false },
