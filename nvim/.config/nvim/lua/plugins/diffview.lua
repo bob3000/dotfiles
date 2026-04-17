@@ -3,7 +3,7 @@ local icons = require 'config.icons'
 -- Diffs for git revisions.
 return {
   {
-    'sindrets/diffview.nvim',
+    'dlyongemallo/diffview.nvim',
     keys = {
       { '<leader>gF', '<cmd>DiffviewFileHistory<cr>', desc = 'File history' },
       { '<leader>gD', '<cmd>DiffviewOpen<cr>', desc = 'Diff view' },
