@@ -1,0 +1,12 @@
+
+new_tab
+layout splits
+enabled_layouts splits,stack,tall,horizontal
+set_layout_state {"pairs": {"one": 1, "two": 2}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [1, 2], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 2, "window_ids": [2]}]}}
+cd /Users/bob/.dotfiles
+
+launch 'kitty-unserialize-data={"id": 1}'
+focus
+launch 'kitty-unserialize-data={"id": 2}'
+
+focus_tab 0
