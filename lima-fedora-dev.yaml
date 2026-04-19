@@ -1,0 +1,69 @@
+# fedora43-dev.yaml
+# Lima VM template — Fedora 43
+# Ref: https://lima-vm.io/docs/config/
+# Requires: Lima >= 2.1.0
+
+minimumLimaVersion: "2.1.0"
+
+base:
+  - template:fedora-43
+
+cpus: 4
+memory: "4GiB"
+
+mounts:
+  - location: "~/code"
+    mountPoint: "/home/{{.User}}/code"
+    writable: true
+  - location: "~/.dotfiles"
+    mountPoint: "/home/{{.User}}.guest/.dotfiles"
+    writable: true
+
+provision:
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux
+      dnf update -y
+      dnf install -y \
+        bat \
+        curl \
+        direnv \
+        eza \
+        fd-find \
+        file \
+        fish \
+        fzf \
+        git \
+        git-delta \
+        go \
+        kitty-terminfo \
+        netcat \
+        ripgrep \
+        stow \
+        tree-sitter-cli \
+        unzip \
+        wget
+      export PLATFORM=$(
+        ARCH=$(uname -m)
+        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+        case "$ARCH" in
+          x86_64)  echo "${OS}-x86_64" ;;
+          aarch64) echo "${OS}-arm64" ;;
+          armv7l)  echo "${OS}-armv7" ;;
+          *)       echo "${OS}-${ARCH}" ;;
+        esac
+      )
+      curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-${PLATFORM}.tar.gz && \
+      tar --strip-components=1 -C /usr/local -xzf nvim-${PLATFORM}.tar.gz && \
+      rm nvim-${PLATFORM}.tar.gz
+      echo "exec fish" >> /home/{{.User}}.guest/.bashrc
+
+probes:
+  - script: |
+      #!/bin/bash
+      set -eux
+      grep -q "exec fish" /home/{{.User}}.guest/.bashrc
+    hint: |
+      Provisioning incomplete. Check logs:
+      limactl shell fedora43-dev sudo journalctl -u cloud-final
