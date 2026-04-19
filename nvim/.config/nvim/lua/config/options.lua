@@ -65,6 +65,7 @@ vim.opt.guicursor = 'a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.inccommand = 'nosplit' -- preview incremental substitute
 vim.opt.jumpoptions = 'clean' -- configure jumplist behaviour
+vim.opt.keywordprg = ":help!" -- what to do when K is pressed
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.linebreak = true -- Wrap lines at convenient points
 vim.opt.list = true -- Show some invisible characters (tabs...

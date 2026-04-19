@@ -183,7 +183,7 @@ return {
   },
   { -- Autocompletion
     'saghen/blink.cmp',
-    build = 'cargo build --release',
+    -- build = 'cargo build --release',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
