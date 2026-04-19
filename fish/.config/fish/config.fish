@@ -121,6 +121,7 @@ alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"
 alias wanip 'curl -s ifconfig.me'
 alias icat "kitty +kitten icat"
 alias d "kitty +kitten diff"
+alias s "kitten ssh"
 alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
@@ -171,8 +172,8 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-    set -gx CPLUS_INCLUDE_PATH "/opt/homebrew/include"
-    set -gx C_INCLUDE_PATH "/opt/homebrew/include"
+    set -gx CPLUS_INCLUDE_PATH /opt/homebrew/include
+    set -gx C_INCLUDE_PATH /opt/homebrew/include
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
     set -gx SDKROOT "$(xcrun --show-sdk-path)"
