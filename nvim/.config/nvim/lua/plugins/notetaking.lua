@@ -92,6 +92,16 @@ return {
           end
         end,
       }):map '<leader>um'
+
+      -- disable rendering in insert mode
+      vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
+        callback = require('render-markdown').buf_disable,
+      })
+
+      -- enable rendering when leaving insert mode
+      vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+        callback = require('render-markdown').buf_enable,
+      })
     end,
   },
 }
