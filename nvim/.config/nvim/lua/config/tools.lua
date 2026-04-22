@@ -23,6 +23,7 @@ return {
     'lua_ls',
     'yamlls',
     'taplo',
+    'ty',
   },
 
   -- list will be merged with the language servers listed above
