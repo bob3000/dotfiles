@@ -1,4 +1,5 @@
 local icons = require 'config.icons'
+vim.opt.winbar = " " -- always show winbar to avoid jumping text
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -40,7 +41,7 @@ return {
           },
           'diagnostics',
         },
-        lualine_c = { 'filename', 'aerial' },
+        lualine_c = { 'filename' },
         lualine_x = {
           'encoding',
           'fileformat',
@@ -70,6 +71,9 @@ return {
           },
           'lsp_status',
         },
+      },
+      winbar = {
+        lualine_c = { 'aerial' },
       },
     },
   },

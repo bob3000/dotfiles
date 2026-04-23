@@ -1,0 +1,37 @@
+return {
+  {
+    'stevearc/aerial.nvim',
+    lazy = true,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      on_attach = function(bufnr)
+        -- Jump forwards/backwards with '{' and '}'
+        vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+        vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+      end,
+      attach_mode = 'global',
+      backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+      close_on_select = true,
+      show_guides = true,
+      guides = {
+        mid_item = '├╴',
+        last_item = '└╴',
+        nested_top = '│ ',
+        whitespace = '  ',
+      },
+      layout = {
+        min_width = { 30, 0.25 },
+      },
+    },
+    keys = {
+      {
+        '<leader>cs',
+        '<cmd>AerialToggle<cr>',
+        desc = 'Aerial',
+      },
+    },
+  },
+}
