@@ -4,7 +4,6 @@ return {
     -- 'clangd',
     -- 'cssls',
     'gopls',
-    'basedpyright',
     'dockerls',
     'docker_compose_language_service',
     'helm_ls',
