@@ -49,17 +49,6 @@ return {
     config = true,
   },
   {
-    'okuuva/auto-save.nvim',
-    cmd = 'ASToggle', -- optional for lazy loading on command
-    event = { 'InsertLeave', 'TextChanged' }, -- optional for lazy loading on trigger events
-    opts = {
-      enabled = true,
-    },
-    keys = {
-      { '<leader>cW', '<cmd>ASToggle<cr>', desc = 'Toggle Auto Save' },
-    },
-  },
-  {
     'windwp/nvim-ts-autotag',
     version = '*',
     opts = {},

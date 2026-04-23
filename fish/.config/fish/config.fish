@@ -91,6 +91,7 @@ set --export PATH "$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/postgresql@*/bin:$PATH"
+set --export PATH "$HOMEBREW_PREFIX/opt/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 command -q luarocks && eval "$(luarocks path --bin)"
 
