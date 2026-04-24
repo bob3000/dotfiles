@@ -49,6 +49,27 @@ return {
     config = true,
   },
   {
+    'okuuva/auto-save.nvim',
+    cmd = 'ASToggle', -- optional for lazy loading on command
+    event = { 'InsertLeave', 'TextChanged' }, -- optional for lazy loading on trigger events
+    opts = {
+      enabled = true,
+      condition = function(buf)
+        local excluded_filetypes = {
+          'sql', -- prevents error when the dadbod SQL window is opened (cannot be saved)
+        }
+        local excluded_filenames = {}
+        return not (
+          vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, '&filetype'))
+          or vim.tbl_contains(excluded_filenames, vim.fn.expand '%:t')
+        )
+      end,
+    },
+    keys = {
+      { '<leader>cW', '<cmd>ASToggle<cr>', desc = 'Toggle Auto Save' },
+    },
+  },
+  {
     'windwp/nvim-ts-autotag',
     version = '*',
     opts = {},
