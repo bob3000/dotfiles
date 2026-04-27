@@ -48,7 +48,7 @@ local statusline = {
 local socket = os.getenv 'HOME' .. '/.cache/nvim/nvim-' .. os.time() .. '.pipe'
 vim.fn.serverstart(socket)
 vim.opt.autoread = true -- Refresh buffer contents on external change
-vim.opt.autowrite = true -- Enable auto write
+vim.opt.autowriteall = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.colorcolumn = '80,120' -- show visual column after a number of chars
 vim.opt.completeopt = 'menu,menuone,noselect,fuzzy,preview' -- completion menu options

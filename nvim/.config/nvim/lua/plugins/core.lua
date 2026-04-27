@@ -80,6 +80,17 @@ return {
     opts = {},
   },
   {
+    'nvim-mini/mini.nvim',
+    version = '*',
+    keys = {
+      {
+        'gs',
+        function() require('mini.splitjoin').toggle() end,
+        desc = 'Join/split code block',
+      },
+    },
+  },
+  {
     'folke/ts-comments.nvim',
     opts = {
       lang = {
