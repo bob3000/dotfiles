@@ -69,6 +69,7 @@ symbol = " "
 symbol = " "
 
 [python]
+pyenv_version_name = true
 symbol = " "
 
 [golang]
