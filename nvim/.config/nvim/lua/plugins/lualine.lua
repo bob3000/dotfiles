@@ -74,6 +74,9 @@ return {
       winbar = {
         lualine_c = { 'filename', 'aerial' },
       },
+      inactive_winbar = {
+        lualine_c = { 'filename', 'aerial' },
+      },
     },
   },
 }
