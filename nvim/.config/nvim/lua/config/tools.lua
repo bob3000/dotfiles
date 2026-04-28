@@ -9,7 +9,7 @@ return {
     'helm_ls',
     'biome',
     -- 'html',
-    'jsonls',
+    'jsonls', -- still complements biome
     -- 'neocmake',
     'ruff',
     -- 'rust_analyzer',
@@ -18,7 +18,6 @@ return {
     'terraformls',
     'tflint',
     'tsgo',
-    -- 'vtsls',
     'lua_ls',
     'yamlls',
     'taplo',
@@ -27,21 +26,19 @@ return {
 
   -- list will be merged with the language servers listed above
   tools = {
-    -- 'bash-debug-adapter',
-    'biome',
+    -- 'bash-debug-adapter', -- mildly useful
     -- 'cmakelang',
     -- 'cmakelint',
     -- 'codelldb',
-    'debugpy',
+    -- 'debugpy', -- usually installed within the project
     'delve',
-    'firefox-debug-adapter',
+    -- 'firefox-debug-adapter',
     'gofumpt',
     'goimports',
     'hadolint',
-    'js-debug-adapter',
+    -- 'js-debug-adapter',
     'markdownlint',
     'markdown-toc',
-    'prettier',
     'shellcheck',
     'shfmt',
     'stylua',
