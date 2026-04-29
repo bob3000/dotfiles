@@ -8,6 +8,7 @@ return {
       options = {
         theme = 'auto',
         globalstatus = vim.o.laststatus == 3,
+        always_show_tabline = true,
         disabled_filetypes = {
           statusline = {
             'snacks_dashboard',
@@ -76,6 +77,58 @@ return {
       },
       inactive_winbar = {
         lualine_c = { 'filename', 'aerial' },
+      },
+      tabline = {
+        lualine_a = {
+          {
+            'buffers',
+            use_mode_colors = false,
+            cond = function()
+              return vim.bo.filetype ~= 'snacks_dashboard'
+            end,
+            filetype_names = {
+              snacks_picker_input = 'Picker',
+              snacks_picker_list = 'Picker',
+            },
+            symbols = {
+              modified = ' ●', -- Text to show when the buffer is modified
+              alternate_file = ' ', -- Text to show to identify the alternate file
+              directory = '', -- Text to show when the buffer is a directory
+            },
+          },
+        },
+        lualine_x = {
+          {
+            'windows',
+            cond = function()
+              return vim.bo.filetype ~= 'snacks_dashboard'
+            end,
+            filetype_names = {
+              snacks_dashboard = '',
+              snacks_picker_input = 'Picker',
+              snacks_picker_list = 'Picker',
+            },
+            disabled_buftypes = {
+              'quickfix',
+              'prompt',
+              'snacks_dashboard',
+              'snacks_picker_input',
+              'snacks_picker_list',
+            },
+          },
+        },
+        lualine_z = {
+          {
+            'tabs',
+            cond = function()
+              return vim.bo.filetype ~= 'snacks_dashboard'
+            end,
+            show_modified_status = true, -- Shows a symbol next to the tab name if the file has been modified.
+            symbols = {
+              modified = ' ●', -- Text to show when the file is modified
+            },
+          },
+        },
       },
     },
   },
