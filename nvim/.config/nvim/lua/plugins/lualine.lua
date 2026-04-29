@@ -73,10 +73,35 @@ return {
         },
       },
       winbar = {
-        lualine_c = { 'filename', 'aerial' },
+        lualine_c = {
+          {
+            'filename',
+            newfile_status = true,
+            symbols = {
+              modified = '', -- Text to show when the file is modified
+              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '[No Name]', -- Text to show for unnamed buffers.
+              newfile = '[New]', -- Text to show for newly created file before first write
+            },
+          },
+          'aerial',
+        },
       },
       inactive_winbar = {
-        lualine_c = { 'filename', 'aerial' },
+        lualine_c = {
+          {
+            'filename',
+            newfile_status = true,
+            symbols = {
+              modified = '', -- Text to show when the file is modified
+              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '[No Name]', -- Text to show for unnamed buffers.
+              newfile = '[New]', -- Text to show for newly created file before first write
+            },
+          },
+
+          'aerial',
+        },
       },
       tabline = {
         lualine_a = {

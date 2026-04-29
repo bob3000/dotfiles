@@ -26,6 +26,23 @@ return {
         custom_highlights = {},
         default_integrations = true,
         auto_integrations = true,
+        integrations = {
+          lualine = {
+            -- lualine color overrides in the following hierarchy: Catppuccin Flavor -> Mode -> Lualine Section
+            -- The Catppuccin flavor entry can be any Catpuccin flavor or "all" to apply to all flavors
+            -- The flavor entry can be either a table or a function which consumes the current Catppuccin palette, just like custom_highlights and color_overrides
+            all = function(colors)
+              ---@type CtpIntegrationLualineOverride
+              return {
+                inactive = {
+                  a = { bg = colors.surface0, fg = colors.blue },
+                  b = { bg = colors.surface0, fg = colors.surface1, gui = 'bold' },
+                  c = { bg = colors.surface0, fg = colors.overlay0 },
+                },
+              }
+            end,
+          },
+        },
       }
 
       -- setup must be called before loading
