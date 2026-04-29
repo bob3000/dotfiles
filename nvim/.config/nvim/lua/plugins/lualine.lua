@@ -122,26 +122,6 @@ return {
             },
           },
         },
-        lualine_x = {
-          {
-            'windows',
-            cond = function()
-              return vim.bo.filetype ~= 'snacks_dashboard'
-            end,
-            filetype_names = {
-              snacks_dashboard = '',
-              snacks_picker_input = 'Picker',
-              snacks_picker_list = 'Picker',
-            },
-            disabled_buftypes = {
-              'quickfix',
-              'prompt',
-              'snacks_dashboard',
-              'snacks_picker_input',
-              'snacks_picker_list',
-            },
-          },
-        },
         lualine_z = {
           {
             'tabs',

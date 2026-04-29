@@ -62,17 +62,27 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {
+      render_modes = { 'n', 'c', 't' },
+      anti_conceal = {
+        enabled = false,
+      },
       code = {
         sign = false,
         width = 'block',
         right_pad = 1,
       },
       heading = {
+        width = 'block',
         sign = false,
-        icons = {},
+        icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
       },
       checkbox = {
         enabled = false,
+      },
+      completions = {
+        lsp = {
+          enabled = true,
+        },
       },
     },
     ft = { 'markdown', 'norg', 'rmd', 'org', 'codecompanion' },
@@ -92,16 +102,6 @@ return {
           end
         end,
       }):map '<leader>um'
-
-      -- disable rendering in insert mode
-      vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-        callback = require('render-markdown').buf_disable,
-      })
-
-      -- enable rendering when leaving insert mode
-      vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-        callback = require('render-markdown').buf_enable,
-      })
     end,
   },
 }
