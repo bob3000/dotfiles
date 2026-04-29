@@ -40,7 +40,7 @@ return {
         markdown = { 'biome', 'markdown-toc' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         scss = { 'biome' },
-        yaml = { 'biome' },
+        yaml = { 'prettier' },
 
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
