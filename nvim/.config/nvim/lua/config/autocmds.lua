@@ -137,6 +137,7 @@ vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
     vim.opt.relativenumber = false
     vim.opt.cursorline = false
     vim.opt.cursorcolumn = false
+    vim.opt.conceallevel = 0
   end,
 })
 
@@ -146,5 +147,6 @@ vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
     vim.opt.relativenumber = true
     vim.opt.cursorline = true
     vim.opt.cursorcolumn = true
+    vim.opt.conceallevel = 2
   end,
 })
