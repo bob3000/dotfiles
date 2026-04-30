@@ -5,7 +5,7 @@
 ### Local install
 
 ```sh
-stow -v -n bat cspell fish git k9s kitty lazygit lazyvim python starship tmux wezterm zsh
+stow -v -n bat cspell fish git k9s kitty lazygit lazyvim starship tmux zsh
 ```
 
 ### Docker / Podman

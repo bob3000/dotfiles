@@ -72,9 +72,11 @@ return {
         right_pad = 1,
       },
       heading = {
+        position = 'right',
         width = 'block',
         sign = false,
         icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+        backgrounds = {},
       },
       checkbox = {
         enabled = false,
