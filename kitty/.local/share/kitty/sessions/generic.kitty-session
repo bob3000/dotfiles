@@ -1,77 +1,43 @@
 
-new_tab devops-automation
+new_tab shell
 layout splits
 enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"pairs": {"one": 16, "two": {"one": 17, "two": 18}}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [23, 22], "window_groups": [{"id": 16, "window_ids": [22]}, {"id": 17, "window_ids": [23]}, {"id": 18, "window_ids": [24]}]}}
-cd /Users/robin/savi/devops-automation
+set_layout_state {"pairs": {"one": 1, "two": 2}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [1, 2], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 2, "window_ids": [2]}]}}
+cd /home/bob
 
-launch 'kitty-unserialize-data={"id": 22}'
+launch 'kitty-unserialize-data={"id": 1}'
 focus
-launch 'kitty-unserialize-data={"id": 23}'
-launch 'kitty-unserialize-data={"id": 24}'
-
-new_tab devops-gitops
-layout splits
-enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"pairs": {"one": 19, "two": 20}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 1, "active_group_history": [25], "window_groups": [{"id": 19, "window_ids": [25]}, {"id": 20, "window_ids": [26]}]}}
-cd /Users/robin/savi/devops-gitops
-
-launch 'kitty-unserialize-data={"id": 25}'
-launch 'kitty-unserialize-data={"id": 26}'
-focus
-
-new_tab
-layout splits
-enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"pairs": {"one": 21, "two": {"one": 22, "two": 23}}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [], "window_groups": [{"id": 21, "window_ids": [28]}, {"id": 22, "window_ids": [29]}, {"id": 23, "window_ids": [30]}]}}
-cd /Users/robin/savi/cloud-infrastructure
-
-launch 'kitty-unserialize-data={"id": 28}'
-focus
-launch 'kitty-unserialize-data={"id": 29}'
-launch 'kitty-unserialize-data={"id": 30}'
+launch 'kitty-unserialize-data={"id": 2}'
 
 new_tab editor
 layout splits
 enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"pairs": {"one": 24, "two": 25}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [32, 33, 24, 25], "window_groups": [{"id": 24, "window_ids": [32]}, {"id": 25, "window_ids": [33]}]}}
-cd /Users/robin
+set_layout_state {"pairs": {"one": 11}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [11], "window_groups": [{"id": 11, "window_ids": [11]}]}}
+cd /home/bob
 
-launch 'kitty-unserialize-data={"id": 32}'
+launch 'kitty-unserialize-data={"id": 11}'
 focus
-launch 'kitty-unserialize-data={"id": 33}'
 
 new_tab cloud
 layout horizontal
 enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"biased_map": {}, "opts": {}, "class": "Horizontal", "all_windows": {"active_group_idx": 0, "active_group_history": [34, 35, 36, 26, 27], "window_groups": [{"id": 26, "window_ids": [34]}, {"id": 27, "window_ids": [35]}, {"id": 28, "window_ids": [36]}]}}
-cd /Users/robin
+set_layout_state {"biased_map": {}, "opts": {}, "class": "Horizontal", "all_windows": {"active_group_idx": 0, "active_group_history": [3, 5, 4], "window_groups": [{"id": 3, "window_ids": [3]}, {"id": 4, "window_ids": [4]}, {"id": 5, "window_ids": [5]}]}}
+cd /home/bob
 
-launch 'kitty-unserialize-data={"id": 34}'
+launch 'kitty-unserialize-data={"id": 3}'
 focus
-launch 'kitty-unserialize-data={"id": 35}'
-launch 'kitty-unserialize-data={"id": 36}'
-
-new_tab
-layout splits
-enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"pairs": {"one": 29, "two": {"one": 30, "two": 31}}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [37, 38, 39, 29, 30], "window_groups": [{"id": 29, "window_ids": [37]}, {"id": 30, "window_ids": [38]}, {"id": 31, "window_ids": [39]}]}}
-cd /Users/robin
-
-launch 'kitty-unserialize-data={"id": 37}' --title=local
-focus
-launch 'kitty-unserialize-data={"id": 38}'
-launch 'kitty-unserialize-data={"id": 39}' --title=shell
+launch 'kitty-unserialize-data={"id": 4}'
+launch 'kitty-unserialize-data={"id": 5}'
 
 new_tab remote
-layout tall
+layout splits
 enabled_layouts splits,stack,tall,horizontal
-set_layout_state {"main_bias": [0.5, 0.5], "biased_map": {}, "opts": {"full_size": 1, "bias": 50, "mirrored": "n"}, "class": "Tall", "all_windows": {"active_group_idx": 1, "active_group_history": [40, 41, 42, 33, 34], "window_groups": [{"id": 32, "window_ids": [40]}, {"id": 33, "window_ids": [41]}, {"id": 34, "window_ids": [42]}]}}
-cd /Users/robin
+set_layout_state {"pairs": {"one": 7, "two": {"horizontal": false, "one": 8, "two": 9}}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [7, 9, 8], "window_groups": [{"id": 7, "window_ids": [7]}, {"id": 8, "window_ids": [8]}, {"id": 9, "window_ids": [9]}]}}
+cd /home/bob
 
-launch 'kitty-unserialize-data={"id": 40}'
-launch 'kitty-unserialize-data={"id": 41}'
+launch 'kitty-unserialize-data={"id": 7}'
 focus
-launch 'kitty-unserialize-data={"id": 42}'
+launch 'kitty-unserialize-data={"id": 8}'
+launch 'kitty-unserialize-data={"id": 9}'
 
-focus_tab 3
+focus_tab 0
