@@ -1,4 +1,5 @@
 local icons = require 'config.icons'
+local ignore_filetypes = require("config.tools").ignore_filetypes
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -13,9 +14,7 @@ return {
           statusline = {
             'snacks_dashboard',
           },
-          winbar = {
-            'snacks_dashboard',
-          },
+          winbar = ignore_filetypes,
         },
       },
       sections = {
@@ -80,8 +79,8 @@ return {
             symbols = {
               modified = '', -- Text to show when the file is modified
               readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
-              unnamed = '[No Name]', -- Text to show for unnamed buffers.
-              newfile = '[New]', -- Text to show for newly created file before first write
+              unnamed = '󰘓 ', -- Text to show for unnamed buffers.
+              newfile = ' ', -- Text to show for newly created file before first write
             },
           },
           'aerial',

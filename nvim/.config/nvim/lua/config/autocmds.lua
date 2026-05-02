@@ -70,6 +70,8 @@ vim.api.nvim_create_autocmd('FileType', {
     'notify',
     'nvim-undotree',
     'oil',
+    'OverseerList',
+    'OverseerOutput',
     'PlenaryTestPopup',
     'qf',
     'spectre_panel',
