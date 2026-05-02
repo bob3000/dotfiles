@@ -1,64 +1,45 @@
 vim.api.nvim_create_user_command('OverseerRestartLast', function()
   local overseer = require 'overseer'
-  local tasks = overseer.list_tasks { recent_first = true }
+  local task_list = require 'overseer.task_list'
+  local tasks = overseer.list_tasks {
+    status = {
+      overseer.STATUS.SUCCESS,
+      overseer.STATUS.FAILURE,
+      overseer.STATUS.CANCELED,
+    },
+    sort = task_list.sort_finished_recently,
+  }
   if vim.tbl_isempty(tasks) then
     vim.notify('No tasks found', vim.log.levels.WARN)
   else
-    overseer.run_action(tasks[1], 'restart')
+    local most_recent = tasks[1]
+    overseer.run_action(most_recent, 'restart')
   end
 end, {})
 
 return {
   {
     'stevearc/overseer.nvim',
-    version = "*",
+    version = '*',
     cmd = {
       'OverseerOpen',
       'OverseerClose',
       'OverseerToggle',
-      'OverseerSaveBundle',
-      'OverseerLoadBundle',
-      'OverseerDeleteBundle',
-      'OverseerRunCmd',
+      'OverseerShell',
       'OverseerRun',
-      'OverseerInfo',
-      'OverseerBuild',
-      'OverseerQuickAction',
-      'OverseerTaskAction',
-      'OverseerClearCache',
+      'OverseerRestartLast',
     },
     opts = {
-      dap = false,
       task_list = {
-        direction = "right",
-        bindings = {
-          ['<C-h>'] = false,
-          ['<C-j>'] = false,
-          ['<C-k>'] = false,
-          ['<C-l>'] = false,
-        },
-      },
-      form = {
-        win_opts = {
-          winblend = 0,
-        },
-      },
-      confirm = {
-        win_opts = {
-          winblend = 0,
-        },
-      },
-      task_win = {
-        win_opts = {
-          winblend = 0,
-        },
+        -- Default direction. Can be "left", "right", or "bottom"
+        direction = 'right',
       },
     },
     keys = {
       { '<leader>ow', '<cmd>OverseerToggle<cr>', desc = 'Task list' },
-      { '<leader>oo', '<cmd>OverseerRun<cr>', desc = 'Run task' },
+      { '<leader>or', '<cmd>OverseerRun<cr>', desc = 'Run task' },
       { '<leader>ot', '<cmd>OverseerTaskAction<cr>', desc = 'Task action' },
-      { '<leader>ol', '<cmd>OverseerRestartLast<cr>', desc = 'Overseer Last Task' },
+      { '<leader>oo', '<cmd>OverseerRestartLast<cr>', desc = 'Overseer Last Task' },
     },
   },
 }
