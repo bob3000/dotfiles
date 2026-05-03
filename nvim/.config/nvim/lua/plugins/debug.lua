@@ -8,11 +8,6 @@ return {
       ---@type dapview.Config
       opts = {},
     },
-    {
-      'theHamsta/nvim-dap-virtual-text',
-      opts = {},
-    },
-
     -- Installs the debug adapters for you
     'mason-org/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
