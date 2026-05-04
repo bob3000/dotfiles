@@ -151,6 +151,14 @@ disabled = false
 [os]
 disabled = true
 
+[os.symbols]
+Alpine = " "
+Arch = "󰣇 "
+Debian = " "
+Fedora = " "
+Macos = " "
+Ubuntu = "󰕈 "
+
 [git_metrics]
 disabled = true
 
