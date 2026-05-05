@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora:43
+FROM quay.io/fedora/fedora:44
 ARG TARGETPLATFORM
 ARG IMG_USR=bob
 ARG UID=1000
