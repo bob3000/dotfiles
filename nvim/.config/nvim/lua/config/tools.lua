@@ -48,6 +48,7 @@ return {
   ignore_filetypes = {
     'OverseerList',
     'OverseerOutput',
+    'aerial',
     'blink-cmp-documentation',
     'blink-cmp-menu',
     'blink-cmp-signature',
