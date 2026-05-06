@@ -115,6 +115,7 @@ return {
 
             local non_normal_modes = '[vVsS\22\19iR]' -- v, V, block-v, s, S, block-s, i, R
             vim.api.nvim_create_autocmd('ModeChanged', {
+              group = inlay_hints_group,
               pattern = '*:' .. non_normal_modes .. '*',
               callback = function()
                 if vim.g.auto_inlay_hints then
@@ -124,6 +125,7 @@ return {
             })
 
             vim.api.nvim_create_autocmd('ModeChanged', {
+              group = inlay_hints_group,
               pattern = non_normal_modes .. '*:*',
               callback = function()
                 local new_mode = vim.fn.mode()

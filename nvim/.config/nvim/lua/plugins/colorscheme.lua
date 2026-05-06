@@ -27,6 +27,10 @@ return {
         default_integrations = true,
         auto_integrations = true,
         integrations = {
+          aerial = true,
+          dadbod_ui = true,
+          diffview = true,
+          lsp_trouble = true,
           lualine = {
             -- lualine color overrides in the following hierarchy: Catppuccin Flavor -> Mode -> Lualine Section
             -- The Catppuccin flavor entry can be any Catpuccin flavor or "all" to apply to all flavors
@@ -42,6 +46,14 @@ return {
               }
             end,
           },
+          mason = true,
+          neotest = true,
+          overseer = true,
+          snacks = {
+            enabled = true,
+            indent_scope_color = 'lavender', -- catppuccin color (eg. `lavender`) Default: overlay2
+          },
+          which_key = true,
         },
       })
 
