@@ -113,10 +113,9 @@ return {
               end, 500)
             end
 
-            vim.api.nvim_create_autocmd('InsertEnter', {
-              group = inlay_hints_group,
-              desc = 'Enable inlay hints',
-              buffer = bufnr,
+            local non_normal_modes = '[vVsS\22\19iR]' -- v, V, block-v, s, S, block-s, i, R
+            vim.api.nvim_create_autocmd('ModeChanged', {
+              pattern = '*:' .. non_normal_modes .. '*',
               callback = function()
                 if vim.g.auto_inlay_hints then
                   vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
@@ -124,11 +123,14 @@ return {
               end,
             })
 
-            vim.api.nvim_create_autocmd('InsertLeave', {
-              group = inlay_hints_group,
-              desc = 'Disable inlay hints',
-              buffer = bufnr,
+            vim.api.nvim_create_autocmd('ModeChanged', {
+              pattern = non_normal_modes .. '*:*',
               callback = function()
+                local new_mode = vim.fn.mode()
+                if new_mode:match('^' .. non_normal_modes) then
+                  -- transitioning between non normal modes, skip exit
+                  return
+                end
                 if vim.g.auto_inlay_hints then
                   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
                 end
