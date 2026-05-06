@@ -61,7 +61,7 @@ return {
         local excluded_filenames = {}
         return not (
           vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, '&filetype'))
-          or vim.tbl_contains(excluded_filenames, vim.fn.expand '%:t')
+          or vim.tbl_contains(excluded_filenames, vim.fn.expand('%:t'))
         )
       end,
     },
@@ -85,7 +85,9 @@ return {
     keys = {
       {
         'gs',
-        function() require('mini.splitjoin').toggle() end,
+        function()
+          require('mini.splitjoin').toggle()
+        end,
         desc = 'Join/split code block',
       },
     },

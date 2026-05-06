@@ -45,7 +45,7 @@ local statusline = {
   ' %2p%% ',
 }
 
-local socket = os.getenv 'HOME' .. '/.cache/nvim/nvim-' .. os.time() .. '.pipe'
+local socket = os.getenv('HOME') .. '/.cache/nvim/nvim-' .. os.time() .. '.pipe'
 vim.fn.serverstart(socket)
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowriteall = true -- Enable auto write
@@ -65,13 +65,13 @@ vim.opt.guicursor = 'a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 vim.opt.ignorecase = true -- Ignore case
 vim.opt.inccommand = 'nosplit' -- preview incremental substitute
 vim.opt.jumpoptions = 'clean' -- configure jumplist behaviour
-vim.opt.keywordprg = ":help!" -- what to do when K is pressed
+vim.opt.keywordprg = ':help!' -- what to do when K is pressed
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.linebreak = true -- Wrap lines at convenient points
 vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.number = true -- Print line number
-vim.opt.path:append '**' -- include subdirectories in search
+vim.opt.path:append('**') -- include subdirectories in search
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers
@@ -80,7 +80,7 @@ vim.opt.scrolloff = 8 -- Lines of context
 vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
-vim.opt.shortmess:append { W = true, I = true, c = true, C = true } -- avoid certain messages
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true }) -- avoid certain messages
 vim.opt.showbreak = '↪' -- text warp symbol
 vim.opt.showmode = vim.tbl_contains(vim.v.argv, '--noplugin') -- Don't show mode if have plugins installed
 vim.opt.sidescrolloff = 8 -- Columns of context
@@ -108,7 +108,7 @@ vim.opt.winborder = 'rounded' -- rounded floating window borders
 vim.opt.wrap = false -- Disable line wrap
 vim.wo.foldmethod = 'expr' -- use an expression to create folds
 vim.lsp.log.set_level(vim.log.levels.OFF) -- disable lsp logs
-vim.cmd.colorscheme 'retrobox' -- set colorscheme
+vim.cmd.colorscheme('retrobox') -- set colorscheme
 
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0

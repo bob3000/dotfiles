@@ -1,14 +1,14 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
-    version = "*",
+    version = '*',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
       {
         '<leader>cf',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format({ async = true, lsp_format = 'fallback' })
         end,
         mode = '',
         desc = 'Format buffer',
@@ -21,7 +21,7 @@ return {
         ['markdown-toc'] = {
           condition = function(_, ctx)
             for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
-              if line:find '<!%-%- toc %-%->' then
+              if line:find('<!%-%- toc %-%->') then
                 return true
               end
             end
@@ -36,7 +36,7 @@ return {
         html = { 'prettier' },
         json = { 'biome' },
         jsonc = { 'biome' },
-        lua = { "stylua" },
+        lua = { 'stylua' },
         markdown = { 'biome', 'markdown-toc' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         scss = { 'biome' },

@@ -64,9 +64,9 @@ return {
       '<leader>dB',
       function()
         ---@type string|nil
-        local condition = vim.fn.input 'Breakpoint condition (optional): '
+        local condition = vim.fn.input('Breakpoint condition (optional): ')
         ---@type string|nil
-        local hit_condition = vim.fn.input 'Hit count (optional): '
+        local hit_condition = vim.fn.input('Hit count (optional): ')
 
         if condition == '' then
           condition = nil
@@ -95,7 +95,7 @@ return {
     {
       '<leader>td',
       function()
-        require('neotest').run.run { strategy = 'dap' }
+        require('neotest').run.run({ strategy = 'dap' })
       end,
       desc = 'Debug Nearest',
     },
@@ -129,16 +129,16 @@ return {
     },
   },
   config = function()
-    local dap = require 'dap'
-    local dapview = require 'dap-view'
+    local dap = require('dap')
+    local dapview = require('dap-view')
 
     require('overseer').enable_dap()
 
-    require('mason-nvim-dap').setup {
+    require('mason-nvim-dap').setup({
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
       automatic_installation = true,
-    }
+    })
 
     -- Change breakpoint icons
     vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
@@ -160,16 +160,16 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapview.close
     dap.listeners.before.event_exited['dapui_config'] = dapview.close
 
-    local mason_path = vim.fn.stdpath 'data' .. '/mason'
+    local mason_path = vim.fn.stdpath('data') .. '/mason'
 
     -- Install python specific config
-    require('dap-python').setup 'uv'
+    require('dap-python').setup('uv')
 
     -- C/Rust specific config
     dap.adapters.codelldb = {
       type = 'executable',
       command = mason_path .. '/bin/codelldb',
-      detached = vim.fn.has 'win32' == 0,
+      detached = vim.fn.has('win32') == 0,
     }
 
     dap.configurations.cpp = {
@@ -191,8 +191,8 @@ return {
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         pid = function()
-          local name = vim.fn.input 'Executable name (filter): '
-          return require('dap.utils').pick_process { filter = name }
+          local name = vim.fn.input('Executable name (filter): ')
+          return require('dap.utils').pick_process({ filter = name })
         end,
         cwd = '${workspaceFolder}',
       },
@@ -230,7 +230,7 @@ return {
     }
 
     local firefox_bin = '/usr/bin/firefox'
-    if vim.fn.has 'macunix' == 1 then
+    if vim.fn.has('macunix') == 1 then
       firefox_bin = '/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox'
     end
 
@@ -268,12 +268,12 @@ return {
     -- Install bash specific config
     dap.adapters.bashdb = {
       type = 'executable',
-      command = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
+      command = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
       name = 'bashdb',
     }
 
     local bash_bin = '/bin/bash'
-    if vim.fn.has 'macunix' == 1 then
+    if vim.fn.has('macunix') == 1 then
       bash_bin = '/opt/homebrew/bin/bash'
     end
 
@@ -283,8 +283,8 @@ return {
         request = 'launch',
         name = 'Launch file',
         showDebugOutput = true,
-        pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
-        pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+        pathBashdb = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+        pathBashdbLib = vim.fn.stdpath('data') .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
         trace = true,
         file = '${file}',
         program = '${file}',
@@ -301,12 +301,12 @@ return {
     }
 
     -- Install golang specific config
-    require('dap-go').setup {
+    require('dap-go').setup({
       delve = {
         -- On Windows delve must be run attached or it crashes.
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
+        detached = vim.fn.has('win32') == 0,
       },
-    }
+    })
   end,
 }

@@ -1,4 +1,4 @@
-local icons = require 'config.icons'
+local icons = require('config.icons')
 
 -- Diffs for git revisions.
 return {
@@ -9,7 +9,7 @@ return {
       { '<leader>gD', '<cmd>DiffviewOpen<cr>', desc = 'Diff view' },
     },
     opts = function()
-      local actions = require 'diffview.actions'
+      local actions = require('diffview.actions')
 
       require('diffview.ui.panel').Panel.default_config_float.border = 'rounded'
 

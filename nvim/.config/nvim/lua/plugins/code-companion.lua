@@ -12,7 +12,7 @@
 --- - `.hg`
 ---@field project_root? string the closest parent directory that contains a `.git` subdirectory.
 -- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd [[cab cc CodeCompanion]]
+vim.cmd([[cab cc CodeCompanion]])
 return {
   {
     'olimorris/codecompanion.nvim',

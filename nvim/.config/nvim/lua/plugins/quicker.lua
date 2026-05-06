@@ -28,14 +28,14 @@ return {
       {
         '<leader>xl',
         function()
-          require('quicker').toggle { loclist = true }
+          require('quicker').toggle({ loclist = true })
         end,
         desc = 'Toggle loclist list',
       },
       {
         '<leader>xd',
         function()
-          local quicker = require 'quicker'
+          local quicker = require('quicker')
 
           if quicker.is_open() then
             quicker.close()

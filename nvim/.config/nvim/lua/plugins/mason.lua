@@ -1,4 +1,4 @@
-local tools = require 'config.tools'
+local tools = require('config.tools')
 
 return {
   -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -11,17 +11,17 @@ return {
       { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
       { 'b0o/schemastore.nvim' },
     },
-    config = function ()
-      require("mason").setup({})
+    config = function()
+      require('mason').setup({})
       -- install tools
       local ensure_installed = tools.servers
       vim.list_extend(ensure_installed, tools.tools)
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-      require('mason-lspconfig').setup {
+      require('mason-lspconfig').setup({
         ensure_installed = {}, -- explicitly set to an empty table (installs populated via mason-tool-installer)
         automatic_installation = false,
-      }
-    end
+      })
+    end,
   },
 }

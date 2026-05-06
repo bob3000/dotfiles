@@ -21,6 +21,6 @@ return {
     closed = '󰉋 ',
   },
   misc = {
-    search = ' '
-  }
+    search = ' ',
+  },
 }

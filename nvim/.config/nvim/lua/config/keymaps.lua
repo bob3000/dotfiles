@@ -8,7 +8,7 @@ vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
   if require('luasnip').expand_or_jumpable() then
     require('luasnip').unlink_current()
   end
-  vim.cmd 'noh'
+  vim.cmd('noh')
   return '<esc>'
 end, { desc = 'Escape, clear hlsearch, and stop snippet session', expr = true })
 
@@ -40,7 +40,7 @@ vim.keymap.set({ 'x', 'n', 's' }, '<leader>,', function()
 end, { desc = 'Pick buffer' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('n', '<leader>W', function()
-  require('conform').format { async = true, lsp_format = 'fallback' }
+  require('conform').format({ async = true, lsp_format = 'fallback' })
   return '<esc>:w<cr>'
 end, { desc = 'Save File (with formatting)', expr = true })
 

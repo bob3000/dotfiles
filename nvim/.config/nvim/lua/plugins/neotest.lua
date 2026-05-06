@@ -22,7 +22,7 @@ return {
       {
         '<leader>tt',
         function()
-          require('neotest').run.run(vim.fn.expand '%')
+          require('neotest').run.run(vim.fn.expand('%'))
         end,
         desc = 'Run File (Neotest)',
       },
@@ -57,7 +57,7 @@ return {
       {
         '<leader>to',
         function()
-          require('neotest').output.open { enter = true, auto_close = true }
+          require('neotest').output.open({ enter = true, auto_close = true })
         end,
         desc = 'Show Output (Neotest)',
       },
@@ -78,7 +78,7 @@ return {
       {
         '<leader>tw',
         function()
-          require('neotest').watch.toggle(vim.fn.expand '%')
+          require('neotest').watch.toggle(vim.fn.expand('%'))
         end,
         desc = 'Toggle Watch (Neotest)',
       },
@@ -88,25 +88,25 @@ return {
         runner = 'gotestsum', -- Optional, but recommended
         -- runner = 'go',
       }
-      require('neotest').setup {
+      require('neotest').setup({
         consumers = {
-          overseer = require 'neotest.consumers.overseer',
+          overseer = require('neotest.consumers.overseer'),
         },
         -- log_level = 3,
         adapters = {
-          require 'neotest-golang'(neotest_golang_opts),
-          require 'neotest-python',
+          require('neotest-golang')(neotest_golang_opts),
+          require('neotest-python'),
           -- require 'neotest-rust',
-          require 'neotest-jest' {
+          require('neotest-jest')({
             jestCommand = 'npm test --',
             jestConfigFile = 'custom.jest.config.ts',
             env = { CI = true },
             cwd = function(path)
               return vim.fn.getcwd()
             end,
-          },
+          }),
         },
-      }
+      })
     end,
   },
   {
@@ -118,7 +118,7 @@ return {
         (function() -- the included toggle command doesn't load before showing
           local cov_enabled = false
           return function()
-            local cov = require 'coverage'
+            local cov = require('coverage')
             if not cov_enabled then
               cov.load(true)
             else
@@ -132,19 +132,19 @@ return {
       {
         '<leader>tC',
         function()
-          local cov = require 'coverage'
+          local cov = require('coverage')
           cov.summary()
         end,
         desc = 'Coverage Summary',
       },
     },
     config = function()
-      require('coverage').setup {
+      require('coverage').setup({
         auto_reload = true,
         load_coverage_cb = function(ftype)
           vim.notify('Loaded ' .. ftype .. ' coverage')
         end,
-      }
+      })
     end,
   },
 }

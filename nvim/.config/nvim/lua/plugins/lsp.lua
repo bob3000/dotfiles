@@ -1,5 +1,5 @@
-local icons = require 'config.icons'
-local tools = require 'config.tools'
+local icons = require('config.icons')
+local tools = require('config.tools')
 local diagnostic_format = function(diagnostic)
   local diagnostic_message = {
     [vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -36,8 +36,8 @@ return {
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
     config = function(ev)
       -- set up keymaps
-      local wk = require 'which-key'
-      wk.add {
+      local wk = require('which-key')
+      wk.add({
         { 'grn', vim.lsp.buf.rename, desc = 'Rename' },
         { 'gra', vim.lsp.buf.code_action, desc = 'Code Actions' },
         -- keybindings implemented by snacks
@@ -47,7 +47,7 @@ return {
         { 'grx', vim.lsp.codelens.run, desc = 'Code Lens' },
         { 'gO', vim.lsp.buf.document_symbol, desc = 'Document Symbol' },
         { '<C-s>', vim.lsp.buf.signature_help, desc = 'Signature help', mode = { 'n', 'i' } },
-      }
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('user-lsp-attach', { clear = true }),
@@ -73,35 +73,35 @@ return {
               group = vim.api.nvim_create_augroup('user-lsp-detach', { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'user-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds({ group = 'user-lsp-highlight', buffer = event2.buf })
               end,
             })
           end
 
           -- switch to header file
           if client.name == 'clangd' then
-            wk.add {
+            wk.add({
               { 'grh', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch header source' },
-            }
+            })
           end
 
           -- enable linked editing if available
-          if client:supports_method 'textDocument/linkedEditingRange' then
+          if client:supports_method('textDocument/linkedEditingRange') then
             vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
           end
 
           -- enable inline completion if available
-          if client:supports_method 'textDocument/inlineCompletion' then
+          if client:supports_method('textDocument/inlineCompletion') then
             vim.lsp.inline_completion.enable(true, { client_id = client.id })
           end
 
           -- enable codelens if available
-          if client:supports_method 'textDocument/codeLens' then
+          if client:supports_method('textDocument/codeLens') then
             vim.lsp.codelens.enable(true, { client_id = client.id })
           end
 
           -- toggle inlay hints automatically
-          if client:supports_method 'textDocument/inlayHint' then
+          if client:supports_method('textDocument/inlayHint') then
             local inlay_hints_group = vim.api.nvim_create_augroup('toggle_inlay_hints', { clear = false })
 
             if vim.g.auto_inlay_hints then
@@ -142,7 +142,7 @@ return {
 
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
-      vim.diagnostic.config {
+      vim.diagnostic.config({
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         signs = {
@@ -163,7 +163,7 @@ return {
           spacing = 2,
           format = diagnostic_format,
         },
-      }
+      })
 
       -- Set up LSP servers.
       vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
@@ -196,7 +196,7 @@ return {
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
           -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+          if vim.fn.has('win32') == 1 or vim.fn.executable('make') == 0 then
             return
           end
           return 'make install_jsregexp'
@@ -208,7 +208,7 @@ return {
           {
             'rafamadriz/friendly-snippets',
             config = function()
-              require('luasnip.loaders.from_vscode').lazy_load { paths = { './snippets' } }
+              require('luasnip.loaders.from_vscode').lazy_load({ paths = { './snippets' } })
             end,
           },
         },

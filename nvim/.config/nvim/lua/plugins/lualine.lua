@@ -1,5 +1,5 @@
-local icons = require 'config.icons'
-local ignore_filetypes = require("config.tools").ignore_filetypes
+local icons = require('config.icons')
+local ignore_filetypes = require('config.tools').ignore_filetypes
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -54,7 +54,7 @@ return {
               return package.loaded['dap'] and require('dap').status() ~= ''
             end,
             color = function()
-              return { fg = Snacks.util.color 'Debug' }
+              return { fg = Snacks.util.color('Debug') }
             end,
           },
         },
