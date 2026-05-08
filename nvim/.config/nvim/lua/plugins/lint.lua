@@ -12,7 +12,7 @@ return {
         javascript = { 'biomejs' },
         javascriptreact = { 'biomejs' },
         json = { 'biomejs' },
-        markdown = { 'markdownlint' },
+        markdown = { 'markdownlint-cli2' },
         terraform = { 'tflint' },
         typescript = { 'biomejs' },
         typescriptreact = { 'biomejs' },

@@ -37,16 +37,10 @@ return {
         json = { 'biome' },
         jsonc = { 'biome' },
         lua = { 'stylua' },
-        markdown = { 'biome', 'markdown-toc' },
+        markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
         python = { 'ruff_format', 'ruff_organize_imports' },
         scss = { 'biome' },
         yaml = { 'prettier' },
-
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
