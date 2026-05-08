@@ -57,6 +57,11 @@ set fzf_preview_dir_cmd eza --all --color=always --tree
 
 set --export PYENV_ROOT $HOME/.pyenv
 
+# publish fish_private_mode
+if test -n "$fish_private_mode"
+    set -x FISH_PRIVATE_MODE "󰗹 "
+end
+
 if set -q $SSH_CONNECTION
     set EDITOR vim
 else

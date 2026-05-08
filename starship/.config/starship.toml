@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 palette = "catppuccin_macchiato"
-right_format = """$username$hostname$localip$env_var$cmd_duration$time"""
+right_format = """$username$hostname$localip${env_var.TTY}$cmd_duration$time"""
 format = "$fill$all"
 
 [fill]
@@ -21,9 +21,16 @@ disabled = true
 [cpp]
 disabled = false
 
+[env_var.FISH_PRIVATE_MODE]
+description = 'if fish is running in private mode'
+symbol = ' '
+default = ''
+format = '[$env_value](bold blue)'
+
 [env_var.TTY]
 default = ''
 format = '[$env_value]($style)'
+disabled = true
 
 [git_branch]
 symbol = '🌵 '
@@ -38,7 +45,7 @@ stashed = ''
 [gcloud]
 symbol = '️ '
 # detect_env_vars = ["GCLOUD"]
-disabled = false
+disabled = true
 
 [character]
 success_symbol = '[➜](bold green)'
