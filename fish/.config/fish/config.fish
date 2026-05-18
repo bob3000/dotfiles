@@ -44,6 +44,19 @@ function aws_ec2_select --description "Get EC2 instance information"
     printf "%s" $col
 end
 
+function aws_assume_role --description "Assume IAM role"
+    set -f role $argv[1]
+    if [ -z $role ]
+        set -f role $(aws iam list-roles --max-items 1000 --query "Roles[*].Arn" --output text | tr '[:space:]' '\n' | fzf --prompt 'Role> ' --ansi)
+    end
+    aws sts assume-role \
+        --role-arn $role \
+        --role-session-name "rkautz-$(date '+%s')" \
+        | jq -r '.Credentials | "set -x AWS_ACCESS_KEY_ID \(.AccessKeyId)\nset -x AWS_SECRET_ACCESS_KEY \(.SecretAccessKey)\nset -x AWS_SESSION_TOKEN \(.SessionToken)"' \
+        | source
+    commandline --function repaint
+end
+
 function aws_ec2_select_replace --description "replace the current command token"
     set -f output (aws_ec2_select)
     commandline --current-token --insert -- (string escape -- $output | string join ' ')
@@ -132,6 +145,7 @@ alias emoji "kitty +kitten unicode_input"
 alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
 alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="sudo su -l $U" --target'
+alias aws-caller-identity "aws sts get-caller-identity --output text"
 
 type -q direnv && direnv hook fish | source
 
@@ -205,6 +219,7 @@ if status is-interactive
     bind ctrl-alt-g _fzf_grep_current_dir
     bind ctrl-alt-b git_switch_branch
     bind ctrl-alt-a aws_switch_profile
+    bind ctrl-alt-r aws_assume_role
     bind ctrl-alt-k kube_switch_context
     bind ctrl-alt-e aws_ec2_select_replace
     bind ctrl-alt-m 'toggle_theme; commandline -f repaint'
