@@ -237,6 +237,15 @@ return {
     dap.configurations.javascript = {
       {
         type = 'pwa-node',
+        request = 'attach',
+        name = 'Attach to Node app',
+        address = 'localhost',
+        port = 9229,
+        cwd = '${workspaceFolder}',
+        restart = true,
+      },
+      {
+        type = 'pwa-node',
         request = 'launch',
         name = 'Launch file',
         program = '${file}',
