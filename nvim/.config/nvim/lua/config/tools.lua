@@ -36,6 +36,7 @@ return {
     -- 'gofumpt',
     -- 'goimports',
     -- 'hadolint',
+    -- 'hclfmt',
     -- 'js-debug-adapter',
     'markdownlint-cli2',
     'markdown-toc',
