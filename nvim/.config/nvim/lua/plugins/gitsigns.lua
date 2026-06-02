@@ -47,7 +47,7 @@ return {
         map('n', '<leader>hF', gitsigns.blame, { desc = 'blame file' })
         map('n', '<leader>hd', gitsigns.diffthis, { desc = 'diff against index' })
         map('n', '<leader>hD', function()
-          gitsigns.diffthis('@')
+          gitsigns.diffthis('HEAD~1')
         end, { desc = 'diff against last commit' })
         -- Toggles
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'toggle git show blame line' })
