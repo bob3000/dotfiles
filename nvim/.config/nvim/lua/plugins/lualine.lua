@@ -113,6 +113,9 @@ return {
             filetype_names = {
               snacks_picker_input = 'Picker',
               snacks_picker_list = 'Picker',
+              trouble = 'Diagnostics',
+              OverseerList = 'Tasks',
+              ['dap-view'] = 'Debug',
             },
             symbols = {
               modified = ' ●', -- Text to show when the buffer is modified

@@ -22,6 +22,7 @@ return {
     'yamlls',
     'taplo',
     -- 'ty',
+    -- 'zls',
   },
 
   -- list will be merged with the language servers listed above
