@@ -19,7 +19,6 @@
   quotepath = false
   autocrlf = input
   pager = delta
-  hookspath = ~/.git/hooks
   editor = nvim
 [diff]
   colorMoved = default
