@@ -3,66 +3,6 @@ set fish_greeting
 # fisher install decors/fish-colored-man
 # fisher install PatrickF1/fzf.fish
 
-function kube_switch_context --description "Switch Kubernetes context"
-    set -f context "$(kubectl config get-contexts -o name | fzf --prompt 'Context> ' --ansi | tr -d '[:space:]')"
-    if test -n "$context"
-        kubectl config use-context "$context"
-    end
-    commandline --function repaint
-end
-
-function aws_switch_profile --description "Switch AWS profile"
-    set -f profile "$(aws-vault list --profiles | fzf --prompt 'Profile> ' --ansi | tr -d '[:space:]')"
-    if test -n "$profile"
-        aws-vault exec --duration=12h "$profile"
-    end
-    commandline --function repaint
-end
-
-function git_switch_branch --description "Switch git branch"
-    set -f branch "$(git branch --all | grep -v ' *\*' 2> /dev/null | sed 's!remotes/[^/]*/!!g' | sort | uniq | fzf --prompt 'Branch> ' --ansi | tr -d '[:space:]')"
-    if test -n "$branch"
-        git checkout -q "$branch"
-    end
-    commandline --function repaint
-end
-
-function aws-ec2-describe --description "Describe running EC2 instances"
-    aws ec2 describe-instances \
-        --filters 'Name=instance-state-name,Values=running' \
-        --query 'Reservations[].Instances[].[InstanceId, PrivateIpAddress, PublicIpAddress, Tags[?Key==`Name`].Value | [0]]' \
-        --output text | column -t
-end
-
-function aws_ec2_select --description "Get EC2 instance information"
-    set -f col $(aws-ec2-describe | fzf --prompt 'Instance> ' --ansi \
-    --header 'InstanceId <enter> / IP <alt-i> / Public IP <alt-p> / Name <alt-n>' \
-    --bind 'enter:become(echo {1})' \
-    --bind 'alt-i:become(echo {2})' \
-    --bind 'alt-p:become(echo {3})' \
-    --bind 'alt-n:become(echo {4})')
-    printf "%s" $col
-end
-
-function aws_assume_role --description "Assume IAM role"
-    set -f role $argv[1]
-    if [ -z $role ]
-        set -f role $(aws iam list-roles --max-items 1000 --query "Roles[*].Arn" --output text | tr '[:space:]' '\n' | fzf --prompt 'Role> ' --ansi)
-    end
-    aws sts assume-role \
-        --role-arn $role \
-        --role-session-name "rkautz-$(date '+%s')" \
-        | jq -r '.Credentials | "set -x AWS_ACCESS_KEY_ID \(.AccessKeyId)\nset -x AWS_SECRET_ACCESS_KEY \(.SecretAccessKey)\nset -x AWS_SESSION_TOKEN \(.SessionToken)"' \
-        | source
-    commandline --function repaint
-end
-
-function aws_ec2_select_replace --description "replace the current command token"
-    set -f output (aws_ec2_select)
-    commandline --current-token --insert -- (string escape -- $output | string join ' ')
-    commandline --function repaint
-end
-
 set script_pwd (dirname (status --current-filename))
 set fzf_preview_file_cmd fzf-preview.sh
 set fzf_diff_highlighter delta --paging=never --width=20
@@ -219,6 +159,7 @@ if status is-interactive
     bind ctrl-alt-g _fzf_grep_current_dir
     bind ctrl-alt-b git_switch_branch
     bind ctrl-alt-a aws_switch_profile
+    bind ctrl-alt-shift-a aws_switch_region
     bind ctrl-alt-r aws_assume_role
     bind ctrl-alt-k kube_switch_context
     bind ctrl-alt-e aws_ec2_select_replace
