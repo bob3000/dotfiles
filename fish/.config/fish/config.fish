@@ -71,9 +71,9 @@ set -g man_underline -u 93a1a1
 # convenience
 alias npvim 'nvim --noplugin'
 alias l 'eza --icons --hyperlink'
-alias la 'eza -a --icons --hyperlink'
-alias ll 'eza -l --icons --mounts --hyperlink'
-alias lla 'eza -la --icons --mounts --hyperlink'
+alias la 'eza -a --icons --hyperlink=auto'
+alias ll 'eza -l --icons --mounts --hyperlink=auto'
+alias lla 'eza -la --icons --mounts --hyperlink=auto'
 alias lt 'eza --tree --hyperlink'
 alias lta 'eza -a --tree --hyperlink'
 alias tmux-cwd 'tmux command-prompt -I $PWD -p "New session dir:" "attach -c %1"'
