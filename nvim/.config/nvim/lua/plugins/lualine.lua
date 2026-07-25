@@ -111,6 +111,7 @@ return {
               return vim.bo.filetype ~= 'snacks_dashboard'
             end,
             filetype_names = {
+              snacks_input = 'Input',
               snacks_picker_input = 'Picker',
               snacks_picker_list = 'Picker',
               trouble = 'Diagnostics',
