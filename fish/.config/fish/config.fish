@@ -132,6 +132,7 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
     set -gx CPLUS_INCLUDE_PATH /opt/homebrew/include
     set -gx C_INCLUDE_PATH /opt/homebrew/include
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
