@@ -60,4 +60,17 @@ return {
       },
     },
   },
+  { -- optional saghen/blink.cmp completion source
+    'saghen/blink.cmp',
+    opts = {
+      sources = {
+        per_filetype = {
+          codecompanion = { 'codecompanion' },
+        },
+      },
+    },
+    dependencies = {
+      'olimorris/codecompanion.nvim',
+    },
+  },
 }
