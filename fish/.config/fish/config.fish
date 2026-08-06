@@ -136,6 +136,7 @@ else if test -d /opt/homebrew
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
     set -gx SDKROOT "$(xcrun --show-sdk-path)"
+    alias flush-dns 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 end
 
 if status is-interactive
