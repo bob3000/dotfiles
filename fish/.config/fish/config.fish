@@ -39,11 +39,10 @@ set --export MANPAGER 'nvim +Man!'
 set --export GOPATH $HOME/.go
 set --export PATH "$GOPATH/bin:$PATH"
 set --export PATH "/usr/local/bin:$PATH"
-set --export PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
 set --export PATH "$HOME/.cargo/bin:$PATH"
 set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
-set --export PATH "$HOME/.local/share/bob/nightly/nvim-macos-arm64/bin:$PATH"
+set --export PATH "$HOME/.local/share/bob/$(ls $HOME/.local/share/bob)/bin:$PATH"
 set --export PATH "$PYENV_ROOT/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
@@ -120,7 +119,6 @@ if test -d /home/linuxbrew/.linuxbrew
     set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
     set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
     set -gx PATH "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" $PATH
-    set -gx PATH "$HOME/.local/share/bob/nvim-bin:$PATH"
     set -q MANPATH; or set MANPATH ''
     set -gx MANPATH "/home/linuxbrew/.linuxbrew/share/man" $MANPATH
     set -q INFOPATH; or set INFOPATH ''
