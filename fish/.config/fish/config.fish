@@ -27,6 +27,7 @@ set --export XDG_DATA_HOME "$HOME/.local/share"
 set --export XDG_PICTURES_DIR "$HOME/Pictures"
 set --export XDG_STATE_HOME "$HOME/.local/state"
 
+set --export SHELL /usr/bin/fish
 set --export GPG_TTY $(tty)
 set --export OSTYPE (uname)
 set --export TTY /dev/(ps -p $fish_pid -o tty=)
@@ -130,6 +131,7 @@ else if test -d /opt/homebrew
     # Homebrew is installed on MacOS
     /opt/homebrew/bin/brew shellenv | source
     # set --export PATH "/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    set -gx SHELL /opt/homebrew/bin/fish
     set -gx HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
     set -gx CPLUS_INCLUDE_PATH /opt/homebrew/include
     set -gx C_INCLUDE_PATH /opt/homebrew/include
