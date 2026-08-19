@@ -11,3 +11,4 @@
 # This configuration only has an effect if Ghostty was built with
 # Adwaita support.
 gtk-adwaita = true
+command = /usr/bin/fish --login --interactive
