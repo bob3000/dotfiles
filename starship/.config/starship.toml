@@ -164,7 +164,7 @@ Arch = "󰣇 "
 Debian = " "
 Fedora = " "
 Macos = " "
-Ubuntu = "󰕈 "
+Ubuntu = " "
 
 [git_metrics]
 disabled = true
