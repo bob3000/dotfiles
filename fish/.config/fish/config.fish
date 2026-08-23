@@ -27,7 +27,7 @@ set --export XDG_DATA_HOME "$HOME/.local/share"
 set --export XDG_PICTURES_DIR "$HOME/Pictures"
 set --export XDG_STATE_HOME "$HOME/.local/state"
 
-set --export SHELL /usr/bin/fish
+set --export SHELL $(which fish)
 set --export GPG_TTY $(tty)
 set --export OSTYPE (uname)
 set --export TTY /dev/(ps -p $fish_pid -o tty=)
@@ -86,6 +86,7 @@ alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
 alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="sudo su -l $U" --target'
 alias aws-caller-identity "aws sts get-caller-identity --output text"
+alias lish "limactl shell ubuntu-dev fish"
 
 type -q direnv && direnv hook fish | source
 
