@@ -1,1 +1,1 @@
-source "$HOME/.cargo/env.fish"
+command -q cargo && source "$HOME/.cargo/env.fish"
