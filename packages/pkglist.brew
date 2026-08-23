@@ -11,6 +11,7 @@ fisher
 fzf
 gcc
 gettext
+gh
 git
 git-delta
 gnupg
@@ -30,6 +31,7 @@ python
 pyenv
 readline
 ripgrep
+sops
 starship
 stow
 tealdeer
