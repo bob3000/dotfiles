@@ -156,7 +156,7 @@ threshold = 95
 disabled = false
 
 [os]
-disabled = true
+disabled = false
 
 [os.symbols]
 Alpine = " "
