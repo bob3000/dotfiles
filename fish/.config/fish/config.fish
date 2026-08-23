@@ -86,7 +86,8 @@ alias tlmgr "/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 alias aws-ssm "aws ssm start-session --target"
 alias aws-ssm-user 'test -z $U; and set U ubuntu; aws ssm start-session --document-name AWS-StartInteractiveCommand --parameters command="sudo su -l $U" --target'
 alias aws-caller-identity "aws sts get-caller-identity --output text"
-alias lish "limactl shell --shell fish ubuntu-dev"
+alias lish "limactl shell --shell fish default"
+alias nerdctl nerdctl.lima
 
 type -q direnv && direnv hook fish | source
 
@@ -109,10 +110,6 @@ function toggle_theme
     if [ "$OSTYPE" = Linux ]
         gsettings set org.gnome.desktop.interface color-scheme "prefer-$appearance"
     end
-end
-
-if ! command -q docker
-    alias docker podman
 end
 
 if test -d /home/linuxbrew/.linuxbrew

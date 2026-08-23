@@ -62,7 +62,6 @@ provision:
         sops \
         starship \
         terraform \
-        tree \
         tree-sitter \
         tree-sitter-cli \
         uv
