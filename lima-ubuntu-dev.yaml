@@ -25,47 +25,68 @@ provision:
       #!/bin/bash
       set -eux
       apt update
-      apt install -y \
+      apt install -y --no-install-recommends \
+        build-essential \
+        kitty-terminfo \
+        stow
+  - mode: user
+    script: |
+      #!/bin/bash
+      set -eux
+      NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      echo >> /home/{{.User}}.guest/.bashrc
+      grep -q 'shellenv' /home/{{.User}}.guest/.bashrc || echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"' >> /home/{{.User}}.guest/.bashrc
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+      brew tap hashicorp/tap
+      brew trust hashicorp/tap
+      brew install -y \
         bat \
-        curl \
         direnv \
         eza \
-        fd-find \
-        file \
+        fd \
         fish \
+        fisher \
+        fnm \
         fzf \
+        gh \
         git \
         git-delta \
-        golang-go \
-        npm \
-        kitty-terminfo \
-        netcat-openbsd \
+        gnupg \
+        go \
+        lazygit \
+        luarocks \
+        ncdu \
+        neovim \
+        node \
         ripgrep \
-        stow \
+        sops \
+        starship \
+        terraform \
+        tree \
+        tree-sitter \
         tree-sitter-cli \
-        unzip \
-        wget
-      export PLATFORM=$(
-        ARCH=$(uname -m)
-        OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-        case "$ARCH" in
-          x86_64)  echo "${OS}-x86_64" ;;
-          aarch64) echo "${OS}-arm64" ;;
-          armv7l)  echo "${OS}-armv7" ;;
-          *)       echo "${OS}-${ARCH}" ;;
-        esac
-      )
-      curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-${PLATFORM}.tar.gz && \
-      tar --strip-components=1 -C /usr/local -xzf nvim-${PLATFORM}.tar.gz && \
-      rm nvim-${PLATFORM}.tar.gz
-      usermod --shell "$(command -v fish)" {{.User}}
-      echo "exec fish" >> /home/{{.User}}.guest/.bashrc
+        uv
+      bash -c 'cd /home/{{.User}}.guest/.dotfiles && stow -v \
+        bat \
+        fish \
+        git \
+        lazygit \
+        nvim \
+        starship \
+        tmux \
+      '
+      mkdir -p /home/{{.User}}.guest/.cache/nvim
+      nvim --headless "+Lazy! sync" +qa
+      nvim --headless "+TSUpdate" +qa
+      nvim --headless "+MasonToolsInstallSync" +qa
+      git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 probes:
   - script: |
       #!/bin/bash
       set -eux
-      grep -q "/fish$" /etc/passwd
+      test -f /home/linuxbrew/.linuxbrew/bin/nvim
     hint: |
-      Shell change incomplete. Check logs:
+      Provisioning incomplete. Check logs:
       limactl shell ubuntu-dev sudo journalctl -u cloud-final
+      limactl shell ubuntu-dev sudo less /var/log/cloud-init-output.log
