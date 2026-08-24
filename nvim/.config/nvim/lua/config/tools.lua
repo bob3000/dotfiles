@@ -17,7 +17,7 @@ return {
     -- 'stylelint-language-server',
     -- 'terraformls',
     -- 'tflint',
-    -- 'tsgo',
+    -- 'tsc',
     'lua_ls',
     'yamlls',
     'taplo',
