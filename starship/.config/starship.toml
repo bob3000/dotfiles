@@ -47,10 +47,6 @@ symbol = '️ '
 # detect_env_vars = ["GCLOUD"]
 disabled = true
 
-[character]
-success_symbol = '[➜](bold green)'
-error_symbol = '[✗](bold red)'
-
 [direnv]
 symbol = '📂'
 allowed_msg = '👍'
@@ -134,19 +130,25 @@ detect_folders = ['charts', 'clusters', 'kubernetes', 'k8s', 'kube']
 detect_files = ['Chart.yaml']
 disabled = false
 
+[character]
+success_symbol = '[](bold fg:green)'
+error_symbol = '[](bold red)'
+
 [shell]
 fish_indicator = '🐟'
 bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
-style = 'cyan bold'
+style = 'bold bg:yellow'
+format = "[$indicator]($style)[](fg:yellow)"
 disabled = false
 
 [status]
 symbol = ''
 sigint_symbol = "🫵"
-format = '[$symbol$common_meaning$signal_name$maybe_int ]($style)'
+style = "bold fg:black bg:maroon"
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style)[](fg:maroon bg:green)'
 map_symbol = true
 pipestatus = true
 disabled = false
@@ -157,6 +159,8 @@ disabled = false
 
 [os]
 disabled = false
+style = "bold fg:black bg:green"
+format = "[$symbol]($style)[](fg:green bg:yellow)"
 
 [os.symbols]
 Alpine = " "
