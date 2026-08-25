@@ -122,4 +122,17 @@ return {
       { '<leader>qd', '', desc = 'Session no save' },
     },
   },
+  {
+    'nvim-mini/mini.hipatterns',
+    version = '*',
+    opts = function()
+      local hipatterns = require('mini.hipatterns')
+      return {
+        highlighters = {
+          -- Highlight hex color strings (`#rrggbb`) using that color
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      }
+    end,
+  },
 }
