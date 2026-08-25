@@ -140,15 +140,15 @@ bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
-style = 'bold bg:yellow'
-format = "[$indicator]($style)[](fg:yellow)"
+style = 'bold bg:lavender'
+format = "[ $indicator ]($style)[](fg:lavender)"
 disabled = false
 
 [status]
 symbol = ''
 sigint_symbol = "🫵"
 style = "bold fg:black bg:maroon"
-format = '[$symbol$common_meaning$signal_name$maybe_int]($style)[](fg:maroon bg:green)'
+format = '[ $symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:maroon bg:blue)'
 map_symbol = true
 pipestatus = true
 disabled = false
@@ -159,8 +159,8 @@ disabled = false
 
 [os]
 disabled = false
-style = "bold fg:black bg:green"
-format = "[$symbol]($style)[](fg:green bg:yellow)"
+style = "bold fg:black bg:blue"
+format = "[ $symbol]($style)[](fg:blue bg:lavender)"
 
 [os.symbols]
 Alpine = " "
