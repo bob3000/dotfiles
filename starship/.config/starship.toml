@@ -43,6 +43,9 @@ format = '[ $all_status$ahead_behind ]($style)'
 conflicted = ''
 stashed = ''
 
+[package]
+format = "[$symbol$version]($style) "
+
 [gcloud]
 symbol = '️ '
 # detect_env_vars = ["GCLOUD"]
@@ -74,6 +77,7 @@ symbol = " "
 symbol = " "
 
 [python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 symbol = " "
 
