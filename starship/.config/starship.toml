@@ -3,13 +3,13 @@
 
 palette = "catppuccin_macchiato"
 right_format = """$username$hostname$localip${env_var.TTY}$cmd_duration$time"""
-format = "$fill$all"
+format = "$fill$all$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
 
 [fill]
 symbol = ' '
 
 [aws]
-format = "on [$symbol $profile $region ($duration )]($style)"
+format = "[$symbol $profile $region ($duration )]($style)"
 symbol = "󰸏"
 expiration_symbol = " "
 disabled = false
@@ -23,9 +23,10 @@ disabled = false
 
 [env_var.FISH_PRIVATE_MODE]
 description = 'if fish is running in private mode'
+style = "bold fg:black bg:lavender"
 symbol = ' '
 default = ''
-format = '[$env_value](bold blue)'
+format = '[$env_value]($style)'
 
 [env_var.TTY]
 default = ''
@@ -58,6 +59,7 @@ disabled = false
 
 [shlvl]
 disabled = false
+style = "bold fg:black bg:lavender"
 format = '[$symbol ]($style)'
 repeat = true
 symbol = '󰍹'
@@ -141,7 +143,7 @@ powershell_indicator = '_'
 zsh_indicator = '💤'
 unknown_indicator = 'mystery shell'
 style = 'bold bg:lavender'
-format = "[ $indicator ]($style)[](fg:lavender)"
+format = "[$indicator ]($style)[](fg:lavender)"
 disabled = false
 
 [status]
@@ -160,7 +162,7 @@ disabled = false
 [os]
 disabled = false
 style = "bold fg:black bg:blue"
-format = "[ $symbol]($style)[](fg:blue bg:lavender)"
+format = "[ $symbol]($style)[ ](fg:blue bg:lavender)"
 
 [os.symbols]
 Alpine = " "
