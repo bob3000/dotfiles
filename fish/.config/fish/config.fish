@@ -8,8 +8,6 @@ set fzf_preview_file_cmd fzf-preview.sh
 set fzf_diff_highlighter delta --paging=never --width=20
 set fzf_preview_dir_cmd eza --all --color=always --tree
 
-set --export PYENV_ROOT $HOME/.pyenv
-
 # publish fish_private_mode
 if test -n "$fish_private_mode"
     set -x FISH_PRIVATE_MODE "󰗹 "
@@ -44,14 +42,14 @@ set --export PATH "$HOME/.cargo/bin:$PATH"
 set --export PATH "$HOME/.local/bin:$PATH"
 set --export PATH "$HOME/.dotnet/tools:$PATH"
 set --export PATH "$HOME/.local/share/bob/$(ls $HOME/.local/share/bob 2>/dev/null)/bin:$PATH"
-set --export PATH "$PYENV_ROOT/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/postgresql@*/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/opt/libpq/bin:$PATH"
 set --export PATH "$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
-command -q luarocks && eval "$(luarocks path --bin)"
+# slows down startup and currently unused
+# command -q luarocks && eval "$(luarocks path --bin)"
 
 set --export FZF_DEFAULT_OPTS '--color "bg+:-1:underline,fg+:-1:underline,hl+:-1:underline" --ansi'\
 ' --cycle --layout=reverse --border --height=90% --preview-window=wrap --pointer="" --marker=" "'\
@@ -92,7 +90,7 @@ alias nerdctl nerdctl.lima
 type -q direnv && direnv hook fish | source
 
 if [ "$OSTYPE" = Darwin ]
-    set -gx appearance $([ $(osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode') = 'true' ] && echo dark || echo light)
+    set -gx appearance $([ $(defaults read -g AppleInterfaceStyle) = 'Dark' ] && echo dark || echo light)
 else
     set -gx appearance dark
 end
@@ -135,7 +133,8 @@ else if test -d /opt/homebrew
     set -gx C_INCLUDE_PATH /opt/homebrew/include
     set -gx CC "$HOMEBREW_PREFIX/opt/llvm/bin/clang"
     set -gx CXX "$HOMEBREW_PREFIX/opt/llvm/bin/clang++"
-    set -gx SDKROOT "$(xcrun --show-sdk-path)"
+    # set -gx SDKROOT "$(xcrun --show-sdk-path)" # slow -> hardcoded below
+    set -gx SDKROOT /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
     alias flush-dns 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 end
 
@@ -152,7 +151,6 @@ if status is-interactive
         enable_transience
     end
     command -q fnm && fnm env --use-on-cd | source # fast node manager
-    command -q pyenv && pyenv init - | source
 
     # key bindings
     bind ctrl-r _fzf_search_history
