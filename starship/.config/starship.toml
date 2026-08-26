@@ -9,7 +9,7 @@ format = "$fill$all$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
 symbol = ' '
 
 [aws]
-format = "[$symbol $profile $region ($duration )]($style)"
+format = '[$symbol \(($profile )($region )($duration)\) ]($style)'
 symbol = "󰸏"
 expiration_symbol = " "
 disabled = false
@@ -45,6 +45,7 @@ stashed = ''
 
 [package]
 format = "[$symbol$version]($style) "
+disabled = true
 
 [gcloud]
 symbol = '️ '
@@ -78,7 +79,8 @@ symbol = " "
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
+style = "green bold"
+pyenv_version_name = false
 symbol = " "
 
 [golang]
