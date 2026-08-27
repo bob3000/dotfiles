@@ -1,0 +1,13 @@
+# lima-ubuntu-dev.yaml
+# Lima VM template — Ubuntu
+# Ref: https://lima-vm.io/docs/config/
+# Requires: Lima >= 2.1.0
+
+minimumLimaVersion: "2.1.0"
+
+base:
+  - ./lima-ubuntu-dev.yaml
+
+mounts:
+  - location: "~/savi"
+    writable: true

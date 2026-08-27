@@ -12,11 +12,11 @@ cpus: 4
 memory: "4GiB"
 
 mounts:
+  - location: "~/Downloads"
+    writable: true
   - location: "~/code"
-    mountPoint: "/home/{{.User}}/code"
     writable: true
   - location: "~/.dotfiles"
-    mountPoint: "/home/{{.User}}.guest/.dotfiles"
     writable: true
 
 provision:
