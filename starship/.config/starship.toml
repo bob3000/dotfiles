@@ -15,10 +15,12 @@ expiration_symbol = " "
 disabled = false
 
 [azure]
+format = "[$symbol($subscription)]($style) "
 symbol = ' '
 disabled = true
 
 [cpp]
+format = "[$symbol($version(-$name) )]($style)"
 disabled = false
 
 [env_var.FISH_PRIVATE_MODE]
@@ -40,8 +42,18 @@ style = "bold mauve"
 
 [git_status]
 format = '[ $all_status$ahead_behind ]($style)'
-conflicted = ''
+conflicted = '⚠️'
 stashed = ''
+modified = "🆙"
+untracked = "🆕"
+deleted = "🚮"
+renamed = "⏩️"
+diverged = "🔀"
+ahead = "⬆️"
+behind = "⬇️"
+worktree_added = "🪾+"
+worktree_deleted = "🪾-"
+worktree_modified = "🪾~"
 
 [package]
 format = "[$symbol$version]($style) "
@@ -53,6 +65,7 @@ symbol = '️ '
 disabled = true
 
 [direnv]
+format = "[$symbol$loaded/$allowed]($style)"
 symbol = '📂'
 allowed_msg = '👍'
 not_allowed_msg = '👎'
@@ -71,11 +84,23 @@ repeat_offset = 1
 threshold = 2
 
 [c]
+format = "[$symbol($version(-$name) )]($style)"
 commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
 symbol = " "
 
+[cmake]
+format = "[$symbol($version )]($style)"
+
 [docker_context]
+format = "[$symbol$context]($style) "
 symbol = " "
+
+[container]
+symbol = "🧳"
+
+[java]
+format = "[$symbol($version )]($style)"
+symbol = " "
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
@@ -83,19 +108,33 @@ style = "green bold"
 pyenv_version_name = false
 symbol = " "
 
+[jobs]
+symbol = "🔨"
+
+[conda]
+format = "[$symbol$environment]($style) "
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+
 [golang]
+format = "[$symbol($version )]($style)"
 symbol = "󰟓 "
 
 [rust]
+format = "[$symbol($version )]($style)"
 symbol = " "
 
 [terraform]
+format = "[$symbol$workspace]($style) "
 symbol = " "
 
 [vagrant]
+format = "[$symbol($version )]($style)"
 symbol = "🧌 "
 
 [zig]
+format = "[$symbol($version )]($style)"
 symbol = " "
 
 [username]
@@ -113,11 +152,13 @@ disabled = false
 
 [time]
 disabled = false
+style = "bold lavender"
 format = '🕗 [$time]($style)'
 time_format = '%T'
 utc_time_offset = '+0'
 
 [cmd_duration]
+style = "bold mauve"
 format = "[⏱️ ($duration )]($style)"
 
 [directory]
@@ -133,6 +174,7 @@ symbol = "🔓 "
 disabled = true # takes too much time to execute
 
 [kubernetes]
+format = '[$symbol$context( \($namespace\))]($style) '
 symbol = "󰠳 "
 detect_folders = ['charts', 'clusters', 'kubernetes', 'k8s', 'kube']
 detect_files = ['Chart.yaml']
