@@ -3,7 +3,7 @@
 
 palette = "catppuccin_macchiato"
 right_format = """$username$hostname$localip${env_var.TTY}$cmd_duration$time"""
-format = "$fill$all$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
+format = "$git_branch$git_status$directory$fill$all$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
 
 [fill]
 symbol = ' '
@@ -26,7 +26,7 @@ disabled = false
 [env_var.FISH_PRIVATE_MODE]
 description = 'if fish is running in private mode'
 style = "bold fg:black bg:lavender"
-symbol = ' '
+symbol = ' ' # why is this symbol invisible in nvim?
 default = ''
 format = '[$env_value]($style)'
 
@@ -37,20 +37,23 @@ disabled = true
 
 [git_branch]
 symbol = '🌵 '
-format = "[$symbol$branch(:$remote_branch)]($style) "
+truncation_symbol = "…"
+format = "[$branch(:$remote_branch)]($style) "
 style = "bold mauve"
 
 [git_status]
-format = '[ $all_status$ahead_behind ]($style)'
-conflicted = '⚠️'
+format = '[$all_status$ahead_behind ]($style)'
+style = "bold flamingo"
+conflicted = ' '
 stashed = ''
-modified = "🆙"
-untracked = "🆕"
-deleted = "🚮"
-renamed = "⏩️"
-diverged = "🔀"
-ahead = "⬆️"
-behind = "⬇️"
+staged = " "
+modified = " "
+untracked = "󰎔 "
+deleted = " "
+renamed = " "
+diverged = " "
+ahead = " "
+behind = " "
 worktree_added = "🪾+"
 worktree_deleted = "🪾-"
 worktree_modified = "🪾~"
