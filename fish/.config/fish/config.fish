@@ -163,6 +163,7 @@ if status is-interactive
     bind ctrl-alt-r aws_assume_role
     bind ctrl-alt-k kube_switch_context
     bind ctrl-alt-e aws_ec2_select_replace
+    bind ctrl-alt-j kitty_switch_session
     bind ctrl-alt-m 'toggle_theme; commandline -f repaint'
     fzf_configure_bindings --variables=\e\cv
     if type -q aws_completer
