@@ -165,8 +165,8 @@ style = "bold mauve"
 format = "[⏱️ ($duration )]($style)"
 min_time = 600
 show_milliseconds = true
-show_notifications = true
-min_time_to_notify = 45000
+# show_notifications = true
+# min_time_to_notify = 45000
 
 [directory]
 truncation_length = 8
