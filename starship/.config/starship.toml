@@ -204,7 +204,7 @@ disabled = false
 [status]
 style = "bold fg:black bg:maroon"
 format = '[ $symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:maroon bg:blue)'
-pipestatus_format = "[$pipestatus](bold fg:black bg:maroon)[ ](bold fg:black bg:maroon)[$symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:maroon bg:blue)"
+pipestatus_format = "[$pipestatus](bold fg:black bg:maroon)[](fg:maroon bg:blue)"
 pipestatus_separator = ""
 pipestatus_segment_format = '[ $symbol$common_meaning$signal_name$maybe_int]($style)[](fg:maroon bg:maroon)'
 symbol = " "
