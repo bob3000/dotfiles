@@ -3,7 +3,7 @@
 
 palette = "catppuccin_macchiato"
 right_format = """$username$hostname$localip${env_var.TTY}$cmd_duration$time"""
-format = "$git_branch$git_status$directory$fill$all$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
+format = "$git_branch$git_status$directory$fill$all$line_break$status$os$shlvl${env_var.FISH_PRIVATE_MODE}$shell$character"
 
 [fill]
 symbol = ' '
@@ -163,6 +163,10 @@ utc_time_offset = '+0'
 [cmd_duration]
 style = "bold mauve"
 format = "[⏱️ ($duration )]($style)"
+min_time = 600
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 45000
 
 [directory]
 truncation_length = 8
@@ -198,10 +202,13 @@ format = "[$indicator ]($style)[](fg:lavender)"
 disabled = false
 
 [status]
-symbol = ''
-sigint_symbol = "🫵"
 style = "bold fg:black bg:maroon"
 format = '[ $symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:maroon bg:blue)'
+pipestatus_format = "[$pipestatus](bold fg:black bg:maroon)[ ](bold fg:black bg:maroon)[$symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:maroon bg:blue)"
+pipestatus_separator = ""
+pipestatus_segment_format = '[ $symbol$common_meaning$signal_name$maybe_int]($style)[](fg:maroon bg:maroon)'
+symbol = " "
+sigint_symbol = "🫵"
 map_symbol = true
 pipestatus = true
 disabled = false
