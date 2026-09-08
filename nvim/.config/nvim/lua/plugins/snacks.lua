@@ -581,6 +581,7 @@ return {
       },
     },
     init = function()
+      require('snacks.notifier') -- workaround for a race condition with neotest
       vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
       vim.api.nvim_create_autocmd('User', {
         pattern = 'OilActionsPost',
