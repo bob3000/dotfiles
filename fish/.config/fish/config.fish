@@ -155,7 +155,7 @@ if status is-interactive
     # key bindings
     bind ctrl-r _fzf_search_history
     bind alt-up 'cd ..; commandline -f repaint'
-    bind alt-down 'cd $(eza -D | fzf); commandline -f repaint'
+    bind alt-down 'cd $(fd --type d . | fzf --prompt "goto> "); commandline -f repaint'
     bind ctrl-alt-g _fzf_grep_current_dir
     bind ctrl-alt-b git_switch_branch
     bind ctrl-alt-a aws_switch_profile
