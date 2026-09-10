@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 palette = "catppuccin_macchiato"
-right_format = """$username$hostname$localip${env_var.TTY}$cmd_duration$time"""
+right_format = """$username$hostname$localip${env_var.TTY}$time$cmd_duration"""
 format = "$git_branch$git_status$directory$fill$all$line_break$status$os$shlvl$jobs${env_var.FISH_PRIVATE_MODE}$shell$character"
 
 [fill]
@@ -160,14 +160,14 @@ disabled = true
 
 [time]
 disabled = false
-style = "bold lavender"
-format = '🕗 [$time]($style)'
+style = "bold fg:black bg:lavender"
+format = '[](fg:lavender bg:none)[  $time ]($style)'
 time_format = '%T'
 utc_time_offset = '+0'
 
 [cmd_duration]
-style = "bold mauve"
-format = "[⏱️ ($duration )]($style)"
+style = "bold fg:black bg:blue"
+format = "[](fg:blue bg:lavender)[( 󰄉 $duration )]($style)"
 min_time = 600
 show_milliseconds = true
 # show_notifications = true
@@ -201,8 +201,8 @@ fish_indicator = '🐟'
 bash_indicator = '#!'
 powershell_indicator = '_'
 zsh_indicator = '💤'
-unknown_indicator = 'mystery shell'
-style = 'bold bg:lavender'
+unknown_indicator = ''
+style = 'bold fg:black bg:lavender'
 format = "[$indicator ]($style)[](fg:lavender)"
 disabled = false
 
