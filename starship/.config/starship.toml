@@ -2,8 +2,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 palette = "catppuccin_macchiato"
-right_format = """$username$hostname$localip${env_var.TTY}$time$cmd_duration"""
-format = "$git_branch$git_status$directory$fill$all$line_break$status$os$shlvl$jobs${env_var.FISH_PRIVATE_MODE}$shell$character"
+right_format = """$username$hostname$localip${env_var.TTY}$status$time$cmd_duration"""
+format = "$git_branch$git_status$directory$fill$all$line_break$os$shlvl$jobs${env_var.FISH_PRIVATE_MODE}$shell$character"
 
 [fill]
 symbol = ' '
@@ -161,7 +161,7 @@ disabled = true
 [time]
 disabled = false
 style = "bold fg:black bg:lavender"
-format = '[](fg:lavender bg:none)[  $time ]($style)'
+format = '[](fg:lavender bg:overlay0)[  $time ]($style)'
 time_format = '%T'
 utc_time_offset = '+0'
 
@@ -193,8 +193,8 @@ detect_files = ['Chart.yaml']
 disabled = false
 
 [character]
-success_symbol = '[](bold fg:green)'
-error_symbol = '[](bold red)'
+success_symbol = '[](bold fg:teal)'
+error_symbol = '[](bold maroon)'
 
 [shell]
 fish_indicator = '🐟'
@@ -207,13 +207,14 @@ format = "[$indicator ]($style)[](fg:lavender)"
 disabled = false
 
 [status]
-style = "bold fg:black bg:mauve"
-format = '[ $symbol$common_meaning$signal_name$maybe_int ]($style)[](fg:mauve bg:blue)'
-pipestatus_format = "[$pipestatus](bold fg:black bg:mauve)[](fg:mauve bg:blue)"
-pipestatus_separator = ""
-pipestatus_segment_format = '[ $symbol$common_meaning$signal_name$maybe_int]($style)[](fg:mauve bg:mauve)'
+success_style= "bold fg:teal bg:overlay0"
+failure_style= "bold fg:maroon bg:overlay0"
+format = '[](fg:overlay0 bg:none)[ $symbol$common_meaning$signal_name$maybe_int ]($style)'
+pipestatus_format = "[](fg:overlay0 bg:none)[$pipestatus](bold fg:black bg:overlay0)"
+pipestatus_separator = ""
+pipestatus_segment_format = '[](fg:overlay0 bg:overlay0)[$symbol$common_meaning$signal_name$maybe_int ]($style)'
 symbol = " "
-# success_symbol = " "
+success_symbol = " "
 sigint_symbol = "🫵"
 map_symbol = true
 pipestatus = true

@@ -141,6 +141,7 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
     function starship_transient_rprompt_func
+        starship module $argv status
         starship module time
         starship module $argv cmd_duration
     end
