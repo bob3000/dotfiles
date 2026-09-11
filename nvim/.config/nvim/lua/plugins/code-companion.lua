@@ -16,7 +16,7 @@ vim.cmd([[cab cc CodeCompanion]])
 return {
   {
     'olimorris/codecompanion.nvim',
-    enabled = true,
+    enabled = false,
     lazy = false,
     version = '*',
     depedendencies = {
