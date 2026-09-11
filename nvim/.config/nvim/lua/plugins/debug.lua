@@ -1,12 +1,35 @@
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
+    -- disassembler plugin
+    {
+      'Jorenar/nvim-dap-disasm',
+      dependencies = { 'igorlfs/nvim-dap-view' },
+      opts = {
+        dapview_register = true,
+      },
+    },
     -- Creates a beautiful debugger UI
     {
       'igorlfs/nvim-dap-view',
       ---@module 'dap-view'
       ---@type dapview.Config
-      opts = {},
+      dependencies = {},
+      opts = {
+        winbar = {
+          sections = {
+            'watches',
+            'scopes',
+            'exceptions',
+            'breakpoints',
+            'threads',
+            'repl',
+            'disassembly',
+          },
+          -- Must be one of the sections declared above
+          default_section = 'scopes',
+        },
+      },
     },
     -- Installs the debug adapters for you
     'mason-org/mason.nvim',
@@ -130,6 +153,7 @@ return {
   },
   config = function()
     local dap = require('dap')
+    -- dap.set_log_level('TRACE')
     local dapview = require('dap-view')
 
     require('overseer').enable_dap()
