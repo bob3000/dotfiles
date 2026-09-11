@@ -120,6 +120,9 @@ style = 'bold fg:black bg:lavender'
 [conda]
 format = "[$symbol$environment]($style) "
 
+[lua]
+format = "[$symbol($version )]($style)"
+
 [nodejs]
 format = "[$symbol($version )]($style)"
 
