@@ -1,5 +1,9 @@
 local icons = require('config.icons')
 local ignore_filetypes = require('config.tools').ignore_filetypes
+local function window_number()
+  return vim.api.nvim_win_get_number(0)
+end
+
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -76,6 +80,9 @@ return {
       winbar = {
         lualine_c = {
           {
+            window_number,
+          },
+          {
             'filename',
             newfile_status = true,
             symbols = {
@@ -90,6 +97,9 @@ return {
       },
       inactive_winbar = {
         lualine_c = {
+          {
+            window_number,
+          },
           {
             'filename',
             newfile_status = true,
