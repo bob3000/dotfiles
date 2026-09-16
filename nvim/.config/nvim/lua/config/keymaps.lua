@@ -27,6 +27,13 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- jump to window
+for i = 1, 6 do
+  vim.keymap.set('n', '<leader>' .. i, i .. '<C-w>w', { desc = 'Jump to window ' .. i })
+end
+
+vim.keymap.set('n', '<leader>0', '<C-w>p', { desc = 'Jump to previous window' })
+
 -- buffers
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
@@ -87,3 +94,11 @@ vim.keymap.set('n', '<leader><S-d>', '"_D', { desc = 'Delete till end of line wi
 vim.keymap.set('n', '<leader><S-u>', function()
   require('undotree').open()
 end, { desc = 'Undotree' })
+
+-- insert current date
+local function insert_date()
+  local date = os.date('%Y-%m-%d') --[[@as string]]
+  vim.api.nvim_put({ date }, 'c', true, true)
+end
+
+vim.keymap.set('n', '<leader>id', insert_date, { desc = "Insert today's date" })
