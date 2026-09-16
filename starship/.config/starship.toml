@@ -37,9 +37,9 @@ format = '[$env_value]($style)'
 disabled = true
 
 [git_branch]
-symbol = '🌵 '
+symbol = '🌵'
 truncation_symbol = "…"
-format = "[$branch(:$remote_branch)]($style) "
+format = "[$symbol $branch(:$remote_branch)]($style) "
 style = "bold mauve"
 
 [git_status]
@@ -171,7 +171,7 @@ utc_time_offset = '+0'
 [cmd_duration]
 style = "bold fg:black bg:blue"
 format = "[](fg:blue bg:lavender)[( 󰄉 $duration )]($style)"
-min_time = 600
+min_time = 0
 show_milliseconds = true
 # show_notifications = true
 # min_time_to_notify = 45000
