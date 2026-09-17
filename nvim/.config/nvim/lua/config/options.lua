@@ -72,6 +72,7 @@ vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.number = true -- Print line number
 vim.opt.path:append('**') -- include subdirectories in search
+vim.opt.previewheight = 25 -- preview window height in lines
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers
