@@ -21,6 +21,7 @@ disabled = true
 
 [cpp]
 format = "[$symbol($version(-$name) )]($style)"
+commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
 disabled = false
 
 [env_var.FISH_PRIVATE_MODE]
@@ -90,6 +91,7 @@ threshold = 2
 [c]
 format = "[$symbol($version(-$name) )]($style)"
 commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
+detect_files = ["CMakeLists.txt"]
 symbol = " "
 
 [cmake]
