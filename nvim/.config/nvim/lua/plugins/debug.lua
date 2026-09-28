@@ -15,6 +15,13 @@ return {
       ---@module 'dap-view'
       ---@type dapview.Config
       dependencies = {},
+      keys = {
+        {
+          '<leader>dh',
+          '<cmd>DapViewHover!<cr>',
+          desc = 'Hover variable',
+        },
+      },
       opts = {
         winbar = {
           sections = {
