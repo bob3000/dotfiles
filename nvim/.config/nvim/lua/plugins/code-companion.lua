@@ -16,7 +16,7 @@ vim.cmd([[cab cc CodeCompanion]])
 return {
   {
     'olimorris/codecompanion.nvim',
-    enabled = false,
+    enabled = true,
     lazy = false,
     version = '*',
     depedendencies = {
@@ -44,18 +44,12 @@ return {
       },
     },
     opts = {
-      strategies = {
+      interactions = {
         chat = {
-          adapter = 'ollama',
-        },
-        inline = {
-          adapter = 'ollama',
-        },
-        cmd = {
-          adapter = 'ollama',
-        },
-        background = {
-          adapter = 'ollama',
+          adapter = {
+            name = 'claude_code',
+            model = 'Haiku',
+          },
         },
       },
     },
