@@ -28,7 +28,7 @@ set --export XDG_STATE_HOME "$HOME/.local/state"
 set --export SHELL $(which fish)
 set --export GPG_TTY $(tty)
 set --export OSTYPE (uname)
-set --export TTY /dev/(ps -p $fish_pid -o tty=)
+# set --export TTY /dev/(ps -p $fish_pid -o tty=)
 set --export LC_ALL en_US.UTF-8
 set --export LANG en_US.UTF-8
 set --export PAGER less
