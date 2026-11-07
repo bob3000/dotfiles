@@ -56,9 +56,9 @@ renamed = " "
 diverged = " "
 ahead = " "
 behind = " "
-worktree_added = "🪾+"
-worktree_deleted = "🪾-"
-worktree_modified = "🪾~"
+# worktree_added = "🪾+"
+# worktree_deleted = "🪾-"
+# worktree_modified = "🪾~"
 
 [package]
 format = "[$symbol$version]($style) "
