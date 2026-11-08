@@ -29,7 +29,7 @@ def draw_tab(draw_data, screen, tab, before, max_title_length, index, is_last, e
     end = draw_tab_with_powerline(draw_data, screen, tab, before, max_title_length,
                                   index, is_last, extra_data)
     if is_last:
-        text = f' {_bat()} | {time.strftime("%a %d.%m. %H:%M")} '
+        text = f' bat: {_bat()} | {time.strftime("%a %d.%m. %H:%M")} '
         if screen.cursor.x < screen.columns - len(text):
             screen.cursor.x = screen.columns - len(text)
             screen.draw(text)
