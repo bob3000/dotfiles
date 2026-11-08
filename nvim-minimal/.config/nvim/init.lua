@@ -45,11 +45,13 @@ local statusline = {
 	" %2p%% ",
 }
 
+vim.opt.autocomplete = true -- enable auto complete
+vim.opt.autocompletedelay = 150 -- configure auto complete delay
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.colorcolumn = "80,120" -- show visual column after a number of chars
-vim.opt.completeopt = "menu,menuone,noselect,fuzzy,preview" -- completion menu options
+vim.opt.completeopt = "menu,popup" -- completion menu options
 vim.opt.conceallevel = 1 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 vim.opt.cursorcolumn = true -- show vertical column where the cursor is
@@ -101,13 +103,13 @@ vim.opt.undolevels = 10000 -- number of changes to keep
 vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
-vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.winborder = "rounded" -- rounded floating window borders
+vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.wrap = false -- Disable line wrap
-vim.wo.foldmethod = "expr" -- use an expression to create folds
-vim.lsp.log.set_level(vim.log.levels.OFF) -- disable lsp logs
-vim.cmd.colorscheme("retrobox") -- set colorscheme
 
+vim.cmd.colorscheme("catppuccin") -- set colorscheme
+vim.lsp.log.set_level(vim.log.levels.OFF) -- disable lsp logs
+vim.wo.foldmethod = "expr" -- use an expression to create folds
 -- Disable health checks for these providers.
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0

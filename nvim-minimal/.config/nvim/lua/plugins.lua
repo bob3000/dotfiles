@@ -41,7 +41,7 @@ require("oil").setup({
 		["<C-t>"] = { "actions.select", opts = { tab = true } },
 		["<C-p>"] = "actions.preview",
 		["<C-c>"] = { "actions.close", mode = "n" },
-		["<leader>E"] = { "actions.close", mode = "n" },
+		["<leader>e"] = { "actions.close", mode = "n" },
 		["<C-l>"] = "actions.refresh",
 		["-"] = { "actions.parent", mode = "n" },
 		["_"] = { "actions.open_cwd", mode = "n" },
@@ -71,7 +71,7 @@ require("oil").setup({
 		end,
 	},
 })
-vim.keymap.set("n", "<leader>E", "<cmd>Oil --float<cr>", { desc = "Oil Explorer" })
+vim.keymap.set("n", "<leader>e", "<cmd>Oil --float<cr>", { desc = "Oil Explorer" })
 
 -- ───────────────────────── fzf-lua ─────────────────────────
 local fzf = require("fzf-lua")
@@ -388,7 +388,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 	callback = function()
 		-- only lint buffers that can be modified, to avoid noise in LSP pop-ups
 		if vim.bo.modifiable then
-			lint.try_lint()
+			lint.try_lint(nil, { ignore_errors = true })
 		end
 	end,
 })
