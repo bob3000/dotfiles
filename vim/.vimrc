@@ -42,7 +42,7 @@ set encoding=utf-8
 set expandtab
 set exrc
 set foldmethod=indent
-set guicursor = "a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+set guicursor="a:blinkon100,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 set hidden
 set history=700
 set hlsearch
@@ -70,7 +70,7 @@ set shiftround
 set shiftwidth=2
 set showcmd
 set showmatch
-set showmode
+set noshowmode
 set sidescroll=1
 set sidescrolloff=15
 set signcolumn=auto
@@ -99,7 +99,6 @@ set wrapscan
 
 let mapleader = " "
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
-let g:everforest_transparent_background = 2
 hi Normal guibg=NONE ctermbg=NONE
 let g:lightline = {
       \ 'colorscheme': 'catppuccin_mocha',
@@ -120,7 +119,7 @@ map <C-l> <C-W>l
 " uniform yank behaviour
 map Y y$
 " no search highlight
-map <leader><Esc> :nohlsearch<CR>
+noremap <silent> <leader>h :nohlsearch<CR><Esc>
 
 " Move up/down editor lines
 nnoremap j gj
