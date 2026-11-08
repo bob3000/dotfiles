@@ -330,3 +330,5 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 		vim.opt.cursorcolumn = true
 	end,
 })
+
+require('plugins')
