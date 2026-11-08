@@ -13,7 +13,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
-Plug 'sainnhe/everforest'
+Plug 'catppuccin/vim', { 'as': 'catppuccin', 'branch': 'main' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
@@ -22,7 +22,7 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 try
-  colorscheme everforest
+  colorscheme catppuccin
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme habamax
 endtry
@@ -102,7 +102,9 @@ let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 let g:everforest_transparent_background = 2
 hi Normal guibg=NONE ctermbg=NONE
 let g:lightline = {
-      \ 'colorscheme': 'apprentice',
+      \ 'colorscheme': 'catppuccin_mocha',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
       \ }
 
 " Visual mode pressing * or # searches for the current selection
