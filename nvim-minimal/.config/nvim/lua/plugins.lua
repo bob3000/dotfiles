@@ -1,6 +1,5 @@
--- lua/config/plugins.lua   (replaces the previous version; load with require('config.plugins') in init.lua)
-
 vim.pack.add({
+	"https://github.com/vague2k/vague.nvim",
 	"https://github.com/folke/which-key.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/ibhagwan/fzf-lua",
@@ -18,6 +17,7 @@ vim.pack.add({
 	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/jakewvincent/mkdnflow.nvim",
 	{ src = "https://github.com/stevearc/oil.nvim", version = vim.version.range("*") },
+	"https://github.com/neovim/nvim-lspconfig",
 })
 
 -- ───────────────────────── oil ─────────────────────────
@@ -307,7 +307,17 @@ require("lualine").setup({
 })
 
 -- ───────────────────────── conform ─────────────────────────
-require("conform").setup({ notify_on_error = false, format_on_save = false })
+require("conform").setup({
+	notify_on_error = false,
+	format_on_save = false,
+	formatters_by_ft = {
+		c = { "clang-format" },
+		cpp = { "clang-format" },
+		fish = { "fish_indent" },
+		lua = { "stylua" },
+		python = { "ruff_format", "ruff_organize_imports" },
+	},
+})
 vim.keymap.set("", "<leader>cf", function()
 	require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })
