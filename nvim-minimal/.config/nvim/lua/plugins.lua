@@ -1,16 +1,7 @@
 vim.pack.add({
-	"https://github.com/vague2k/vague.nvim",
-	"https://github.com/folke/which-key.nvim",
-	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/ibhagwan/fzf-lua",
-	"https://github.com/folke/trouble.nvim",
 	"https://github.com/nvim-lualine/lualine.nvim",
-	{ src = "https://github.com/mikesmithgh/kitty-scrollback.nvim", version = vim.version.range("*") },
-	"https://github.com/okuuva/auto-save.nvim",
-	"https://github.com/windwp/nvim-autopairs",
-	{ src = "https://github.com/nvim-mini/mini.nvim", version = vim.version.range("*") },
-	"https://github.com/folke/ts-comments.nvim",
-	{ src = "https://github.com/kylechui/nvim-surround", version = vim.version.range("^3.0.0") },
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "stable" },
 	"https://github.com/tpope/vim-rsi",
 	{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
 	"https://github.com/lewis6991/gitsigns.nvim",
@@ -134,56 +125,7 @@ pick("grt", "lsp_typedefs", "Goto Type Definition")
 pick("<leader>ss", "lsp_document_symbols", "LSP Symbols")
 pick("<leader>sS", "lsp_live_workspace_symbols", "LSP Workspace Symbols")
 
--- ───────────────────────── which-key ─────────────────────────
-require("which-key").setup({
-	delay = 500,
-	icons = { mappings = true },
-	spec = {
-		{ "<leader>b", group = "Buffers", icon = "" },
-		{ "<leader>c", group = "Code", icon = "" },
-		{ "<leader>f", group = "Find", icon = "󰈞" },
-		{ "<leader>g", group = "Git", icon = "" },
-		{ "<leader>h", group = "Git Hunk", icon = "", mode = { "n", "v" } },
-		{ "<leader>s", group = "Search", icon = "󰍉" },
-		{ "<leader>t", group = "Toggle", icon = "▶" },
-		{ "<leader>u", group = "Ui", icon = "" },
-		{ "<leader>x", group = "Trouble", icon = "" },
-		{ "<leader>N", group = "Note taking", icon = "󰺿" },
-	},
-})
-
--- code
-vim.keymap.set("", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
-vim.keymap.set("", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
-
--- marks
-vim.keymap.set("", "dm", ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = "Delete mark" })
-vim.keymap.set("", "dm*", ":delmarks!<CR>", { desc = "Delete all marks" })
-
 -- ───────────────────────── editing helpers ─────────────────────────
-require("kitty-scrollback").setup()
-
-require("auto-save").setup({
-	enabled = true,
-	condition = function(buf)
-		local excluded_filetypes = {
-			"sql", -- prevents error when the dadbod SQL window is opened (cannot be saved)
-		}
-		local excluded_filenames = {}
-		return not (
-			vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(buf, "&filetype"))
-			or vim.tbl_contains(excluded_filenames, vim.fn.expand("%:t"))
-		)
-	end,
-})
-vim.keymap.set("n", "<leader>cW", "<cmd>ASToggle<cr>", { desc = "Toggle Auto Save" })
-
-require("nvim-autopairs").setup({})
-require("nvim-surround").setup({})
-require("ts-comments").setup({
-	lang = { helm = { "{{/* %s */}}" } },
-})
-
 -- mini.nvim
 vim.keymap.set("n", "gs", function()
 	require("mini.splitjoin").toggle()
@@ -197,37 +139,11 @@ hipatterns.setup({
 	},
 })
 
--- ───────────────────────── trouble ─────────────────────────
-require("trouble").setup({ auto_close = true })
-vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
-vim.keymap.set(
-	"n",
-	"<leader>xX",
-	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-	{ desc = "Buffer Diagnostics (Trouble)" }
-)
-vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
-vim.keymap.set(
-	"n",
-	"<leader>cl",
-	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-	{ desc = "LSP Definitions / references / ... (Trouble)" }
-)
-vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
-vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+require("mini.surround").setup()
+require("mini.icons").setup()
+require("mini.pairs").setup()
 
 -- ───────────────────────── lualine ─────────────────────────
-require("nvim-web-devicons").setup({ strict = false })
-
-local symbols = require("trouble").statusline({
-	mode = "lsp_document_symbols",
-	groups = {},
-	title = false,
-	filter = { range = true },
-	format = "{kind_icon}{symbol.name:Normal}",
-	hl_group = "lualine_c_normal", -- fixes the background color
-})
-
 require("lualine").setup({
 	options = {
 		theme = "auto",
@@ -247,9 +163,6 @@ require("lualine").setup({
 				end,
 			},
 			"diagnostics",
-		},
-		lualine_c = {
-			{ symbols.get, cond = symbols.has },
 		},
 		lualine_x = {
 			"encoding",
@@ -292,7 +205,7 @@ require("lualine").setup({
 			{
 				"buffers",
 				use_mode_colors = false,
-				filetype_names = { trouble = "Diagnostics" },
+				filetype_names = {},
 				symbols = { modified = " ●", alternate_file = " ", directory = "" },
 			},
 		},

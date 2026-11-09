@@ -8,5 +8,6 @@ require("options")
 require("plugins")
 require("autocmd")
 require("lsp")
+require("keymaps")
 
-vim.cmd.colorscheme("vague") -- set colorscheme
+vim.cmd.colorscheme("catppuccin")
