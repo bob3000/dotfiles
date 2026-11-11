@@ -39,6 +39,17 @@ local statusline = {
   ' %2p%% ',
 }
 
+vim.opt.sessionoptions = {
+  'buffers',
+  'curdir',
+  'tabpages',
+  'winsize',
+  'help',
+  'globals',
+  'skiprtp',
+  'folds'
+}
+
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent
@@ -68,7 +79,6 @@ vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers
 vim.opt.ruler = false -- Disable the default ruler
 vim.opt.scrolloff = 4 -- Lines of context
-vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.shortmess:append({ W = true, I = false, c = true, C = true }) -- avoid certain messages
