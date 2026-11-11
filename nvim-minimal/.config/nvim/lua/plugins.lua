@@ -108,7 +108,7 @@ pick('<leader><space>', 'global', 'Smart Find Files')
 pick('<leader>/', 'live_grep', 'Grep')
 pick('<leader>:', 'command_history', 'Command History')
 -- find
-pick('<leader>fb', 'buffers', 'Buffers')
+pick('<leader>,', 'buffers', 'Buffers')
 pick('<leader>fc', 'files', 'Find Config File', { args = { cwd = vim.fn.stdpath('config') } })
 pick('<leader>ff', 'files', 'Find Files')
 pick('<leader>fg', 'git_files', 'Find Git Files')
