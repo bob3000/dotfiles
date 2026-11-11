@@ -8,7 +8,7 @@ vim.pack.add({
 	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/jakewvincent/mkdnflow.nvim",
 	{ src = "https://github.com/stevearc/oil.nvim", version = vim.version.range("*") },
-	"https://github.com/neovim/nvim-lspconfig",
+	-- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
 })
 
 -- ───────────────────────── oil ─────────────────────────
@@ -227,6 +227,7 @@ require("conform").setup({
 		c = { "clang-format" },
 		cpp = { "clang-format" },
 		fish = { "fish_indent" },
+    go = { 'gofmt' },
 		lua = { "stylua" },
 		python = { "ruff_format", "ruff_organize_imports" },
 	},
@@ -300,6 +301,7 @@ lint.linters_by_ft = {
 	javascriptreact = { "biomejs" },
 	json = { "biomejs" },
 	markdown = { "markdownlint-cli2" },
+	sh = { "shellcheck" },
 	terraform = { "tflint" },
 	typescript = { "biomejs" },
 	typescriptreact = { "biomejs" },

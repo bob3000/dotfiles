@@ -39,8 +39,6 @@ local statusline = {
 	" %2p%% ",
 }
 
-vim.opt.autocomplete = true -- enable auto complete
-vim.opt.autocompletedelay = 150 -- configure auto complete delay
 vim.opt.autoread = true -- Refresh buffer contents on external change
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.breakindent = true -- Enable break indent
