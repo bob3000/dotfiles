@@ -9,11 +9,13 @@ vim.pack.add({
   'https://github.com/mfussenegger/nvim-lint',
   'https://github.com/jakewvincent/mkdnflow.nvim',
   { src = 'https://github.com/stevearc/oil.nvim', version = vim.version.range('*') },
+  'https://github.com/mikesmithgh/kitty-scrollback.nvim',
   -- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
 })
 
 -- ───────────────────────── aerial───────────────────────
-require('aerial').setup({
+local aerial = require('aerial')
+aerial.setup({
   on_attach = function(bufnr)
     -- Jump forwards/backwards with '{' and '}'
     vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
@@ -35,6 +37,7 @@ require('aerial').setup({
 })
 
 vim.keymap.set('n', '<leader>cs', '<cmd>AerialToggle<cr>', { desc = 'Aerial' })
+vim.keymap.set('n', '<leader>ss', aerial.fzf_lua_picker, { desc = 'Aerial Picker' })
 
 -- ───────────────────────── oil ─────────────────────────
 require('oil').setup({
@@ -147,8 +150,6 @@ pick('gD', 'lsp_declarations', 'Goto Declaration')
 pick('grr', 'lsp_references', 'References', { nowait = true })
 pick('gri', 'lsp_implementations', 'Goto Implementation')
 pick('grt', 'lsp_typedefs', 'Goto Type Definition')
-pick('<leader>ss', 'lsp_document_symbols', 'LSP Symbols')
-pick('<leader>sS', 'lsp_live_workspace_symbols', 'LSP Workspace Symbols')
 
 -- ───────────────────────── editing helpers ─────────────────────────
 -- mini.nvim
@@ -169,7 +170,6 @@ require('mini.icons').setup()
 require('mini.pairs').setup()
 require('mini.completion').setup()
 require('mini.bufremove').setup()
-require('mini.cmdline').setup()
 
 -- ───────────────────────── mini clues ──────────────────────────────
 require('mini.clue').setup()
