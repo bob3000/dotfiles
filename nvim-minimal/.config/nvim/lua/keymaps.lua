@@ -4,86 +4,86 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 -- Stop luasnip from making the cursor jump
 --  See `:help hlsearch`
-vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
-	vim.cmd("noh")
-	return "<esc>"
-end, { desc = "Escape, clear hlsearch", expr = true })
+vim.keymap.set({ 'i', 's', 'n' }, '<esc>', function()
+  vim.cmd('noh')
+  return '<esc>'
+end, { desc = 'Escape, clear hlsearch', expr = true })
 
 -- better up/down
-vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
+vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- buffers
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-vim.keymap.set({ "x", "n", "s" }, "<C-c>", "<cmd>bd<cr>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
+vim.keymap.set({ 'x', 'n', 's' }, '<C-c>', '<cmd>bd<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- better indenting
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 -- Terminal Mappings
-vim.keymap.set("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-vim.keymap.set("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
+vim.keymap.set('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
 
 -- Add undo break-points
-vim.keymap.set("i", ",", ",<c-g>u")
-vim.keymap.set("i", ".", ".<c-g>u")
-vim.keymap.set("i", ";", ";<c-g>u")
+vim.keymap.set('i', ',', ',<c-g>u')
+vim.keymap.set('i', '.', '.<c-g>u')
+vim.keymap.set('i', ';', ';<c-g>u')
 
 -- commenting
-vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+vim.keymap.set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+vim.keymap.set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
 
 -- windows
-vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-vim.keymap.set({ "x", "n", "s" }, "<C-q>", function()
-	pcall(vim.api.nvim_win_close, 0, false)
-end, { desc = "Close window" })
+vim.keymap.set('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', remap = true })
+vim.keymap.set('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', remap = true })
+vim.keymap.set({ 'x', 'n', 's' }, '<C-q>', function()
+  pcall(vim.api.nvim_win_close, 0, false)
+end, { desc = 'Close window' })
 
 -- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- insert newline without ending up in insert mode
-vim.keymap.set("n", "<S-Enter>", "i<Enter><Esc>l", { desc = "Insert newline below" })
+vim.keymap.set('n', '<S-Enter>', 'i<Enter><Esc>l', { desc = 'Insert newline below' })
 
 -- delete line without yanking
-vim.keymap.set("n", "<leader>dd", '"_dd', { desc = "Delete line without yanking" })
+vim.keymap.set('n', '<leader>dd', '"_dd', { desc = 'Delete line without yanking' })
 
 -- delete till end of the line line without yanking
-vim.keymap.set("n", "<leader><S-d>", '"_D', { desc = "Delete till end of line without yanking" })
+vim.keymap.set('n', '<leader><S-d>', '"_D', { desc = 'Delete till end of line without yanking' })
 
 -- Undotree
-vim.keymap.set("n", "<leader><S-u>", function()
-	require("undotree").open()
-end, { desc = "Undotree" })
+vim.keymap.set('n', '<leader><S-u>', function()
+  require('undotree').open()
+end, { desc = 'Undotree' })
 
 -- code
-vim.keymap.set("", "<leader>cw", "<cmd>%s/ \\+$//<CR>", { desc = "Remove trailing whitespace" })
-vim.keymap.set("", "<leader>co", ":'<,'>sort<CR>", { desc = "Order lines" })
+vim.keymap.set('', '<leader>cw', '<cmd>%s/ \\+$//<CR>', { desc = 'Remove trailing whitespace' })
+vim.keymap.set('', '<leader>co', ":'<,'>sort<CR>", { desc = 'Order lines' })
 
 -- marks
-vim.keymap.set("", "dm", ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = "Delete mark" })
-vim.keymap.set("", "dm*", ":delmarks!<CR>", { desc = "Delete all marks" })
+vim.keymap.set('', 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", { desc = 'Delete mark' })
+vim.keymap.set('', 'dm*', ':delmarks!<CR>', { desc = 'Delete all marks' })
 
 -- diagnostics
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Diagnostics to quickfix"} )
-vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Diagnostics to loclist"} )
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Diagnostics to quickfix' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics to loclist' })
