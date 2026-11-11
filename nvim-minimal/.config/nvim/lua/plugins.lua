@@ -1,4 +1,5 @@
 vim.pack.add({
+  'https://github.com/stevearc/aerial.nvim',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/nvim-lualine/lualine.nvim',
   { src = 'https://github.com/nvim-mini/mini.nvim', version = 'stable' },
@@ -10,6 +11,30 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim', version = vim.version.range('*') },
   -- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
 })
+
+-- ───────────────────────── aerial───────────────────────
+require('aerial').setup({
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+    vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+  end,
+  attach_mode = 'global',
+  backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+  close_on_select = true,
+  show_guides = true,
+  guides = {
+    mid_item = '├╴',
+    last_item = '└╴',
+    nested_top = '│ ',
+    whitespace = '  ',
+  },
+  layout = {
+    min_width = { 30, 0.25 },
+  },
+})
+
+vim.keymap.set('n', '<leader>cs', '<cmd>AerialToggle<cr>', { desc = 'Aerial' })
 
 -- ───────────────────────── oil ─────────────────────────
 require('oil').setup({
@@ -142,6 +167,54 @@ hipatterns.setup({
 require('mini.surround').setup()
 require('mini.icons').setup()
 require('mini.pairs').setup()
+require('mini.completion').setup()
+require('mini.bufremove').setup()
+require('mini.cmdline').setup()
+
+-- ───────────────────────── mini clues ──────────────────────────────
+require('mini.clue').setup()
+local miniclue = require('mini.clue')
+miniclue.setup({
+  triggers = {
+    -- Leader triggers
+    { mode = { 'n', 'x' }, keys = '<Leader>' },
+
+    -- `[` and `]` keys
+    { mode = 'n', keys = '[' },
+    { mode = 'n', keys = ']' },
+
+    -- Built-in completion
+    { mode = 'i', keys = '<C-x>' },
+
+    -- `g` key
+    { mode = { 'n', 'x' }, keys = 'g' },
+
+    -- Marks
+    { mode = { 'n', 'x' }, keys = "'" },
+    { mode = { 'n', 'x' }, keys = '`' },
+
+    -- Registers
+    { mode = { 'n', 'x' }, keys = '"' },
+    { mode = { 'i', 'c' }, keys = '<C-r>' },
+
+    -- Window commands
+    { mode = 'n', keys = '<C-w>' },
+
+    -- `z` key
+    { mode = { 'n', 'x' }, keys = 'z' },
+  },
+
+  clues = {
+    -- Enhance this by adding descriptions for <Leader> mapping groups
+    miniclue.gen_clues.square_brackets(),
+    miniclue.gen_clues.builtin_completion(),
+    miniclue.gen_clues.g(),
+    miniclue.gen_clues.marks(),
+    miniclue.gen_clues.registers(),
+    miniclue.gen_clues.windows(),
+    miniclue.gen_clues.z(),
+  },
+})
 
 -- ───────────────────────── lualine ─────────────────────────
 require('lualine').setup({
@@ -189,6 +262,7 @@ require('lualine').setup({
         newfile_status = true,
         symbols = { modified = '', readonly = ' ', unnamed = '󰘓 ', newfile = ' ' },
       },
+      'aerial',
     },
   },
   inactive_winbar = {
@@ -198,6 +272,7 @@ require('lualine').setup({
         newfile_status = true,
         symbols = { modified = '', readonly = ' ', unnamed = '[No Name]', newfile = '[New]' },
       },
+      'aerial',
     },
   },
   tabline = {
