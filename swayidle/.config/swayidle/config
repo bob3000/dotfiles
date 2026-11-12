@@ -1,0 +1,1 @@
+timeout 300 'brightnessctl -s set 0%' resume 'brightnessctl -r'
