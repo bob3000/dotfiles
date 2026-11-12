@@ -3,11 +3,35 @@ vim.pack.add({
   'https://github.com/igorlfs/nvim-dap-view',
   'https://github.com/leoluz/nvim-dap-go',
   'https://github.com/mfussenegger/nvim-dap-python',
+  'https://github.com/Jorenar/nvim-dap-disasm',
 })
 
 local dap = require('dap')
 -- dap.set_log_level('TRACE')
+
 local dapview = require('dap-view')
+dapview.setup({
+  winbar = {
+    sections = {
+      'watches',
+      'scopes',
+      'exceptions',
+      'breakpoints',
+      'threads',
+      'repl',
+      'disassembly',
+    },
+    -- Must be one of the sections declared above
+    default_section = 'scopes',
+  },
+  virtual_text = {
+    enabled = true,
+  },
+})
+
+require('dap-disasm').setup({
+  dapview_register = true,
+})
 
 -- Change breakpoint icons
 vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
@@ -20,17 +44,26 @@ dap.listeners.before.event_exited['dapui_config'] = dapview.close
 -- Install python specific config
 require('dap-python').setup('uv')
 
+-- Install golang specific config
+require('dap-go').setup({
+  delve = {
+    -- On Windows delve must be run attached or it crashes.
+    -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
+    detached = vim.fn.has('win32') == 0,
+  },
+})
+
 -- C/Rust specific config
-dap.adapters.codelldb = {
+dap.adapters.lldb = {
   type = 'executable',
-  command = 'codelldb',
-  detached = vim.fn.has('win32') == 0,
+  command = 'lldb-dap',
+  name = 'lldb',
 }
 
 dap.configurations.cpp = {
   {
     name = 'Launch file',
-    type = 'codelldb',
+    type = 'lldb',
     request = 'launch',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -40,7 +73,7 @@ dap.configurations.cpp = {
   },
   {
     name = 'Select and attach to process',
-    type = 'codelldb',
+    type = 'lldb',
     request = 'attach',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -54,15 +87,6 @@ dap.configurations.cpp = {
 }
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
-
--- Install golang specific config
-require('dap-go').setup({
-  delve = {
-    -- On Windows delve must be run attached or it crashes.
-    -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-    detached = vim.fn.has('win32') == 0,
-  },
-})
 
 local keys = {
   {
@@ -124,6 +148,11 @@ local keys = {
       require('dap').toggle_breakpoint(condition, hit_condition)
     end,
     desc = 'Debug: Set conditional Breakpoint',
+  },
+  {
+    key = '<leader>dh',
+    action = '<cmd>DapViewHover!<cr>',
+    desc = 'Hover variable',
   },
   {
     key = '<leader>6',

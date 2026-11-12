@@ -55,6 +55,7 @@ return {
     'blink-cmp-menu',
     'blink-cmp-signature',
     'checkhealth',
+    'dap-disassembly',
     'dap-repl',
     'dap-view',
     'dap-view-term',

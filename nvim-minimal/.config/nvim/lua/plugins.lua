@@ -282,6 +282,14 @@ require('lualine').setup({
     theme = 'auto',
     globalstatus = vim.o.laststatus == 3,
     always_show_tabline = true,
+    disabled_filetypes = {
+      winbar = {
+        'dap-view',
+        'dap-disassembly',
+        'dap-repl',
+        'dap-view-term',
+      }
+    }
   },
   sections = {
     lualine_b = {
