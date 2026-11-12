@@ -11,9 +11,69 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim', version = vim.version.range('*') },
   'https://github.com/mikesmithgh/kitty-scrollback.nvim',
   -- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
+  'https://github.com/stevearc/quicker.nvim',
 })
 
--- ───────────────────────── aerial───────────────────────
+-- ───────────────────────── quicker ──────────────────────
+require('quicker').setup({
+  -- Local options to set for quickfix
+  opts = {
+    buflisted = false,
+    number = false,
+    relativenumber = false,
+    signcolumn = 'auto',
+    winfixheight = true,
+    wrap = false,
+  },
+  -- Set to false to disable the default options in `opts`
+  use_default_opts = true,
+  -- Keymaps to set for the quickfix buffer
+  keys = {
+    {
+      '>',
+      function()
+        require('quicker').expand({ before = 2, after = 2, add_to_existing = true })
+      end,
+      desc = 'Expand quickfix context',
+    },
+    {
+      '<',
+      function()
+        require('quicker').collapse()
+      end,
+      desc = 'Collapse quickfix context',
+    },
+  },
+  edit = {
+    -- Enable editing the quickfix like a normal buffer
+    enabled = true,
+    -- Set to true to write buffers after applying edits.
+    -- Set to "unmodified" to only write unmodified buffers.
+    autosave = 'unmodified',
+  },
+  -- Keep the cursor to the right of the filename and lnum columns
+  constrain_cursor = true,
+  follow = {
+    -- When quickfix window is open, scroll to closest item to the cursor
+    enabled = false,
+  },
+  -- How to trim the leading whitespace from results. Can be 'all', 'common', or false
+  trim_leading_whitespace = 'common',
+})
+
+vim.keymap.set('n', '<leader>q', function()
+  vim.diagnostic.setqflist()
+  require('quicker').toggle()
+end, {
+  desc = 'Toggle quickfix',
+})
+vim.keymap.set('n', '<leader>l', function()
+  require('quicker').toggle({ loclist = true })
+end, {
+  desc = 'Toggle loclist',
+})
+
+-- ───────────────────────── aerial ───────────────────────
 local aerial = require('aerial')
 aerial.setup({
   on_attach = function(bufnr)

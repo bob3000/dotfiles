@@ -9,6 +9,7 @@ require('plugins')
 require('treesitter')
 require('autocmd')
 require('lsp')
+require('debugger')
 require('keymaps')
 
 vim.cmd.colorscheme('catppuccin')
