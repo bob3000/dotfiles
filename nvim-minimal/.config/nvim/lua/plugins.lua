@@ -288,8 +288,8 @@ require('lualine').setup({
         'dap-disassembly',
         'dap-repl',
         'dap-view-term',
-      }
-    }
+      },
+    },
   },
   sections = {
     lualine_b = {
@@ -370,9 +370,13 @@ require('conform').setup({
     c = { 'clang-format' },
     cpp = { 'clang-format' },
     fish = { 'fish_indent' },
-    go = { 'gofmt' },
+    go = { 'goimports', 'gofmt' },
+    json = { 'jq' },
+    jsonc = { 'jq' },
     lua = { 'stylua' },
     python = { 'ruff_format', 'ruff_organize_imports' },
+    yaml = { 'yq' },
+    toml = { 'taplo' },
   },
 })
 vim.keymap.set('', '<leader>cf', function()

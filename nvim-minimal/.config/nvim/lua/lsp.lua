@@ -3,6 +3,7 @@ vim.lsp.enable({
   'gopls',
   'lua_ls',
   'ruff',
+  'taplo',
 })
 
 vim.opt.completeopt = {
