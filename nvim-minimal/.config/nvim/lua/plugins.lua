@@ -12,6 +12,7 @@ vim.pack.add({
   'https://github.com/mikesmithgh/kitty-scrollback.nvim',
   -- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
   'https://github.com/stevearc/quicker.nvim',
+  'https://github.com/folke/zen-mode.nvim',
 })
 
 -- ───────────────────────── quicker ──────────────────────
@@ -484,3 +485,21 @@ require('mkdnflow').setup({
     MkdnUnfoldSection = { 'n', '<leader>NF' },
   },
 })
+
+-- ───────────────────────── zen mode ─────────────────────────
+require('zen-mode').setup({
+  plugins = {
+    options = {
+      laststatus = 0
+    },
+  },
+  on_open = function()
+    os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.zen.conf')
+  end,
+  on_close = function()
+    os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.conf')
+  end
+})
+vim.keymap.set('n', '<leader>Z', function()
+  require('zen-mode').toggle({})
+end, { desc = 'Format buffer' })
