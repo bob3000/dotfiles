@@ -1,0 +1,22 @@
+
+new_tab
+layout splits
+enabled_layouts splits,stack,tall,horizontal
+set_layout_state {"pairs": {"one": 1, "two": 2}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 1, "active_group_history": [2, 1], "window_groups": [{"id": 1, "window_ids": [1]}, {"id": 2, "window_ids": [2]}]}}
+cd /home/bob/docs/md/writings
+
+launch 'kitty-unserialize-data={"id": 1, "cmd_at_shell_startup": "hugo server --buildDrafts"}'
+launch 'kitty-unserialize-data={"id": 2}'
+focus
+
+new_tab
+layout splits
+enabled_layouts splits,stack,tall,horizontal
+set_layout_state {"pairs": {"one": 3, "two": 5}, "opts": {"default_axis_is_horizontal": true}, "class": "Splits", "all_windows": {"active_group_idx": 0, "active_group_history": [3, 5], "window_groups": [{"id": 3, "window_ids": [3]}, {"id": 5, "window_ids": [5]}]}}
+cd /home/bob/docs/md/writings
+
+launch 'kitty-unserialize-data={"id": 3, "cmd_at_shell_startup": "nvim"}'
+focus
+launch 'kitty-unserialize-data={"id": 5, "cmd_at_shell_startup": "cha http://localhost:1313/"}'
+
+focus_tab 1
