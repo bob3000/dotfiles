@@ -1,0 +1,16 @@
+# Session
+XDG_SESSION_TYPE=wayland
+XDG_SESSION_DESKTOP=labwc
+XDG_CURRENT_DESKTOP=labwc
+
+# Wayland
+MOZ_ENABLE_WAYLAND=1
+QT_QPA_PLATFORM=wayland
+SDL_VIDEODRIVER=wayland
+_JAVA_AWT_WM_NONREPARENTING=1
+
+# Keyboard
+XKB_DEFAULT_LAYOUT=gb,de
+XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
+
+HOSTNAME=ghostwriter

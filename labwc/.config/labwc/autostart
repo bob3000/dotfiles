@@ -1,0 +1,2 @@
+swaybg -i ~/sync/Images/fed-wallpaper.jpg -m fill &
+waybar &

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<labwc_config>
+  <keyboard>
+    <default />
+    <!-- The W- prefix refers to the Super key -->
+    <keybind key="C-A-k">
+      <action name="Execute" command="kitty" />
+    </keybind>
+    <keybind key="A-d">
+      <action name="Execute" command="wofi --show drun" />
+    </keybind>
+  </keyboard>
+</labwc_config>
