@@ -1,4 +1,6 @@
-swaybg -i ~/pictures/wallpaper/fed-wallpaper.jpg -m fill &
+openrc -U wayland
+swaybg -i ~/pictures/wallpapers/fed-wallpaper.jpg -m fill &
 waybar --log-level off &
 mako > /dev/null 2>&1 &
-swayidle /dev/null 2>&1 &
+swayidle -w &
+foot --server &
