@@ -125,6 +125,7 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
       "menu-actions": {
+        "logout": "loginctl kill-session self",
         "shutdown": "loginctl shutdown",
         "reboot": "loginctl reboot",
         "suspend": "loginctl suspend",
