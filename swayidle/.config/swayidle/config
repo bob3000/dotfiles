@@ -1,3 +1,3 @@
-timeout 30 'pgrep -x swaylock && [ "$(brightnessctl g)" -gt 0 ] && brightnessctl -s set 0%' resume '[ "$(brightnessctl g)" -eq 0 ] && brightnessctl -r'
-timeout 300 'pgrep -x swaylock || swaylock -f; [ "$(brightnessctl g)" -gt 0 ] && brightnessctl -s set 0%' resume '[ "$(brightnessctl g)" -eq 0 ] && brightnessctl -r'
-before-sleep 'pgrep -x swaylock || swaylock -f'
+timeout 30 'chayang && swaylock -f -c 000000'
+timeout 60 'wlopm --off \*' resume 'wlopm --on \*'
+before-sleep 'chayang && swaylock -f -c 000000'
