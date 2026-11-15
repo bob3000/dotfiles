@@ -57,6 +57,7 @@
     <keybind key="C-A-q"><action name="Close" /></keybind>
     <keybind key="A-Tab"><action name="NextWindow" /></keybind>
     <keybind key="C-A-Up"><action name="ToggleMaximize" /></keybind>
+    <keybind key="C-A-Down"><action name="ToggleFullscreen" /></keybind>
     <keybind key="C-A-Left"><action name="ToggleSnapToEdge" direction="left" /></keybind>
     <keybind key="C-A-Right"><action name="ToggleSnapToEdge" direction="right" /></keybind>
     <keybind key="C-1"><action name="GoToDesktop" to="1" /></keybind>
