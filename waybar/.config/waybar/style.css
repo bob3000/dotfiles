@@ -66,23 +66,19 @@ window > box {
   color: #cc6666;
 }
 
-#clock,
-#battery,
+#taskbar,
+#idle_inhibitor,
+#wireplumber,
+#network,
 #cpu,
-#memory,
 #disk,
+#memory,
 #temperature,
 #backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd,
-#window,
-#workspaces,
-#custom-gammastep
+#battery,
+#clock,
+#tray
+#custom-power
 {
   padding: 0px 8px 0px 8px;
   margin: 0 5px;
