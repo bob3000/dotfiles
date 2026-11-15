@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
 <labwc_config>
+  <desktops number="4" />
+  <core>
+    <hdr>yes</hdr>
+  </core>
   <keyboard>
     <default />
     <!-- The W- prefix refers to the Super key -->
@@ -9,5 +13,42 @@
     <keybind key="A-d">
       <action name="Execute" command="wofi --show drun" />
     </keybind>
+    <keybind key="C-A-p">
+      <action name="Execute" command="grim screenshot.png" />
+    </keybind>
+    <keybind key="C-A-S-p">
+      <action name="Execute" command="slurp | grim -g - screenshot.png" />
+    </keybind>
+    <keybind key="F10">
+      <action name="Execute" command="wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+" />
+    </keybind>
+    <keybind key="F9">
+      <action name="Execute" command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" />
+    </keybind>
+    <keybind key="F8">
+      <action name="Execute" command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" />
+    </keybind>
+    <keybind key="F7">
+      <action name="Execute" command="brightnessctl set 5%+" />
+    </keybind>
+    <keybind key="F6">
+      <action name="Execute" command="brightnessctl set 5%-" />
+    </keybind>
+    <keybind key="F4">
+      <action name="Execute" command="/usr/bin/swaylock" />
+    </keybind>
+    <keybind key="C-A-q"><action name="Close" /></keybind>
+    <keybind key="A-Tab"><action name="NextWindow" /></keybind>
+    <keybind key="C-A-Up"><action name="ToggleMaximize" /></keybind>
+    <keybind key="C-A-Left"><action name="ToggleSnapToEdge" direction="left" /></keybind>
+    <keybind key="C-A-Right"><action name="ToggleSnapToEdge" direction="right" /></keybind>
+    <keybind key="C-1"><action name="GoToDesktop" to="1" /></keybind>
+    <keybind key="C-2"><action name="GoToDesktop" to="2" /></keybind>
+    <keybind key="C-3"><action name="GoToDesktop" to="3" /></keybind>
+    <keybind key="C-4"><action name="GoToDesktop" to="4" /></keybind>
+    <keybind key="C-A-1"><action name="SendToDesktop" to="1" /></keybind>
+    <keybind key="C-A-2"><action name="SendToDesktop" to="2" /></keybind>
+    <keybind key="C-A-3"><action name="SendToDesktop" to="3" /></keybind>
+    <keybind key="C-A-4"><action name="SendToDesktop" to="4" /></keybind>
   </keyboard>
 </labwc_config>

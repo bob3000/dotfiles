@@ -1,2 +1,4 @@
 swaybg -i ~/sync/Images/fed-wallpaper.jpg -m fill &
 waybar &
+mako > /dev/null 2>&1 &
+swayidle &
