@@ -1,0 +1,5 @@
+ignore-empty-password
+
+image=~/pictures/wallpapers/fed-wallpaper.jpg
+scaling=fill
+show-failed-attempts
