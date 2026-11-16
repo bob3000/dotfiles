@@ -16,10 +16,10 @@
     <default />
     <!-- The W- prefix refers to the Super key -->
     <keybind key="C-A-r">
-      <action name="Execute" command="labwc --reconfigure" />
+      <action name="Reconfigure" />
     </keybind>
     <keybind key="C-A-Return">
-      <action name="Execute" command="kitty" />
+      <action name="Execute" command="foot" />
     </keybind>
     <keybind key="A-d">
       <action name="Execute" command="wofi --show drun" />
