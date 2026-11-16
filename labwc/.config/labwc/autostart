@@ -4,3 +4,4 @@ waybar --log-level off &
 mako > /dev/null 2>&1 &
 swayidle -w &
 foot --server &
+./automount.sh &
