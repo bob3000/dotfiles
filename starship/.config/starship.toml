@@ -19,6 +19,9 @@ format = "[$symbol($subscription)]($style) "
 symbol = ' '
 disabled = true
 
+[[battery.display]]
+threshold = 10
+
 [cpp]
 format = "[$symbol($version(-$name) )]($style)"
 commands = [["clang", "--version"], ["gcc", "--version"], ["cc", "--version"]]
