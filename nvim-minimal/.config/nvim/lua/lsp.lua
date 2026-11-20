@@ -9,10 +9,11 @@ vim.lsp.enable({
 vim.opt.completeopt = {
   'menu',
   'menuone',
+  'preview',
   'noselect',
   'popup',
-  -- 'fuzzy',
-  -- 'nosort',
+  'fuzzy',
+  'nosort',
 } -- completion menu options
 
 vim.opt.autocomplete = false -- enable auto complete
