@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(event)
     local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
     local bufnr = event.buf
+    vim.bo[bufnr].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
       local highlight_augroup = vim.api.nvim_create_augroup('user-lsp-highlight', { clear = false })

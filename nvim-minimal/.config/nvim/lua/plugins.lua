@@ -13,6 +13,7 @@ vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/stevearc/quicker.nvim',
   'https://github.com/folke/zen-mode.nvim',
+  'https://github.com/rafamadriz/friendly-snippets',
 })
 
 -- ───────────────────────── quicker ──────────────────────
@@ -229,7 +230,10 @@ hipatterns.setup({
 require('mini.surround').setup()
 require('mini.icons').setup()
 require('mini.pairs').setup()
-require('mini.completion').setup()
+require('mini.completion').setup({
+  lsp_completion = { source_func = 'omnifunc', auto_setup = false },
+})
+require('mini.snippets').setup()
 require('mini.bufremove').setup()
 
 -- ───────────────────────── mini clues ──────────────────────────────
