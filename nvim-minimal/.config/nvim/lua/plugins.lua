@@ -10,7 +10,7 @@ vim.pack.add({
   'https://github.com/jakewvincent/mkdnflow.nvim',
   { src = 'https://github.com/stevearc/oil.nvim', version = vim.version.range('*') },
   'https://github.com/mikesmithgh/kitty-scrollback.nvim',
-  -- "https://github.com/neovim/nvim-lspconfig", -- relevant configs already copied
+  'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/stevearc/quicker.nvim',
   'https://github.com/folke/zen-mode.nvim',
 })
@@ -490,15 +490,19 @@ require('mkdnflow').setup({
 require('zen-mode').setup({
   plugins = {
     options = {
-      laststatus = 0
+      laststatus = 0,
     },
   },
   on_open = function()
-    os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.zen.conf')
+    if os.getenv('TERMINAL') == 'kitty' then
+      os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.zen.conf')
+    end
   end,
   on_close = function()
-    os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.conf')
-  end
+    if os.getenv('TERMINAL') == 'kitty' then
+      os.execute('kitten @ action load_config_file ' .. os.getenv('HOME') .. '/.config/kitty/kitty.conf')
+    end
+  end,
 })
 vim.keymap.set('n', '<leader>Z', function()
   require('zen-mode').toggle({})
