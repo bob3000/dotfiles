@@ -11,5 +11,6 @@ require('autocmd')
 require('lsp')
 require('debugger')
 require('keymaps')
+require('colorscheme')
 
-vim.cmd.colorscheme('catppuccin')
+vim.cmd.colorscheme('catppuccin-nvim')

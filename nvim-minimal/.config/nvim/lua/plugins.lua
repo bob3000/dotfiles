@@ -254,6 +254,7 @@ hipatterns.setup({
   },
 })
 
+require('mini.indentscope').setup()
 require('mini.surround').setup()
 require('mini.icons').setup()
 require('mini.pairs').setup()
