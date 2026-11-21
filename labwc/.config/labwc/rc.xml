@@ -55,7 +55,8 @@
       <action name="Execute" command="cmus-remote -r" />
     </keybind>
     <keybind key="C-A-q"><action name="Close" /></keybind>
-    <keybind key="A-Tab"><action name="NextWindow" /></keybind>
+    <keybind key="A-Tab"><action name="NextWindow" workspace="all" /></keybind>
+    <keybind key="A-S-Tab"><action name="PreviousWindow" workspace="all" /></keybind>
     <keybind key="C-A-Up"><action name="ToggleMaximize" /></keybind>
     <keybind key="C-A-Down"><action name="ToggleFullscreen" /></keybind>
     <keybind key="C-A-Left"><action name="ToggleSnapToEdge" direction="left" /></keybind>
