@@ -36,10 +36,6 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<cr><esc>', { desc = 'Save File' })
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
--- Terminal Mappings
-vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
-vim.keymap.set('t', '<c-_>', '<cmd>close<cr>', { desc = 'which_key_ignore' })
-
 -- Add undo break-points
 vim.keymap.set('i', ',', ',<c-g>u')
 vim.keymap.set('i', '.', '.<c-g>u')
