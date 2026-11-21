@@ -1,5 +1,5 @@
 openrc -U wayland
-swaybg -i ~/pictures/wallpapers/fed-wallpaper.jpg -m fill &
+swaybg -i /usr/share/backgrounds/default.png -m fill &
 waybar --log-level off &
 mako > /dev/null 2>&1 &
 swayidle -w &

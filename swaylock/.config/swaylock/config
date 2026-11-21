@@ -1,5 +1,5 @@
 ignore-empty-password
 
-image=~/pictures/wallpapers/fed-wallpaper.jpg
+image=/usr/share/backgrounds/default.png
 scaling=fill
 show-failed-attempts
