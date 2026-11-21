@@ -33,10 +33,15 @@ vim.pack.add({
   'https://github.com/stevearc/quicker.nvim',
   'https://github.com/folke/zen-mode.nvim',
   'https://github.com/rafamadriz/friendly-snippets',
+  'https://github.com/danymat/neogen',
 })
 vim.cmd.packadd('nvim.undotree')
 vim.cmd.packadd('cfilter')
 require('vim._core.ui2').enable({})
+
+-- ───────────────────────── neogen ───────────────────────
+require('neogen').setup({ snippet_engine = 'mini' })
+vim.keymap.set('n', '<leader>cn', require('neogen').generate, { desc = 'Neogen' })
 
 -- ───────────────────────── quicker ──────────────────────
 require('quicker').setup({
