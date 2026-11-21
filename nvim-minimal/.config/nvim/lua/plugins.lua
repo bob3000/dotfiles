@@ -1,3 +1,22 @@
+local logo = [[
+                 .:           ..           
+               .----.         :==.         
+             .-------:        :====:       
+            ::-===-----       :======      
+            :---==------.     :+++++=      
+            :-----=------:    :++++++      
+            ------::-------   :++++++      
+            ------. :-------. :++++++      
+            ------:  .-======::++++++      
+            ------:    -=======++++++      
+            -=====:     :======++++++      
+            -=====:      .=====++++++      
+             :====:        -===++++=.      
+               :==:         :==++=.        
+                 -:          .==.          
+]]
+
+
 vim.pack.add({
   'https://github.com/stevearc/aerial.nvim',
   'https://github.com/ibhagwan/fzf-lua',
@@ -15,6 +34,9 @@ vim.pack.add({
   'https://github.com/folke/zen-mode.nvim',
   'https://github.com/rafamadriz/friendly-snippets',
 })
+vim.cmd.packadd('nvim.undotree')
+vim.cmd.packadd('cfilter')
+require('vim._core.ui2').enable({})
 
 -- ───────────────────────── quicker ──────────────────────
 require('quicker').setup({
@@ -235,6 +257,44 @@ require('mini.completion').setup({
 })
 require('mini.snippets').setup()
 require('mini.bufremove').setup()
+require('mini.cmdline').setup()
+
+-- ───────────────────────── notify ───────────────────────────────────
+require('mini.notify').setup({
+  lsp_progress = { enable = false },
+})
+vim.keymap.set('n', '<leader>n', MiniNotify.show_history, { desc = 'Notifications' })
+
+-- ───────────────────────── dashboard ────────────────────────────────
+--
+local starter = require('mini.starter')
+starter.setup({
+  header = logo,
+  footer = '',
+  items = {
+    -- starter.sections.builtin_actions(),
+    starter.sections.recent_files(5, true),
+    starter.sections.sessions(5, true),
+  },
+  content_hooks = {
+    starter.gen_hook.adding_bullet(),
+    starter.gen_hook.aligning('center', 'center'),
+  },
+})
+
+-- ───────────────────────── sessions ────────────────────────────────
+require('mini.sessions').setup({
+  force = { read = false, write = true, delete = false },
+})
+vim.keymap.set('n', '<leader>Sd', function()
+  MiniSessions.select('delete')
+end, { desc = 'Session delete' })
+vim.keymap.set('n', '<leader>Sr', MiniSessions.read, { desc = 'Session read' })
+vim.keymap.set('n', '<leader>Ss', MiniSessions.select, { desc = 'Session select' })
+vim.keymap.set('n', '<leader>Sw', function()
+  local session_name = vim.fn.input('Session name: ')
+  MiniSessions.write(session_name)
+end, { desc = 'Session write' })
 
 -- ───────────────────────── mini clues ──────────────────────────────
 require('mini.clue').setup()

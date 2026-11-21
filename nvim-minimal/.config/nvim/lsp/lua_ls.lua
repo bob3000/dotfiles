@@ -11,6 +11,8 @@ return {
       format = { enable = false },
       diagnostics = {
         globals = {
+          'MiniSessions',
+          'MiniNotify',
           'Snacks',
           'FzfLua',
           'vim',

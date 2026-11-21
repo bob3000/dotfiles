@@ -72,9 +72,7 @@ vim.keymap.set('n', '<leader>dd', '"_dd', { desc = 'Delete line without yanking'
 vim.keymap.set('n', '<leader><S-d>', '"_D', { desc = 'Delete till end of line without yanking' })
 
 -- Undotree
-vim.keymap.set('n', '<leader><S-u>', function()
-  require('undotree').open()
-end, { desc = 'Undotree' })
+vim.keymap.set('n', '<leader><S-u>', require('undotree').open, { desc = 'Undotree' })
 
 -- code
 vim.keymap.set('', '<leader>cw', '<cmd>%s/ \\+$//<CR>', { desc = 'Remove trailing whitespace' })
@@ -85,5 +83,5 @@ vim.keymap.set('', 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", { desc =
 vim.keymap.set('', 'dm*', ':delmarks!<CR>', { desc = 'Delete all marks' })
 
 -- diagnostics
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setqflist, { desc = 'Diagnostics to quickfix' })
-vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Diagnostics to loclist' })
+vim.keymap.set('n', '<leader>xX', vim.diagnostic.setqflist, { desc = 'Diagnostics to quickfix' })
+vim.keymap.set('n', '<leader>xx', vim.diagnostic.setloclist, { desc = 'Diagnostics to loclist' })
